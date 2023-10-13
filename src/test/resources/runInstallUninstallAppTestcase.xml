@@ -1,0 +1,9 @@
+<suite name="Shopify" verbose="1">
+    <test name="Run on Chrome">
+        <parameter name="browser" value="Chrome"/>
+        <classes>
+            <class name="com.shopify.admin.UninstallApp"/>
+            <class name="com.shopify.admin.InstallApp"/>
+        </classes>
+    </test>
+</suite>

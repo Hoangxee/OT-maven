@@ -1,0 +1,15 @@
+<suite name="Shopify" verbose="1">
+    <parameter name="browser" value="Chrome"/>
+
+    <listeners>
+        <listener class-name="commons.MethodListener"/>
+        <listener class-name="reportConfig.AllureTestListener"/>
+    </listeners>
+
+    <test name="Run on Chrome">
+            <classes>
+                <class name="com.shopify.admin.UninstallApp"/>
+                <class name="com.shopify.admin.InstallApp"/>
+            </classes>
+        </test>
+</suite>

@@ -1,0 +1,7 @@
+*.userlibraries
+/out
+/bin/
+.classpath
+/ScreentShot
+/test-output
+/logs
