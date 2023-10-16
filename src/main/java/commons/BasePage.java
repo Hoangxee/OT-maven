@@ -401,6 +401,10 @@ public class BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", getWebElement(driver, locatorType));
     }
 
+    public void scrollToBelowElement(WebDriver driver, String locatorType) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);", getWebElement(driver, locatorType));
+    }
+
     public void sendkeyToElementByJS(WebDriver driver, String locatorType, String value) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('value', '" + value + "')", getWebElement(driver, locatorType));
     }

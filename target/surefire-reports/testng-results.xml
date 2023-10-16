@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" ignored="1" total="4" passed="3">
   <reporter-output>
   </reporter-output>
-  <suite name="Shopify" duration-ms="22772" started-at="2023-10-13T16:40:19 ICT" finished-at="2023-10-13T16:40:42 ICT">
+  <suite name="Shopify (0)" duration-ms="132273" started-at="2023-10-16T11:24:49 ICT" finished-at="2023-10-16T11:27:01 ICT">
     <groups>
     </groups>
-    <test name="Run on Chrome" duration-ms="22772" started-at="2023-10-13T16:40:19 ICT" finished-at="2023-10-13T16:40:42 ICT">
-      <class name="com.shopify.store.CreateOrders">
-        <test-method status="PASS" signature="initBeforeSuite()[pri:0, instance:com.shopify.store.CreateOrders@f713686]" name="initBeforeSuite" is-config="true" duration-ms="20" started-at="2023-10-13T16:40:19 ICT" finished-at="2023-10-13T16:40:19 ICT">
+    <test name="Run on Chrome" duration-ms="132273" started-at="2023-10-16T11:24:49 ICT" finished-at="2023-10-16T11:27:01 ICT">
+      <class name="com.shopify.admin.UninstallApp">
+        <test-method status="PASS" signature="initBeforeSuite()[pri:0, instance:com.shopify.admin.UninstallApp@7957dc72]" name="initBeforeSuite" is-config="true" duration-ms="6" started-at="2023-10-16T11:24:49 ICT" finished-at="2023-10-16T11:24:49 ICT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initBeforeSuite -->
-        <test-method status="PASS" signature="beforeClass(java.lang.String)[pri:0, instance:com.shopify.store.CreateOrders@f713686]" name="beforeClass" is-config="true" duration-ms="5084" started-at="2023-10-13T16:40:19 ICT" finished-at="2023-10-13T16:40:24 ICT">
+        <test-method status="PASS" signature="beforeClass(java.lang.String)[pri:0, instance:com.shopify.admin.UninstallApp@7957dc72]" name="beforeClass" is-config="true" duration-ms="4799" started-at="2023-10-16T11:24:49 ICT" finished-at="2023-10-16T11:24:54 ICT">
           <params>
             <param index="0">
               <value>
@@ -22,11 +22,63 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeClass -->
-        <test-method status="PASS" signature="TC_01_CreateOrder()[pri:0, instance:com.shopify.store.CreateOrders@f713686]" name="TC_01_CreateOrder" duration-ms="17498" started-at="2023-10-13T16:40:24 ICT" finished-at="2023-10-13T16:40:41 ICT">
+        <test-method status="PASS" signature="UninstallApp()[pri:0, instance:com.shopify.admin.UninstallApp@7957dc72]" name="UninstallApp" duration-ms="68427" started-at="2023-10-16T11:24:54 ICT" finished-at="2023-10-16T11:26:02 ICT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UninstallApp -->
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:com.shopify.admin.UninstallApp@7957dc72]" name="afterClass" is-config="true" duration-ms="728" started-at="2023-10-16T11:26:02 ICT" finished-at="2023-10-16T11:26:03 ICT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+      </class> <!-- com.shopify.admin.UninstallApp -->
+      <class name="com.shopify.admin.InstallApp">
+        <test-method status="PASS" signature="beforeClass(java.lang.String)[pri:0, instance:com.shopify.admin.InstallApp@6ab72419]" name="beforeClass" is-config="true" duration-ms="3413" started-at="2023-10-16T11:26:03 ICT" finished-at="2023-10-16T11:26:06 ICT">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="PASS" signature="InstallApp()[pri:0, instance:com.shopify.admin.InstallApp@6ab72419]" name="InstallApp" duration-ms="54898" started-at="2023-10-16T11:26:06 ICT" finished-at="2023-10-16T11:27:01 ICT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- InstallApp -->
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:com.shopify.admin.InstallApp@6ab72419]" name="afterClass" is-config="true" duration-ms="0" started-at="2023-10-16T11:27:01 ICT" finished-at="2023-10-16T11:27:01 ICT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+      </class> <!-- com.shopify.admin.InstallApp -->
+    </test> <!-- Run on Chrome -->
+  </suite> <!-- Shopify (0) -->
+  <suite name="Shopify" duration-ms="23732" started-at="2023-10-16T11:24:25 ICT" finished-at="2023-10-16T11:24:49 ICT">
+    <groups>
+    </groups>
+    <test name="Run on Chrome" duration-ms="23732" started-at="2023-10-16T11:24:25 ICT" finished-at="2023-10-16T11:24:49 ICT">
+      <class name="com.shopify.store.CreateOrders">
+        <test-method status="PASS" signature="initBeforeSuite()[pri:0, instance:com.shopify.store.CreateOrders@2ca65ce4]" name="initBeforeSuite" is-config="true" duration-ms="46" started-at="2023-10-16T11:24:25 ICT" finished-at="2023-10-16T11:24:25 ICT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initBeforeSuite -->
+        <test-method status="PASS" signature="beforeClass(java.lang.String)[pri:0, instance:com.shopify.store.CreateOrders@2ca65ce4]" name="beforeClass" is-config="true" duration-ms="5704" started-at="2023-10-16T11:24:25 ICT" finished-at="2023-10-16T11:24:31 ICT">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="PASS" signature="TC_01_CreateOrder()[pri:0, instance:com.shopify.store.CreateOrders@2ca65ce4]" name="TC_01_CreateOrder" duration-ms="17059" started-at="2023-10-16T11:24:31 ICT" finished-at="2023-10-16T11:24:48 ICT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TC_01_CreateOrder -->
-        <test-method status="PASS" signature="afterClass()[pri:0, instance:com.shopify.store.CreateOrders@f713686]" name="afterClass" is-config="true" duration-ms="1" started-at="2023-10-13T16:40:42 ICT" finished-at="2023-10-13T16:40:42 ICT">
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:com.shopify.store.CreateOrders@2ca65ce4]" name="afterClass" is-config="true" duration-ms="762" started-at="2023-10-16T11:24:48 ICT" finished-at="2023-10-16T11:24:49 ICT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterClass -->

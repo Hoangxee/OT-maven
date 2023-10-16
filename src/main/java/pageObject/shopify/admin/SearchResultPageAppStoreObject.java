@@ -14,7 +14,7 @@ public class SearchResultPageAppStoreObject extends BaseTest {
 
     public DetailAppPageAppStoreObject clickToApp() {
         waitForElementClickable(driver, SearchResultPageAppStoreUI.APP_NAME);
-        clickToElement(driver, SearchResultPageAppStoreUI.APP_NAME);
+        clickToElementByJS(driver,SearchResultPageAppStoreUI.APP_NAME);
         return PageGeneratorManager.getDetailAppPageAppStore(driver);
     }
 }
