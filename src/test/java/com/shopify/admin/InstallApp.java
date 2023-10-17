@@ -37,7 +37,7 @@ public class InstallApp extends BaseTest {
 
     @AfterClass
     public void afterClass(){
-//        driver.quit();
+        driver.quit();
     }
 
     private WebDriver driver;

@@ -1,0 +1,1 @@
+{"uuid":"e98e4d91-5393-499f-b643-cbea7ee2d6d1","name":"Shopify","children":["0f9ace69-c79a-432a-94a8-3e7d5c224bf8"],"befores":[{"name":"initBeforeSuite","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1697517880983,"stop":1697517880998}],"afters":[],"links":[],"start":1697517880955,"stop":1697517908625}

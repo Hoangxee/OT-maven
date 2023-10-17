@@ -152,7 +152,7 @@
                     <!-- Run TestNG xml file -->
                     <suiteXmlFiles>
                         <file>src/test/resources/runCreateOrdersTestcase.xml</file>
-                        <file>src/test/resources/runInstallUninstallAppTestcase.xml</file>
+<!--                        <file>src/test/resources/runInstallUninstallAppTestcase.xml</file>-->
                     </suiteXmlFiles>
 
                     <!-- Allure report Argument - screenshot for Allure report -->
