@@ -145,7 +145,7 @@
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
 &lt;suite thread-count=&quot;3&quot; verbose=&quot;0&quot; name=&quot;Shopify&quot;&gt;
   &lt;test thread-count=&quot;3&quot; verbose=&quot;0&quot; name=&quot;Run on Chrome&quot;&gt;
-    &lt;parameter name=&quot;browser&quot; value=&quot;Chrome&quot;/&gt;
+    &lt;parameter name=&quot;browser&quot; value=&quot;Firefox&quot;/&gt;
     &lt;classes&gt;
       &lt;class name=&quot;com.shopify.store.CreateOrders&quot;/&gt;
     &lt;/classes&gt;
@@ -191,12 +191,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'TC_01_CreateOrder')
 data.setCell(0, 2, 'com.shopify.store.CreateOrders')
-data.setCell(0, 3, 18327);
+data.setCell(0, 3, 21398);
 window.suiteTableData['Shopify']= { tableData: data, tableDiv: 'times-div-Shopify'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 18 seconds</span>
+              <span class="suite-total-time">Total running time: 21 seconds</span>
               <div id="times-div-Shopify">
               </div> <!-- times-div-Shopify -->
             </div> <!-- times-div -->
@@ -228,16 +228,16 @@ return data;
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="configuration-class before">
-                <span class="method-name">beforeClass(Chrome)</span>
-                <span class="method-start">64 ms</span>
+                <span class="method-name">beforeClass(Firefox)</span>
+                <span class="method-start">54 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <span class="method-name">TC_01_CreateOrder</span>
-                <span class="method-start">8338 ms</span>
+                <span class="method-start">6444 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">afterClass</span>
-                <span class="method-start">26792 ms</span>
+                <span class="method-start">28245 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
