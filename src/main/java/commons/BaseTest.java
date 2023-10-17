@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
+import java.time.Duration;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -27,9 +28,10 @@ public class BaseTest extends BasePage{
         switch (browser){
             case CHROME:
 //                driver = WebDriverManager.chromedriver().create();
-                String projectPath = System.getProperty("user.dir");
-                System.setProperty("webdriver.chrome.driver", projectPath+"\\browserDrivers\\chromedriver.exe");
-//                System.setProperty("webdriver.chrome.driver", projectPath+"\\browserDrivers\\chromedriver");
+
+//                String projectPath = System.getProperty("user.dir");
+//                System.setProperty("webdriver.chrome.driver", projectPath+"\\browserDrivers\\chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", "/home/jenkins/workspace/auto-test/Order tracking (Selenium)/browserDrivers/chromedriver");
                 driver = new ChromeDriver();
                 break;
             case FIREFOX:
@@ -44,7 +46,7 @@ public class BaseTest extends BasePage{
 //        driver.manage().window().setSize(new Dimension(1366,768));
 //        driver.manage().window().setPosition(new Point(0,0));
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
         openURL(driver, appURL);
         return driver;
     }
