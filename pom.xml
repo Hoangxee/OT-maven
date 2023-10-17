@@ -19,7 +19,7 @@
         <webdriver.version>4.14.1</webdriver.version>
         <testng.version>7.4.0</testng.version>
         <jackson.version>2.10.3</jackson.version>
-        <webdrivermanager.version>5.3.1</webdrivermanager.version>
+<!--        <webdrivermanager.version>5.3.1</webdrivermanager.version>-->
         <aspectj.version>1.8.10</aspectj.version>
         <allure.version>2.13.5</allure.version>
         <lgo4j.version>1.2.16</lgo4j.version>
@@ -51,17 +51,17 @@
             <version>${webdriver.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>${webdrivermanager.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>jcl-over-slf4j</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.github.bonigarcia</groupId>-->
+<!--            <artifactId>webdrivermanager</artifactId>-->
+<!--            <version>${webdrivermanager.version}</version>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.slf4j</groupId>-->
+<!--                    <artifactId>jcl-over-slf4j</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.uncommons</groupId>
