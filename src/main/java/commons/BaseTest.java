@@ -31,7 +31,7 @@ public class BaseTest extends BasePage{
 
 //                String projectPath = System.getProperty("user.dir");
 //                System.setProperty("webdriver.chrome.driver", projectPath+"\\browserDrivers\\chromedriver.exe");
-                System.setProperty("webdriver.chrome.driver", "/home/jenkins/workspace/auto-test/Order-tracking-selenium/browserDrivers/chromedriver");
+//                System.setProperty("webdriver.chrome.driver", "/home/jenkins/workspace/auto-test/Order-tracking-selenium/browserDrivers/chromedriver");
                 driver = new ChromeDriver();
                 break;
             case FIREFOX:
@@ -43,8 +43,6 @@ public class BaseTest extends BasePage{
             default:
                 throw new RuntimeException("Please enter the correct Browser name!");
         }
-//        driver.manage().window().setSize(new Dimension(1366,768));
-//        driver.manage().window().setPosition(new Point(0,0));
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
         openURL(driver, appURL);
