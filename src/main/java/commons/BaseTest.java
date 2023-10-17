@@ -31,7 +31,7 @@ public class BaseTest extends BasePage{
 
 //                String projectPath = System.getProperty("user.dir");
 //                System.setProperty("webdriver.chrome.driver", projectPath+"\\browserDrivers\\chromedriver.exe");
-                System.setProperty("webdriver.chrome.driver", "/home/jenkins/workspace/auto-test/Order tracking (Selenium)/browserDrivers/chromedriver");
+                System.setProperty("webdriver.chrome.driver", "/home/jenkins/workspace/auto-test/Order-tracking-selenium/browserDrivers/chromedriver");
                 driver = new ChromeDriver();
                 break;
             case FIREFOX:
