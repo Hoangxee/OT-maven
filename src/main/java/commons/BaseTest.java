@@ -28,7 +28,8 @@ public class BaseTest extends BasePage{
             case CHROME:
 //                driver = WebDriverManager.chromedriver().create();
                 String projectPath = System.getProperty("user.dir");
-                System.setProperty("webdriver.chrome.driver", projectPath+"\\browserDrivers\\chromedriver.exe");
+//                System.setProperty("webdriver.chrome.driver", projectPath+"\\browserDrivers\\chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", projectPath+"\\browserDrivers\\chromedriver");
                 driver = new ChromeDriver();
                 break;
             case FIREFOX:
