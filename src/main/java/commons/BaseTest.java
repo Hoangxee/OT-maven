@@ -14,6 +14,7 @@ import java.util.Random;
 public class BaseTest {
     WebDriver driver;
     protected final Log log;
+    String osName = System.getProperty("os.name");
 
     @BeforeSuite
     public void initBeforeSuite(){
@@ -30,7 +31,10 @@ public class BaseTest {
 
 //                String projectPath = System.getProperty("user.dir");
 //                System.setProperty("webdriver.chrome.driver", projectPath+"\\browserDrivers\\chromedriver.exe");
-//                System.setProperty("webdriver.chrome.driver", "/home/jenkins/workspace/auto-test/Order-tracking-selenium/browserDrivers/chromedriver");
+
+                if(osName.contains("linux")){
+                    System.setProperty("webdriver.chrome.driver", "/home/jenkins/workspace/auto-test/Order-tracking-selenium/browserDrivers/chromedriver");
+                }
                 driver = new ChromeDriver();
                 break;
             case FIREFOX:
