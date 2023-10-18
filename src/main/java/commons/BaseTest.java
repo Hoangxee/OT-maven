@@ -33,7 +33,7 @@ public class BaseTest {
 //                System.setProperty("webdriver.chrome.driver", projectPath+"\\browserDrivers\\chromedriver.exe");
 
                 if(osName.contains("linux")){
-                    System.setProperty("webdriver.chrome.driver", "/home/jenkins/workspace/auto-test/Order-tracking-selenium/browserDrivers/chromedriver");
+                    System.setProperty("webdriver.chrome.driver", "/usr/lib64/chromium-browser/chromedriver");
                 }
                 driver = new ChromeDriver();
                 break;
