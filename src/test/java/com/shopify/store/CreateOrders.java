@@ -49,7 +49,7 @@ public class CreateOrders extends BaseTest {
         checkoutPage.inputToExpirationDateField("Expiration date", Keys.NUMPAD1);
         checkoutPage.inputToExpirationDateField("Expiration date", Keys.NUMPAD1);
         checkoutPage.inputToExpirationDateField("Expiration date", Keys.NUMPAD3);
-        sleepInSecond(1);
+        checkoutPage.sleepInSecond(1);
         checkoutPage.inputToExpirationDateField("Expiration date", Keys.NUMPAD4);
         checkoutPage.inputToCreditCardField("Security code", GlobalConstants.SECURITY_CODE);
         checkoutPage.clickToPayNowButton();
@@ -60,7 +60,7 @@ public class CreateOrders extends BaseTest {
 
     @AfterClass
     public void afterClass(){
-//        driver.quit();
+        driver.quit();
     }
 
     private WebDriver driver;

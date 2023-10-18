@@ -1,6 +1,6 @@
 package pageObject.shopify.admin;
 
-import commons.BaseTest;
+import commons.BasePage;
 import commons.PageGeneratorManager;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class HomePageAdminObject extends BaseTest {
+public class HomePageAdminObject extends BasePage {
     private WebDriver driver;
 
     public HomePageAdminObject(WebDriver mappingDriver){
@@ -46,10 +46,8 @@ public class HomePageAdminObject extends BaseTest {
             waitForElementAttributeChange(driver, HomePageAdminUI.UNINSTALL_BUTTON_IN_POPUP,"aria-disabled","false");
             clickToElement(driver, HomePageAdminUI.UNINSTALL_BUTTON_IN_POPUP);
             Assert.assertEquals(getWebElement(driver, HomePageAdminUI.UNINSTALL_MESSAGE_SUCCESSFULLY).getText(), "You've successfully uninstalled Omega - Order Tracking");
-            log.info("------------ PASSED ------------");
         }
         else{
-            log.info("------------ FAILED ------------");
         }
     }
 

@@ -1,5 +1,6 @@
 package pageObject.shopify.admin;
 
+import commons.BasePage;
 import commons.BaseTest;
 import commons.PageGeneratorManager;
 import org.openqa.selenium.Keys;
@@ -7,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import pageUIs.adminShopify.HomePageAppStoreUI;
 
-public class HomePageAppStoreObject extends BaseTest {
+public class HomePageAppStoreObject extends BasePage {
     private WebDriver driver;
 
     public HomePageAppStoreObject(WebDriver mappingDriver){

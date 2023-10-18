@@ -1,12 +1,13 @@
 package pageObject.shopify.admin;
 
+import commons.BasePage;
 import commons.BaseTest;
 import io.qameta.allure.Description;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pageUIs.adminShopify.DashboardPageOTAppUI;
 
-public class DashboardPageOTAppObject extends BaseTest {
+public class DashboardPageOTAppObject extends BasePage {
     private WebDriver driver;
 
     public DashboardPageOTAppObject(WebDriver mappingDriver){
