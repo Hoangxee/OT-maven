@@ -32,7 +32,7 @@ public class BaseTest {
         switch (browser){
             case CHROME:
 //                driver = WebDriverManager.chromedriver().create();
-
+//
 //                String projectPath = System.getProperty("user.dir");
 //                System.setProperty("webdriver.chrome.driver", projectPath+"\\browserDrivers\\chromedriver.exe");
 
