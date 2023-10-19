@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
+    <line>
+      <![CDATA[osName: Windows!]]>
+    </line>
   </reporter-output>
-  <suite started-at="2023-10-18T16:31:51 ICT" name="Shopify" finished-at="2023-10-18T16:32:20 ICT" duration-ms="28358">
+  <suite started-at="2023-10-19T08:40:20 ICT" name="Shopify" finished-at="2023-10-19T08:40:45 ICT" duration-ms="25564">
     <groups>
     </groups>
-    <test started-at="2023-10-18T16:31:51 ICT" name="Run on Chrome" finished-at="2023-10-18T16:32:20 ICT" duration-ms="28358">
+    <test started-at="2023-10-19T08:40:20 ICT" name="Run on Chrome" finished-at="2023-10-19T08:40:45 ICT" duration-ms="25564">
       <class name="com.shopify.store.CreateOrders">
-        <test-method is-config="true" signature="initBeforeSuite()[pri:0, instance:com.shopify.store.CreateOrders@6a0ac48e]" started-at="2023-10-18T16:31:51 ICT" name="initBeforeSuite" finished-at="2023-10-18T16:31:51 ICT" duration-ms="25" status="PASS">
+        <test-method is-config="true" signature="initBeforeSuite()[pri:0, instance:com.shopify.store.CreateOrders@1abc9f14]" started-at="2023-10-19T08:40:20 ICT" name="initBeforeSuite" finished-at="2023-10-19T08:40:20 ICT" duration-ms="38" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initBeforeSuite -->
-        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:com.shopify.store.CreateOrders@6a0ac48e]" started-at="2023-10-18T16:31:51 ICT" name="beforeClass" finished-at="2023-10-18T16:31:57 ICT" duration-ms="5447" status="PASS">
+        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:com.shopify.store.CreateOrders@1abc9f14]" started-at="2023-10-19T08:40:20 ICT" name="beforeClass" finished-at="2023-10-19T08:40:26 ICT" duration-ms="5816" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -20,13 +23,16 @@
             </param>
           </params>
           <reporter-output>
+            <line>
+              <![CDATA[osName: Windows!]]>
+            </line>
           </reporter-output>
         </test-method> <!-- beforeClass -->
-        <test-method signature="TC_01_CreateOrder()[pri:0, instance:com.shopify.store.CreateOrders@6a0ac48e]" started-at="2023-10-18T16:31:57 ICT" name="TC_01_CreateOrder" finished-at="2023-10-18T16:32:19 ICT" duration-ms="22464" status="PASS">
+        <test-method signature="TC_01_CreateOrder()[pri:0, instance:com.shopify.store.CreateOrders@1abc9f14]" started-at="2023-10-19T08:40:26 ICT" name="TC_01_CreateOrder" finished-at="2023-10-19T08:40:45 ICT" duration-ms="19195" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TC_01_CreateOrder -->
-        <test-method is-config="true" signature="afterClass()[pri:0, instance:com.shopify.store.CreateOrders@6a0ac48e]" started-at="2023-10-18T16:32:19 ICT" name="afterClass" finished-at="2023-10-18T16:32:20 ICT" duration-ms="265" status="PASS">
+        <test-method is-config="true" signature="afterClass()[pri:0, instance:com.shopify.store.CreateOrders@1abc9f14]" started-at="2023-10-19T08:40:45 ICT" name="afterClass" finished-at="2023-10-19T08:40:45 ICT" duration-ms="335" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterClass -->

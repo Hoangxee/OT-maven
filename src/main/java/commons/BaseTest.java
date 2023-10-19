@@ -11,6 +11,8 @@ import java.io.File;
 import java.time.Duration;
 import java.util.Random;
 
+import static org.testng.Reporter.log;
+
 public class BaseTest {
     WebDriver driver;
     protected final Log log;
@@ -32,8 +34,12 @@ public class BaseTest {
 //                String projectPath = System.getProperty("user.dir");
 //                System.setProperty("webdriver.chrome.driver", projectPath+"\\browserDrivers\\chromedriver.exe");
 
-                if(osName.contains("linux")){
+                if(osName.contains("linux")||osName.contains("Linux")){
+                    log("osName: Linux!");
                     System.setProperty("webdriver.chrome.driver", "/usr/lib64/chromium-browser/chromedriver");
+                } else if(osName.contains("windows")||osName.contains("Windows")){
+                    log("osName: Windows!");
+                    System.setProperty("webdriver.chrome.driver", "C:/Users/Admin/Downloads/Downloads/IntelliJ/project/OT-maven/browserDrivers/chromedriver.exe");
                 }
                 driver = new ChromeDriver();
                 break;
