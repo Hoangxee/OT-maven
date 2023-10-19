@@ -39,7 +39,8 @@ public class BaseTest {
                 if(osName.contains("linux")||osName.contains("Linux")){
                     System.out.println(osName);
                     System.out.println(projectPath);
-                    System.setProperty("webdriver.chrome.driver", "/usr/lib64/chromium-browser/chromedriver");
+//                    System.setProperty("webdriver.chrome.driver", "/usr/lib64/chromium-browser/chromedriver");
+                    System.setProperty("webdriver.chrome.driver", projectPath+ "/browserDrivers/chromedriver");
                     System.out.println("osName: Linux!");
                 } else if(osName.contains("windows")||osName.contains("Windows")){
                     System.setProperty("webdriver.chrome.driver", projectPath+ "/browserDrivers/chromedriver.exe");
