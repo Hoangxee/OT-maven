@@ -49,7 +49,7 @@ public class BaseTest {
                 options.addArguments("no-sandbox");
                 options.addArguments("window-size=1200x600");
                 driver = new ChromeDriver(options);
-                driver = new ChromeDriver();
+//                driver = new ChromeDriver();
                 break;
             case FIREFOX:
 //                driver = WebDriverManager.firefoxdriver().create();
