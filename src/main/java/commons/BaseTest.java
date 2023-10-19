@@ -35,13 +35,11 @@ public class BaseTest {
 //                System.setProperty("webdriver.chrome.driver", projectPath+"\\browserDrivers\\chromedriver.exe");
 
                 if(osName.contains("linux")||osName.contains("Linux")){
-                    log("osName: Linux!");
-                    System.out.println("osName: Linux!");
                     System.setProperty("webdriver.chrome.driver", "/usr/lib64/chromium-browser/chromedriver");
-                } else if(osName.contains("windows")||osName.contains("Windows")){
-                    log("osName: Windows!");
                     System.out.println("osName: Linux!");
+                } else if(osName.contains("windows")||osName.contains("Windows")){
                     System.setProperty("webdriver.chrome.driver", "C:/Users/Admin/Downloads/Downloads/IntelliJ/project/OT-maven/browserDrivers/chromedriver.exe");
+                    System.out.println("osName: Windows!");
                 }
                 driver = new ChromeDriver();
                 break;
