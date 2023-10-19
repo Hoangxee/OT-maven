@@ -44,11 +44,11 @@ public class BaseTest {
                     System.setProperty("webdriver.chrome.driver", "C:/Users/Admin/Downloads/Downloads/IntelliJ/project/OT-maven/browserDrivers/chromedriver.exe");
                     System.out.println("osName: Windows!");
                 }
-//                ChromeOptions options = new ChromeOptions();
-//                options.addArguments("headless");
-//                options.addArguments("no-sandbox");
-//                options.addArguments("window-size=1200x600");
-//                driver = new ChromeDriver(options);
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("headless");
+                options.addArguments("no-sandbox");
+                options.addArguments("window-size=1200x600");
+                driver = new ChromeDriver(options);
                 driver = new ChromeDriver();
                 break;
             case FIREFOX:
