@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeSuite;
 import java.io.File;
 import java.time.Duration;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import static org.testng.Reporter.log;
 
@@ -43,12 +44,12 @@ public class BaseTest {
                     System.setProperty("webdriver.chrome.driver", "C:/Users/Admin/Downloads/Downloads/IntelliJ/project/OT-maven/browserDrivers/chromedriver.exe");
                     System.out.println("osName: Windows!");
                 }
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("headless");
-                options.addArguments("no-sandbox");
-                options.addArguments("window-size=1200x600");
-                driver = new ChromeDriver(options);
-//                driver = new ChromeDriver();
+//                ChromeOptions options = new ChromeOptions();
+//                options.addArguments("headless");
+//                options.addArguments("no-sandbox");
+//                options.addArguments("window-size=1200x600");
+//                driver = new ChromeDriver(options);
+                driver = new ChromeDriver();
                 break;
             case FIREFOX:
 //                driver = WebDriverManager.firefoxdriver().create();
@@ -61,7 +62,8 @@ public class BaseTest {
                 throw new RuntimeException("Please enter the correct Browser name!");
         }
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
+        driver.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
         driver.get(appURL);
         return driver;
     }
