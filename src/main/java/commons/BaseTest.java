@@ -46,12 +46,12 @@ public class BaseTest {
                     System.setProperty("webdriver.chrome.driver", projectPath+ "/browserDrivers/chromedriver.exe");
                     System.out.println("osName: Windows!");
                 }
-//                ChromeOptions options = new ChromeOptions();
-//                options.addArguments("headless");
-//                options.addArguments("no-sandbox");
-//                options.addArguments("window-size=1200x600");
-//                driver = new ChromeDriver(options);
-                driver = new ChromeDriver();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("headless");
+                options.addArguments("no-sandbox");
+                options.addArguments("window-size=1200x600");
+                driver = new ChromeDriver(options);
+//                driver = new ChromeDriver();
                 break;
             case FIREFOX:
 //                driver = WebDriverManager.firefoxdriver().create();
