@@ -47,7 +47,7 @@ public class BaseTest {
                     System.out.println("osName: Windows!");
                 }
                 ChromeOptions options = new ChromeOptions();
-                options.addArguments("headless");
+//                options.addArguments("headless");
                 options.addArguments("no-sandbox");
                 options.addArguments("window-size=1200x600");
                 driver = new ChromeDriver(options);
