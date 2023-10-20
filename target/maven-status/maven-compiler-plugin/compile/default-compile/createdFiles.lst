@@ -5,6 +5,7 @@ pageObject\shopify\admin\LoginPageAdminObject.class
 reportConfig\AllureTestListener.class
 reportConfig\ReportNGListener.class
 commons\BaseTest.class
+commons\TestNGAppender.class
 pageObject\shopify\storeFront\HomePagePortalObject.class
 utilities\MailUtil.class
 utilities\APIUtil.class

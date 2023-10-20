@@ -22,7 +22,7 @@
 
     <!--    log ra file: Append = "true" luu lai tat ca cac lan chay (toi da 10MB)-->
     <appender name="file" class="org.apache.log4j.RollingFileAppender">
-        <param name="file" value="./logs/NopCommerce.log" />
+        <param name="file" value="./logs/Order-tracking.log" />
         <param name="append" value="true" />
         <param name="maxFileSize" value="10MB" />
         <param name="maxBackupIndex" value="10" />
@@ -40,7 +40,23 @@
     </appender>
 
 <!--    apply log-->
-    <category name="com.shopify.admin.Level_14_Log_ReportNG">
+    <category name="com.shopify.store.CreateOrders">
+        <priority value="all" />
+        <appender-ref ref="console" />
+        <appender-ref ref="logfile" />
+        <appender-ref ref="file" />
+        <appender-ref ref="testng" />
+    </category>
+
+    <category name="com.shopify.admin.InstallApp">
+        <priority value="all" />
+        <appender-ref ref="console" />
+        <appender-ref ref="logfile" />
+        <appender-ref ref="file" />
+        <appender-ref ref="testng" />
+    </category>
+
+    <category name="com.shopify.admin.UninstallApp">
         <priority value="all" />
         <appender-ref ref="console" />
         <appender-ref ref="logfile" />
