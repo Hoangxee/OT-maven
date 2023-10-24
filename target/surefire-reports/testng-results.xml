@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-10-24T17:27:34 ICT" name="Shopify" finished-at="2023-10-24T17:28:00 ICT" duration-ms="25961">
+    <groups>
+    </groups>
+    <test started-at="2023-10-24T17:27:34 ICT" name="Run on Chrome" finished-at="2023-10-24T17:28:00 ICT" duration-ms="25961">
+      <class name="com.shopify.store.CreateOrders">
+        <test-method is-config="true" signature="initBeforeSuite()[pri:0, instance:com.shopify.store.CreateOrders@38704ff0]" started-at="2023-10-24T17:27:34 ICT" name="initBeforeSuite" finished-at="2023-10-24T17:27:34 ICT" duration-ms="28" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initBeforeSuite -->
+        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:com.shopify.store.CreateOrders@38704ff0]" started-at="2023-10-24T17:27:34 ICT" name="beforeClass" finished-at="2023-10-24T17:27:39 ICT" duration-ms="5666" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method signature="TC_01_CreateOrder()[pri:0, instance:com.shopify.store.CreateOrders@38704ff0]" started-at="2023-10-24T17:27:39 ICT" name="TC_01_CreateOrder" finished-at="2023-10-24T17:27:59 ICT" duration-ms="19873" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_01_CreateOrder -->
+        <test-method is-config="true" signature="afterClass()[pri:0, instance:com.shopify.store.CreateOrders@38704ff0]" started-at="2023-10-24T17:27:59 ICT" name="afterClass" finished-at="2023-10-24T17:28:00 ICT" duration-ms="255" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+      </class> <!-- com.shopify.store.CreateOrders -->
+    </test> <!-- Run on Chrome -->
+  </suite> <!-- Shopify -->
+</testng-results>

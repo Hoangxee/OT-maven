@@ -52,6 +52,7 @@ public class BaseTest {
                 options.addArguments("disable-infobars");
                 options.addArguments("--no-sandbox");
                 driver = new ChromeDriver(options);
+
 //                driver = new ChromeDriver();
                 break;
             case FIREFOX:
