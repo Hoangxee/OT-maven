@@ -46,12 +46,6 @@ public class BaseTest {
                     System.setProperty("webdriver.chrome.driver", projectPath+ "/browserDrivers/chromedriver.exe");
                     System.out.println("osName: Windows!");
                 }
-//                ChromeOptions options = new ChromeOptions();
-//                options.addArguments("--disable-dev-shm-usage");
-//                options.addArguments("start-maximized");
-//                options.addArguments("disable-infobars");
-//                options.addArguments("--no-sandbox");
-
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--headless");
                 options.addArguments("--disable-dev-shm-usage");
@@ -59,8 +53,15 @@ public class BaseTest {
                 options.addArguments("disable-infobars");
                 options.addArguments("--no-sandbox");
 
-                options.addArguments("--disable-extensions");
-                options.addArguments("--crash-dumps-dir={os.path.expanduser('~/tmp/Crashpad')}");
+//                ChromeOptions options = new ChromeOptions();
+//                options.addArguments("--headless");
+//                options.addArguments("--disable-dev-shm-usage");
+//                options.addArguments("start-maximized");
+//                options.addArguments("disable-infobars");
+//                options.addArguments("--no-sandbox");
+//
+//                options.addArguments("--disable-extensions");
+//                options.addArguments("--crash-dumps-dir={os.path.expanduser('~/tmp/Crashpad')}");
 
                 driver = new ChromeDriver(options);
 
