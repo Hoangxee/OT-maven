@@ -57,7 +57,12 @@ public class BaseTest {
 
                 ChromeOptions options = new ChromeOptions();
                 options.setBinary("/opt/google/chrome/chrome");
-//                options.setBinary("/usr/bin/google-chrome/chrome");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--headless");
+                options.addArguments("--disable-dev-shm-usage");
+                options.addArguments("start-maximized");
+                options.addArguments("disable-infobars");
+                options.setBinary("/usr/bin/google-chrome/chrome");
                 options.addArguments("start-maximized");
                 options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
                 options.setExperimentalOption("useAutomationExtension", false);
