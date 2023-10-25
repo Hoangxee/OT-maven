@@ -47,25 +47,26 @@ public class BaseTest {
                     System.setProperty("webdriver.chrome.driver", projectPath+ "/browserDrivers/chromedriver.exe");
                     System.out.println("osName: Windows!");
                 }
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--no-sandbox");
+//                options.addArguments("--headless");
+                options.addArguments("--remote-allow-origins=*");
+                options.addArguments("--disable-dev-shm-usage");
+                options.addArguments("start-maximized");
+                options.addArguments("disable-infobars");
+
+
 //                ChromeOptions options = new ChromeOptions();
+//                options.setBinary("/opt/google/chrome/chrome");
 //                options.addArguments("--no-sandbox");
 //                options.addArguments("--headless");
 //                options.addArguments("--disable-dev-shm-usage");
 //                options.addArguments("start-maximized");
 //                options.addArguments("disable-infobars");
-
-
-                ChromeOptions options = new ChromeOptions();
-                options.setBinary("/opt/google/chrome/chrome");
-                options.addArguments("--no-sandbox");
-                options.addArguments("--headless");
-                options.addArguments("--disable-dev-shm-usage");
-                options.addArguments("start-maximized");
-                options.addArguments("disable-infobars");
-//                options.setBinary("/usr/bin/google-chrome/chrome");
-                options.addArguments("start-maximized");
-                options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-                options.setExperimentalOption("useAutomationExtension", false);
+////                options.setBinary("/usr/bin/google-chrome/chrome");
+//                options.addArguments("start-maximized");
+//                options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+//                options.setExperimentalOption("useAutomationExtension", false);
 
                 driver = new ChromeDriver(options);
 
