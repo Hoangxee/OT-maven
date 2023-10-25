@@ -56,7 +56,8 @@ public class BaseTest {
 
 
                 ChromeOptions options = new ChromeOptions();
-                options.setBinary("/usr/bin/google-chrome");
+//                options.setBinary("/usr/bin/google-chrome");
+                options.setBinary("/usr/bin/google-chrome/chrome");
                 options.addArguments("start-maximized");
                 options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
                 options.setExperimentalOption("useAutomationExtension", false);
