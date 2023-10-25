@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
 import java.time.Duration;
+import java.util.Collections;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -46,22 +47,19 @@ public class BaseTest {
                     System.setProperty("webdriver.chrome.driver", projectPath+ "/browserDrivers/chromedriver.exe");
                     System.out.println("osName: Windows!");
                 }
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--headless");
-                options.addArguments("--disable-dev-shm-usage");
-                options.addArguments("start-maximized");
-                options.addArguments("disable-infobars");
-                options.addArguments("--no-sandbox");
-
 //                ChromeOptions options = new ChromeOptions();
+//                options.addArguments("--no-sandbox");
 //                options.addArguments("--headless");
 //                options.addArguments("--disable-dev-shm-usage");
 //                options.addArguments("start-maximized");
 //                options.addArguments("disable-infobars");
-//                options.addArguments("--no-sandbox");
-//
-//                options.addArguments("--disable-extensions");
-//                options.addArguments("--crash-dumps-dir={os.path.expanduser('~/tmp/Crashpad')}");
+
+
+                ChromeOptions options = new ChromeOptions();
+                options.setBinary("/usr/bin/google-chrome");
+                options.addArguments("start-maximized");
+                options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+                options.setExperimentalOption("useAutomationExtension", false);
 
                 driver = new ChromeDriver(options);
 
