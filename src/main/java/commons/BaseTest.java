@@ -6,13 +6,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
 import java.time.Duration;
 import java.util.Collections;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.Capabilities;
 
 import static org.testng.Reporter.log;
 
@@ -20,6 +24,7 @@ public class BaseTest {
     WebDriver driver;
     protected final Log log;
     String osName = System.getProperty("os.name");
+    Capabilities caps;
 
     @BeforeSuite
     public void initBeforeSuite(){
@@ -33,6 +38,14 @@ public class BaseTest {
         switch (browser){
             case CHROME:
 //                driver = WebDriverManager.chromedriver().create();
+
+//                WebDriverManager.chromedriver().driverVersion("116.0.5845.96").setup();
+//
+//                ChromeOptions options = new ChromeOptions();
+//                options.addArguments("--remote-allow-origins=*");
+//                options.addArguments("--start-maximized");
+//
+//                driver =  new ChromeDriver(options);
 //
                 String projectPath = System.getProperty("user.dir");
 //                System.setProperty("webdriver.chrome.driver", projectPath+"\\browserDrivers\\chromedriver.exe");
@@ -47,6 +60,7 @@ public class BaseTest {
                     System.setProperty("webdriver.chrome.driver", projectPath+ "/browserDrivers/chromedriver.exe");
                     System.out.println("osName: Windows!");
                 }
+                caps = DesiredCapabilities.chrome();
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--no-sandbox");
 //                options.addArguments("--headless");
@@ -54,7 +68,6 @@ public class BaseTest {
                 options.addArguments("--disable-dev-shm-usage");
                 options.addArguments("start-maximized");
                 options.addArguments("disable-infobars");
-
 
 //                ChromeOptions options = new ChromeOptions();
 //                options.setBinary("/opt/google/chrome/chrome");
@@ -69,6 +82,15 @@ public class BaseTest {
 //                options.setExperimentalOption("useAutomationExtension", false);
 
                 driver = new ChromeDriver(options);
+
+                //log chromedriver version
+                caps = ((RemoteWebDriver) driver).getCapabilities();
+                Map<String, String> a = (Map<String, String>) caps.getCapability("chrome");
+                System.out.println(String.format("Driver Version: %s", a.get("chromedriverVersion")));
+
+                //log chrome browser version
+                String browserVersion = caps.getVersion().toString();
+                System.out.println("Browser version: " + browserVersion);
 
 //                driver = new ChromeDriver();
                 break;
