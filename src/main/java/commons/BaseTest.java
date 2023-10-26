@@ -60,14 +60,14 @@ public class BaseTest {
                     System.setProperty("webdriver.chrome.driver", projectPath+ "/browserDrivers/chromedriver.exe");
                     System.out.println("osName: Windows!");
                 }
-                caps = DesiredCapabilities.chrome();
+
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--no-sandbox");
 //                options.addArguments("--headless");
 //                options.addArguments("--remote-allow-origins=*");
                 options.addArguments("--disable-dev-shm-usage");
                 options.addArguments("start-maximized");
-//                options.addArguments("disable-infobars");
+                options.addArguments("disable-infobars");
 
 //                ChromeOptions options = new ChromeOptions();
 //                options.setBinary("/opt/google/chrome/chrome");
@@ -84,6 +84,7 @@ public class BaseTest {
                 driver = new ChromeDriver(options);
 
                 //log chromedriver version
+                caps = DesiredCapabilities.chrome();
                 caps = ((RemoteWebDriver) driver).getCapabilities();
                 Map<String, String> a = (Map<String, String>) caps.getCapability("chrome");
                 System.out.println(String.format("Driver Version: %s", a.get("chromedriverVersion")));
