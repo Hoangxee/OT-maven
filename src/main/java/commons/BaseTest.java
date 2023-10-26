@@ -64,10 +64,10 @@ public class BaseTest {
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--no-sandbox");
 //                options.addArguments("--headless");
-                options.addArguments("--remote-allow-origins=*");
+//                options.addArguments("--remote-allow-origins=*");
                 options.addArguments("--disable-dev-shm-usage");
                 options.addArguments("start-maximized");
-                options.addArguments("disable-infobars");
+//                options.addArguments("disable-infobars");
 
 //                ChromeOptions options = new ChromeOptions();
 //                options.setBinary("/opt/google/chrome/chrome");
