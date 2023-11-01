@@ -5,6 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -25,6 +26,7 @@ public class BaseTest {
     protected final Log log;
     String osName = System.getProperty("os.name");
     Capabilities caps;
+    String projectPath = System.getProperty("user.dir");
 
     @BeforeSuite
     public void initBeforeSuite(){
@@ -47,9 +49,7 @@ public class BaseTest {
 //
 //                driver =  new ChromeDriver(options);
 //
-                String projectPath = System.getProperty("user.dir");
 //                System.setProperty("webdriver.chrome.driver", projectPath+"\\browserDrivers\\chromedriver.exe");
-
                 if(osName.contains("linux")||osName.contains("Linux")){
                     System.out.println(osName);
                     System.out.println(projectPath);
@@ -95,13 +95,27 @@ public class BaseTest {
 
 //                driver = new ChromeDriver();
                 break;
+
             case FIREFOX:
 //                driver = WebDriverManager.firefoxdriver().create();
                 driver = new FirefoxDriver();
                 break;
+
             case EDGE:
-//                driver = WebDriverManager.edgedriver().create();
+                if(osName.contains("linux")||osName.contains("Linux")){
+                    System.out.println(osName);
+                    System.out.println(projectPath);
+                    System.setProperty("webdriver.edge.driver", projectPath+ "/browserDrivers/msedgedriver");
+                    System.out.println("osName: Linux!");
+                } else if(osName.contains("windows")||osName.contains("Windows")){
+                    System.setProperty("webdriver.edge.driver", projectPath+ "/browserDrivers/msedgedriver.exe");
+                    System.out.println("osName: Windows!");
+                }
+
+                driver = new EdgeDriver();
+
                 break;
+
             default:
                 throw new RuntimeException("Please enter the correct Browser name!");
         }

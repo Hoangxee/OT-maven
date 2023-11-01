@@ -5,4 +5,11 @@
             <class name="com.shopify.store.CreateOrders"/>
         </classes>
     </test>
+
+    <test name="Run on Edge">
+        <parameter name="browser" value="Edge"/>
+        <classes>
+            <class name="com.shopify.store.CreateOrders"/>
+        </classes>
+    </test>
 </suite>

@@ -1,6 +1,13 @@
 <suite name="Shopify" verbose="1" thread-count= "3">
-    <test name="Run on Chrome">
-        <parameter name="browser" value="Chrome"/>
+<!--    <test name="Run on Chrome">-->
+<!--        <parameter name="browser" value="Chrome"/>-->
+<!--        <classes>-->
+<!--            <class name="com.shopify.store.CreateOrders"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <test name="Run on Edge">
+        <parameter name="browser" value="Edge"/>
         <classes>
             <class name="com.shopify.store.CreateOrders"/>
         </classes>
