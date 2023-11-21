@@ -1,8 +1,7 @@
 FROM maven:3.8.6-jdk-11
 
 WORKDIR /apps/qa
-# RUN chmod -R 777 /apps/qa
-RUN chmod +x /apps/qa/browserDrivers/chromedriver
+RUN chmod -R 777 /apps/qa
 
 # Install tools.
 RUN apt update -y & apt install -y wget unzip
