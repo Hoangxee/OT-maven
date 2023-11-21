@@ -61,13 +61,13 @@ public class BaseTest {
                     System.out.println("osName: Windows!");
                 }
 
-//                ChromeOptions options = new ChromeOptions();
-//                options.addArguments("--no-sandbox");
-////                options.addArguments("--headless");
-////                options.addArguments("--remote-allow-origins=*");
-//                options.addArguments("--disable-dev-shm-usage");
-//                options.addArguments("start-maximized");
-//                options.addArguments("disable-infobars");
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--no-sandbox");
+                options.addArguments("--headless");
+//                options.addArguments("--remote-allow-origins=*");
+                options.addArguments("--disable-dev-shm-usage");
+                options.addArguments("start-maximized");
+                options.addArguments("disable-infobars");
 //
 ////                ChromeOptions options = new ChromeOptions();
 ////                options.setBinary("/opt/google/chrome/chrome");
@@ -81,7 +81,7 @@ public class BaseTest {
 ////                options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
 ////                options.setExperimentalOption("useAutomationExtension", false);
 //
-//                driver = new ChromeDriver(options);
+                driver = new ChromeDriver(options);
 //
 //                //log chromedriver version
 //                caps = DesiredCapabilities.chrome();
@@ -93,7 +93,7 @@ public class BaseTest {
 //                String browserVersion = caps.getVersion().toString();
 //                System.out.println("Browser version: " + browserVersion);
 
-                driver = new ChromeDriver();
+//                driver = new ChromeDriver();
                 break;
 
             case FIREFOX:
