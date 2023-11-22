@@ -13,7 +13,7 @@
 
 <!--    log ra file: Append = "false" thi chi luu version log gan nhat-->
     <appender name="logfile" class="org.apache.log4j.FileAppender">
-        <param name="File" value="./logs/NopCommerce.txt" />
+        <param name="File" value="./logs/OrderTracking.txt" />
         <param name="Append" value="false" />
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="[%d] %m%n" />
