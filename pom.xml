@@ -16,8 +16,8 @@
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
 
-<!--        <webdriver.version>4.14.1</webdriver.version>-->
-        <webdriver.version>3.141.59</webdriver.version>
+        <webdriver.version>4.14.1</webdriver.version>
+<!--        <webdriver.version>3.141.59</webdriver.version>-->
         <testng.version>7.4.0</testng.version>
         <jackson.version>2.10.3</jackson.version>
 <!--        <webdrivermanager.version>5.3.1</webdrivermanager.version>-->
@@ -38,7 +38,6 @@
 <!--                    <groupId>io.github.bonigarcia</groupId>-->
 <!--                    <artifactId>webdrivermanager</artifactId>-->
 <!--&lt;!&ndash;                    <version>${webdrivermanager.version}</version>&ndash;&gt;-->
-<!--                    <version>5.3.1</version>-->
 <!--                    <exclusions>-->
 <!--                        <exclusion>-->
 <!--                            <groupId>org.slf4j</groupId>-->
@@ -56,11 +55,11 @@
 
 
 
-<!--        <dependency>-->
-<!--            <groupId>org.seleniumhq.selenium</groupId>-->
-<!--            <artifactId>selenium-chrome-driver</artifactId>-->
-<!--            <version>${webdriver.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>${webdriver.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -72,6 +71,20 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${webdriver.version}</version>
+        </dependency>
+
+<!--        //fix lỗi ko tải được đúng version mới nhất-->
+<!--        //check version driver mới nhất được selenium 4x support: https://repo1.maven.org/maven2/org/seleniumhq/selenium/-->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-devtools-v119</artifactId>
+            <version>4.15.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.beust</groupId>
+            <artifactId>jcommander</artifactId>
+            <version>1.81</version>
         </dependency>
 
         <dependency>
@@ -163,7 +176,6 @@
                     <!-- Run TestNG xml file -->
                     <suiteXmlFiles>
                         <file>src/test/resources/runCreateOrdersTestcase.xml</file>
-<!--                        <file>src/test/resources/runInstallUninstallAppTestcase.xml</file>-->
                     </suiteXmlFiles>
 
                     <!-- Allure report Argument - screenshot for Allure report -->
