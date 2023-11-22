@@ -1,4 +1,4 @@
-# Test Selenium 222
+# Test Selenium
 
 Run test for shopify
 
