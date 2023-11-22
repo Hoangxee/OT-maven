@@ -21,8 +21,8 @@ ENV env_browser_param Chrome
 #Copy source code and pom file.
 COPY src /apps/qa/src
 COPY pom.xml /apps/qa
-COPY browserDrivers /apps/qa/browserDrivers
+# COPY browserDrivers /apps/qa/browserDrivers
 
-RUN chmod -R 777 /apps/qa/browserDrivers
+# RUN chmod -R 777 /apps/qa/browserDrivers
 
 ENTRYPOINT mvn test -Dbrowser_param=${env_browser_param}
