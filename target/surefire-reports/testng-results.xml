@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-11-22T10:38:25 ICT" name="Shopify" finished-at="2023-11-22T10:38:47 ICT" duration-ms="21975">
+  <suite started-at="2023-11-24T09:27:43 ICT" name="Shopify" finished-at="2023-11-24T09:28:03 ICT" duration-ms="20476">
     <groups>
     </groups>
-    <test started-at="2023-11-22T10:38:25 ICT" name="Run on Chrome" finished-at="2023-11-22T10:38:47 ICT" duration-ms="21975">
+    <test started-at="2023-11-24T09:27:43 ICT" name="Run on Chrome" finished-at="2023-11-24T09:28:03 ICT" duration-ms="20476">
       <class name="com.shopify.store.CreateOrders">
-        <test-method is-config="true" signature="initBeforeSuite()[pri:0, instance:com.shopify.store.CreateOrders@62b969c4]" started-at="2023-11-22T10:38:25 ICT" name="initBeforeSuite" finished-at="2023-11-22T10:38:25 ICT" duration-ms="31" status="PASS">
+        <test-method is-config="true" signature="initBeforeSuite()[pri:0, instance:com.shopify.store.CreateOrders@4441d567]" started-at="2023-11-24T09:27:43 ICT" name="initBeforeSuite" finished-at="2023-11-24T09:27:43 ICT" duration-ms="29" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initBeforeSuite -->
-        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:com.shopify.store.CreateOrders@62b969c4]" started-at="2023-11-22T10:38:25 ICT" name="beforeClass" finished-at="2023-11-22T10:38:32 ICT" duration-ms="6714" status="PASS">
+        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:com.shopify.store.CreateOrders@4441d567]" started-at="2023-11-24T09:27:43 ICT" name="beforeClass" finished-at="2023-11-24T09:27:47 ICT" duration-ms="4045" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -22,11 +22,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeClass -->
-        <test-method signature="TC_01_CreateOrder()[pri:0, instance:com.shopify.store.CreateOrders@62b969c4]" started-at="2023-11-22T10:38:32 ICT" name="TC_01_CreateOrder" finished-at="2023-11-22T10:38:46 ICT" duration-ms="14916" status="PASS">
+        <test-method signature="TC_01_CreateOrder()[pri:0, instance:com.shopify.store.CreateOrders@4441d567]" started-at="2023-11-24T09:27:47 ICT" name="TC_01_CreateOrder" finished-at="2023-11-24T09:28:03 ICT" duration-ms="16090" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TC_01_CreateOrder -->
-        <test-method is-config="true" signature="afterClass()[pri:0, instance:com.shopify.store.CreateOrders@62b969c4]" started-at="2023-11-22T10:38:47 ICT" name="afterClass" finished-at="2023-11-22T10:38:47 ICT" duration-ms="145" status="PASS">
+        <test-method is-config="true" signature="afterClass()[pri:0, instance:com.shopify.store.CreateOrders@4441d567]" started-at="2023-11-24T09:28:03 ICT" name="afterClass" finished-at="2023-11-24T09:28:03 ICT" duration-ms="150" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterClass -->
