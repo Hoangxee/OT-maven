@@ -30,6 +30,10 @@ public class BasePage {
         return driver.findElements(getByLocator(locatorType));
     }
 
+    public List<WebElement> getListWebElement(WebDriver driver, String locatorType,String...dynamicValues){
+        return driver.findElements(getByLocator(getDynamicXpath(locatorType, dynamicValues)));
+    }
+
     private By getByLocator(String locatorType){
         By by = null;
         if(locatorType.startsWith("xpath")||locatorType.startsWith("XPATH")||locatorType.startsWith("Xpath")||locatorType.startsWith("XPath")){
@@ -387,6 +391,10 @@ public class BasePage {
 
     public void clickToElementByJS(WebDriver driver, String locatorType) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", getWebElement(driver, locatorType));
+    }
+
+    public void clickToElementByJS(WebDriver driver, String locatorType, String... dynamicValues) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)));
     }
 
     public void pressKeyToElement(WebDriver driver, String locatorType, Keys key){

@@ -32,6 +32,12 @@ public class LoginPageAdminObject extends BasePage {
             waitForElementClickable(driver, LoginPageAdminUI.EMAIL_ACCOUNT);
             clickToElement(driver, LoginPageAdminUI.EMAIL_ACCOUNT);
         }
+
+        List<WebElement> remindNextTime = getListWebElement(driver, LoginPageAdminUI.REMIND_NEXT_TIME_IN_SECURITY_SETTINGS_FORM);
+        if (remindNextTime.size() != 0) {
+            waitForElementClickable(driver, LoginPageAdminUI.REMIND_NEXT_TIME_IN_SECURITY_SETTINGS_FORM);
+            clickToElement(driver, LoginPageAdminUI.REMIND_NEXT_TIME_IN_SECURITY_SETTINGS_FORM);
+        }
         return PageGeneratorManager.getHomePageAdmin(driver);
     }
 }
