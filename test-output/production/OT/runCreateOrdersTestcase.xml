@@ -1,0 +1,11 @@
+<suite name="Shopify" verbose="1">
+<!--    <listeners>-->
+<!--        <listener class-name="commons.LoopListener"/>-->
+<!--    </listeners>-->
+    <test name="Run on Chrome">
+        <parameter name="browser" value="Chrome"/>
+        <classes>
+            <class name="com.shopify.com.shopify.store.CreateOrders"/>
+        </classes>
+    </test>
+</suite>

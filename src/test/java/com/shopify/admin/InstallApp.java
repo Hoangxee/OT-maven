@@ -16,7 +16,7 @@ import pageObject.shopify.admin.*;
 public class InstallApp extends BaseTest {
     @Parameters("browser")
     @BeforeClass
-    public void beforeClass(String browserName){
+    public void beforeClass(String browserName) {
         driver = getBrowserDriver(browserName, GlobalConstants.SHOPIFY_APP_STORE_URL);
 
         homePageAppStore = PageGeneratorManager.getHomePageAppStore(driver);
@@ -25,17 +25,18 @@ public class InstallApp extends BaseTest {
     @Description("Install app")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void InstallApp(){
+    public void InstallApp() {
         SearchResultPageAppStore = homePageAppStore.searchApp("order tracking");
-        detailAppPageAppStore = SearchResultPageAppStore.clickToApp();
+        detailAppPageAppStore = SearchResultPageAppStore.clickToApp("Omega Order Tracking");
         loginPage = detailAppPageAppStore.clickToAddAppButton();
-        homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL, GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
+        homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
+                GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
         dashboardPageOTApp = homePage.clickToInstallApp();
         dashboardPageOTApp.verifyAfterInstallOrderTracking();
     }
 
     @AfterClass
-    public void afterClass(){
+    public void afterClass() {
         driver.quit();
     }
 

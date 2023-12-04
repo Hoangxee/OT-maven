@@ -13,9 +13,9 @@ public class SearchResultPageAppStoreObject extends BasePage {
         driver = mappingDriver;
     }
 
-    public DetailAppPageAppStoreObject clickToApp() {
-        waitForElementClickable(driver, SearchResultPageAppStoreUI.APP_NAME);
-        clickToElementByJS(driver,SearchResultPageAppStoreUI.APP_NAME);
+    public DetailAppPageAppStoreObject clickToApp(String appName) {
+        waitForElementClickable(driver, SearchResultPageAppStoreUI.APP_NAME, appName);
+        clickToElementByJS(driver,SearchResultPageAppStoreUI.APP_NAME, appName);
         return PageGeneratorManager.getDetailAppPageAppStore(driver);
     }
 }
