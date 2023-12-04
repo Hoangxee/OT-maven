@@ -7,7 +7,7 @@
 
     <link type="text/css" href="testng-reports1.css" rel="stylesheet" id="ultra" />
     <link type="text/css" href="testng-reports.css" rel="stylesheet" id="retro" disabled="false"/>
-    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="testng-reports.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type='text/javascript'>
@@ -21,12 +21,11 @@
      -->
   </head>
 
-  <body>
-    <div class="top-banner-root">
+  <body>    <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -40,7 +39,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Shopify" class="navigator-link">
-              <span class="suite-name border-passed">Shopify</span>
+              <span class="suite-name border-failed">Shopify</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -93,21 +92,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">1 method, 1 failed,   </span>
                   </li>
                   <li>
-                    <span class="method-list-title passed">Passed methods</span>
-                    <span class="show-or-hide-methods passed">
-                      <a href="#" panel-name="suite-Shopify" class="hide-methods passed suite-Shopify"> (hide)</a> <!-- hide-methods passed suite-Shopify -->
-                      <a href="#" panel-name="suite-Shopify" class="show-methods passed suite-Shopify"> (show)</a> <!-- show-methods passed suite-Shopify -->
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Shopify" class="hide-methods failed suite-Shopify"> (hide)</a> <!-- hide-methods failed suite-Shopify -->
+                      <a href="#" panel-name="suite-Shopify" class="show-methods failed suite-Shopify"> (show)</a> <!-- show-methods failed suite-Shopify -->
                     </span>
-                    <div class="method-list-content passed suite-Shopify">
+                    <div class="method-list-content failed suite-Shopify">
                       <span>
-                        <img src="passed.png" width="3%"/>
+                        <img src="failed.png" width="3%"/>
                         <a href="#" panel-name="suite-Shopify" title="com.shopify.store.CreateOrders" class="method navigator-link" hash-for-method="TC_01_CreateOrder">TC_01_CreateOrder</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content passed suite-Shopify -->
+                    </div> <!-- method-list-content failed suite-Shopify -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -119,9 +118,9 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Shopify" class="panel Shopify">
-          <div class="suite-Shopify-class-passed">
+          <div class="suite-Shopify-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
+              <img src="failed.png"/>
               <span class="class-name">com.shopify.store.CreateOrders</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
@@ -130,10 +129,15 @@
                   <a name="TC_01_CreateOrder">
                   </a> <!-- TC_01_CreateOrder -->
                   <span class="method-name">TC_01_CreateOrder</span>
+                  <div class="stack-trace">java.lang.AssertionError: expected [true] but found [false]
+	at com.shopify.store.CreateOrders.TC_01_CreateOrder(CreateOrders.java:57)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+... Removed 35 stack frames
+</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Shopify-class-passed -->
+          </div> <!-- suite-Shopify-class-failed -->
         </div> <!-- panel Shopify -->
         <div panel-name="test-xml-Shopify" class="panel">
           <div class="main-panel-header rounded-window-top">
@@ -144,6 +148,10 @@
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
 &lt;suite thread-count=&quot;3&quot; name=&quot;Shopify&quot; verbose=&quot;0&quot;&gt;
+  &lt;listeners&gt;
+    &lt;listener class-name=&quot;commons.MethodListener&quot;/&gt;
+    &lt;listener class-name=&quot;reportConfig.AllureTestListener&quot;/&gt;
+  &lt;/listeners&gt;
   &lt;test thread-count=&quot;3&quot; name=&quot;Run on Chrome&quot; verbose=&quot;0&quot;&gt;
     &lt;parameter name=&quot;browser&quot; value=&quot;Chrome&quot;/&gt;
     &lt;classes&gt;
@@ -191,7 +199,7 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'TC_01_CreateOrder')
 data.setCell(0, 2, 'com.shopify.store.CreateOrders')
-data.setCell(0, 3, 14916);
+data.setCell(0, 3, 14485);
 window.suiteTableData['Shopify']= { tableData: data, tableDiv: 'times-div-Shopify'}
 return data;
 }
@@ -229,15 +237,17 @@ return data;
               </div> <!-- configuration-suite before -->
               <div class="configuration-class before">
                 <span class="method-name">beforeClass(Chrome)</span>
-                <span class="method-start">60 ms</span>
+                <span class="method-start">73 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
+                <img src="failed.png">
+                </img>
                 <span class="method-name">TC_01_CreateOrder</span>
-                <span class="method-start">6790 ms</span>
+                <span class="method-start">4116 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">afterClass</span>
-                <span class="method-start">21862 ms</span>
+                <span class="method-start">18848 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
