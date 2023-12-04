@@ -151,7 +151,6 @@ public class BaseTest {
 
     public void deleteAllFileInFolder() {
         try {
-            String workingDir = System.getProperty("user.dir");
             String pathFolderDownload = GlobalConstants.PROJECT_PATH + "/allure-json";
             File file = new File(pathFolderDownload);
             File[] listOfFiles = file.listFiles();
