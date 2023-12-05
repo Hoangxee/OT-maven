@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="3" passed="2" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-12-04T09:47:12 ICT" name="Shopify" finished-at="2023-12-04T09:47:31 ICT" duration-ms="18923">
+  <suite started-at="2023-12-05T10:49:57 ICT" name="NopCommerce" finished-at="2023-12-05T10:52:52 ICT" duration-ms="174825">
     <groups>
     </groups>
-    <test started-at="2023-12-04T09:47:12 ICT" name="Run on Chrome" finished-at="2023-12-04T09:47:31 ICT" duration-ms="18923">
+    <test started-at="2023-12-05T10:49:57 ICT" name="Run Create Orders" finished-at="2023-12-05T10:50:28 ICT" duration-ms="30963">
       <class name="com.shopify.store.CreateOrders">
-        <test-method is-config="true" signature="initBeforeSuite()[pri:0, instance:com.shopify.store.CreateOrders@2903c6ff]" started-at="2023-12-04T09:47:12 ICT" name="initBeforeSuite" finished-at="2023-12-04T09:47:12 ICT" duration-ms="42" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- initBeforeSuite -->
-        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:com.shopify.store.CreateOrders@2903c6ff]" started-at="2023-12-04T09:47:12 ICT" name="beforeClass" finished-at="2023-12-04T09:47:16 ICT" duration-ms="4028" status="PASS">
+        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:com.shopify.store.CreateOrders@7cd4a4d7]" started-at="2023-12-05T10:49:57 ICT" name="beforeClass" finished-at="2023-12-05T10:50:08 ICT" duration-ms="11191" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -22,18 +18,74 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeClass -->
-        <test-method signature="TC_01_CreateOrder()[pri:0, instance:com.shopify.store.CreateOrders@2903c6ff]" started-at="2023-12-04T09:47:16 ICT" name="TC_01_CreateOrder" finished-at="2023-12-04T09:47:31 ICT" duration-ms="14485" status="FAIL">
-          <exception class="java.lang.AssertionError">
+        <test-method signature="TC_01_CreateOrder()[pri:0, instance:com.shopify.store.CreateOrders@7cd4a4d7]" started-at="2023-12-05T10:50:08 ICT" name="TC_01_CreateOrder" finished-at="2023-12-05T10:50:27 ICT" duration-ms="18832" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_01_CreateOrder -->
+        <test-method is-config="true" signature="afterClass()[pri:0, instance:com.shopify.store.CreateOrders@7cd4a4d7]" started-at="2023-12-05T10:50:28 ICT" name="afterClass" finished-at="2023-12-05T10:50:28 ICT" duration-ms="410" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+      </class> <!-- com.shopify.store.CreateOrders -->
+    </test> <!-- Run Create Orders -->
+    <test started-at="2023-12-05T10:50:28 ICT" name="Run Uninstall App" finished-at="2023-12-05T10:51:22 ICT" duration-ms="53807">
+      <class name="com.shopify.admin.UninstallApp">
+        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:com.shopify.admin.UninstallApp@612e21b9]" started-at="2023-12-05T10:50:28 ICT" name="beforeClass" finished-at="2023-12-05T10:50:35 ICT" duration-ms="6717" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method signature="UninstallApp()[pri:0, instance:com.shopify.admin.UninstallApp@612e21b9]" started-at="2023-12-05T10:50:35 ICT" name="UninstallApp" finished-at="2023-12-05T10:51:22 ICT" duration-ms="46953" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UninstallApp -->
+        <test-method is-config="true" signature="afterClass()[pri:0, instance:com.shopify.admin.UninstallApp@612e21b9]" started-at="2023-12-05T10:51:22 ICT" name="afterClass" finished-at="2023-12-05T10:51:22 ICT" duration-ms="129" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+      </class> <!-- com.shopify.admin.UninstallApp -->
+    </test> <!-- Run Uninstall App -->
+    <test started-at="2023-12-05T10:51:22 ICT" name="Run Install App" finished-at="2023-12-05T10:52:52 ICT" duration-ms="89960">
+      <class name="com.shopify.admin.InstallApp">
+        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:com.shopify.admin.InstallApp@312b34e3]" started-at="2023-12-05T10:51:22 ICT" name="beforeClass" finished-at="2023-12-05T10:51:25 ICT" duration-ms="3089" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method signature="InstallApp()[pri:0, instance:com.shopify.admin.InstallApp@312b34e3]" started-at="2023-12-05T10:51:25 ICT" name="InstallApp" finished-at="2023-12-05T10:52:52 ICT" duration-ms="86500" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[expected [true] but found [false]]]>
+              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //span[text()='Starter'] (tried for 30 second(s) with 500 milliseconds interval)
+Build info: version: '4.14.1', revision: '03f8ede370'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.20'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 119.0.6045.200, chrome: {chromedriverVersion: 119.0.6045.105 (38c72552c5e..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52313}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52313/devtoo..., se:cdpVersion: 119.0.6045.200, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 1e3fb0ca79c70d680a4d27c860301c84]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
-at org.testng.Assert.fail(Assert.java:110)
-at org.testng.Assert.failNotEquals(Assert.java:1577)
-at org.testng.Assert.assertTrue(Assert.java:56)
-at org.testng.Assert.assertTrue(Assert.java:66)
-at com.shopify.store.CreateOrders.TC_01_CreateOrder(CreateOrders.java:57)
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //span[text()='Starter'] (tried for 30 second(s) with 500 milliseconds interval)
+Build info: version: '4.14.1', revision: '03f8ede370'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.20'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 119.0.6045.200, chrome: {chromedriverVersion: 119.0.6045.105 (38c72552c5e..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52313}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52313/devtoo..., se:cdpVersion: 119.0.6045.200, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 1e3fb0ca79c70d680a4d27c860301c84
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
+at commons.BasePage.waitForElementVisible(BasePage.java:464)
+at pageObject.shopify.admin.DashboardPageOTAppObject.verifyAfterInstallOrderTracking(DashboardPageOTAppObject.java:20)
+at com.shopify.admin.InstallApp.InstallApp(InstallApp.java:36)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -68,15 +120,15 @@ at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:125)
 at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:417)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC_01_CreateOrder -->
-        <test-method is-config="true" signature="afterClass()[pri:0, instance:com.shopify.store.CreateOrders@2903c6ff]" started-at="2023-12-04T09:47:31 ICT" name="afterClass" finished-at="2023-12-04T09:47:31 ICT" duration-ms="118" status="PASS">
+        </test-method> <!-- InstallApp -->
+        <test-method is-config="true" signature="afterClass()[pri:0, instance:com.shopify.admin.InstallApp@312b34e3]" started-at="2023-12-05T10:52:52 ICT" name="afterClass" finished-at="2023-12-05T10:52:52 ICT" duration-ms="192" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterClass -->
-      </class> <!-- com.shopify.store.CreateOrders -->
-    </test> <!-- Run on Chrome -->
-  </suite> <!-- Shopify -->
+      </class> <!-- com.shopify.admin.InstallApp -->
+    </test> <!-- Run Install App -->
+  </suite> <!-- NopCommerce -->
 </testng-results>

@@ -32,7 +32,7 @@ public class HomePageAdminObject extends BasePage {
         clickToElement(driver, HomePageAdminUI.LIST_APP_MENU);
     }
 
-    @Step("Uninstall app Order Tracking in Shopify")
+    @Step("Uninstall app {0}")
     public void uninstallApp(String appName) {
         List<WebElement> appInListApps = getListWebElement(driver,HomePageAdminUI.APP_DETAIL, appName);
         if(appInListApps.size() != 0) {
@@ -55,7 +55,7 @@ public class HomePageAdminObject extends BasePage {
         }
     }
 
-    @Step("Click install app Order Tracking in Shopify")
+    @Step("Click install app Order Tracking in Shopify admin")
     public DashboardPageOTAppObject clickToInstallApp() {
         List<WebElement> installAppButton = getListWebElement(driver,HomePageAdminUI.INSTALL_APP_BUTTON);
         if(installAppButton.size() == 0){
