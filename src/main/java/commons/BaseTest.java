@@ -31,10 +31,10 @@ public class BaseTest {
     Capabilities caps;
     String projectPath = System.getProperty("user.dir");
 
-    @BeforeSuite
-    public void initBeforeSuite() {
-        deleteAllFileInFolder();
-    }
+//    @BeforeSuite
+//    public void initBeforeSuite() {
+//        deleteAllFileInFolder();
+//    }
 
     protected BaseTest() {
         log = LogFactory.getLog(getClass());
@@ -135,8 +135,7 @@ public class BaseTest {
         }
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
-        // driver.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT,
-        // TimeUnit.SECONDS);
+        // driver.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
         driver.get(appURL);
         return driver;
     }
