@@ -16,7 +16,7 @@ import pageObject.shopify.admin.*;
 public class UninstallApp extends BaseTest {
     @Parameters("browser")
     @BeforeClass
-    public void beforeClass(String browserName){
+    public void beforeClass(String browserName) {
         driver = getBrowserDriver(browserName, GlobalConstants.SHOPIFY_ADMIN_URL);
 
         loginPage = PageGeneratorManager.getLoginPageAdmin(driver);
@@ -25,16 +25,17 @@ public class UninstallApp extends BaseTest {
     @Description("Uninstall app")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void UninstallApp(){
-        homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL, GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
+    public void UninstallApp() {
+        homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
+                GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
         homePage.openSettingsMenu();
         homePage.openListApps();
-        homePage.uninstallAppOrderTracking();
+        homePage.uninstallApp("Omega - Order Tracking");
 
     }
 
     @AfterClass
-    public void afterClass(){
+    public void afterClass() {
         driver.quit();
     }
 

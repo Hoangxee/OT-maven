@@ -32,12 +32,15 @@ public class HomePageAdminObject extends BasePage {
         clickToElement(driver, HomePageAdminUI.LIST_APP_MENU);
     }
 
-    @Step("Uninstall app Order Tracking in Shopify")
-    public void uninstallAppOrderTracking() {
-        List<WebElement> uninstallButton = getListWebElement(driver,HomePageAdminUI.UNINSTALL_BUTTON);
-        if(uninstallButton.size() != 0) {
-            waitForElementClickable(driver, HomePageAdminUI.UNINSTALL_BUTTON);
-            clickToElement(driver, HomePageAdminUI.UNINSTALL_BUTTON);
+    @Step("Uninstall app {0}")
+    public void uninstallApp(String appName) {
+        List<WebElement> appInListApps = getListWebElement(driver,HomePageAdminUI.APP_DETAIL, appName);
+        if(appInListApps.size() != 0) {
+            waitForElementClickable(driver, HomePageAdminUI.APP_DETAIL,appName);
+            clickToElement(driver, HomePageAdminUI.APP_DETAIL,appName);
+
+            waitForElementClickable(driver, HomePageAdminUI.UNINSTALL_APP_BUTTON);
+            clickToElement(driver, HomePageAdminUI.UNINSTALL_APP_BUTTON);
 
             waitForElementVisible(driver, HomePageAdminUI.UNINSTALL_APP_POPUP);
             Assert.assertTrue(getWebElement(driver, HomePageAdminUI.UNINSTALL_APP_POPUP).isDisplayed());
@@ -48,10 +51,11 @@ public class HomePageAdminObject extends BasePage {
             Assert.assertEquals(getWebElement(driver, HomePageAdminUI.UNINSTALL_MESSAGE_SUCCESSFULLY).getText(), "You've successfully uninstalled Omega - Order Tracking");
         }
         else{
+            System.out.println("App "+appName+" not found!!");
         }
     }
 
-    @Step("Click install app Order Tracking in Shopify")
+    @Step("Click install app Order Tracking in Shopify admin")
     public DashboardPageOTAppObject clickToInstallApp() {
         List<WebElement> installAppButton = getListWebElement(driver,HomePageAdminUI.INSTALL_APP_BUTTON);
         if(installAppButton.size() == 0){

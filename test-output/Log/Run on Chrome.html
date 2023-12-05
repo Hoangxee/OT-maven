@@ -1,0 +1,143 @@
+<html>
+<head>
+<title>TestNG:  Run on Chrome</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Run on Chrome</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>2/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Fri Mar 31 16:40:18 ICT 2023</td>
+</tr>
+<tr><td>Total time:</td><td>9 seconds (9142 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.shopify.admin.Level_14_Log_ReportNG.User_02_Login()'><b>User_02_Login</b><br>Test class: com.shopify.admin.Level_14_Log_ReportNG<br/>
+<a href="#Output-130721104" onClick='toggleBox("Output-130721104", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-130721104" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-130721104">
+[2023-03-31 16:40:24,927] Login - Step 01: Navigate to 'Login' page
+<br/>
+[2023-03-31 16:40:25,302] Login - Step 02: Verify 'Login' page is open
+<br/>
+[2023-03-31 16:40:25,359] Login - Step 03: Enter to 'Email' textbox with value is 'hoang617752@gmail.com'
+<br/>
+[2023-03-31 16:40:25,489] Login - Step 04: Enter to 'Password' textbox with value is '123123'
+<br/>
+[2023-03-31 16:40:25,628] Login - Step 05: CLick to 'Register' button
+<br/>
+[2023-03-31 16:40:26,261] Login - Step 06: Verify 'My account' page is display
+<br/>
+</div>
+</td>
+<td></td>
+<td>1</td>
+<td>com.nopcommerce.users.Level_14_Log_ReportNG@543c6f6d</td></tr>
+<tr>
+<td title='com.shopify.admin.Level_14_Log_ReportNG.User_01_Register()'><b>User_01_Register</b><br>Test class: com.shopify.admin.Level_14_Log_ReportNG<br/>
+<a href="#Output-743648472" onClick='toggleBox("Output-743648472", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-743648472" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-743648472">
+[2023-03-31 16:40:21,764] Register - Step 01: Navigate to 'Register' page
+<br/>
+[2023-03-31 16:40:22,728] Register - Step 02: Verify 'Register' page is open
+<br/>
+[2023-03-31 16:40:22,793] Register - Step 03: Click to 'Gender Male' radio
+<br/>
+[2023-03-31 16:40:22,903] Register - Step 04: Enter to 'Firstname' textbox with value is 'hoang'
+<br/>
+[2023-03-31 16:40:23,044] Register - Step 05: Enter to 'Lastname' textbox with value is 'huy'
+<br/>
+[2023-03-31 16:40:23,185] Register - Step 06: Select value '25' inside 'Day' dropdown
+<br/>
+[2023-03-31 16:40:23,313] Register - Step 07: Select value 'July' inside 'Month' dropdown
+<br/>
+[2023-03-31 16:40:23,422] Register - Step 08: Select value '1998' inside 'Year' dropdown
+<br/>
+[2023-03-31 16:40:23,545] Register - Step 09: Enter to 'Email' textbox with value is 'hoang617752@gmail.com'
+<br/>
+[2023-03-31 16:40:23,693] Register - Step 10: Enter to 'Company' textbox with value is 'huy hoang'
+<br/>
+[2023-03-31 16:40:23,832] Register - Step 11: Enter to 'Password' textbox with value is '123123'
+<br/>
+[2023-03-31 16:40:23,965] Register - Step 12: Enter to 'Confirm Password' textbox with value is '123123'
+<br/>
+[2023-03-31 16:40:24,111] Register - Step 13: Click to 'Register' button
+<br/>
+[2023-03-31 16:40:24,877] Register - Step 14: Verify Register success message is display
+<br/>
+[2023-03-31 16:40:24,925]  -------------------------- PASSED -------------------------- 
+<br/>
+</div>
+</td>
+<td></td>
+<td>3</td>
+<td>com.nopcommerce.users.Level_14_Log_ReportNG@543c6f6d</td></tr>
+</table><p>
+</body>
+</html>
