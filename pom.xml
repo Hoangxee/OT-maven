@@ -160,7 +160,6 @@
             <version>2.12.0</version>
         </dependency>
 
-
     </dependencies>
 
     <build>
@@ -179,10 +178,12 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.0</version>
+
                 <configuration>
                     <!-- Run TestNG xml file -->
                     <suiteXmlFiles>
-                        <file>src/test/resources/runAllProject.xml</file>
+                        <!-- <file>src/test/resources/runAllProject.xml</file> -->
+                        <file>src/test/resources/runCreateOrdersTestcase.xml</file>
                     </suiteXmlFiles>
 
                     <!-- Allure report Argument - screenshot for Allure report -->
@@ -191,12 +192,39 @@
                     </argLine>
 
                 </configuration>
-
             </plugin>
+
+            <!-- <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.43.4</version>
+                <configuration>
+                    <verbose>true</verbose>
+                    <images>
+                        <image>
+                            <name>kbe-rest</name>
+
+                            <build>
+                                <assembly>
+                                    <descriptorRef>artifact</descriptorRef>
+                                </assembly>
+
+                                <dockerFile>dockerFile</dockerFile>
+
+                                <tags>
+                                    <tag>latest</tag>
+                                </tags>
+                            </build>
+
+                        </image>
+                    </images>
+                </configuration>
+            </plugin> -->
+
         </plugins>
     </build>
 
-    <reporting>
+    <!-- <reporting>
         <excludeDefaults>true</excludeDefaults>
         <plugins>
             <plugin>
@@ -208,5 +236,5 @@
                 </configuration>
             </plugin>
         </plugins>
-    </reporting>
+    </reporting> -->
 </project>

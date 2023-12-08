@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="2" failed="1" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-12-05T10:49:57 ICT" name="NopCommerce" finished-at="2023-12-05T10:52:52 ICT" duration-ms="174825">
+  <suite started-at="2023-12-07T16:42:41 ICT" name="Shopify" finished-at="2023-12-07T16:43:06 ICT" duration-ms="25080">
     <groups>
     </groups>
-    <test started-at="2023-12-05T10:49:57 ICT" name="Run Create Orders" finished-at="2023-12-05T10:50:28 ICT" duration-ms="30963">
+    <test started-at="2023-12-07T16:42:41 ICT" name="Run on Chrome" finished-at="2023-12-07T16:43:06 ICT" duration-ms="25080">
       <class name="com.shopify.store.CreateOrders">
-        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:com.shopify.store.CreateOrders@7cd4a4d7]" started-at="2023-12-05T10:49:57 ICT" name="beforeClass" finished-at="2023-12-05T10:50:08 ICT" duration-ms="11191" status="PASS">
+        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:com.shopify.store.CreateOrders@4195105b]" started-at="2023-12-07T16:42:41 ICT" name="beforeClass" finished-at="2023-12-07T16:42:48 ICT" duration-ms="6692" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -18,117 +18,15 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeClass -->
-        <test-method signature="TC_01_CreateOrder()[pri:0, instance:com.shopify.store.CreateOrders@7cd4a4d7]" started-at="2023-12-05T10:50:08 ICT" name="TC_01_CreateOrder" finished-at="2023-12-05T10:50:27 ICT" duration-ms="18832" status="PASS">
+        <test-method signature="TC_01_CreateOrder()[pri:0, instance:com.shopify.store.CreateOrders@4195105b]" started-at="2023-12-07T16:42:48 ICT" name="TC_01_CreateOrder" finished-at="2023-12-07T16:43:06 ICT" duration-ms="17945" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TC_01_CreateOrder -->
-        <test-method is-config="true" signature="afterClass()[pri:0, instance:com.shopify.store.CreateOrders@7cd4a4d7]" started-at="2023-12-05T10:50:28 ICT" name="afterClass" finished-at="2023-12-05T10:50:28 ICT" duration-ms="410" status="PASS">
+        <test-method is-config="true" signature="afterClass()[pri:0, instance:com.shopify.store.CreateOrders@4195105b]" started-at="2023-12-07T16:43:06 ICT" name="afterClass" finished-at="2023-12-07T16:43:06 ICT" duration-ms="200" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterClass -->
       </class> <!-- com.shopify.store.CreateOrders -->
-    </test> <!-- Run Create Orders -->
-    <test started-at="2023-12-05T10:50:28 ICT" name="Run Uninstall App" finished-at="2023-12-05T10:51:22 ICT" duration-ms="53807">
-      <class name="com.shopify.admin.UninstallApp">
-        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:com.shopify.admin.UninstallApp@612e21b9]" started-at="2023-12-05T10:50:28 ICT" name="beforeClass" finished-at="2023-12-05T10:50:35 ICT" duration-ms="6717" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Chrome]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeClass -->
-        <test-method signature="UninstallApp()[pri:0, instance:com.shopify.admin.UninstallApp@612e21b9]" started-at="2023-12-05T10:50:35 ICT" name="UninstallApp" finished-at="2023-12-05T10:51:22 ICT" duration-ms="46953" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- UninstallApp -->
-        <test-method is-config="true" signature="afterClass()[pri:0, instance:com.shopify.admin.UninstallApp@612e21b9]" started-at="2023-12-05T10:51:22 ICT" name="afterClass" finished-at="2023-12-05T10:51:22 ICT" duration-ms="129" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterClass -->
-      </class> <!-- com.shopify.admin.UninstallApp -->
-    </test> <!-- Run Uninstall App -->
-    <test started-at="2023-12-05T10:51:22 ICT" name="Run Install App" finished-at="2023-12-05T10:52:52 ICT" duration-ms="89960">
-      <class name="com.shopify.admin.InstallApp">
-        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:com.shopify.admin.InstallApp@312b34e3]" started-at="2023-12-05T10:51:22 ICT" name="beforeClass" finished-at="2023-12-05T10:51:25 ICT" duration-ms="3089" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[Chrome]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeClass -->
-        <test-method signature="InstallApp()[pri:0, instance:com.shopify.admin.InstallApp@312b34e3]" started-at="2023-12-05T10:51:25 ICT" name="InstallApp" finished-at="2023-12-05T10:52:52 ICT" duration-ms="86500" status="FAIL">
-          <exception class="org.openqa.selenium.TimeoutException">
-            <message>
-              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //span[text()='Starter'] (tried for 30 second(s) with 500 milliseconds interval)
-Build info: version: '4.14.1', revision: '03f8ede370'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.20'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 119.0.6045.200, chrome: {chromedriverVersion: 119.0.6045.105 (38c72552c5e..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52313}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52313/devtoo..., se:cdpVersion: 119.0.6045.200, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 1e3fb0ca79c70d680a4d27c860301c84]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //span[text()='Starter'] (tried for 30 second(s) with 500 milliseconds interval)
-Build info: version: '4.14.1', revision: '03f8ede370'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.20'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 119.0.6045.200, chrome: {chromedriverVersion: 119.0.6045.105 (38c72552c5e..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52313}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52313/devtoo..., se:cdpVersion: 119.0.6045.200, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 1e3fb0ca79c70d680a4d27c860301c84
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:230)
-at commons.BasePage.waitForElementVisible(BasePage.java:464)
-at pageObject.shopify.admin.DashboardPageOTAppObject.verifyAfterInstallOrderTracking(DashboardPageOTAppObject.java:20)
-at com.shopify.admin.InstallApp.InstallApp(InstallApp.java:36)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
-at org.testng.TestRunner.privateRun(TestRunner.java:829)
-at org.testng.TestRunner.run(TestRunner.java:602)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
-at org.testng.SuiteRunner.run(SuiteRunner.java:330)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
-at org.testng.TestNG.runSuites(TestNG.java:1099)
-at org.testng.TestNG.run(TestNG.java:1067)
-at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:283)
-at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:75)
-at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:120)
-at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:383)
-at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:344)
-at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:125)
-at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:417)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- InstallApp -->
-        <test-method is-config="true" signature="afterClass()[pri:0, instance:com.shopify.admin.InstallApp@312b34e3]" started-at="2023-12-05T10:52:52 ICT" name="afterClass" finished-at="2023-12-05T10:52:52 ICT" duration-ms="192" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterClass -->
-      </class> <!-- com.shopify.admin.InstallApp -->
-    </test> <!-- Run Install App -->
-  </suite> <!-- NopCommerce -->
+    </test> <!-- Run on Chrome -->
+  </suite> <!-- Shopify -->
 </testng-results>
