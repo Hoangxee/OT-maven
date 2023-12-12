@@ -1,7 +1,6 @@
 # Reference: https://github.com/sunim2022/Jenkins_Docker/blob/9b55a490d3d83590a3eed3b064d73397a42d9de1/selenium-in-docker/Dockerfile
 # Reference: https://stackoverflow.com/questions/72148859/how-do-i-store-maven-dependencies-inside-docker-image-using-a-dockerfile
-FROM maven:3.8.6-eclipse-temurin-11
-# FROM maven:3.9.5-eclipse-temurin-11
+FROM maven:3.9.5-eclipse-temurin-11
 
 WORKDIR /apps/automation-test
 
@@ -16,10 +15,11 @@ COPY . .
 RUN chmod -R 777 /apps/automation-test
 
 # Install tools.
-RUN apt update -y & apt install -y wget
+RUN apt update && apt-get install -y gnupg2
+RUN apt update -y & apt-get install -y wget
 # RUN apt update -y & apt install -y wget unzip
-# ARG DEBIAN_FRONTEND=noninteractive
-# RUN apt-get install -y tzdata
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get install -y tzdata
 
 # Install Chrome.
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -29,9 +29,7 @@ RUN apt-get install -y google-chrome-stable
 
 RUN mvn package
 
-COPY *SNAPSHOT.jar ./analytics-service
-
-# CMD ["java", "-jar", "/analytics-service/Order-tracking-1.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "./target/Order-tracking-1.0-SNAPSHOT.jar"]
 
 # #Copy source code and pom file.
 # # COPY src /apps/automation-test/src
@@ -40,9 +38,9 @@ COPY *SNAPSHOT.jar ./analytics-service
 
 # # RUN chmod -R 777 /apps/automation-test/browserDrivers
 
-ENV env_browser_param Chrome
-ENTRYPOINT mvn test -Dbrowser_param=${env_browser_param}
-
+# ENV env_browser_param Chrome
+# ENTRYPOINT mvn test -Dbrowser_param=${env_browser_param}
+CMD ["mvn", "test"]
 
 
 
