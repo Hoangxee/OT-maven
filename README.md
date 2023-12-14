@@ -13,7 +13,7 @@ $ mvn clean && mvn test
 Build image, run:
 
 ```bash
-$ docker build -t test .
+$ docker build -t testtask -f dockerFile .
 ```
 
 Run the test:
