@@ -21,8 +21,7 @@ RUN apt-get update
 RUN apt-get install -y google-chrome-stable
 
 
-COPY pom.xml .
-
-RUN mvn clean 
-RUN mvn -B dependency:go-offline 
+COPY . .
+RUN mvn -B dependency:go-offline
+RUN mvn clean
 CMD ["mvn", "test"]

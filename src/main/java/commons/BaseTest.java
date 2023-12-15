@@ -53,9 +53,7 @@ public class BaseTest {
                 options.addArguments("--window-size=1920,1080");
                 options.addArguments(
                          "user-agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.71 Safari/537.36'");
-                // options.addArguments("--remote-allow-origins=*");
                 options.addArguments("--disable-dev-shm-usage");
-                options.addArguments("start-maximized");
                 options.addArguments("disable-infobars");
 
                 driver = new ChromeDriver(options);
