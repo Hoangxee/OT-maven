@@ -30,13 +30,13 @@ public class UninstallApp extends BaseTest {
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
         homePage.openSettingsMenu();
         homePage.openListApps();
-        homePage.uninstallApp("Omega - Order Tracking");
+        homePage.uninstallApp("Order Tracking");
 
     }
 
     @AfterClass
     public void afterClass() {
-        // driver.quit();
+         driver.quit();
     }
 
     private WebDriver driver;

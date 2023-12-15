@@ -25,5 +25,4 @@ COPY pom.xml .
 
 RUN mvn clean 
 RUN mvn -B dependency:go-offline 
-
 CMD ["mvn", "test"]
