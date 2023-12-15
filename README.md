@@ -20,3 +20,8 @@ Run the test:
 ```bash
 $ docker run test
 ```
+
+## Run with docker compose
+```bash
+    docker compose up --build
+```

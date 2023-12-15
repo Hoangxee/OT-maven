@@ -1,0 +1,7 @@
+services:
+  selenium:
+    build: .
+    volumes:
+      - type: bind
+        source: ~/allure-json
+        target: /apps/automation-test/allure-json
