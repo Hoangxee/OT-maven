@@ -24,5 +24,14 @@ $ docker run test
 ## Run with docker compose
 Allure report is using this image: [allure-docker-service](https://hub.docker.com/r/frankescobar/allure-docker-service).
 ```bash
-    docker compose up --build
+    docker compose up --build -d
+```
+View all running containers, run:
+```bash
+ docker ps
+```
+
+To stop all containers, run:
+```bash
+    docker compose down
 ```
