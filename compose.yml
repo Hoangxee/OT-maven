@@ -3,7 +3,7 @@ services:
     build: .
     volumes:
       - type: bind
-        source: ~/allure-json
+        source: /home/jenkins/automation-test/allure-json
         target: /apps/automation-test/allure-json
 
 #  allure:
