@@ -195,6 +195,10 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
 
+<!--                    <systemPropertyVariables>-->
+<!--                        <allure.results.directory>${project.build.directory}/allure-json</allure.results.directory>-->
+<!--                    </systemPropertyVariables>-->
+
                 </configuration>
             </plugin>
 
@@ -215,4 +219,5 @@
 <!--            </plugin>-->
 <!--        </plugins>-->
 <!--    </reporting>-->
+
 </project>
