@@ -3,14 +3,13 @@
 
 FROM maven:3.9.6-eclipse-temurin-11
 
-WORKDIR /apps/automation-test
-
-RUN chmod -R 777 /apps/automation-test
+ARG USERNAME=app
+ARG UID=1000
+ARG GID=1000
 
 # Install tools.
 RUN apt-get update && apt-get install -y gnupg2
 RUN apt-get update -y & apt-get install -y wget
-# RUN apt update -y & apt install -y wget unzip
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get install -y tzdata
 
@@ -20,9 +19,17 @@ RUN sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc
 RUN apt-get update
 RUN apt-get install -y google-chrome-stable
 
-COPY pom.xml /apps/automation-test
+RUN chown $UID /root
+
+USER $UID:$GID
+
+WORKDIR /apps/automation-test/
+
+COPY pom.xml /apps/automation-test/
 RUN mvn -B dependency:go-offline
 RUN mvn clean
 
-COPY . .
-CMD ["mvn", "test"]
+COPY --chown=$UID:$GID . .
+
+CMD ["mvn", "test", "-e"]
+
