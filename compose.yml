@@ -7,8 +7,8 @@ services:
         UID: ${USER_ID}
     volumes:
       - type: bind
-        source: /home/jenkins/automation-test/allure-json
-        target: /apps/automation-test/allure-json
+        source: /home/jenkins/automation-test/allure-results
+        target: /apps/automation-test/allure-results
 
   # allure:
   #   depends_on:

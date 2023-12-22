@@ -196,7 +196,7 @@
                     </argLine>
 
 <!--                    <systemPropertyVariables>-->
-<!--                        <allure.results.directory>${project.build.directory}/allure-json</allure.results.directory>-->
+<!--                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>-->
 <!--                    </systemPropertyVariables>-->
 
                 </configuration>
