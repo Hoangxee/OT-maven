@@ -3,7 +3,6 @@
 
 FROM maven:3.9.6-eclipse-temurin-11
 
-ARG USERNAME=app
 ARG UID=1000
 ARG GID=1000
 
@@ -31,4 +30,4 @@ RUN mvn clean
 
 COPY --chown=$UID:$GID . .
 
-CMD ["mvn", "test", "-e"]
+CMD ["mvn", "test"]
