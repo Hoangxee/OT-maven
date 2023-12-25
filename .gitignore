@@ -1,4 +1,4 @@
-./allure-json
-./target
+./allure-results
 ./test-output
 ./logs
+./target

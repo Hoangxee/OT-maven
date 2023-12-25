@@ -2,6 +2,7 @@ package commons;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -13,6 +14,8 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.BeforeSuite;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
 import java.time.Duration;
@@ -44,65 +47,13 @@ public class BaseTest {
         BrowserName browser = BrowserName.valueOf(browserName.toUpperCase());
         switch (browser) {
             case CHROME:
-                // driver = WebDriverManager.chromedriver().create();
-
-                // WebDriverManager.chromedriver().driverVersion("116.0.5845.96").setup();
-                //
-                // ChromeOptions options = new ChromeOptions();
-                // options.addArguments("--remote-allow-origins=*");
-                // options.addArguments("--start-maximized");
-                //
-                // driver = new ChromeDriver(options);
-
-                // //change local driver
-                // if(osName.contains("linux")||osName.contains("Linux")){
-                // System.out.println(osName);
-                // System.out.println(projectPath);
-                //// System.setProperty("webdriver.chrome.driver",
-                // "/usr/lib64/chromium-browser/chromedriver");
-                // System.setProperty("webdriver.chrome.driver", projectPath+
-                // "/browserDrivers/chromedriver");
-                // System.out.println("osName: Linux!");
-                // } else if(osName.contains("windows")||osName.contains("Windows")){
-                // System.setProperty("webdriver.chrome.driver", projectPath+
-                // "/browserDrivers/chromedriver.exe");
-                // System.out.println("osName: Windows!");
-                // }
-                //
-                // ChromeOptions options = new ChromeOptions();
-                // options.setBinary("/opt/google/chrome/chrome");
-                // options.addArguments("--no-sandbox");
-                // options.addArguments("--headless");
-                // options.addArguments("--disable-dev-shm-usage");
-                // options.addArguments("start-maximized");
-                // options.addArguments("disable-infobars");
-                //// options.setBinary("/usr/bin/google-chrome/chrome");
-                // options.addArguments("start-maximized");
-                // options.setExperimentalOption("excludeSwitches",
-                // Collections.singletonList("enable-automation"));
-                // options.setExperimentalOption("useAutomationExtension", false);
-
-                // DesiredCapabilities only work with selenium 3x
-                // log chromedriver version
-                // caps = DesiredCapabilities.chrome();
-                // caps = ((RemoteWebDriver) driver).getCapabilities();
-                // Map<String, String> a = (Map<String, String>) caps.getCapability("chrome");
-                // System.out.println(String.format("Driver Version: %s",
-                // a.get("chromedriverVersion")));
-                //
-                // //log chrome browser version
-                // String browserVersion = caps.getVersion().toString();
-                // System.out.println("Browser version: " + browserVersion);
-
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--no-sandbox");
                 options.addArguments("--headless");
                 options.addArguments("--window-size=1920,1080");
                 options.addArguments(
-                        "user-agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.6045.160 Safari/537.36'");
-                // options.addArguments("--remote-allow-origins=*");
+                         "user-agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.71 Safari/537.36'");
                 options.addArguments("--disable-dev-shm-usage");
-                options.addArguments("start-maximized");
                 options.addArguments("disable-infobars");
 
                 driver = new ChromeDriver(options);
@@ -150,7 +101,7 @@ public class BaseTest {
 
     public void deleteAllFileInFolder() {
         try {
-            String pathFolderDownload = GlobalConstants.PROJECT_PATH + "/allure-json";
+            String pathFolderDownload = GlobalConstants.PROJECT_PATH + "/allure-results";
             File file = new File(pathFolderDownload);
             File[] listOfFiles = file.listFiles();
             for (int i = 0; i < listOfFiles.length; i++) {
@@ -161,5 +112,24 @@ public class BaseTest {
         } catch (Exception e) {
             System.out.print(e.getMessage());
         }
+    }
+
+    public void getChromeInfo(){
+//         //DesiredCapabilities only work with selenium 3x
+//         log chromedriver version
+//         caps = DesiredCapabilities.chrome();
+//         caps = ((RemoteWebDriver) driver).getCapabilities();
+//         Map<String, String> a = (Map<String, String>) caps.getCapability("chrome");
+//         System.out.println(String.format("Driver Version: %s",
+//         a.get("chromedriverVersion")));
+
+         //log chrome browser version
+        caps = ((RemoteWebDriver) driver).getCapabilities();
+        String browserName = caps.getBrowserName().toLowerCase();
+        System.out.println(browserName);
+        String os = caps.getBrowserName();
+        System.out.println(os);
+        String v = caps.getBrowserVersion();
+        System.out.println(v);
     }
 }

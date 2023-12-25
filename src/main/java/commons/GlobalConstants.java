@@ -4,8 +4,11 @@ import java.io.File;
 
 public class GlobalConstants {
     public static final String SHOPIFY_ADMIN_URL = "https://admin.shopify.com/store/returns-drive/";
-    public static final String SHOPIFY_ADMIN_EMAIL = "hoangnh@omegatheme.com";
-    public static final String SHOPIFY_ADMIN_PASSWORD = "12345678a";
+     public static final String SHOPIFY_ADMIN_EMAIL = "hoangnh@omegatheme.com";
+     public static final String SHOPIFY_ADMIN_PASSWORD = "12345678a";
+//public static final String SHOPIFY_ADMIN_URL = "https://admin.shopify.com/store/emmapham";
+//    public static final String SHOPIFY_ADMIN_EMAIL = "phucph@omegatheme.com";
+//    public static final String SHOPIFY_ADMIN_PASSWORD = "Emma@123";
     public static final String SHOPIFY_APP_STORE_URL = "https://apps.shopify.com/";
     public static final String SHOPIFY_STORE_FRONT_URL = "https://returns-drive.myshopify.com/";
     public static final String SHOPIFY_STORE_FRONT_PASSWORD = "12345678a";

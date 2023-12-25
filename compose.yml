@@ -1,0 +1,33 @@
+services:
+  test:
+    build:
+      context: ./
+      args:
+        GID: ${GROUP_ID}
+        UID: ${USER_ID}
+    volumes:
+      - type: bind
+        source: /home/jenkins/workspace/auto-test/Order-tracking-selenium/target/allure-results
+        target: /apps/automation-test/allure-results
+
+  # allure:
+  #   depends_on:
+  #     - test
+  #   image: "frankescobar/allure-docker-service"
+  #   environment:
+  #     CHECK_RESULTS_EVERY_SECONDS: 1
+  #     KEEP_HISTORY: 1
+  #   ports:
+  #     - "5050:5050"
+  #   volumes:
+  #     - ~/allure-json:/app/allure-results
+
+  # allure-ui:
+  #   depends_on:
+  #     - allure
+  #   image: "frankescobar/allure-docker-service-ui"
+  #   environment:
+  #     ALLURE_DOCKER_PUBLIC_API_URL: "http://localhost:5050"
+  #     ALLURE_DOCKER_PUBLIC_API_URL_PREFIX: ""
+  #   ports:
+  #     - "5252:5252"
