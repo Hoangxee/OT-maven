@@ -35,25 +35,25 @@ public class CreateOrders extends BaseTest {
         homePage.inputToSearchbar(GlobalConstants.SHOPIFY_PRODUCT);
         homePage.openToProductDetail();
 
-//        checkoutPage = homePage.clickToBuyItNowButton();
-//        checkoutPage.inputToContactTextbox(GlobalConstants.CONTACT);
-//        checkoutPage.inputToFirstNameTextbox(GlobalConstants.FIRST_NAME);
-//        checkoutPage.inputToLastNameTextbox(GlobalConstants.LAST_NAME);
-//        checkoutPage.inputToAddressTextbox(GlobalConstants.ADDRESS);
-//        checkoutPage.inputToCityTextbox(GlobalConstants.CITY);
-//        checkoutPage.inputToPostalTextbox(GlobalConstants.POSTAL_CODE);
-////        checkoutPage.clickToContinueToShippingButton();
-////        checkoutPage.clickToContinueToPaymentButton();
-//        checkoutPage.inputToCreditCardField("Card number", GlobalConstants.CARD_NUMBER);
-////        checkoutPage.inputToCreditCardField("Name on card", GlobalConstants.NAME_ON_CARD);
-//        checkoutPage.inputToExpirationDateField("Expiration date", Keys.NUMPAD1);
-//        checkoutPage.inputToExpirationDateField("Expiration date", Keys.NUMPAD1);
-//        checkoutPage.inputToExpirationDateField("Expiration date", Keys.NUMPAD3);
-//        checkoutPage.sleepInSecond(1);
-//        checkoutPage.inputToExpirationDateField("Expiration date", Keys.NUMPAD4);
-//        checkoutPage.inputToCreditCardField("Security code", GlobalConstants.SECURITY_CODE);
-//        checkoutPage.clickToPayNowButton();
-//        Assert.assertTrue(checkoutPage.getCheckoutPageText().contains("Thank you"));
+        checkoutPage = homePage.clickToBuyItNowButton();
+        checkoutPage.inputToContactTextbox(GlobalConstants.CONTACT);
+        checkoutPage.inputToFirstNameTextbox(GlobalConstants.FIRST_NAME);
+        checkoutPage.inputToLastNameTextbox(GlobalConstants.LAST_NAME);
+        checkoutPage.inputToAddressTextbox(GlobalConstants.ADDRESS);
+        checkoutPage.inputToCityTextbox(GlobalConstants.CITY);
+        checkoutPage.inputToPostalTextbox(GlobalConstants.POSTAL_CODE);
+//        checkoutPage.clickToContinueToShippingButton();
+//        checkoutPage.clickToContinueToPaymentButton();
+        checkoutPage.inputToCreditCardField("Card number", GlobalConstants.CARD_NUMBER);
+//        checkoutPage.inputToCreditCardField("Name on card", GlobalConstants.NAME_ON_CARD);
+        checkoutPage.inputToExpirationDateField("Expiration date", Keys.NUMPAD1);
+        checkoutPage.inputToExpirationDateField("Expiration date", Keys.NUMPAD1);
+        checkoutPage.inputToExpirationDateField("Expiration date", Keys.NUMPAD3);
+        checkoutPage.sleepInSecond(1);
+        checkoutPage.inputToExpirationDateField("Expiration date", Keys.NUMPAD4);
+        checkoutPage.inputToCreditCardField("Security code", GlobalConstants.SECURITY_CODE);
+        checkoutPage.clickToPayNowButton();
+        Assert.assertTrue(checkoutPage.getCheckoutPageText().contains("Thank you"));
 
         homePage = checkoutPage.clickToContinueShoppingButton();
     }
