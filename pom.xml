@@ -205,19 +205,20 @@
         </plugins>
     </build>
 
-<!--&lt;!&ndash;    not in docs&ndash;&gt;-->
-<!--    <reporting>-->
-<!--        <excludeDefaults>true</excludeDefaults>-->
-<!--        <plugins>-->
-<!--            <plugin>-->
-<!--                <groupId>io.qameta.allure</groupId>-->
-<!--                <artifactId>allure-maven</artifactId>-->
-<!--                <version>2.12.0</version>-->
-<!--                <configuration>-->
-<!--                    <reportDirectory>${basedir}\target\allure-report</reportDirectory>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
-<!--        </plugins>-->
-<!--    </reporting>-->
+<!--    not in docs-->
+    <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.12.0</version>
+                <configuration>
+                    <reportVersion>2.4.1</reportVersion>
+                    <reportDirectory>${basedir}\target\allure-report</reportDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 
 </project>
