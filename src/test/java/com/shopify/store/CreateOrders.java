@@ -54,6 +54,7 @@ public class CreateOrders extends BaseTest {
         checkoutPage.inputToCreditCardField("Security code", GlobalConstants.SECURITY_CODE);
         checkoutPage.clickToPayNowButton();
         Assert.assertTrue(checkoutPage.getCheckoutPageText().contains("Thank you"));
+        Assert.assertTrue(checkoutPage.getCheckoutPageText().contains("Test allure report"));
 
         homePage = checkoutPage.clickToContinueShoppingButton();
     }
