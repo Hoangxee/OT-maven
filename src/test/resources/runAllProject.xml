@@ -6,12 +6,12 @@
         <listener class-name="reportConfig.AllureTestListener"/>
     </listeners>
 
-<!--    <test name="Run Create Orders">-->
-<!--        <parameter name="browser" value="Chrome"/>-->
-<!--        <classes>-->
-<!--            <class name="com.shopify.store.CreateOrders"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="Run Create Orders">
+        <parameter name="browser" value="Chrome"/>
+        <classes>
+            <class name="com.shopify.store.CreateOrders"/>
+        </classes>
+    </test>
 
     <test name="Run Uninstall App">
         <parameter name="browser" value="Chrome"/>
