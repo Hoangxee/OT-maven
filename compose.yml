@@ -7,7 +7,7 @@ services:
         UID: ${USER_ID}
     volumes:
       - type: bind
-       source: /home/jenkins/workspace/auto-test/Order-tracking-selenium/target/allure-results
+        source: /home/jenkins/workspace/auto-test/Order-tracking-selenium/target/allure-results
         target: /apps/automation-test/target/allure-results
 
   # allure:
