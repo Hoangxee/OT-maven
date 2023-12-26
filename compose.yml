@@ -8,7 +8,7 @@ services:
     volumes:
       - type: bind
         source: /home/jenkins/workspace/auto-test/Order-tracking-selenium/target/allure-results
-        target: /apps/automation-test/allure-results
+        target: /apps/automation-test/target/allure-results
 
   # allure:
   #   depends_on:

@@ -26,6 +26,7 @@ WORKDIR /apps/automation-test/
 
 COPY pom.xml /apps/automation-test/
 RUN mvn -B dependency:go-offline
+
 RUN mvn clean
 
 COPY --chown=$UID:$GID . .
