@@ -35,5 +35,4 @@ To stop all containers, run:
 ```bash
 docker compose down
 
-test cdcd12
 ```
