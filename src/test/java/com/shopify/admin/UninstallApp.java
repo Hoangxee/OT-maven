@@ -28,8 +28,6 @@ public class UninstallApp extends BaseTest {
     public void UninstallApp() {
         homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
-        homePage.openSettingsMenu();
-        homePage.openListApps();
         homePage.uninstallApp("Order Tracking");
 
     }

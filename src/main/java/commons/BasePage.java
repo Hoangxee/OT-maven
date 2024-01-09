@@ -1,5 +1,7 @@
 package commons;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
@@ -15,6 +17,11 @@ import java.util.concurrent.TimeUnit;
 
 public class BasePage {
     private static BasePage basePage;
+    protected final Log log;
+    protected BasePage(){
+        log = LogFactory.getLog(getClass());
+    }
+
     public static BasePage getBasePage(){
         if(basePage==null){
             basePage = new BasePage();

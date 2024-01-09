@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageUIs.adminShopify.HomePageAdminUI;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -32,12 +34,26 @@ public class HomePageAdminObject extends BasePage {
         clickToElement(driver, HomePageAdminUI.LIST_APP_MENU);
     }
 
-    @Step("Uninstall app {0}")
-    public void uninstallApp(String appName) {
+    @Step("Check available app {0}")
+    public void checkAvailableApp(String appName) {
         List<WebElement> appInListApps = getListWebElement(driver,HomePageAdminUI.APP_DETAIL, appName);
         if(appInListApps.size() != 0) {
             waitForElementClickable(driver, HomePageAdminUI.APP_DETAIL,appName);
             clickToElement(driver, HomePageAdminUI.APP_DETAIL,appName);
+            log.info("App "+appName+" was available!!");
+        }
+        else{
+            log.info("App "+appName+" not found!!");
+        }
+    }
+
+    @Step("Uninstall app {0}")
+    public void uninstallApp(String appName) {
+        openSettingsMenu();
+        openListApps();
+        List<WebElement> appInListApps = getListWebElement(driver,HomePageAdminUI.APP_DETAIL, appName);
+        if(appInListApps.size() != 0) {
+            checkAvailableApp(appName);
 
             waitForElementClickable(driver, HomePageAdminUI.UNINSTALL_APP_BUTTON);
             clickToElement(driver, HomePageAdminUI.UNINSTALL_APP_BUTTON);
@@ -51,7 +67,7 @@ public class HomePageAdminObject extends BasePage {
             Assert.assertEquals(getWebElement(driver, HomePageAdminUI.UNINSTALL_MESSAGE_SUCCESSFULLY).getText(), "You've successfully uninstalled Omega - Order Tracking");
         }
         else{
-            System.out.println("App "+appName+" not found!!");
+            log.info("App "+appName+" not found!!");
         }
     }
 
@@ -59,11 +75,14 @@ public class HomePageAdminObject extends BasePage {
     public DashboardPageOTAppObject clickToInstallApp() {
         List<WebElement> installAppButton = getListWebElement(driver,HomePageAdminUI.INSTALL_APP_BUTTON);
         if(installAppButton.size() == 0){
-            System.out.println("App was installed!!");
+            log.info("App was installed!!");
         } else {
             waitForElementClickable(driver, HomePageAdminUI.INSTALL_APP_BUTTON);
             clickToElement(driver, HomePageAdminUI.INSTALL_APP_BUTTON);
         }
         return PageGeneratorManager.getDashboardPageOTApp(driver);
     }
+
+//    @Step("")
+//    public void
 }

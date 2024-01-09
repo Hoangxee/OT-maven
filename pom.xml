@@ -19,6 +19,7 @@
         <webdriver.version>4.14.1</webdriver.version>
 <!--        <webdriver.version>3.141.59</webdriver.version>-->
         <testng.version>7.7.1</testng.version>
+        <jcommander.version>1.72</jcommander.version>
         <jackson.version>2.10.3</jackson.version>
 <!--        <webdrivermanager.version>5.3.1</webdrivermanager.version>-->
         <aspectj.version>1.9.8</aspectj.version>
@@ -156,7 +157,7 @@
         <dependency>
             <groupId>com.beust</groupId>
             <artifactId>jcommander</artifactId>
-            <version>1.78</version>
+            <version>${jcommander.version}</version>
         </dependency>
 
     </dependencies>
