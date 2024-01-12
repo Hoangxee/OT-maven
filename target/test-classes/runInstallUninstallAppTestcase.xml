@@ -8,7 +8,7 @@
             <listener class-name="reportConfig.AllureTestListener"/>
         </listeners>
         <classes>
-<!--            <class name="com.shopify.admin.UninstallApp"/>-->
+            <class name="com.shopify.admin.UninstallApp"/>
             <class name="com.shopify.admin.InstallApp"/>
         </classes>
     </test>

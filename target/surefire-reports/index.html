@@ -103,12 +103,12 @@
                     <div class="method-list-content passed suite-Order_tracking">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Order_tracking" title="com.shopify.admin.InstallApp" class="method navigator-link" hash-for-method="InstallApp">InstallApp</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Order_tracking" title="com.shopify.store.CreateOrderInStore" class="method navigator-link" hash-for-method="CreateOrder">CreateOrder</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Order_tracking" title="com.shopify.store.CreateOrders" class="method navigator-link" hash-for-method="TC_01_CreateOrder">TC_01_CreateOrder</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Order_tracking" title="com.shopify.admin.InstallApp" class="method navigator-link" hash-for-method="InstallApp">InstallApp</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
@@ -131,14 +131,14 @@
           <div class="suite-Order_tracking-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">com.shopify.store.CreateOrders</span>
+              <span class="class-name">com.shopify.admin.InstallApp</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="TC_01_CreateOrder">
-                  </a> <!-- TC_01_CreateOrder -->
-                  <span class="method-name">TC_01_CreateOrder</span>
+                  <a name="InstallApp">
+                  </a> <!-- InstallApp -->
+                  <span class="method-name">InstallApp</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -161,14 +161,14 @@
           <div class="suite-Order_tracking-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">com.shopify.admin.InstallApp</span>
+              <span class="class-name">com.shopify.store.CreateOrderInStore</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="InstallApp">
-                  </a> <!-- InstallApp -->
-                  <span class="method-name">InstallApp</span>
+                  <a name="CreateOrder">
+                  </a> <!-- CreateOrder -->
+                  <span class="method-name">CreateOrder</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -190,7 +190,7 @@
   &lt;test thread-count=&quot;5&quot; name=&quot;Run Create Orders&quot; verbose=&quot;0&quot;&gt;
     &lt;parameter name=&quot;browser&quot; value=&quot;Chrome&quot;/&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.shopify.store.CreateOrders&quot;/&gt;
+      &lt;class name=&quot;com.shopify.store.CreateOrderInStore&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Run Create Orders --&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Run Uninstall App&quot; verbose=&quot;0&quot;&gt;
@@ -250,22 +250,22 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(3);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'TC_01_CreateOrder')
-data.setCell(0, 2, 'com.shopify.store.CreateOrders')
-data.setCell(0, 3, 153517);
+data.setCell(0, 1, 'UninstallApp')
+data.setCell(0, 2, 'com.shopify.admin.UninstallApp')
+data.setCell(0, 3, 190748);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'UninstallApp')
-data.setCell(1, 2, 'com.shopify.admin.UninstallApp')
-data.setCell(1, 3, 133749);
+data.setCell(1, 1, 'InstallApp')
+data.setCell(1, 2, 'com.shopify.admin.InstallApp')
+data.setCell(1, 3, 142437);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'InstallApp')
-data.setCell(2, 2, 'com.shopify.admin.InstallApp')
-data.setCell(2, 3, 96839);
+data.setCell(2, 1, 'CreateOrder')
+data.setCell(2, 2, 'com.shopify.store.CreateOrderInStore')
+data.setCell(2, 3, 15096);
 window.suiteTableData['Order_tracking']= { tableData: data, tableDiv: 'times-div-Order_tracking'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 6 minutes</span>
+              <span class="suite-total-time">Total running time: 5 minutes</span>
               <div id="times-div-Order_tracking">
               </div> <!-- times-div-Order_tracking -->
             </div> <!-- times-div -->
@@ -291,48 +291,55 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.shopify.store.CreateOrders</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.shopify.admin.InstallApp</div> <!-- chronological-class-name -->
+              <div class="configuration-suite before">
+                <span class="method-name">initBeforeSuite</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-suite before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.shopify.store.CreateOrderInStore</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">beforeClass(Chrome)</span>
-                <span class="method-start">0 ms</span>
+                <span class="method-start">120 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
-                <span class="method-name">TC_01_CreateOrder</span>
-                <span class="method-start">9696 ms</span>
+                <span class="method-name">CreateOrder</span>
+                <span class="method-start">4950 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">afterClass</span>
-                <span class="method-start">163372 ms</span>
+                <span class="method-start">20231 ms</span>
               </div> <!-- configuration-class after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.shopify.admin.UninstallApp</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">beforeClass(Chrome)</span>
-                <span class="method-start">163577 ms</span>
+                <span class="method-start">20461 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <span class="method-name">UninstallApp</span>
-                <span class="method-start">169047 ms</span>
+                <span class="method-start">25437 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">afterClass</span>
-                <span class="method-start">302805 ms</span>
+                <span class="method-start">216188 ms</span>
               </div> <!-- configuration-class after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.shopify.admin.InstallApp</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">beforeClass(Chrome)</span>
-                <span class="method-start">302923 ms</span>
+                <span class="method-start">216309 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <span class="method-name">InstallApp</span>
-                <span class="method-start">305750 ms</span>
+                <span class="method-start">218835 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">afterClass</span>
-                <span class="method-start">402600 ms</span>
+                <span class="method-start">361274 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
