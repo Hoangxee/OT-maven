@@ -17,7 +17,7 @@ import pageObject.shopify.storeFront.CheckoutPagePortalObject;
 import pageObject.shopify.storeFront.HomePagePortalObject;
 import pageObject.shopify.storeFront.LoginPagePortalObject;
 
-public class CreateOrders extends BaseTest {
+public class CreateOrderInStore extends BaseTest {
     @Parameters("browser")
     @BeforeClass
     public void beforeClass(String browserName){
@@ -29,7 +29,7 @@ public class CreateOrders extends BaseTest {
     @Description("Create order")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void TC_01_CreateOrder(){
+    public void CreateOrder(){
         homePage = loginPage.loginToShopifyStore(GlobalConstants.SHOPIFY_STORE_FRONT_PASSWORD);
         homePage.clickToSearchIcon();
         homePage.inputToSearchbar(GlobalConstants.SHOPIFY_PRODUCT);

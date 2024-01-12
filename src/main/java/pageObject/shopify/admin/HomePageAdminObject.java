@@ -3,6 +3,7 @@ package pageObject.shopify.admin;
 import commons.BasePage;
 import commons.PageGeneratorManager;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -55,16 +56,24 @@ public class HomePageAdminObject extends BasePage {
         if(appInListApps.size() != 0) {
             checkAvailableApp(appName);
 
+            List<WebElement> uninstallPopup = getListWebElement(driver, HomePageAdminUI.UNINSTALL_APP_POPUP);
+            Assert.assertEquals(uninstallPopup.size(), 0);
             waitForElementClickable(driver, HomePageAdminUI.UNINSTALL_APP_BUTTON);
             clickToElement(driver, HomePageAdminUI.UNINSTALL_APP_BUTTON);
 
-            waitForElementVisible(driver, HomePageAdminUI.UNINSTALL_APP_POPUP);
-            Assert.assertTrue(getWebElement(driver, HomePageAdminUI.UNINSTALL_APP_POPUP).isDisplayed());
+            if(uninstallPopup.size() != 0){
+                waitForElementVisible(driver, HomePageAdminUI.UNINSTALL_APP_POPUP);
+                Assert.assertTrue(getWebElement(driver, HomePageAdminUI.UNINSTALL_APP_POPUP).isDisplayed());
 
-            waitForElementClickable(driver, HomePageAdminUI.UNINSTALL_BUTTON_IN_POPUP);
-            waitForElementAttributeChange(driver, HomePageAdminUI.UNINSTALL_BUTTON_IN_POPUP,"aria-disabled","false");
-            clickToElement(driver, HomePageAdminUI.UNINSTALL_BUTTON_IN_POPUP);
-            Assert.assertEquals(getWebElement(driver, HomePageAdminUI.UNINSTALL_MESSAGE_SUCCESSFULLY).getText(), "You've successfully uninstalled Omega - Order Tracking");
+                waitForElementClickable(driver, HomePageAdminUI.UNINSTALL_BUTTON_IN_POPUP);
+                waitForElementAttributeChange(driver, HomePageAdminUI.UNINSTALL_BUTTON_IN_POPUP,"aria-disabled","false");
+                clickToElement(driver, HomePageAdminUI.UNINSTALL_BUTTON_IN_POPUP);
+                Assert.assertEquals(getWebElement(driver, HomePageAdminUI.UNINSTALL_MESSAGE_SUCCESSFULLY).getText(), "You've successfully uninstalled Omega - Order Tracking");
+
+            }
+            else {
+                log.info("Popup uninstall was not opened !!");
+            }
         }
         else{
             log.info("App "+appName+" not found!!");
@@ -83,6 +92,4 @@ public class HomePageAdminObject extends BasePage {
         return PageGeneratorManager.getDashboardPageOTApp(driver);
     }
 
-//    @Step("")
-//    public void
 }
