@@ -12,4 +12,5 @@ public class HomePageAdminUI {
     public static final String UNINSTALL_MESSAGE_SUCCESSFULLY = "xpath=//h2[text()="+messageSuccessfully+"]";
 
     public static final String INSTALL_APP_BUTTON = "xpath=//button[@id='proceed_cta']";
+
 }

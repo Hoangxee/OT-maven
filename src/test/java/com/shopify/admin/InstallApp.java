@@ -33,7 +33,7 @@ public class InstallApp extends BaseTest {
         homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
         dashboardPageOTApp = homePage.clickToInstallApp();
-        dashboardPageOTApp.verifyAfterInstallOrderTracking("Order Tracking");
+        dashboardPageOTApp.verifyAfterInstallOrderTracking("Synctrack Order Tracking");
     }
 
     @AfterClass
