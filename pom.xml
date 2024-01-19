@@ -188,7 +188,7 @@
                 <configuration>
                     <!-- Run TestNG xml file -->
                     <suiteXmlFiles>
-                        <file>src/test/resources/runReloadPage.xml</file>
+                        <file>src/test/resources/runAllProject.xml</file>
                     </suiteXmlFiles>
 
                     <!-- Allure report Argument - screenshot for Allure report -->
