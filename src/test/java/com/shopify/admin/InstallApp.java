@@ -28,12 +28,12 @@ public class InstallApp extends BaseTest {
     @Test
     public void InstallApp() {
         SearchResultPageAppStore = homePageAppStore.searchApp("order tracking");
-        detailAppPageAppStore = SearchResultPageAppStore.clickToApp("Synctrack Order Tracking");
+        detailAppPageAppStore = SearchResultPageAppStore.clickToApp("Omega Order Tracking");
         loginPage = detailAppPageAppStore.clickToAddAppButton();
         homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
         dashboardPageOTApp = homePage.clickToInstallApp();
-        dashboardPageOTApp.verifyAfterInstallOrderTracking("Synctrack Order Tracking");
+        dashboardPageOTApp.verifyAfterInstallOrderTracking("Omega Order Tracking");
     }
 
     @AfterClass
