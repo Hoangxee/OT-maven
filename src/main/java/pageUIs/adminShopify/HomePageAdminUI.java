@@ -1,7 +1,7 @@
 package pageUIs.adminShopify;
 
 public class HomePageAdminUI {
-    public static final String SETTING_ICON = "xpath=//span[text()='Settings']/parent::a";
+    public static final String SETTING_ICON = "xpath=//a[contains(@href,'settings')]";
     public static final String LIST_APP_MENU = "xpath=//span[text()='Apps and sales channels']";
     public static final String APP_DETAIL = "xpath=//span[contains(text(),'%s')]";
     public static final String UNINSTALL_APP_BUTTON = "xpath=//button//span[text()='Uninstall app']";
