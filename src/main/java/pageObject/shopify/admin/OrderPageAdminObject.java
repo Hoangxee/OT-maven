@@ -62,9 +62,9 @@ public class OrderPageAdminObject extends BasePage {
 
     @Description("Click to Create order in Mark as paid popup")
     public void clickToCreateOrderInMarkAsPaidPopup(){
-        waitForElementVisible(driver, "xpath=//h2[text()='Mark as paid']");
-        waitForElementClickable(driver, "xpath=//span[text()='Create order']/parent::button");
-        clickToElement(driver, "xpath=//span[text()='Create order']/parent::button");
+        waitForElementVisible(driver, CreateOrderPageAdminUI.TIMELINE_LABEL);
+        waitForElementClickable(driver, CreateOrderPageAdminUI.CREATE_ORDER_BTN_IN_MARK_AS_PAID);
+        clickToElement(driver, CreateOrderPageAdminUI.CREATE_ORDER_BTN_IN_MARK_AS_PAID);
     }
 
 
