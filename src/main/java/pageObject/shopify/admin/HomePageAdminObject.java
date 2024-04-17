@@ -6,7 +6,9 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v85.page.Page;
 import org.testng.Assert;
+import pageUIs.adminShopify.CreateOrderPageAdminUI;
 import pageUIs.adminShopify.HomePageAdminUI;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -92,4 +94,10 @@ public class HomePageAdminObject extends BasePage {
         return PageGeneratorManager.getDashboardPageOTApp(driver);
     }
 
+    public OrderPageAdminObject clickToOrdersTab() {
+        waitForElementClickable(driver, CreateOrderPageAdminUI.ORDERS_MENU);
+        clickToElement(driver, CreateOrderPageAdminUI.ORDERS_MENU);
+
+        return PageGeneratorManager.getOrderPageAdmin(driver);
+    }
 }

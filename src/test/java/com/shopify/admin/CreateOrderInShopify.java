@@ -7,6 +7,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -27,18 +28,30 @@ public class CreateOrderInShopify extends BaseTest {
     public void createOrderShopify(){
         homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
-//        homePage.clickToOrdersTab();
-//        homePage.clickToCreateorderBtn();
-//        homePage.inputToSeachProducts(GlobalConstants.SHOPIFY_PRODUCT);
+        orderPage = homePage.clickToOrdersTab();
+        orderPage.clickToCreateOrderBtn();
+        orderPage.chooseCustomer("hoangnh@omegatheme.com");
+        orderPage.chooseProduct("Automation_Product");
+        orderPage.chooseProduct("Automation_Product_2");
+        orderPage.clickToCollectPaymentBtn();
+        orderPage.chooseOptionPayment("Mark as paid");
+        orderPage.clickToCreateOrderInMarkAsPaidPopup();
+//        homePage.inputToSearchProducts(GlobalConstants.SHOPIFY_STORE_FORNT_PRODUCT);//div[@class='Polaris-Modal-Dialog']//h2
 //        homePage.addProductsToOrder();
 //        homePage.clickToMarkAsPaidBtn();
 //        homePage.clickToCreateOrderBtn();
 //        homePage.countOrderInToday();
     }
 
+//    @AfterClass
+//    public void afterClass() {
+//        driver.quit();
+//    }
+
     private WebDriver driver;
     LoginPageAdminObject loginPage;
     HomePageAdminObject homePage;
+    OrderPageAdminObject orderPage;
     HomePageAppStoreObject homePageAppStore;
     SearchResultPageAppStoreObject SearchResultPageAppStore;
     DetailAppPageAppStoreObject detailAppPageAppStore;

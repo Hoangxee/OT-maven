@@ -27,6 +27,10 @@ public class PageGeneratorManager extends BasePage {
         return new HomePageAdminObject(driver);
     }
 
+    public static OrderPageAdminObject getOrderPageAdmin(WebDriver driver){
+        return new OrderPageAdminObject(driver);
+    }
+
     public static HomePageAppStoreObject getHomePageAppStore(WebDriver driver){
         return new HomePageAppStoreObject(driver);
     }
