@@ -25,4 +25,13 @@ public class CreateOrderPageAdminUI {
 
     public static final String TIMELINE_LABEL = "xpath=//div[@class='Polaris-Layout']//h2[text()='Timeline']";
 
+    public static final String FULFILL_ITEMS_BTN = "xpath=//span[text()='Fulfill items']/parent::a";
+
+    public static final String FULFILL_POLARIS_TITLE ="xpath=//h1[@class='Polaris-Header-Title']/span";
+
+    public static final String TRACKING_NUMBER_INPUT = "xpath=//input[@name='trackingInfoFields[0].number']";
+
+    public static final String FULFILL_BTN = "xpath=//span[text()='Fulfill items']/parent::button";
+
+    public static final String MESSAGE_FULFILL_SUCCESS = "xpath=//div[@class='Polaris-Frame-ToastManager']//div[@class='Polaris-InlineStack']/span";
 }

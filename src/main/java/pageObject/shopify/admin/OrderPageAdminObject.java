@@ -1,12 +1,17 @@
 package pageObject.shopify.admin;
 
 import commons.BasePage;
+import commons.GlobalConstants;
 import io.qameta.allure.Description;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import pageUIs.adminShopify.CreateOrderPageAdminUI;
 
+import java.time.Duration;
 import java.util.List;
 
 public class OrderPageAdminObject extends BasePage {
@@ -61,13 +66,28 @@ public class OrderPageAdminObject extends BasePage {
     }
 
     @Description("Click to Create order in Mark as paid popup")
-    public void clickToCreateOrderInMarkAsPaidPopup(){
+    public void clickToCreateOrderBtnInMarkAsPaidPopup(){
         waitForElementVisible(driver, CreateOrderPageAdminUI.TIMELINE_LABEL);
         waitForElementClickable(driver, CreateOrderPageAdminUI.CREATE_ORDER_BTN_IN_MARK_AS_PAID);
         clickToElement(driver, CreateOrderPageAdminUI.CREATE_ORDER_BTN_IN_MARK_AS_PAID);
     }
 
+    public void clickToFulfillItemsBtn() {
+        waitForElementClickable(driver, CreateOrderPageAdminUI.FULFILL_ITEMS_BTN);
+        clickToElement(driver, CreateOrderPageAdminUI.FULFILL_ITEMS_BTN);
+    }
 
+    public void inputToTrackingNumber(String trackingNumber) {
+        waitForTextPresent(driver,CreateOrderPageAdminUI.FULFILL_POLARIS_TITLE,"Fulfill items");
+        waitForElementVisible(driver, CreateOrderPageAdminUI.TRACKING_NUMBER_INPUT);
+        sendKeyToElement(driver, CreateOrderPageAdminUI.TRACKING_NUMBER_INPUT, trackingNumber);
+    }
+
+    public void fulfillOrder() {
+        waitForElementVisible(driver, CreateOrderPageAdminUI.FULFILL_BTN);
+        clickToElement(driver, CreateOrderPageAdminUI.FULFILL_BTN);
+        Assert.assertEquals(getWebElement(driver, CreateOrderPageAdminUI.MESSAGE_FULFILL_SUCCESS).getText(), "Items fulfilled");
+    }
 
 
     public void waitForProcessBar(){

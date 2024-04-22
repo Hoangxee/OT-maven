@@ -30,23 +30,21 @@ public class CreateOrderInShopify extends BaseTest {
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
         orderPage = homePage.clickToOrdersTab();
         orderPage.clickToCreateOrderBtn();
-        orderPage.chooseCustomer("hoangnh@omegatheme.com");
-        orderPage.chooseProduct("Automation_Product");
-        orderPage.chooseProduct("Automation_Product_2");
+        orderPage.chooseCustomer(GlobalConstants.SHOPIFY_ADMIN_EMAIL);
+        orderPage.chooseProduct(GlobalConstants.SHOPIFY_PRODUCT_FOR_OT);
+        orderPage.chooseProduct(GlobalConstants.SHOPIFY_PRODUCT_FOR_OT_2);
         orderPage.clickToCollectPaymentBtn();
         orderPage.chooseOptionPayment("Mark as paid");
-        orderPage.clickToCreateOrderInMarkAsPaidPopup();
-//        homePage.inputToSearchProducts(GlobalConstants.SHOPIFY_STORE_FORNT_PRODUCT);//div[@class='Polaris-Modal-Dialog']//h2
-//        homePage.addProductsToOrder();
-//        homePage.clickToMarkAsPaidBtn();
-//        homePage.clickToCreateOrderBtn();
-//        homePage.countOrderInToday();
+        orderPage.clickToCreateOrderBtnInMarkAsPaidPopup();
+        orderPage.clickToFulfillItemsBtn();
+        orderPage.inputToTrackingNumber(GlobalConstants.TRACKING_NUMBER);
+        orderPage.fulfillOrder();
     }
 
-//    @AfterClass
-//    public void afterClass() {
-//        driver.quit();
-//    }
+    @AfterClass
+    public void afterClass() {
+        driver.quit();
+    }
 
     private WebDriver driver;
     LoginPageAdminObject loginPage;
