@@ -34,4 +34,5 @@ public class CreateOrderPageAdminUI {
     public static final String FULFILL_BTN = "xpath=//span[text()='Fulfill items']/parent::button";
 
     public static final String MESSAGE_FULFILL_SUCCESS = "xpath=//div[@class='Polaris-Frame-ToastManager']//div[@class='Polaris-InlineStack']/span";
+
 }

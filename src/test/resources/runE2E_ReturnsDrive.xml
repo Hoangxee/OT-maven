@@ -3,8 +3,8 @@
 <suite name="Shopify" verbose="1">
     <test name="Run on Chrome">
         <parameter name="browser" value="Chrome"/>
-        <parameter name="appName" value="Omega Order Tracking"/>
-        <parameter name="appNameInShopifyStore" value="Synctrack Order Tracking"/>
+        <parameter name="appName" value="Synctrack Returns"/>
+        <parameter name="appNameInShopifyStore" value="Synctrack Returns"/>
         <listeners>
             <listener class-name="commons.MethodListener"/>
             <listener class-name="reportConfig.AllureTestListener"/>

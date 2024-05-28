@@ -46,4 +46,8 @@ public class PageGeneratorManager extends BasePage {
     public static DashboardPageOTAppObject getDashboardPageOTApp(WebDriver driver){
         return new DashboardPageOTAppObject(driver);
     }
+
+    public static SettingsPageRDAppObject getSettingsPageRDApp(WebDriver driver){
+        return new SettingsPageRDAppObject(driver);
+    }
 }

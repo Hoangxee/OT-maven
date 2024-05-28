@@ -18,14 +18,5 @@ public class DashboardPageOTAppObject extends BasePage {
         driver = mappingDriver;
     }
 
-    @Description("Verify after install app")
-    public void verifyAfterInstallOrderTracking(String appName){
-        List<WebElement> appInListApps = getListWebElement(driver, HomePageAdminUI.APP_DETAIL, appName);
-        if(appInListApps.size() != 0) {
-            System.out.println("Install app "+appName+" was successful!!");
-        }
-        else{
-            System.out.println("Install app "+appName+" was failed!!");
-        }
-    }
+
 }
