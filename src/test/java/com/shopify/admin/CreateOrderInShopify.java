@@ -7,6 +7,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -27,18 +28,28 @@ public class CreateOrderInShopify extends BaseTest {
     public void createOrderShopify(){
         homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
-//        homePage.clickToOrdersTab();
-//        homePage.clickToCreateorderBtn();
-//        homePage.inputToSeachProducts(GlobalConstants.SHOPIFY_PRODUCT);
-//        homePage.addProductsToOrder();
-//        homePage.clickToMarkAsPaidBtn();
-//        homePage.clickToCreateOrderBtn();
-//        homePage.countOrderInToday();
+        orderPage = homePage.clickToOrdersTab();
+        orderPage.clickToCreateOrderBtn();
+        orderPage.chooseCustomer(GlobalConstants.SHOPIFY_ADMIN_EMAIL);
+        orderPage.chooseProduct(GlobalConstants.SHOPIFY_PRODUCT_FOR_OT);
+        orderPage.chooseProduct(GlobalConstants.SHOPIFY_PRODUCT_FOR_OT_2);
+        orderPage.clickToCollectPaymentBtn();
+        orderPage.chooseOptionPayment("Mark as paid");
+        orderPage.clickToCreateOrderBtnInMarkAsPaidPopup();
+        orderPage.clickToFulfillItemsBtn();
+        orderPage.inputToTrackingNumber(GlobalConstants.TRACKING_NUMBER);
+        orderPage.fulfillOrder();
+    }
+
+    @AfterClass
+    public void afterClass() {
+        driver.quit();
     }
 
     private WebDriver driver;
     LoginPageAdminObject loginPage;
     HomePageAdminObject homePage;
+    OrderPageAdminObject orderPage;
     HomePageAppStoreObject homePageAppStore;
     SearchResultPageAppStoreObject SearchResultPageAppStore;
     DetailAppPageAppStoreObject detailAppPageAppStore;

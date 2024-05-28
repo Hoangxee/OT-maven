@@ -26,6 +26,9 @@
         <allure.version>2.13.5</allure.version>
         <lgo4j.version>1.2.17</lgo4j.version>
         <reportng.version>1.1.4</reportng.version>
+        <rest-assured.version>5.3.2</rest-assured.version>
+<!--        <rest-assured.version>4.3.0</rest-assured.version>-->
+
     </properties>
 
     <dependencies>
@@ -140,14 +143,6 @@
             <version>1.0.12</version>
         </dependency>
 
-
-<!--        not in docs-->
-<!--        <dependency>-->
-<!--            <groupId>io.qameta.allure</groupId>-->
-<!--            <artifactId>allure-maven</artifactId>-->
-<!--            <version>2.12.0</version>-->
-<!--        </dependency>-->
-
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
@@ -159,6 +154,60 @@
             <artifactId>jcommander</artifactId>
             <version>${jcommander.version}</version>
         </dependency>
+
+
+
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest-assured.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-path</artifactId>
+            <version>${rest-assured.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>${rest-assured.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>xml-path</artifactId>
+            <version>${rest-assured.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20231013</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.scribejava</groupId>
+            <artifactId>scribejava-apis</artifactId>
+            <version>8.3.1</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>5.2.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.3</version>
+        </dependency>
+
+
 
     </dependencies>
 
@@ -206,20 +255,5 @@
         </plugins>
     </build>
 
-<!--&lt;!&ndash;    not in docs&ndash;&gt;-->
-<!--    <reporting>-->
-<!--        <excludeDefaults>true</excludeDefaults>-->
-<!--        <plugins>-->
-<!--            <plugin>-->
-<!--                <groupId>io.qameta.allure</groupId>-->
-<!--                <artifactId>allure-maven</artifactId>-->
-<!--                <version>2.12.0</version>-->
-<!--                <configuration>-->
-<!--                    <reportVersion>2.4.1</reportVersion>-->
-<!--                    <reportDirectory>${basedir}\target\allure-report</reportDirectory>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
-<!--        </plugins>-->
-<!--    </reporting>-->
 
 </project>

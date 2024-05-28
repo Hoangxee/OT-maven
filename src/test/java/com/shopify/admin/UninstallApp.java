@@ -22,13 +22,14 @@ public class UninstallApp extends BaseTest {
         loginPage = PageGeneratorManager.getLoginPageAdmin(driver);
     }
 
+    @Parameters("appName")
     @Description("Uninstall app")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void UninstallApp() {
+    public void UninstallApp(String appName) {
         homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
-        homePage.uninstallApp("Order Tracking");
+        homePage.uninstallApp(appName);
 
     }
 

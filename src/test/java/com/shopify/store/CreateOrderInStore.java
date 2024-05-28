@@ -32,7 +32,7 @@ public class CreateOrderInStore extends BaseTest {
     public void CreateOrder(){
         homePage = loginPage.loginToShopifyStore(GlobalConstants.SHOPIFY_STORE_FRONT_PASSWORD);
         homePage.clickToSearchIcon();
-        homePage.inputToSearchbar(GlobalConstants.SHOPIFY_PRODUCT);
+        homePage.inputToSearchbar(GlobalConstants.SHOPIFY_STORE_FRONT_PRODUCT);
         homePage.openToProductDetail();
 
         checkoutPage = homePage.clickToBuyItNowButton();

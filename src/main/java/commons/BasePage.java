@@ -33,6 +33,10 @@ public class BasePage {
         return driver.findElement(getByLocator(locatorType));
     }
 
+    public WebElement getWebElement(WebDriver driver, String locatorType,String...dynamicValues){
+        return driver.findElement(getByLocator(locatorType));
+    }
+
     public List<WebElement> getListWebElement(WebDriver driver, String locatorType){
         return driver.findElements(getByLocator(locatorType));
     }
@@ -524,5 +528,13 @@ public class BasePage {
 
     public Boolean waitForPageUrlToBe(WebDriver driver, String pageURL){
         return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.urlToBe(pageURL));
+    }
+
+    public void waitForTextPresent(WebDriver driver, String locatorType, String textExpected){
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.textToBePresentInElementLocated(getByLocator(locatorType),textExpected));
+    }
+
+    public void waitForTextPresent(WebDriver driver, String locatorType, String textExpected, String...dynamicValues){
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.textToBePresentInElementLocated(getByLocator(getDynamicXpath(locatorType, dynamicValues)),textExpected));
     }
 }
