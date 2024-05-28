@@ -13,11 +13,11 @@ $ mvn clean && mvn test
 Build image, run:
 
 ```bash
-#run docker from the beginning
-$ docker build -t testtask .
+#run docker with Dockerfile
+$ docker build -t test .
 
-#run docker with cache
-#$ docker build -t testtask -f dockerFile .
+#run docker with other dockerfile
+#$ docker build -t test -f dockerFile .
 ```
 
 Run the test:
