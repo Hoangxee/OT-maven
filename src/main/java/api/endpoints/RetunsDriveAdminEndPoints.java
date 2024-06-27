@@ -11,13 +11,13 @@ import org.testng.annotations.Test;
 
 public class RetunsDriveAdminEndPoints {
 
-    public static Response create_policy_url(String storeId){
-        Response response = (Response)
-            given()
-                .pathParam("storeId",storeId)
-            .when()
-                .post(Routes.create_policy_url)
-                .body();
-        return response;
-    }
+//    public static Response create_policy_url(String storeId){
+//        Response response = (Response)
+//            given()
+//                .pathParam("storeId",storeId)
+//            .when()
+//                .post(Routes.create_policy_url)
+//                .body();
+//        return response;
+//    }
 }
