@@ -34,7 +34,7 @@ public class InstallApp extends BaseTest {
         homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
         homePage.clickToInstallApp();
-        homePage.verifyAfterInstallApp(appName);
+        Assert.assertTrue(homePage.isAppInstalled(appName));
     }
 
     @AfterClass
@@ -48,5 +48,4 @@ public class InstallApp extends BaseTest {
     HomePageAppStoreObject homePageAppStore;
     SearchResultPageAppStoreObject SearchResultPageAppStore;
     DetailAppPageAppStoreObject detailAppPageAppStore;
-    DashboardPageOTAppObject dashboardPageOTApp;
 }

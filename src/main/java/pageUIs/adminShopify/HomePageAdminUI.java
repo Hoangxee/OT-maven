@@ -15,4 +15,6 @@ public class HomePageAdminUI {
 
     public static final String PAGE_RD_IN_NAVIGATION = "xpath=//span[text()='%s')]";
 
+    public static final String APP_NAME_IN_SEARCH_APPS = "xpath=//a[contains(@href,'%s')]";
+
 }

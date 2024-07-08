@@ -54,13 +54,13 @@ public class CheckoutPagePortalObject extends BasePage {
 
     @Step("Click to Continue to shipping button and next step")
     public void clickToContinueToShippingButton() {
-        waitForElementClickable(driver, CheckoutPagePortalUI.CONTINUE_TO_SHIPPING_BUTTON);
+        waitForElementClickableByIndex(driver, CheckoutPagePortalUI.CONTINUE_TO_SHIPPING_BUTTON);
         clickToElement(driver, CheckoutPagePortalUI.CONTINUE_TO_SHIPPING_BUTTON);
     }
 
     @Step("Open to Credit card block")
     public void clickToContinueToPaymentButton() {
-        waitForElementClickable(driver, CheckoutPagePortalUI.CONTINUE_TO_PAYMENT_BUTTON);
+        waitForElementClickableByIndex(driver, CheckoutPagePortalUI.CONTINUE_TO_PAYMENT_BUTTON);
         clickToElement(driver, CheckoutPagePortalUI.CONTINUE_TO_PAYMENT_BUTTON);
     }
 
@@ -83,7 +83,7 @@ public class CheckoutPagePortalObject extends BasePage {
 
     @Step("Click to Pay Now button")
     public void clickToPayNowButton() {
-        waitForElementClickable(driver, CheckoutPagePortalUI.PAY_NOW_BUTTON);
+        waitForElementClickableByIndex(driver, CheckoutPagePortalUI.PAY_NOW_BUTTON);
         clickToElement(driver, CheckoutPagePortalUI.PAY_NOW_BUTTON);
     }
 
@@ -95,7 +95,7 @@ public class CheckoutPagePortalObject extends BasePage {
 
     @Step("Click to Continue Shopping button and open Homepage")
     public HomePagePortalObject clickToContinueShoppingButton() {
-        waitForElementClickable(driver, CheckoutPagePortalUI.CONTINUE_SHOPPING_BUTTON);
+        waitForElementClickableByIndex(driver, CheckoutPagePortalUI.CONTINUE_SHOPPING_BUTTON);
         clickToElement(driver, CheckoutPagePortalUI.CONTINUE_SHOPPING_BUTTON);
         return PageGeneratorManager.getHomePageStoreFront(driver);
     }
