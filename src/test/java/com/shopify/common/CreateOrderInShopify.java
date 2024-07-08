@@ -1,4 +1,4 @@
-package com.shopify.admin;
+package com.shopify.common;
 
 import commons.BaseTest;
 import commons.GlobalConstants;
@@ -7,25 +7,18 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pageObject.shopify.admin.*;
 
 public class CreateOrderInShopify extends BaseTest {
     @Parameters("browser")
-    @BeforeClass
-    public void beforeClass(String browserName){
-        driver = getBrowserDriver(browserName, GlobalConstants.SHOPIFY_ADMIN_URL);
-
-        loginPage = PageGeneratorManager.getLoginPageAdmin(driver);
-    }
-
     @Description("Create order in shopify")
     @Severity(SeverityLevel.NORMAL)
-    @Test
-    public void createOrderShopify(){
+    @BeforeTest
+    public void createOrderShopify(String browserName){
+        driver = getBrowserDriver(browserName, GlobalConstants.SHOPIFY_ADMIN_URL);
+        loginPage = PageGeneratorManager.getLoginPageAdmin(driver);
+
         homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
         orderPage = homePage.clickToOrdersTab();
@@ -38,10 +31,11 @@ public class CreateOrderInShopify extends BaseTest {
         orderPage.clickToCreateOrderBtnInMarkAsPaidPopup();
         orderPage.clickToFulfillItemsBtn();
         orderPage.inputToTrackingNumber(GlobalConstants.TRACKING_NUMBER);
-        orderPage.fulfillOrder();
+        orderName = orderPage.fulfillOrder();
+        orderID = orderPage.getOrderID();
     }
 
-    @AfterClass
+    @AfterTest
     public void afterClass() {
         driver.quit();
     }
@@ -50,8 +44,6 @@ public class CreateOrderInShopify extends BaseTest {
     LoginPageAdminObject loginPage;
     HomePageAdminObject homePage;
     OrderPageAdminObject orderPage;
-    HomePageAppStoreObject homePageAppStore;
-    SearchResultPageAppStoreObject SearchResultPageAppStore;
-    DetailAppPageAppStoreObject detailAppPageAppStore;
-    DashboardPageOTAppObject dashboardPageOTApp;
+    public static String orderName;
+    public static String orderID;
 }

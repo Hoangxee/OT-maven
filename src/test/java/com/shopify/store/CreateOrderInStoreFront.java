@@ -17,7 +17,7 @@ import pageObject.shopify.storeFront.CheckoutPagePortalObject;
 import pageObject.shopify.storeFront.HomePagePortalObject;
 import pageObject.shopify.storeFront.LoginPagePortalObject;
 
-public class CreateOrderInStore extends BaseTest {
+public class CreateOrderInStoreFront extends BaseTest {
     @Parameters("browser")
     @BeforeClass
     public void beforeClass(String browserName){

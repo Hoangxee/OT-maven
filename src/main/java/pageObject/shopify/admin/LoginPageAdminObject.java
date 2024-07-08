@@ -22,24 +22,25 @@ public class LoginPageAdminObject extends BasePage {
         switchNewTabToLoginToShopifyAdmin();
         waitForElementVisible(driver, LoginPageAdminUI.EMAIL_TEXTBOX);
         sendKeyToElement(driver, LoginPageAdminUI.EMAIL_TEXTBOX, email);
-        waitForElementClickable(driver, LoginPageAdminUI.COMMIT_LOGIN_BUTTON);
+        waitForElementClickableByIndex(driver, LoginPageAdminUI.COMMIT_LOGIN_BUTTON);
         clickToElement(driver, LoginPageAdminUI.COMMIT_LOGIN_BUTTON);
 
         waitForElementVisible(driver, LoginPageAdminUI.PASSWORD_TEXTBOX);
         sendKeyToElement(driver, LoginPageAdminUI.PASSWORD_TEXTBOX, password);
-        waitForElementClickable(driver, LoginPageAdminUI.COMMIT_LOGIN_BUTTON);
+        waitForElementClickableByIndex(driver, LoginPageAdminUI.COMMIT_LOGIN_BUTTON);
         clickToElement(driver, LoginPageAdminUI.COMMIT_LOGIN_BUTTON);
         List<WebElement> listEmailAccount = getListWebElement(driver, LoginPageAdminUI.EMAIL_ACCOUNT);
         if (listEmailAccount.size() != 0) {
-            waitForElementClickable(driver, LoginPageAdminUI.EMAIL_ACCOUNT);
+            waitForElementClickableByIndex(driver, LoginPageAdminUI.EMAIL_ACCOUNT);
             clickToElement(driver, LoginPageAdminUI.EMAIL_ACCOUNT);
         }
 
         List<WebElement> remindNextTime = getListWebElement(driver, LoginPageAdminUI.REMIND_NEXT_TIME_IN_SECURITY_SETTINGS_FORM);
         if (remindNextTime.size() != 0) {
-            waitForElementClickable(driver, LoginPageAdminUI.REMIND_NEXT_TIME_IN_SECURITY_SETTINGS_FORM);
+            waitForElementClickableByIndex(driver, LoginPageAdminUI.REMIND_NEXT_TIME_IN_SECURITY_SETTINGS_FORM);
             clickToElement(driver, LoginPageAdminUI.REMIND_NEXT_TIME_IN_SECURITY_SETTINGS_FORM);
         }
+
         return PageGeneratorManager.getHomePageAdmin(driver);
     }
 

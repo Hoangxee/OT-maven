@@ -13,7 +13,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 public class BasePage {
     private static BasePage basePage;
@@ -78,6 +77,12 @@ public class BasePage {
         return driver.getCurrentUrl();
     }
 
+    public String getTextInPageURL(WebDriver driver, String pageURL){
+//        driver.getCurrentUrl().substring(pageURL.lastIndexOf("/") + 1, pageURL.indexOf("?"));
+        return driver.getCurrentUrl().substring(pageURL.lastIndexOf("/") + 1);
+
+    }
+
     public String getPageSourceCode(WebDriver driver){
         return driver.getPageSource();
     }
@@ -128,6 +133,24 @@ public class BasePage {
         }
     }
 
+    public void switchToWindowByTitleContains(WebDriver driver, String expectedPageTitle){
+        // lấy ra tất cả các ID của tab/window đang có
+        Set<String> allWindowID = driver.getWindowHandles();
+
+        // Duyệt từng ID
+        for(String id:allWindowID){
+            // Switch vào từng tab/window
+            driver.switchTo().window(id);
+            // Lấy ra page title của tab/window đã swtich vào
+            String currentPageTitle = driver.getTitle();
+            if (currentPageTitle.contains(expectedPageTitle)) {
+                // Nếu đúng với title của tab/window muốn swtich vào
+                // -> thoát khỏi vòng lặp
+                break;
+            }
+        }
+    }
+
     public void closeAllWindowIgnoreParent(WebDriver driver, String parentID){
         // Lấy ra tất cả các ID của tab/window đang có
         Set<String> allWindowID = driver.getWindowHandles();
@@ -153,6 +176,14 @@ public class BasePage {
         getWebElement(driver, getDynamicXpath(locatorType,dynamicValues)).click();
     }
 
+    public void clickToListElementByIndex(WebDriver driver, String locatorType, int index){
+        getListWebElement(driver, locatorType).get(index).click();
+    }
+
+    public void clickToListElementByIndex(WebDriver driver, String locatorType, int index, String...dynamicValues){
+        getListWebElement(driver, getDynamicXpath(locatorType,dynamicValues)).get(index).click();
+    }
+
     public void sendKeyToElement(WebDriver driver, String locatorType, String valueToSendKey){
         getWebElement(driver, locatorType).clear();
         getWebElement(driver, locatorType).sendKeys(valueToSendKey);
@@ -163,13 +194,16 @@ public class BasePage {
         getWebElement(driver, getDynamicXpath(locatorType,dynamicValues)).sendKeys(valueToSendKey);
     }
 
-
     public String getTextInElement(WebDriver driver, String locatorType){
         return getWebElement(driver, locatorType).getText();
     }
 
     public String getTextInElement(WebDriver driver, String locatorType, String...dynamicValues){
         return getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)).getText();
+    }
+
+    public String getTextInElementByIndex(WebDriver driver, String locatorType, int index){
+        return getListWebElement(driver, locatorType).get(index).getText();
     }
 
     public void selectItemInDropdown(WebDriver driver, String locatorType, String valueItem){
@@ -333,7 +367,7 @@ public class BasePage {
         return getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)).isSelected();
     }
 
-    public Boolean isElementDEnabled(WebDriver driver, String locatorType){
+    public Boolean isElementEnabled(WebDriver driver, String locatorType){
         return getWebElement(driver, locatorType).isEnabled();
     }
 
@@ -420,6 +454,10 @@ public class BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", getWebElement(driver, locatorType));
     }
 
+    public void scrollToElement(WebDriver driver, String locatorType, int index) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", getListWebElement(driver, locatorType).get(index));
+    }
+
     public void scrollToBelowElement(WebDriver driver, String locatorType) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);", getWebElement(driver, locatorType));
     }
@@ -483,12 +521,20 @@ public class BasePage {
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfAllElements(getListWebElement(driver,locatorType)));
     }
 
-    public void waitForElementClickable(WebDriver driver, String locatorType){
+    public void waitForElementVisibleByIndex(WebDriver driver, String locatorType, int index){
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfAllElements(getListWebElement(driver,locatorType).get(index)));
+    }
+
+    public void waitForElementClickableByIndex(WebDriver driver, String locatorType){
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(getByLocator(locatorType)));
     }
 
-    public void waitForElementClickable(WebDriver driver, String locatorType,String...dynamicValues){
+    public void waitForElementClickableByIndex(WebDriver driver, String locatorType, String...dynamicValues){
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(getByLocator(getDynamicXpath(locatorType, dynamicValues))));
+    }
+
+    public void waitForElementClickableByIndex(WebDriver driver, String locatorType, int index){
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(getListWebElement(driver,locatorType).get(index)));
     }
 
     public void waitForElementAttributeChange(WebDriver driver, String locatorType, String attribute, String value){
@@ -536,5 +582,9 @@ public class BasePage {
 
     public void waitForTextPresent(WebDriver driver, String locatorType, String textExpected, String...dynamicValues){
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.textToBePresentInElementLocated(getByLocator(getDynamicXpath(locatorType, dynamicValues)),textExpected));
+    }
+
+    public void closeWindow(WebDriver driver){
+        driver.close();
     }
 }

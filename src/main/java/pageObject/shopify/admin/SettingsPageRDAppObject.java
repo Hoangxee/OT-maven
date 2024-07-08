@@ -12,7 +12,7 @@ public class SettingsPageRDAppObject extends BasePage {
 
 
     public void clickToGeneralSettingsMenu() {
-        waitForElementClickable(driver, "xpath=//b[text()='General settings']/ancestor::button");
+        waitForElementClickableByIndex(driver, "xpath=//b[text()='General settings']/ancestor::button");
         clickToElement(driver, "xpath=//b[text()='General settings']/ancestor::button");
     }
 

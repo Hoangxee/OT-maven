@@ -15,7 +15,7 @@ public class HomePagePortalObject extends BasePage {
 
     @Step("Click to Searchbar")
     public void clickToSearchIcon() {
-        waitForElementClickable(driver, HomePagePortalUI.SEARCH_ICON);
+        waitForElementClickableByIndex(driver, HomePagePortalUI.SEARCH_ICON);
         clickToElement(driver, HomePagePortalUI.SEARCH_ICON);
     }
 
@@ -27,13 +27,13 @@ public class HomePagePortalObject extends BasePage {
 
     @Step("Open to product detail")
     public void openToProductDetail() {
-        waitForElementClickable(driver, HomePagePortalUI.PRODUCT_IN_SEARCH_RESULT);
+        waitForElementClickableByIndex(driver, HomePagePortalUI.PRODUCT_IN_SEARCH_RESULT);
         clickToElement(driver, HomePagePortalUI.PRODUCT_IN_SEARCH_RESULT);
     }
 
     @Step("Open to Checkout screen")
     public CheckoutPagePortalObject clickToBuyItNowButton() {
-        waitForElementClickable(driver, HomePagePortalUI.BUY_IT_NOW_BUTTON);
+        waitForElementClickableByIndex(driver, HomePagePortalUI.BUY_IT_NOW_BUTTON);
         clickToElement(driver, HomePagePortalUI.BUY_IT_NOW_BUTTON);
         return PageGeneratorManager.getCheckoutPageStoreFront(driver);
     }

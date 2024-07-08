@@ -33,6 +33,10 @@ public class CreateOrderPageAdminUI {
 
     public static final String FULFILL_BTN = "xpath=//span[text()='Fulfill items']/parent::button";
 
-    public static final String MESSAGE_FULFILL_SUCCESS = "xpath=//div[@class='Polaris-Frame-ToastManager']//div[@class='Polaris-InlineStack']/span";
+    public static final String MESSAGE_LOG_TIMELINE = "xpath=//p[text()='This order was archived.']";
+
+    public static final String ORDER_ID = "xpath=//h1[@class='Polaris-Header-Title']/span";
+
+    public static final String PROGRESS_BAR = "xpath=//div[@class='Polaris-Frame-Loading']";
 
 }

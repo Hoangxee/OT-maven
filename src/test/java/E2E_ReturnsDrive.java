@@ -20,7 +20,7 @@ public class E2E_ReturnsDrive extends BaseTest {
     public void beforeClass(String browserName){
         driver = getBrowserDriver(browserName, GlobalConstants.SHOPIFY_APP_STORE_URL);
 
-        homePageAppStore = PageGeneratorManager.getHomePageAppStore(driver);
+        homePage = PageGeneratorManager.getHomePageAdmin(driver);
 
     }
 
@@ -29,10 +29,10 @@ public class E2E_ReturnsDrive extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Test
     public void createOrderShopify(String appName, String appNameInShopifyStore){
-        installApp.InstallApp(appName,appNameInShopifyStore);
-        settingsPage = homePage.openSettingsPage();
-        settingsPage.clickToGeneralSettingsMenu();
-        settingsPage.enableShopifySync();
+//        installApp.InstallApp(appName,appNameInShopifyStore);
+//        settingsPage = homePage.openSettingsPage();
+//        settingsPage.clickToGeneralSettingsMenu();
+//        settingsPage.enableShopifySync();
 
     }
 

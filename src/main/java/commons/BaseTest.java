@@ -85,8 +85,8 @@ public class BaseTest {
                 throw new RuntimeException("Please enter the correct Browser name!");
         }
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
-        // driver.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIMEOUT, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.MEDIUM_TIMEOUT));
+        // driver.manage().timeouts().implicitlyWait(GlobalConstants.MEDIUM_TIMEOUT, TimeUnit.SECONDS);
         driver.get(appURL);
         return driver;
     }

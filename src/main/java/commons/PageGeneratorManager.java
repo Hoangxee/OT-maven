@@ -5,6 +5,7 @@ import pageObject.shopify.admin.*;
 import pageObject.shopify.storeFront.CheckoutPagePortalObject;
 import pageObject.shopify.storeFront.HomePagePortalObject;
 import pageObject.shopify.storeFront.LoginPagePortalObject;
+import pageObject.shopify.storeFront.TrackingResultPageObject;
 
 public class PageGeneratorManager extends BasePage {
     public static HomePagePortalObject getHomePageStoreFront(WebDriver driver){
@@ -49,5 +50,13 @@ public class PageGeneratorManager extends BasePage {
 
     public static SettingsPageRDAppObject getSettingsPageRDApp(WebDriver driver){
         return new SettingsPageRDAppObject(driver);
+    }
+
+    public static ShipmentPageOTAppObject getShipmentPageOTApp(WebDriver driver) {
+        return new ShipmentPageOTAppObject(driver);
+    }
+
+    public static TrackingResultPageObject getTrackingResultPageStore(WebDriver driver) {
+        return new TrackingResultPageObject(driver);
     }
 }
