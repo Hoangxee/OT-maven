@@ -40,7 +40,7 @@
     </appender>
 
 <!--    apply log-->
-    <category name="com.shopify.store.CreateOrderInStoreFront">
+    <category name="com.shopify.storeFront.CreateOrderInStoreFront">
         <priority value="all" />
         <appender-ref ref="console" />
         <appender-ref ref="logfile" />

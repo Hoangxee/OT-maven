@@ -1,4 +1,4 @@
-package pageUIs.adminShopify;
+package pageUIs.apps.OT;
 
 public class ShipmentPageOTAppUI {
 

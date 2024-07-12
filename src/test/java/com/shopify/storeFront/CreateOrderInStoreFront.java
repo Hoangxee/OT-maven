@@ -1,8 +1,9 @@
-package com.shopify.store;
+package com.shopify.storeFront;
 
 import commons.BaseTest;
 import commons.GlobalConstants;
 import commons.PageGeneratorManager;
+import commons.StoreFrontConstants;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -36,22 +37,22 @@ public class CreateOrderInStoreFront extends BaseTest {
         homePage.openToProductDetail();
 
         checkoutPage = homePage.clickToBuyItNowButton();
-        checkoutPage.inputToContactTextbox(GlobalConstants.CONTACT);
-        checkoutPage.inputToFirstNameTextbox(GlobalConstants.FIRST_NAME);
-        checkoutPage.inputToLastNameTextbox(GlobalConstants.LAST_NAME);
-        checkoutPage.inputToAddressTextbox(GlobalConstants.ADDRESS);
-        checkoutPage.inputToCityTextbox(GlobalConstants.CITY);
-        checkoutPage.inputToPostalTextbox(GlobalConstants.POSTAL_CODE);
+        checkoutPage.inputToContactTextbox(StoreFrontConstants.CONTACT);
+        checkoutPage.inputToFirstNameTextbox(StoreFrontConstants.FIRST_NAME);
+        checkoutPage.inputToLastNameTextbox(StoreFrontConstants.LAST_NAME);
+        checkoutPage.inputToAddressTextbox(StoreFrontConstants.ADDRESS);
+        checkoutPage.inputToCityTextbox(StoreFrontConstants.CITY);
+        checkoutPage.inputToPostalTextbox(StoreFrontConstants.POSTAL_CODE);
 //        checkoutPage.clickToContinueToShippingButton();
 //        checkoutPage.clickToContinueToPaymentButton();
-        checkoutPage.inputToCreditCardField("Card number", GlobalConstants.CARD_NUMBER);
+        checkoutPage.inputToCreditCardField("Card number", StoreFrontConstants.CARD_NUMBER);
 //        checkoutPage.inputToCreditCardField("Name on card", GlobalConstants.NAME_ON_CARD);
         checkoutPage.inputToExpirationDateField("Expiration date", Keys.NUMPAD1);
         checkoutPage.inputToExpirationDateField("Expiration date", Keys.NUMPAD1);
         checkoutPage.inputToExpirationDateField("Expiration date", Keys.NUMPAD3);
         checkoutPage.sleepInSecond(1);
         checkoutPage.inputToExpirationDateField("Expiration date", Keys.NUMPAD4);
-        checkoutPage.inputToCreditCardField("Security code", GlobalConstants.SECURITY_CODE);
+        checkoutPage.inputToCreditCardField("Security code", StoreFrontConstants.SECURITY_CODE);
         checkoutPage.clickToPayNowButton();
         Assert.assertTrue(checkoutPage.getCheckoutPageText().contains("Thank you"));
 

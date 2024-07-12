@@ -18,6 +18,7 @@ import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Map;
@@ -34,10 +35,10 @@ public class BaseTest {
     Capabilities caps;
     String projectPath = System.getProperty("user.dir");
 
-//    @BeforeSuite
-//    public void initBeforeSuite() {
-//        deleteAllFileInFolder();
-//    }
+    @BeforeSuite
+    public void initBeforeSuite() {
+        deleteAllFileInFolder();
+    }
 
     protected BaseTest() {
         log = LogFactory.getLog(getClass());
@@ -54,6 +55,7 @@ public class BaseTest {
                 options.addArguments(
                          "user-agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.71 Safari/537.36'");
                 options.addArguments("--disable-dev-shm-usage");
+                options.addArguments("--disable-web-security");
                 options.addArguments("disable-infobars");
 
                 driver = new ChromeDriver(options);
@@ -99,7 +101,7 @@ public class BaseTest {
         return new Random().nextInt(999999);
     }
 
-    public void deleteAllFileInFolder() {
+    protected void deleteAllFileInFolder() {
         try {
             String pathFolderDownload = GlobalConstants.PROJECT_PATH + "/allure-results";
             File file = new File(pathFolderDownload);
@@ -112,6 +114,13 @@ public class BaseTest {
         } catch (Exception e) {
             System.out.print(e.getMessage());
         }
+    }
+
+    protected void killDriverAfterRunFail() throws IOException {
+        driver.quit();
+        Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe /T");
+        Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T");
+        Runtime.getRuntime().exec("taskkill /F /IM IEDriverServer.exe /T");
     }
 
     public void getChromeInfo(){

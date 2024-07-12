@@ -9,7 +9,7 @@
     <test name="Run Create Orders">
         <parameter name="browser" value="Chrome"/>
         <classes>
-            <class name="com.shopify.store.CreateOrderInStoreFront"/>
+            <class name="com.shopify.storeFront.CreateOrderInStoreFront"/>
         </classes>
     </test>
 

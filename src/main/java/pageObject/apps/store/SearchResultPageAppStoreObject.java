@@ -1,10 +1,10 @@
-package pageObject.shopify.admin;
+package pageObject.apps.store;
 
 import commons.BasePage;
 import commons.PageGeneratorManager;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
-import pageUIs.adminShopify.SearchResultPageAppStoreUI;
+import pageUIs.app.store.SearchResultPageAppStoreUI;
 
 public class SearchResultPageAppStoreObject extends BasePage {
     private WebDriver driver;
@@ -15,7 +15,7 @@ public class SearchResultPageAppStoreObject extends BasePage {
 
     @Step("Search app {0}")
     public DetailAppPageAppStoreObject clickToApp(String appName) {
-        waitForElementClickableByIndex(driver, SearchResultPageAppStoreUI.APP_NAME, appName);
+        waitForElementClickable(driver, SearchResultPageAppStoreUI.APP_NAME, appName);
         clickToElementByJS(driver,SearchResultPageAppStoreUI.APP_NAME, appName);
         return PageGeneratorManager.getDetailAppPageAppStore(driver);
     }

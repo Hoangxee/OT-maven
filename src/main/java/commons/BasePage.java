@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageUIs.adminShopify.CreateOrderPageAdminUI;
 
 import java.time.Duration;
 import java.util.List;
@@ -525,11 +526,11 @@ public class BasePage {
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfAllElements(getListWebElement(driver,locatorType).get(index)));
     }
 
-    public void waitForElementClickableByIndex(WebDriver driver, String locatorType){
+    public void waitForElementClickable(WebDriver driver, String locatorType){
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(getByLocator(locatorType)));
     }
 
-    public void waitForElementClickableByIndex(WebDriver driver, String locatorType, String...dynamicValues){
+    public void waitForElementClickable(WebDriver driver, String locatorType, String...dynamicValues){
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(getByLocator(getDynamicXpath(locatorType, dynamicValues))));
     }
 
@@ -586,5 +587,16 @@ public class BasePage {
 
     public void closeWindow(WebDriver driver){
         driver.close();
+    }
+
+    public void clearCookies(WebDriver driver){
+        driver.manage().deleteAllCookies();
+    }
+
+    public void waitForProcessBar(WebDriver driver, String locator){
+        List<WebElement> progressBarShopify = getListWebElement(driver, locator);
+        if(progressBarShopify.size() != 0){
+            waitForElementInvisible(driver,locator);
+        }
     }
 }

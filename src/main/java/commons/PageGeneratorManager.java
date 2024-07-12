@@ -1,11 +1,18 @@
 package commons;
 
 import org.openqa.selenium.WebDriver;
+import pageObject.apps.OT.DashboardPageOTAppObject;
+import pageObject.apps.OT.ShipmentPageOTAppObject;
+import pageObject.apps.OT.SubscriptionPlansOTAppObject;
+import pageObject.apps.RD.SettingsPageRDAppObject;
 import pageObject.shopify.admin.*;
 import pageObject.shopify.storeFront.CheckoutPagePortalObject;
 import pageObject.shopify.storeFront.HomePagePortalObject;
 import pageObject.shopify.storeFront.LoginPagePortalObject;
 import pageObject.shopify.storeFront.TrackingResultPageObject;
+import pageObject.apps.store.DetailAppPageAppStoreObject;
+import pageObject.apps.store.HomePageAppStoreObject;
+import pageObject.apps.store.SearchResultPageAppStoreObject;
 
 public class PageGeneratorManager extends BasePage {
     public static HomePagePortalObject getHomePageStoreFront(WebDriver driver){
@@ -58,5 +65,13 @@ public class PageGeneratorManager extends BasePage {
 
     public static TrackingResultPageObject getTrackingResultPageStore(WebDriver driver) {
         return new TrackingResultPageObject(driver);
+    }
+
+    public static SubscriptionPlansOTAppObject getSubscriptionPlansOTApp(WebDriver driver) {
+        return new SubscriptionPlansOTAppObject(driver);
+    }
+
+    public static ApproveSubscriptionAdminObject getApproveSubscriptionAdmin(WebDriver driver) {
+        return new ApproveSubscriptionAdminObject(driver);
     }
 }

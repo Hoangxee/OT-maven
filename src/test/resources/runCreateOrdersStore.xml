@@ -8,7 +8,7 @@
             <listener class-name="reportConfig.AllureTestListener"/>
         </listeners>
         <classes>
-            <class name="com.shopify.store.CreateOrderInStoreFront"/>
+            <class name="com.shopify.storeFront.CreateOrderInStoreFront"/>
         </classes>
     </test>
 </suite>

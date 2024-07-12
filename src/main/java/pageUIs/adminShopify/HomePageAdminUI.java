@@ -11,7 +11,9 @@ public class HomePageAdminUI {
     static String messageSuccessfully = "\"You've successfully uninstalled\"";
     public static final String UNINSTALL_MESSAGE_SUCCESSFULLY = "xpath=//h2[contains(text(),"+messageSuccessfully+")]";
 
-    public static final String INSTALL_APP_BUTTON = "xpath=//button[@id='proceed_cta']";
+    public static final String INSTALL_APP_POPUP_TITLE = "xpath=//div/h2[text()='Install app']";
+
+    public static final String INSTALL_BTN_IN_INSTALL_APP_POPUP = "xpath=//div[@class='Polaris-Modal-Footer']//button[@id='proceed_cta']";
 
     public static final String PAGE_RD_IN_NAVIGATION = "xpath=//span[text()='%s')]";
 

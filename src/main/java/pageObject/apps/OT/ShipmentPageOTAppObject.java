@@ -1,14 +1,16 @@
-package pageObject.shopify.admin;
+package pageObject.apps.OT;
 
 import commons.BasePage;
+import commons.OTConstants;
 import commons.PageGeneratorManager;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import pageObject.shopify.admin.OrderPageAdminObject;
 import pageObject.shopify.storeFront.TrackingResultPageObject;
-import pageUIs.adminShopify.DashboardPageOTAppUI;
-import pageUIs.adminShopify.ShipmentPageOTAppUI;
+import pageUIs.apps.OT.DashboardPageOTAppUI;
+import pageUIs.apps.OT.ShipmentPageOTAppUI;
 
 import java.util.List;
 
@@ -42,7 +44,7 @@ public class ShipmentPageOTAppObject extends BasePage {
 
     @Step("Open Detail order page in Shopify admin")
     public OrderPageAdminObject clickToOrderID(String orderName) {
-        waitForElementClickableByIndex(driver, ShipmentPageOTAppUI.ORDER_ID_BY_ORDER_NAME, orderName);
+        waitForElementClickable(driver, ShipmentPageOTAppUI.ORDER_ID_BY_ORDER_NAME, orderName);
         clickToElement(driver, ShipmentPageOTAppUI.ORDER_ID_BY_ORDER_NAME, orderName);
 
         return PageGeneratorManager.getOrderPageAdmin(driver);
@@ -50,11 +52,10 @@ public class ShipmentPageOTAppObject extends BasePage {
 
     @Step("Open Tracking result in store front")
     public TrackingResultPageObject clickToTrackingNo(String orderName) {
-//        hoangxe-test-3 · Synctrack Order Tracking · Shopify
-        switchToWindowByTitleContains(driver, "Synctrack Order Tracking · Shopify");
+        switchToWindowByTitleContains(driver, OTConstants.OT_APP_ADMIN_TITLE_PAGE);
         switchToFrameIframe(driver, DashboardPageOTAppUI.APP_IFRAME);
 
-        waitForElementClickableByIndex(driver, ShipmentPageOTAppUI.TRACKING_NO_BY_ORDER_NAME,orderName);
+        waitForElementClickable(driver, ShipmentPageOTAppUI.TRACKING_NO_BY_ORDER_NAME,orderName);
         clickToElement(driver, ShipmentPageOTAppUI.TRACKING_NO_BY_ORDER_NAME,orderName);
 
         return PageGeneratorManager.getTrackingResultPageStore(driver);

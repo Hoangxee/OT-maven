@@ -19,40 +19,35 @@ public class LoginPageAdminObject extends BasePage {
 
     @Step("Login to Shopify admin")
     public HomePageAdminObject loginToShopifyAdmin(String email, String password) {
-        switchNewTabToLoginToShopifyAdmin();
+        switchToWindowByTitle(driver,"Log in — Shopify App Store");
+
+        List<WebElement> captcha = getListWebElement(driver, LoginPageAdminUI.CAPT_CHA);
+        if(captcha.size() != 0){
+            driver.navigate().refresh();
+        }
+
         waitForElementVisible(driver, LoginPageAdminUI.EMAIL_TEXTBOX);
         sendKeyToElement(driver, LoginPageAdminUI.EMAIL_TEXTBOX, email);
-        waitForElementClickableByIndex(driver, LoginPageAdminUI.COMMIT_LOGIN_BUTTON);
+        waitForElementClickable(driver, LoginPageAdminUI.COMMIT_LOGIN_BUTTON);
         clickToElement(driver, LoginPageAdminUI.COMMIT_LOGIN_BUTTON);
 
         waitForElementVisible(driver, LoginPageAdminUI.PASSWORD_TEXTBOX);
         sendKeyToElement(driver, LoginPageAdminUI.PASSWORD_TEXTBOX, password);
-        waitForElementClickableByIndex(driver, LoginPageAdminUI.COMMIT_LOGIN_BUTTON);
+        waitForElementClickable(driver, LoginPageAdminUI.COMMIT_LOGIN_BUTTON);
         clickToElement(driver, LoginPageAdminUI.COMMIT_LOGIN_BUTTON);
+
         List<WebElement> listEmailAccount = getListWebElement(driver, LoginPageAdminUI.EMAIL_ACCOUNT);
         if (listEmailAccount.size() != 0) {
-            waitForElementClickableByIndex(driver, LoginPageAdminUI.EMAIL_ACCOUNT);
+            waitForElementClickable(driver, LoginPageAdminUI.EMAIL_ACCOUNT);
             clickToElement(driver, LoginPageAdminUI.EMAIL_ACCOUNT);
         }
 
         List<WebElement> remindNextTime = getListWebElement(driver, LoginPageAdminUI.REMIND_NEXT_TIME_IN_SECURITY_SETTINGS_FORM);
         if (remindNextTime.size() != 0) {
-            waitForElementClickableByIndex(driver, LoginPageAdminUI.REMIND_NEXT_TIME_IN_SECURITY_SETTINGS_FORM);
+            waitForElementClickable(driver, LoginPageAdminUI.REMIND_NEXT_TIME_IN_SECURITY_SETTINGS_FORM);
             clickToElement(driver, LoginPageAdminUI.REMIND_NEXT_TIME_IN_SECURITY_SETTINGS_FORM);
         }
 
         return PageGeneratorManager.getHomePageAdmin(driver);
-    }
-
-    public void switchNewTabToLoginToShopifyAdmin() {
-        Set<String> allWindowID = driver.getWindowHandles();
-
-        for(String id:allWindowID){
-            driver.switchTo().window(id);
-            String currentPageTitle = driver.getTitle();
-            if (currentPageTitle.equals("Log in — Shopify App Store")) {
-                break;
-            }
-        }
     }
 }

@@ -1,4 +1,4 @@
-package pageUIs.adminShopify;
+package pageUIs.apps.RD;
 
 public class SettingsPageRDAppUI {
 

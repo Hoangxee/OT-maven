@@ -1,4 +1,3 @@
-import com.fasterxml.jackson.databind.JsonNode;
 import com.shopify.admin.InstallApp;
 import commons.BaseTest;
 import commons.GlobalConstants;
@@ -6,13 +5,17 @@ import commons.PageGeneratorManager;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import pageObject.apps.OT.DashboardPageOTAppObject;
+import pageObject.apps.RD.SettingsPageRDAppObject;
 import pageObject.shopify.admin.*;
+import pageObject.apps.store.DetailAppPageAppStoreObject;
+import pageObject.apps.store.HomePageAppStoreObject;
+import pageObject.apps.store.SearchResultPageAppStoreObject;
 
 public class E2E_ReturnsDrive extends BaseTest {
     @Parameters("browser")

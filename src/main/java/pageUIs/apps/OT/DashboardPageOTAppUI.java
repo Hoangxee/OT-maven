@@ -1,4 +1,4 @@
-package pageUIs.adminShopify;
+package pageUIs.apps.OT;
 
 public class DashboardPageOTAppUI {
     public static final String APP_IFRAME = "xpath=//iframe[@name='app-iframe']";

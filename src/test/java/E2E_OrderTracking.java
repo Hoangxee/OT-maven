@@ -1,6 +1,7 @@
 import com.shopify.common.CreateOrderInShopify;
 import commons.BaseTest;
 import commons.GlobalConstants;
+import commons.OTConstants;
 import commons.PageGeneratorManager;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
@@ -11,8 +12,13 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import pageObject.apps.OT.DashboardPageOTAppObject;
+import pageObject.apps.OT.ShipmentPageOTAppObject;
+import pageObject.apps.OT.SubscriptionPlansOTAppObject;
 import pageObject.shopify.admin.*;
 import pageObject.shopify.storeFront.TrackingResultPageObject;
+
+import java.io.IOException;
 
 public class E2E_OrderTracking extends BaseTest {
     @Parameters("browser")
@@ -31,14 +37,20 @@ public class E2E_OrderTracking extends BaseTest {
         homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
         dashboardOT = homePage.openAppOrderTracking();
-        Assert.assertTrue(dashboardOT.isPlanStarter());
+        Assert.assertTrue(dashboardOT.isPlanStarter(OTConstants.STARTER_SUBSCRIPTION_PLAN_NAME,OTConstants.STARTER_QUOTA));
         dashboardOT.getOldOrder();
         shipmentOT = dashboardOT.openShipmentPage();
-        Assert.assertTrue(shipmentOT.hadOldOrderBeenGetToShipment(CreateOrderInShopify.orderName,CreateOrderInShopify.orderID,GlobalConstants.TRACKING_NUMBER));
+        Assert.assertTrue(shipmentOT.hadOldOrderBeenGetToShipment(CreateOrderInShopify.orderName,CreateOrderInShopify.orderID,OTConstants.TRACKING_NUMBER));
         orderPage = shipmentOT.clickToOrderID(CreateOrderInShopify.orderName);
-        shipmentOT = orderPage.verifyOrderInShopifyAdmin(CreateOrderInShopify.orderName,CreateOrderInShopify.orderID,GlobalConstants.SHOPIFY_ADMIN_EMAIL,GlobalConstants.TRACKING_NUMBER);
+        shipmentOT = orderPage.verifyOrderInShopifyAdmin(CreateOrderInShopify.orderName,CreateOrderInShopify.orderID,GlobalConstants.SHOPIFY_ADMIN_EMAIL,OTConstants.TRACKING_NUMBER);
         trackingResultInStoreFront = shipmentOT.clickToTrackingNo(CreateOrderInShopify.orderName);
-        Assert.assertTrue(trackingResultInStoreFront.isTrackingResultCorrect(CreateOrderInShopify.orderName,GlobalConstants.TRACKING_NUMBER));
+        Assert.assertTrue(trackingResultInStoreFront.isTrackingResultCorrect(CreateOrderInShopify.orderName,OTConstants.TRACKING_NUMBER));
+
+        plans = trackingResultInStoreFront.openSubscriptionPlans();
+        approvePlan = plans.choosePlan(OTConstants.PROFESSIONAL_SUBSCRIPTION_PLAN_NAME);
+        approvePlan.approvePlan();
+        Assert.assertTrue(approvePlan.isPlanProfessional(OTConstants.PROFESSIONAL_SUBSCRIPTION_PLAN_NAME,OTConstants.PROFESSIONAL_QUOTA));
+
     }
 
     @AfterClass
@@ -53,4 +65,6 @@ public class E2E_OrderTracking extends BaseTest {
     OrderPageAdminObject orderPage;
     TrackingResultPageObject trackingResultInStoreFront;
     ShipmentPageOTAppObject shipmentOT;
+    SubscriptionPlansOTAppObject plans;
+    ApproveSubscriptionAdminObject approvePlan;
 }

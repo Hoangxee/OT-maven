@@ -2,6 +2,7 @@ package com.shopify.common;
 
 import commons.BaseTest;
 import commons.GlobalConstants;
+import commons.OTConstants;
 import commons.PageGeneratorManager;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
@@ -24,13 +25,13 @@ public class CreateOrderInShopify extends BaseTest {
         orderPage = homePage.clickToOrdersTab();
         orderPage.clickToCreateOrderBtn();
         orderPage.chooseCustomer(GlobalConstants.SHOPIFY_ADMIN_EMAIL);
-        orderPage.chooseProduct(GlobalConstants.SHOPIFY_PRODUCT_FOR_OT);
-        orderPage.chooseProduct(GlobalConstants.SHOPIFY_PRODUCT_FOR_OT_2);
+        orderPage.chooseProduct(OTConstants.SHOPIFY_PRODUCT_FOR_OT);
+        orderPage.chooseProduct(OTConstants.SHOPIFY_PRODUCT_FOR_OT_2);
         orderPage.clickToCollectPaymentBtn();
         orderPage.chooseOptionPayment("Mark as paid");
         orderPage.clickToCreateOrderBtnInMarkAsPaidPopup();
         orderPage.clickToFulfillItemsBtn();
-        orderPage.inputToTrackingNumber(GlobalConstants.TRACKING_NUMBER);
+        orderPage.inputToTrackingNumber(OTConstants.TRACKING_NUMBER);
         orderName = orderPage.fulfillOrder();
         orderID = orderPage.getOrderID();
     }

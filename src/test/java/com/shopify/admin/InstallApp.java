@@ -13,6 +13,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObject.shopify.admin.*;
+import pageObject.apps.store.DetailAppPageAppStoreObject;
+import pageObject.apps.store.HomePageAppStoreObject;
+import pageObject.apps.store.SearchResultPageAppStoreObject;
 
 public class InstallApp extends BaseTest {
     @Parameters("browser")

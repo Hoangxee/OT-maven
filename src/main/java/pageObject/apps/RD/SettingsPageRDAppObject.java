@@ -1,4 +1,4 @@
-package pageObject.shopify.admin;
+package pageObject.apps.RD;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +12,7 @@ public class SettingsPageRDAppObject extends BasePage {
 
 
     public void clickToGeneralSettingsMenu() {
-        waitForElementClickableByIndex(driver, "xpath=//b[text()='General settings']/ancestor::button");
+        waitForElementClickable(driver, "xpath=//b[text()='General settings']/ancestor::button");
         clickToElement(driver, "xpath=//b[text()='General settings']/ancestor::button");
     }
 
