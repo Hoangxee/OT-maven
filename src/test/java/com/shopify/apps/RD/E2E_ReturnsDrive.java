@@ -1,3 +1,5 @@
+package com.shopify.apps.RD;
+
 import com.shopify.admin.InstallApp;
 import commons.BaseTest;
 import commons.GlobalConstants;

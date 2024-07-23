@@ -1,3 +1,5 @@
+package com.shopify.apps.OT;
+
 import com.shopify.common.CreateOrderInShopify;
 import commons.BaseTest;
 import commons.GlobalConstants;

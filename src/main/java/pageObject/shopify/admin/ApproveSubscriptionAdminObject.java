@@ -39,9 +39,10 @@ public class ApproveSubscriptionAdminObject extends BasePage {
         switchToFrameIframe(driver, DashboardPageOTAppUI.APP_IFRAME);
 
         waitForElementVisible(driver, DashboardPageOTAppUI.ACCOUNT_PLAN_TEXT);
-        Assert.assertEquals(getTextInElement(driver, DashboardPageOTAppUI.ACCOUNT_PLAN_TEXT), planName);
+        boolean planBl = getTextInElement(driver, DashboardPageOTAppUI.ACCOUNT_PLAN_TEXT).equals(planName);
 
         waitForElementVisible(driver, DashboardPageOTAppUI.QUOTA_TEXT);
-        return getTextInElement(driver, DashboardPageOTAppUI.QUOTA_TEXT).contains(quota);
+       boolean quotaBl = getTextInElement(driver, DashboardPageOTAppUI.QUOTA_TEXT).contains(quota);
+       return planBl&&quotaBl;
     }
 }

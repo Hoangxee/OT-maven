@@ -117,7 +117,7 @@ public class BasePage {
     }
 
     public void switchToWindowByTitle(WebDriver driver, String expectedPageTitle){
-        // lấy ra tất cả các ID của tab/window đang có
+        sleepInSecond(1);
         Set<String> allWindowID = driver.getWindowHandles();
 
         // Duyệt từng ID
@@ -140,6 +140,7 @@ public class BasePage {
 
         // Duyệt từng ID
         for(String id:allWindowID){
+            sleepInSecond(1);
             // Switch vào từng tab/window
             driver.switchTo().window(id);
             // Lấy ra page title của tab/window đã swtich vào
@@ -575,6 +576,10 @@ public class BasePage {
 
     public Boolean waitForPageUrlToBe(WebDriver driver, String pageURL){
         return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.urlToBe(pageURL));
+    }
+
+    public Boolean waitForPageUrlContains(WebDriver driver, String pageURL){
+        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.urlContains(pageURL));
     }
 
     public void waitForTextPresent(WebDriver driver, String locatorType, String textExpected){

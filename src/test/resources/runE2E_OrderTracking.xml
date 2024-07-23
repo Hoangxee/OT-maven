@@ -12,7 +12,7 @@
         <classes>
             <class name="com.shopify.admin.InstallApp"/>
             <class name="com.shopify.common.CreateOrderInShopify"/>
-            <class name="E2E_OrderTracking"/>
+            <class name="com.shopify.apps.OT.E2E_OrderTracking"/>
             <class name="com.shopify.admin.UninstallApp"/>
         </classes>
     </test>

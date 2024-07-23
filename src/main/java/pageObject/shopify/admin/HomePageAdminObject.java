@@ -1,17 +1,14 @@
 package pageObject.shopify.admin;
 
-import commons.BasePage;
-import commons.GlobalConstants;
-import commons.OTConstants;
-import commons.PageGeneratorManager;
+import commons.*;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageObject.apps.OT.DashboardPageOTAppObject;
 import pageObject.apps.RD.SettingsPageRDAppObject;
+import pageObject.apps.ST.HomePageSTAppObject;
 import pageUIs.adminShopify.CreateOrderPageAdminUI;
-import pageUIs.apps.OT.DashboardPageOTAppUI;
 import pageUIs.adminShopify.HomePageAdminUI;
 
 import java.util.List;
@@ -80,12 +77,20 @@ public class HomePageAdminObject extends BasePage {
 
     @Step("Click install app Order Tracking in Shopify admin")
     public DashboardPageOTAppObject clickToInstallApp() {
-        List<WebElement> installAppButton = getListWebElement(driver,HomePageAdminUI.INSTALL_APP_POPUP_TITLE);
-        if(installAppButton.size() == 0){
-            log.info("App was installed!!");
+        List<WebElement> installAppTitle = getListWebElement(driver,HomePageAdminUI.INSTALL_APP_TITLE);
+        if(installAppTitle.size() == 0){
+            log.info("Don't open install app form");
         } else {
-            waitForElementClickable(driver, HomePageAdminUI.INSTALL_BTN_IN_INSTALL_APP_POPUP);
-            clickToElement(driver, HomePageAdminUI.INSTALL_BTN_IN_INSTALL_APP_POPUP);
+            waitForElementClickable(driver, HomePageAdminUI.INSTALL_BTN);
+            clickToElement(driver, HomePageAdminUI.INSTALL_BTN);
+        }
+
+        List<WebElement> installAppTitleInPopup = getListWebElement(driver,HomePageAdminUI.INSTALL_APP_POPUP_TITLE);
+        if(installAppTitleInPopup.size() == 0){
+            log.info("Don't open install app popup");
+        } else {
+            waitForElementClickable(driver, HomePageAdminUI.INSTALL_BTN);
+            clickToElement(driver, HomePageAdminUI.INSTALL_BTN);
         }
         return PageGeneratorManager.getDashboardPageOTApp(driver);
     }
@@ -120,6 +125,17 @@ public class HomePageAdminObject extends BasePage {
         clickToElement(driver, HomePageAdminUI.APP_NAME_IN_SEARCH_APPS,OTConstants.APP_NAME_TEXT_IN_SEARCH_APPS);
 
         return PageGeneratorManager.getDashboardPageOTApp(driver);
+    }
+
+    @Step("Open Synctrack app")
+    public HomePageSTAppObject openAppSynctrack(){
+        waitForElementClickable(driver, HomePageAdminUI.APP_NAME_IN_NAVIGATION,"Apps");
+        clickToElement(driver, HomePageAdminUI.APP_NAME_IN_NAVIGATION,"Apps");
+
+        waitForElementClickable(driver, HomePageAdminUI.APP_NAME_IN_SEARCH_APPS, STConstants.APP_NAME_TEXT_IN_SEARCH_APPS);
+        clickToElement(driver, HomePageAdminUI.APP_NAME_IN_SEARCH_APPS,STConstants.APP_NAME_TEXT_IN_SEARCH_APPS);
+
+        return PageGeneratorManager.getHomePageSTApp(driver);
     }
 
 }

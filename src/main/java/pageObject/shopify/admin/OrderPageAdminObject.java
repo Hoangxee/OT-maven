@@ -107,7 +107,6 @@ public class OrderPageAdminObject extends BasePage {
     @Step("Verify order ")
     public ShipmentPageOTAppObject verifyOrderInShopifyAdmin(String orderName, String orderID, String email, String trackingNumber) {
         switchToWindowByTitleContains(driver, "Orders · "+ orderName);
-
         Assert.assertTrue(getPageURL(driver).contains(orderID));
 
         waitForElementVisible(driver, DetailOrderPageAdminUI.ORDER_NAME_TEXT);

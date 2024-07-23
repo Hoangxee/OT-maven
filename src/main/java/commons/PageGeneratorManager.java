@@ -5,6 +5,8 @@ import pageObject.apps.OT.DashboardPageOTAppObject;
 import pageObject.apps.OT.ShipmentPageOTAppObject;
 import pageObject.apps.OT.SubscriptionPlansOTAppObject;
 import pageObject.apps.RD.SettingsPageRDAppObject;
+import pageObject.apps.ST.HomePageSTAppObject;
+import pageObject.apps.ST.paypal.LoginPagePaypalObject;
 import pageObject.shopify.admin.*;
 import pageObject.shopify.storeFront.CheckoutPagePortalObject;
 import pageObject.shopify.storeFront.HomePagePortalObject;
@@ -73,5 +75,13 @@ public class PageGeneratorManager extends BasePage {
 
     public static ApproveSubscriptionAdminObject getApproveSubscriptionAdmin(WebDriver driver) {
         return new ApproveSubscriptionAdminObject(driver);
+    }
+
+    public static HomePageSTAppObject getHomePageSTApp(WebDriver driver) {
+        return new HomePageSTAppObject(driver);
+    }
+
+    public static LoginPagePaypalObject getLoginPagePaypal(WebDriver driver) {
+        return new LoginPagePaypalObject(driver);
     }
 }

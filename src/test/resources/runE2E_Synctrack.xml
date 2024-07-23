@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Shopify" verbose="1">
+    <test name="Run on Chrome">
+        <parameter name="browser" value="Chrome"/>
+        <parameter name="appName" value="Synctrack PayPal Tracking"/>
+        <parameter name="appNameInShopifyStore" value="Synctrack PayPal Tracking"/>
+<!--        <listeners>-->
+<!--            <listener class-name="commons.MethodListener"/>-->
+<!--            <listener class-name="reportConfig.AllureTestListener"/>-->
+<!--        </listeners>-->
+        <classes>
+<!--            <class name="com.shopify.admin.InstallApp"/>-->
+            <class name="com.shopify.apps.ST.E2E_Synctrack"/>
+<!--            <class name="com.shopify.admin.UninstallApp"/>-->
+        </classes>
+    </test>
+</suite>

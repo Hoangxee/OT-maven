@@ -8,7 +8,7 @@ public class OTConstants {
     public static final String SHIPMENTS_PAGES_OT_APP_IN_NAVIGATION = "Shipments";
     public static final String SUBSCRIPTION_PLANS_PAGES_OT_APP_IN_NAVIGATION = "Subscription Plans";
     public static final String GET_OLD_ORDER_POPUP_TITLE = "Would you like to process the old orders?";
-    public static final String GET_OLD_ORDER_PROCESS_SUCCESSFULLY = "Process orders successfully!";
+    public static final String GET_OLD_ORDER_PROCESS_SUCCESSFULLY_MESSAGE = "Process orders successfully!";
     public static final String STARTER_SUBSCRIPTION_PLAN_NAME = "Starter";
     public static final String STARTER_QUOTA = "35";
     public static final String PROFESSIONAL_SUBSCRIPTION_PLAN_NAME = "Professional";
