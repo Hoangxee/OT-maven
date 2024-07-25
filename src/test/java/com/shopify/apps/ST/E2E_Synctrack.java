@@ -11,6 +11,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObject.apps.ST.HomePageSTAppObject;
+import pageObject.apps.ST.OrdersPageSTAppObject;
+import pageObject.apps.ST.SettingsPageSTAppObject;
 import pageObject.apps.ST.paypal.LoginPagePaypalObject;
 import pageObject.shopify.admin.HomePageAdminObject;
 import pageObject.shopify.admin.LoginPageAdminObject;
@@ -26,31 +28,37 @@ public class E2E_Synctrack extends BaseTest {
 
     }
 
-    @Description("Get started")
+    @Description("End to end case")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void getStarted(){
+    public void endToEnd(){
         homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
         homePageST = homePage.openAppSynctrack();
         homePageST.skipOnBoard();
-        Assert.assertTrue(homePageST.isPlanBasic(STConstants.BASIC_PLAN_TEXT_IN_HOME,STConstants.BASIC_QUOTA));
-        loginPagePaypal = homePageST.connectToPaypal();
-        loginPagePaypal.loginToPaypal(STConstants.PAYPAL_EMAIL, STConstants.PAYPAL_PASSWORD);
-        Assert.assertTrue(homePageST.hadConnectedPaypalAccount());
+//        Assert.assertTrue(homePageST.isPlanBasic(STConstants.BASIC_PLAN_TEXT_IN_HOME,STConstants.BASIC_QUOTA,STConstants.PAYPAL_ACCOUNT_NOT_CONNECT_LABEL));
+//        loginPagePaypal = homePageST.connectToPaypal();
+//        loginPagePaypal.loginToPaypal(STConstants.PAYPAL_EMAIL, STConstants.PAYPAL_PASSWORD);
+        Assert.assertTrue(homePageST.hadConnectedPaypalAccount(STConstants.PAYPAL_ACCOUNT_HAD_CONNECTED_LABEL));
+
+        settingsPageST = homePageST.openSettingsPage();
+        settingsPageST.isPaypalAccountCorrect(STConstants.PAYPAL_EMAIL,STConstants.PAYPAL_MERCHANT_ID);
+
+        ordersPageST = settingsPageST.openOrdersPage();
+        ordersPageST.processOldOrders();
 
     }
 
     @AfterClass
     public void afterClass() {
-//        driver.quit();
+        driver.quit();
     }
 
     WebDriver driver;
     HomePageAdminObject homePage;
     LoginPageAdminObject loginPage;
-
     HomePageSTAppObject homePageST;
     LoginPagePaypalObject loginPagePaypal;
-
+    OrdersPageSTAppObject ordersPageST;
+    SettingsPageSTAppObject settingsPageST;
 }

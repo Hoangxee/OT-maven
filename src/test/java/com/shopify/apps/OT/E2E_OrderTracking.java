@@ -20,8 +20,6 @@ import pageObject.apps.OT.SubscriptionPlansOTAppObject;
 import pageObject.shopify.admin.*;
 import pageObject.shopify.storeFront.TrackingResultPageObject;
 
-import java.io.IOException;
-
 public class E2E_OrderTracking extends BaseTest {
     @Parameters("browser")
     @BeforeClass
@@ -32,10 +30,10 @@ public class E2E_OrderTracking extends BaseTest {
 
     }
 
-    @Description("Get old order")
+    @Description("End to end case")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void getOldOrder(){
+    public void endToEnd(){
         homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
         dashboardOT = homePage.openAppOrderTracking();
