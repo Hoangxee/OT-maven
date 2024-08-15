@@ -1,15 +1,11 @@
 package pageObject.apps.ST;
 
 import commons.BasePage;
-import commons.OTConstants;
 import commons.PageGeneratorManager;
 import commons.STConstants;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v85.page.Page;
-import org.testng.Assert;
-import pageObject.apps.ST.paypal.LoginPagePaypalObject;
 import pageUIs.apps.OT.DashboardPageOTAppUI;
 import pageUIs.apps.ST.HomePageSTAppUI;
 
@@ -47,36 +43,13 @@ public class HomePageSTAppObject extends BasePage {
         return planLB&&quotaLB&&accountLB;
     }
 
-    @Step("Connect to Paypal")
-    public LoginPagePaypalObject connectToPaypal() {
-        waitForElementClickable(driver, HomePageSTAppUI.CONNECT_NOW_BTN);
-        clickToElement(driver, HomePageSTAppUI.CONNECT_NOW_BTN);
-
-        return PageGeneratorManager.getLoginPagePaypal(driver);
-    }
-
-    @Step("Verify Connected Paypal account")
-    public boolean hadConnectedPaypalAccount(String account) {
-//        switchToWindowByTitleContains(driver, STConstants.SYNCTRACK_ADMIN_TITLE_PAGE);
-//        switchToFrameIframe(driver, HomePageSTAppUI.APP_IFRAME);
-
-//        boolean verifyMessageConnectPapalSuccessful = isElementDisplayed(driver, HomePageSTAppUI.CONNECT_PAYPAL_ACCOUNT_SUCCESSFUL_MESSAGE);
-
-//        boolean verifyCountStep = isElementDisplayed(driver, HomePageSTAppUI.PROGRESS_COUNT_STEP,"1");
-        boolean accountLB = getTextInElement(driver, HomePageSTAppUI.INFOMATION_TEXT,"account").contains(account);
-
-//        return verifyMessageConnectPapalSuccessful&&verifyCountStep&&accountLB;
-        return accountLB;
-    }
-
     @Step("Click to Settings tab")
     public SettingsPageSTAppObject openSettingsPage() {
         switchToDefaultContent(driver);
 
-        waitForElementClickable(driver, DashboardPageOTAppUI.PAGE_OT_IN_NAVIGATE, STConstants.SETTINGS_PAGES_OT_APP_IN_NAVIGATION);
-        clickToElement(driver, DashboardPageOTAppUI.PAGE_OT_IN_NAVIGATE,STConstants.SETTINGS_PAGES_OT_APP_IN_NAVIGATION);
+        waitForElementClickable(driver, DashboardPageOTAppUI.PAGE_OT_IN_NAVIGATE, STConstants.SETTINGS_PAGES_ST_APP_IN_NAVIGATION);
+        clickToElement(driver, DashboardPageOTAppUI.PAGE_OT_IN_NAVIGATE,STConstants.SETTINGS_PAGES_ST_APP_IN_NAVIGATION);
 
         return PageGeneratorManager.getSettingsPageSTAppObject(driver);
     }
-
 }

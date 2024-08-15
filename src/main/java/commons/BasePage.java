@@ -11,6 +11,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageUIs.adminShopify.CreateOrderPageAdminUI;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.time.Duration;
 import java.util.List;
 import java.util.Set;
@@ -374,10 +377,12 @@ public class BasePage {
     }
 
     public void switchToFrameIframe(WebDriver driver, String locatorType){
+        waitForFrameToBeAvailable(driver, locatorType);
         driver.switchTo().frame(getWebElement(driver, locatorType));
     }
 
     public void switchToFrameIframe(WebDriver driver, String locatorType,String...dynamicValues){
+        waitForFrameToBeAvailable(driver, locatorType,dynamicValues);
         driver.switchTo().frame(getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)));
     }
 
@@ -590,6 +595,14 @@ public class BasePage {
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.textToBePresentInElementLocated(getByLocator(getDynamicXpath(locatorType, dynamicValues)),textExpected));
     }
 
+    private void waitForFrameToBeAvailable(WebDriver driver, String locatorType){
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(getByLocator(locatorType)));
+    }
+
+    public void waitForFrameToBeAvailable(WebDriver driver, String locatorType, String...dynamicValues){
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(getByLocator(getDynamicXpath(locatorType, dynamicValues))));
+    }
+
     public void closeWindow(WebDriver driver){
         driver.close();
     }
@@ -604,4 +617,5 @@ public class BasePage {
             waitForElementInvisible(driver,locator);
         }
     }
+
 }

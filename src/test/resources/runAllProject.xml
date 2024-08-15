@@ -1,6 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
 <suite name="Order tracking" verbose="1">
+    <parameter name="environment" value="dev"/>
     <listeners>
         <listener class-name="commons.MethodListener"/>
         <listener class-name="reportConfig.AllureTestListener"/>

@@ -27,7 +27,6 @@ public class OrdersPageSTAppObject extends BasePage {
         waitForElementClickable(driver, OrdersPageSTAppUI.PROCESS_OLD_ORDERS_POPUP_BTN,"OK");
         clickToElement(driver, OrdersPageSTAppUI.PROCESS_OLD_ORDERS_POPUP_BTN,"OK");
 
-        waitForElementVisible(driver, OrdersPageSTAppUI.PROCESS_OLD_ORDERS_MESSAGE_SUCCESS);
-        Assert.assertEquals(getTextInElement(driver, OrdersPageSTAppUI.PROCESS_OLD_ORDERS_MESSAGE_SUCCESS), STConstants.PROCESS_OLD_ORDERS_PROCESS_SUCCESSFULLY_MESSAGE);
+        Assert.assertTrue(isElementDisplayed(driver, OrdersPageSTAppUI.MESSAGE_TOAST, STConstants.PROCESS_OLD_ORDERS_PROCESS_SUCCESSFULLY_MESSAGE));
     }
 }
