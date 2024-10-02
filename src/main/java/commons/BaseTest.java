@@ -2,30 +2,25 @@ package commons;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.logging.LogType;
-import org.openqa.selenium.logging.LoggingPreferences;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.BeforeSuite;
 import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-
 import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.Capabilities;
 
-import static org.testng.Reporter.log;
 
 public class BaseTest {
     WebDriver driver;
@@ -34,10 +29,10 @@ public class BaseTest {
     Capabilities caps;
     String projectPath = System.getProperty("user.dir");
 
-//    @BeforeSuite
-//    public void initBeforeSuite() {
-//        deleteAllFileInFolder();
-//    }
+    @BeforeSuite
+    public void initBeforeSuite() {
+        deleteAllFileInFolder();
+    }
 
     protected BaseTest() {
         log = LogFactory.getLog(getClass());
@@ -47,42 +42,71 @@ public class BaseTest {
         BrowserName browser = BrowserName.valueOf(browserName.toUpperCase());
         switch (browser) {
             case CHROME:
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--no-sandbox");
-//                options.addArguments("--headless");
-                options.addArguments("--window-size=1920,1080");
-                options.addArguments(
-                         "user-agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.71 Safari/537.36'");
-                options.addArguments("--disable-dev-shm-usage");
-                options.addArguments("disable-infobars");
+                //auto download
+                Map<String, Object> chromePrefs = new HashMap<String, Object>();
+                chromePrefs.put("profile.default_content_settings.popups", 0);
+                chromePrefs.put("download.default_directory", GlobalConstants.DOWNLOAD_FILE);
 
-                driver = new ChromeDriver(options);
+                ChromeOptions chromeOptions = new ChromeOptions();
+//                chromeOptions.addArguments("--lang-vi"); //change default language
+                chromeOptions.setExperimentalOption("useAutomationExtension", false);
+//                chromeOptions.addArguments("--incognito"); // ẩn danh
+//                chromeOptions.addArguments("disable-features=DownloadBubble,DownloadBubbleV2"); // download file with incognito
+                chromeOptions.setExperimentalOption("prefs", chromePrefs);
+                driver = new ChromeDriver(chromeOptions);
 
-                // driver = new ChromeDriver();
+//                driver = new ChromeDriver();
                 break;
 
             case FIREFOX:
-                // driver = WebDriverManager.firefoxdriver().create();
                 driver = new FirefoxDriver();
                 break;
 
             case EDGE:
-                if (osName.contains("linux") || osName.contains("Linux")) {
-                    System.out.println(osName);
-                    System.out.println(projectPath);
-                    System.setProperty("webdriver.edge.driver", projectPath + "/browserDrivers/msedgedriver");
-                    System.out.println("osName: Linux!");
-                } else if (osName.contains("windows") || osName.contains("Windows")) {
-                    System.setProperty("webdriver.edge.driver", projectPath + "/browserDrivers/msedgedriver.exe");
-                    System.out.println("osName: Windows!");
-                }
-
                 driver = new EdgeDriver();
+                break;
 
+            case SAFARI:
+                driver = new SafariDriver();
+                break;
+
+            case HEADLESS_CHROME:
+//                //old version - good for jenkins and almalinux
+//                ChromeOptions chromeOptions = new ChromeOptions();
+//                chromeOptions.addArguments("--no-sandbox");
+////                chromeOptions.addArguments("--headless");
+//                chromeOptions.addArguments("--window-size=1920,1080");
+//                chromeOptions.addArguments(
+//                        "user-agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.71 Safari/537.36'");
+//                chromeOptions.addArguments("--disable-dev-shm-usage");
+//                chromeOptions.addArguments("--disable-web-security");
+//                chromeOptions.addArguments("disable-infobars");
+//
+//                driver = new ChromeDriver(chromeOptions);
+
+                //new version
+                ChromeOptions headlessChromeOptions = new ChromeOptions();
+                headlessChromeOptions.addArguments("--headless");
+                headlessChromeOptions.addArguments("window-size=1920,1080");
+                driver = new ChromeDriver(headlessChromeOptions);
+                break;
+
+            case HEADLESS_FIREFOX:
+                FirefoxOptions headlessFirefoxOptions = new FirefoxOptions();
+                headlessFirefoxOptions.addArguments("--headless");
+                headlessFirefoxOptions.addArguments("window-size=1920,1080");
+                driver = new FirefoxDriver(headlessFirefoxOptions);
+                break;
+
+            case HEADLESS_EDGE:
+                EdgeOptions headlessEdgeOptions = new EdgeOptions();
+                headlessEdgeOptions.addArguments("--headless");
+                headlessEdgeOptions.addArguments("window-size=1920,1080");
+                driver = new EdgeDriver(headlessEdgeOptions);
                 break;
 
             default:
-                throw new RuntimeException("Please enter the correct Browser name!");
+                throw new RuntimeException("Browser name is not valid!!");
         }
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.MEDIUM_TIMEOUT));
@@ -99,7 +123,7 @@ public class BaseTest {
         return new Random().nextInt(999999);
     }
 
-    public void deleteAllFileInFolder() {
+    protected void deleteAllFileInFolder() {
         try {
             String pathFolderDownload = GlobalConstants.PROJECT_PATH + "/allure-results";
             File file = new File(pathFolderDownload);
@@ -112,6 +136,13 @@ public class BaseTest {
         } catch (Exception e) {
             System.out.print(e.getMessage());
         }
+    }
+
+    protected void killDriverAfterRunFail() throws IOException {
+        driver.quit();
+        Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe /T");
+        Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T");
+        Runtime.getRuntime().exec("taskkill /F /IM IEDriverServer.exe /T");
     }
 
     public void getChromeInfo(){

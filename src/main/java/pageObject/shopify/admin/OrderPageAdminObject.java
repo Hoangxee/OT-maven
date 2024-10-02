@@ -7,6 +7,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import pageObject.apps.OT.ShipmentPageOTAppObject;
 import pageUIs.adminShopify.CreateOrderPageAdminUI;
 import pageUIs.adminShopify.DetailOrderPageAdminUI;
 import pageUIs.storeFront.TrackingResultPageUI;
@@ -22,13 +23,13 @@ public class OrderPageAdminObject extends BasePage {
 
     @Step("Click Create order button")
     public void clickToCreateOrderBtn(){
-        waitForElementClickableByIndex(driver, CreateOrderPageAdminUI.CREATE_ORDER_BTN);
+        waitForElementClickable(driver, CreateOrderPageAdminUI.CREATE_ORDER_BTN);
         clickToElement(driver, CreateOrderPageAdminUI.CREATE_ORDER_BTN);
     }
 
     @Step("Choose product {0}")
     public void chooseProduct(String productName){
-        waitForElementClickableByIndex(driver, CreateOrderPageAdminUI.BROWSE_BTN);
+        waitForElementClickable(driver, CreateOrderPageAdminUI.BROWSE_BTN);
         clickToElement(driver, CreateOrderPageAdminUI.BROWSE_BTN);
 
         waitForElementVisible(driver, CreateOrderPageAdminUI.SEARCH_PRODUCT_INPUT_IN_SELECT_PRODUCTS_POPUP);
@@ -37,43 +38,43 @@ public class OrderPageAdminObject extends BasePage {
         waitForElementVisible(driver, CreateOrderPageAdminUI.PRODUCT_IN_SEARCH_PRODUCT_POPUP,productName);
         clickToElement(driver, CreateOrderPageAdminUI.PRODUCT_IN_SEARCH_PRODUCT_POPUP,productName);
 
-        waitForElementClickableByIndex(driver, CreateOrderPageAdminUI.ADD_PRODUCT_BTN);
+        waitForElementClickable(driver, CreateOrderPageAdminUI.ADD_PRODUCT_BTN);
         clickToElement(driver, CreateOrderPageAdminUI.ADD_PRODUCT_BTN);
     }
 
     @Step("Choose customer {0}")
     public void chooseCustomer(String email){
-        waitForProcessBar();
-        waitForElementClickableByIndex(driver, CreateOrderPageAdminUI.CUSTOMER_INPUT);
+        waitForProcessBar(driver, CreateOrderPageAdminUI.PROGRESS_BAR);
+        waitForElementClickable(driver, CreateOrderPageAdminUI.CUSTOMER_INPUT);
         clickToElement(driver, CreateOrderPageAdminUI.CUSTOMER_INPUT);
 
-        waitForElementClickableByIndex(driver, CreateOrderPageAdminUI.CUSTOMER_EMAIL_ITEM,email);
+        waitForElementClickable(driver, CreateOrderPageAdminUI.CUSTOMER_EMAIL_ITEM,email);
         clickToElement(driver, CreateOrderPageAdminUI.CUSTOMER_EMAIL_ITEM,email);
     }
 
     @Step("Click to Collect Payment Button")
     public void clickToCollectPaymentBtn(){
-        waitForProcessBar();
-        waitForElementClickableByIndex(driver, CreateOrderPageAdminUI.COLLECT_PAYMENT_BTN);
+        waitForProcessBar(driver, CreateOrderPageAdminUI.PROGRESS_BAR);
+        waitForElementClickable(driver, CreateOrderPageAdminUI.COLLECT_PAYMENT_BTN);
         clickToElement(driver, CreateOrderPageAdminUI.COLLECT_PAYMENT_BTN);
     }
 
     @Step("Choose option Payment {0}")
     public void chooseOptionPayment(String optionName){
-        waitForElementClickableByIndex(driver, CreateOrderPageAdminUI.COLLECT_PAYMENT_ITEM,optionName);
+        waitForElementClickable(driver, CreateOrderPageAdminUI.COLLECT_PAYMENT_ITEM,optionName);
         clickToElement(driver, CreateOrderPageAdminUI.COLLECT_PAYMENT_ITEM,optionName);
     }
 
     @Step("Click to Create order in Mark as paid popup")
     public void clickToCreateOrderBtnInMarkAsPaidPopup(){
         waitForElementVisible(driver, CreateOrderPageAdminUI.TIMELINE_LABEL);
-        waitForElementClickableByIndex(driver, CreateOrderPageAdminUI.CREATE_ORDER_BTN_IN_MARK_AS_PAID);
+        waitForElementClickable(driver, CreateOrderPageAdminUI.CREATE_ORDER_BTN_IN_MARK_AS_PAID);
         clickToElement(driver, CreateOrderPageAdminUI.CREATE_ORDER_BTN_IN_MARK_AS_PAID);
     }
 
     @Step("Click to Fulfill items button")
     public void clickToFulfillItemsBtn() {
-        waitForElementClickableByIndex(driver, CreateOrderPageAdminUI.FULFILL_ITEMS_BTN);
+        waitForElementClickable(driver, CreateOrderPageAdminUI.FULFILL_ITEMS_BTN);
         clickToElement(driver, CreateOrderPageAdminUI.FULFILL_ITEMS_BTN);
     }
 
@@ -93,28 +94,19 @@ public class OrderPageAdminObject extends BasePage {
         return getTextInElement(driver, CreateOrderPageAdminUI.ORDER_ID);
     }
 
-    public void waitForProcessBar(){
-        List<WebElement> progressBarShopify = getListWebElement(driver, CreateOrderPageAdminUI.PROGRESS_BAR);
-        if(progressBarShopify.size() != 0){
-            waitForElementInvisible(driver,CreateOrderPageAdminUI.PROGRESS_BAR);
-        }
-    }
-
     private void openAppStoreFront(String url, String password){
         openURL(driver,url);
 
         waitForElementVisible(driver, TrackingResultPageUI.PASSWORD_INPUT);
         sendKeyToElement(driver, TrackingResultPageUI.PASSWORD_INPUT,password);
 
-        waitForElementClickableByIndex(driver, TrackingResultPageUI.ENTER_BTN);
+        waitForElementClickable(driver, TrackingResultPageUI.ENTER_BTN);
         clickToElement(driver, TrackingResultPageUI.ENTER_BTN);
     }
 
     @Step("Verify order ")
     public ShipmentPageOTAppObject verifyOrderInShopifyAdmin(String orderName, String orderID, String email, String trackingNumber) {
-//        String title = "hoangxe-test-3 · Orders · #1045 · Shopify";
-        switchToWindowByTitleContains(driver, "Orders · #1045 · Shopify");
-
+        switchToWindowByTitleContains(driver, "Orders · "+ orderName);
         Assert.assertTrue(getPageURL(driver).contains(orderID));
 
         waitForElementVisible(driver, DetailOrderPageAdminUI.ORDER_NAME_TEXT);

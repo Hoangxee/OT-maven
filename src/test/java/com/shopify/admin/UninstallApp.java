@@ -6,17 +6,22 @@ import commons.PageGeneratorManager;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObject.shopify.admin.*;
+import utilities.Environment;
 
 public class UninstallApp extends BaseTest {
-    @Parameters("browser")
+    @Parameters({"browser","environment"})
     @BeforeClass
-    public void beforeClass(String browserName) {
+    public void beforeClass(String browserName, String environmentName) {
+        ConfigFactory.setProperty("env",environmentName);
+        environment = ConfigFactory.create(Environment.class);
+
         driver = getBrowserDriver(browserName, GlobalConstants.SHOPIFY_ADMIN_URL);
 
         loginPage = PageGeneratorManager.getLoginPageAdmin(driver);
@@ -38,6 +43,7 @@ public class UninstallApp extends BaseTest {
          driver.quit();
     }
 
+    Environment environment;
     private WebDriver driver;
     HomePageAdminObject homePage;
     LoginPageAdminObject loginPage;

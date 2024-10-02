@@ -2,20 +2,25 @@ package com.shopify.common;
 
 import commons.BaseTest;
 import commons.GlobalConstants;
+import commons.OTConstants;
 import commons.PageGeneratorManager;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import pageObject.shopify.admin.*;
+import utilities.Environment;
 
 public class CreateOrderInShopify extends BaseTest {
-    @Parameters("browser")
+    @Parameters({"browser","environment"})
     @Description("Create order in shopify")
-    @Severity(SeverityLevel.NORMAL)
     @BeforeTest
-    public void createOrderShopify(String browserName){
+    public void createOrderShopify(String browserName, String environmentName){
+        ConfigFactory.setProperty("env",environmentName);
+        environment = ConfigFactory.create(Environment.class);
+
         driver = getBrowserDriver(browserName, GlobalConstants.SHOPIFY_ADMIN_URL);
         loginPage = PageGeneratorManager.getLoginPageAdmin(driver);
 
@@ -24,13 +29,13 @@ public class CreateOrderInShopify extends BaseTest {
         orderPage = homePage.clickToOrdersTab();
         orderPage.clickToCreateOrderBtn();
         orderPage.chooseCustomer(GlobalConstants.SHOPIFY_ADMIN_EMAIL);
-        orderPage.chooseProduct(GlobalConstants.SHOPIFY_PRODUCT_FOR_OT);
-        orderPage.chooseProduct(GlobalConstants.SHOPIFY_PRODUCT_FOR_OT_2);
+        orderPage.chooseProduct(OTConstants.SHOPIFY_PRODUCT_FOR_OT);
+        orderPage.chooseProduct(OTConstants.SHOPIFY_PRODUCT_FOR_OT_2);
         orderPage.clickToCollectPaymentBtn();
         orderPage.chooseOptionPayment("Mark as paid");
         orderPage.clickToCreateOrderBtnInMarkAsPaidPopup();
         orderPage.clickToFulfillItemsBtn();
-        orderPage.inputToTrackingNumber(GlobalConstants.TRACKING_NUMBER);
+        orderPage.inputToTrackingNumber(OTConstants.TRACKING_NUMBER);
         orderName = orderPage.fulfillOrder();
         orderID = orderPage.getOrderID();
     }
@@ -40,6 +45,7 @@ public class CreateOrderInShopify extends BaseTest {
         driver.quit();
     }
 
+    Environment environment;
     private WebDriver driver;
     LoginPageAdminObject loginPage;
     HomePageAdminObject homePage;

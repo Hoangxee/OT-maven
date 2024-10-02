@@ -1,11 +1,22 @@
 package commons;
 
 import org.openqa.selenium.WebDriver;
+import pageObject.apps.OT.DashboardPageOTAppObject;
+import pageObject.apps.OT.ShipmentPageOTAppObject;
+import pageObject.apps.OT.SubscriptionPlansOTAppObject;
+import pageObject.apps.RD.SettingsPageRDAppObject;
+import pageObject.apps.ST.HomePageSTAppObject;
+import pageObject.apps.ST.OrdersPageSTAppObject;
+import pageObject.apps.ST.SettingsPageSTAppObject;
+import pageObject.apps.ST.paypal.LoginPagePaypalObject;
 import pageObject.shopify.admin.*;
 import pageObject.shopify.storeFront.CheckoutPagePortalObject;
 import pageObject.shopify.storeFront.HomePagePortalObject;
 import pageObject.shopify.storeFront.LoginPagePortalObject;
 import pageObject.shopify.storeFront.TrackingResultPageObject;
+import pageObject.apps.store.DetailAppPageAppStoreObject;
+import pageObject.apps.store.HomePageAppStoreObject;
+import pageObject.apps.store.SearchResultPageAppStoreObject;
 
 public class PageGeneratorManager extends BasePage {
     public static HomePagePortalObject getHomePageStoreFront(WebDriver driver){
@@ -58,5 +69,29 @@ public class PageGeneratorManager extends BasePage {
 
     public static TrackingResultPageObject getTrackingResultPageStore(WebDriver driver) {
         return new TrackingResultPageObject(driver);
+    }
+
+    public static SubscriptionPlansOTAppObject getSubscriptionPlansOTApp(WebDriver driver) {
+        return new SubscriptionPlansOTAppObject(driver);
+    }
+
+    public static ApproveSubscriptionAdminObject getApproveSubscriptionAdmin(WebDriver driver) {
+        return new ApproveSubscriptionAdminObject(driver);
+    }
+
+    public static HomePageSTAppObject getHomePageSTApp(WebDriver driver) {
+        return new HomePageSTAppObject(driver);
+    }
+
+    public static LoginPagePaypalObject getLoginPagePaypal(WebDriver driver) {
+        return new LoginPagePaypalObject(driver);
+    }
+
+    public static OrdersPageSTAppObject getOrdersPageSTAppObject(WebDriver driver) {
+        return new OrdersPageSTAppObject(driver);
+    }
+
+    public static SettingsPageSTAppObject getSettingsPageSTAppObject(WebDriver driver) {
+        return new SettingsPageSTAppObject(driver);
     }
 }

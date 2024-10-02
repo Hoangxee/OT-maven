@@ -1,10 +1,15 @@
 package pageObject.shopify.storeFront;
 
 import commons.BasePage;
-import org.openqa.selenium.By;
+import commons.OTConstants;
+import commons.PageGeneratorManager;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import pageObject.apps.OT.SubscriptionPlansOTAppObject;
+import pageUIs.apps.OT.DashboardPageOTAppUI;
+import pageUIs.apps.OT.SubscriptionPlansOTAppUI;
 import pageUIs.storeFront.TrackingResultPageUI;
 
 import java.util.List;
@@ -16,8 +21,9 @@ public class TrackingResultPageObject extends BasePage {
         driver = mappingDriver;
     }
 
+    @Step("Verify Tracking result in store front")
     public boolean isTrackingResultCorrect(String orderName, String trackingNumber) {
-        switchToWindowByTitle(driver, "Returns drive");
+        switchToWindowByTitle(driver, OTConstants.TRACKING_RESULT_TITLE_PAGE_IN_STORE);
         
         String trackingNum = null;
         List<WebElement> trackingResultList = getListWebElement(driver, TrackingResultPageUI.TRACKING_RESULT_BLOCK);
@@ -46,5 +52,16 @@ public class TrackingResultPageObject extends BasePage {
             log.info("---Order not found---");
         }
         return trackingNum.equals(trackingNumber);
+    }
+
+    @Step("Switch window and open Subscription Plans page")
+    public SubscriptionPlansOTAppObject openSubscriptionPlans() {
+        switchToWindowByTitleContains(driver, OTConstants.OT_APP_ADMIN_TITLE_PAGE);
+
+        switchToDefaultContent(driver);
+        waitForElementClickable(driver, DashboardPageOTAppUI.PAGE_OT_IN_NAVIGATE,OTConstants.SUBSCRIPTION_PLANS_PAGES_OT_APP_IN_NAVIGATION);
+        clickToElement(driver, DashboardPageOTAppUI.PAGE_OT_IN_NAVIGATE,OTConstants.SUBSCRIPTION_PLANS_PAGES_OT_APP_IN_NAVIGATION);
+
+        return PageGeneratorManager.getSubscriptionPlansOTApp(driver);
     }
 }

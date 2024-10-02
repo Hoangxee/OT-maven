@@ -18,7 +18,7 @@ public class LoginPagePortalObject extends BasePage{
         if(getWebElement(driver, LoginPagePortalUI.PASSWORD_TEXTBOX).isDisplayed()){
             waitForElementVisible(driver, LoginPagePortalUI.PASSWORD_TEXTBOX);
             sendKeyToElement(driver, LoginPagePortalUI.PASSWORD_TEXTBOX, password);
-            waitForElementClickableByIndex(driver, LoginPagePortalUI.ENTER_BUTTON);
+            waitForElementClickable(driver, LoginPagePortalUI.ENTER_BUTTON);
             clickToElement(driver, LoginPagePortalUI.ENTER_BUTTON);
         }
         return PageGeneratorManager.getHomePageStoreFront(driver);
