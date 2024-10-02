@@ -685,17 +685,14 @@ public class BasePage {
     }
 
     public void deleteAllFileInFolder() {
-        try {
-            String pathFolderDownload = GlobalConstants.DOWNLOAD_FILE;
-            File file = new File(pathFolderDownload);
-            File[] listOfFiles = file.listFiles();
-            for (int i = 0; i < listOfFiles.length; i++) {
-                if (listOfFiles[i].isFile()) {
-                    new File(listOfFiles[i].toString()).delete();
+        String pathFolderDownload = GlobalConstants.DOWNLOAD_FILE;
+        File[] listOfFiles = new File(pathFolderDownload).listFiles();
+        if (listOfFiles != null) {
+            for (File file : listOfFiles) {
+                if (file.isFile()) {
+                    file.delete();
                 }
             }
-        } catch (Exception e) {
-            System.out.print("No found "+e.getMessage());
         }
     }
 
@@ -705,36 +702,28 @@ public class BasePage {
             while (i < 30) {
                 boolean exist = isFileContain(fileName);
                 if (exist) {
-                    i = 30;  // Exit loop if file exists
+                    i = 30;
                 } else {
                     Thread.sleep(500);
                     i++;
                 }
             }
         } catch (Exception e) {
-            System.out.print(e.getMessage());
+            System.out.print("Error "+e.getMessage());
         }
     }
 
-    public boolean isFileContain(String fileName) {
-        try {
-            boolean flag = false;
-            String pathFolderDownload = GlobalConstants.DOWNLOAD_FILE;
-            File dir = new File(pathFolderDownload);
-            File[] files = dir.listFiles();
-            if (files == null || files.length == 0) {
-                flag = false;
+    private boolean isFileContain(String fileName) {
+        String pathFolderDownload = GlobalConstants.DOWNLOAD_FILE;
+        File[] files = new File(pathFolderDownload).listFiles();
+        if (files == null) return false;
+
+        for (File file : files) {
+            if (file.getName().contains(fileName)) {
+                return true;
             }
-            for (int i = 1; i < files.length; i++) {
-                if (files[i].getName().contains(fileName)) {
-                    flag = true;
-                }
-            }
-            return flag;
-        } catch (Exception e) {
-            System.out.print(e.getMessage());
-            return false;
         }
+        return false;
     }
 
     public int countFilesInDirectory() {
@@ -750,14 +739,10 @@ public class BasePage {
     }
 
     public void deleteFileContainName(String fileName) {
-        deleteContainName(fileName);
-    }
-    public void deleteContainName(String fileName) {
         try {
             String files;
             String pathFolderDownload = GlobalConstants.DOWNLOAD_FILE;
-            File file = new File(pathFolderDownload);
-            File[] listOfFiles = file.listFiles();
+            File[] listOfFiles = new File(pathFolderDownload).listFiles();
             for (int i = 0; i < listOfFiles.length; i++) {
                 if (listOfFiles[i].isFile()) {
                     files = listOfFiles[i].getName();
@@ -767,7 +752,8 @@ public class BasePage {
                 }
             }
         } catch (Exception e) {
-            System.out.print(e.getMessage());
+            System.out.print("Error "+e.getMessage());
         }
     }
+
 }
