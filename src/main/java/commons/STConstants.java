@@ -15,5 +15,5 @@ public class STConstants {
     public static final String LOG_IN_PAYPAL_TITLE_PAGE = "Log in to your PayPal account";
     public static final String SYNCTRACK_ADMIN_TITLE_PAGE = "Synctrack PayPal Tracking";
     public static final String CONNECT_PAYPAL_SUCCESSFULLY_MESSAGE = "Connect paypal successfully";
-
+    public static final String IMPORT_ORDERS_SUCCESSFULLY_MESSAGE = "Import orders successfully!";
 }

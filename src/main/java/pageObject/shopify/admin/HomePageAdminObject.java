@@ -8,8 +8,10 @@ import org.testng.Assert;
 import pageObject.apps.OT.DashboardPageOTAppObject;
 import pageObject.apps.RD.SettingsPageRDAppObject;
 import pageObject.apps.ST.HomePageSTAppObject;
+import pageObject.apps.ST.OrdersPageSTAppObject;
 import pageUIs.adminShopify.CreateOrderPageAdminUI;
 import pageUIs.adminShopify.HomePageAdminUI;
+import pageUIs.apps.ST.SettingsPageSTAppUI;
 
 import java.util.List;
 
@@ -134,7 +136,6 @@ public class HomePageAdminObject extends BasePage {
 
         waitForElementClickable(driver, HomePageAdminUI.APP_NAME_IN_SEARCH_APPS, STConstants.APP_NAME_TEXT_IN_SEARCH_APPS);
         clickToElement(driver, HomePageAdminUI.APP_NAME_IN_SEARCH_APPS,STConstants.APP_NAME_TEXT_IN_SEARCH_APPS);
-
         return PageGeneratorManager.getHomePageSTApp(driver);
     }
 

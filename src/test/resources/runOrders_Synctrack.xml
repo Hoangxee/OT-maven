@@ -4,16 +4,15 @@
     <parameter name="environment" value="dev"/>
     <test name="Run on Chrome">
         <parameter name="browser" value="Chrome"/>
-<!--        <parameter name="appName" value="Synctrack Order Tracking"/>-->
-<!--        <parameter name="appNameInShopifyStore" value="Synctrack Order Tracking"/>-->
+<!--        <parameter name="appName" value="Synctrack PayPal Tracking"/>-->
+<!--        <parameter name="appNameInShopifyStore" value="Synctrack PayPal Tracking"/>-->
         <listeners>
             <listener class-name="commons.MethodListener"/>
             <listener class-name="reportConfig.AllureTestListener"/>
         </listeners>
         <classes>
 <!--            <class name="com.shopify.admin.InstallApp"/>-->
-<!--            <class name="com.shopify.common.CreateOrderInShopify"/>-->
-            <class name="com.shopify.apps.OT.E2E_OrderTracking"/>
+            <class name="com.shopify.apps.ST.Orders"/>
 <!--            <class name="com.shopify.admin.UninstallApp"/>-->
         </classes>
     </test>

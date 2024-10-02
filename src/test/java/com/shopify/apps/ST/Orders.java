@@ -1,7 +1,8 @@
 package com.shopify.apps.ST;
 
-import com.shopify.common.CreateOrderInShopify;
-import commons.*;
+import commons.BaseTest;
+import commons.GlobalConstants;
+import commons.PageGeneratorManager;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -14,14 +15,11 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObject.apps.ST.HomePageSTAppObject;
 import pageObject.apps.ST.OrdersPageSTAppObject;
-import pageObject.apps.ST.SettingsPageSTAppObject;
-import pageObject.apps.ST.paypal.LoginPagePaypalObject;
 import pageObject.shopify.admin.HomePageAdminObject;
 import pageObject.shopify.admin.LoginPageAdminObject;
 import utilities.Environment;
 
-
-public class E2E_Synctrack extends BaseTest {
+public class Orders extends BaseTest {
     @Parameters({"browser","environment"})
     @BeforeClass
     public void beforeClass(String browserName, String environmentName) {
@@ -32,31 +30,32 @@ public class E2E_Synctrack extends BaseTest {
         loginPage = PageGeneratorManager.getLoginPageAdmin(driver);
     }
 
-    @Description("End to end case")
+    @Description("Import orders")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void endToEnd() {
+    public void TC01_importOrders() {
+        // shopify polaris ẩn input[type='file'] -> tìm kỹ/ search trong DOM
+
         homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
         homePageST = homePage.openAppSynctrack();
-        homePageST.skipOnBoard();
-        Assert.assertTrue(homePageST.isPlanBasic(STConstants.BASIC_PLAN_TEXT_IN_HOME,
-                STConstants.BASIC_QUOTA, STConstants.PAYPAL_ACCOUNT_NOT_CONNECT_LABEL));
+        ordersPageST = homePageST.openOrdersPage();
+        ordersPageST.importOrders(ordersFilePath,ordersFileName);
+        Assert.assertTrue(ordersPageST.verifyOrdersImport(ordersPageST.getDataFormExcel(ordersFilePath,"Upload Orders","Transaction Id",1)));
+        Assert.assertTrue(ordersPageST.verifyOrdersImport(ordersPageST.getDataFormExcel(ordersFilePath,"Upload Orders","Transaction Id",2)));
+        }
 
-        settingsPageST = homePageST.openSettingsPage();
-        settingsPageST.openPaypalSettingsTab();
-//        loginPagePaypal = settingsPageST.connectToPaypal();
-//        loginPagePaypal.loginToPaypal(STConstants.PAYPAL_EMAIL, STConstants.PAYPAL_PASSWORD);
-//        settingsPageST.hadConnectedPaypalAccount(STConstants.PAYPAL_EMAIL, STConstants.PAYPAL_MERCHANT_ID);
-
-        ordersPageST = settingsPageST.openOrdersPage();
-        ordersPageST.processOldOrders();
-        Assert.assertTrue(ordersPageST.isOrdersSynced(CreateOrderInShopify.orderName,OTConstants.TRACKING_NUMBER));
+    @Description("Download orders")
+    @Severity(SeverityLevel.NORMAL)
+    @Test
+    public void TC02_exportOrders(){
+        ordersPageST.exportFileFullOptions();
+        ordersPageST.verifyFileAfterExport();
     }
 
     @AfterClass
     public void afterClass() {
-        driver.quit();
+//        driver.quit();
     }
 
     Environment environment;
@@ -64,7 +63,7 @@ public class E2E_Synctrack extends BaseTest {
     HomePageAdminObject homePage;
     LoginPageAdminObject loginPage;
     HomePageSTAppObject homePageST;
-    LoginPagePaypalObject loginPagePaypal;
     OrdersPageSTAppObject ordersPageST;
-    SettingsPageSTAppObject settingsPageST;
+    String ordersFileName = "synctrack_upload_orders.xlsx";
+    String ordersFilePath = GlobalConstants.UPLOAD_FILE + ordersFileName;
 }

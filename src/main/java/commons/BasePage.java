@@ -9,13 +9,14 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageUIs.adminShopify.CreateOrderPageAdminUI;
+import utilities.ExcelConfig;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.io.File;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 public class BasePage {
@@ -37,7 +38,7 @@ public class BasePage {
     }
 
     public WebElement getWebElement(WebDriver driver, String locatorType,String...dynamicValues){
-        return driver.findElement(getByLocator(locatorType));
+        return driver.findElement(getByLocator(getDynamicXpath(locatorType, dynamicValues)));
     }
 
     public List<WebElement> getListWebElement(WebDriver driver, String locatorType){
@@ -194,6 +195,12 @@ public class BasePage {
         getWebElement(driver, locatorType).sendKeys(valueToSendKey);
     }
 
+    public void sendKeyToElementAfterClearText(WebDriver driver, String locatorType, String valueToSendKey){
+        getWebElement(driver, locatorType).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.attributeToBe(getByLocator(locatorType),"value",""));
+        getWebElement(driver, locatorType).sendKeys(valueToSendKey);
+    }
+
     public void sendKeyToElement(WebDriver driver, String locatorType, String valueToSendKey, String... dynamicValues){
         getWebElement(driver, getDynamicXpath(locatorType,dynamicValues)).clear();
         getWebElement(driver, getDynamicXpath(locatorType,dynamicValues)).sendKeys(valueToSendKey);
@@ -310,7 +317,7 @@ public class BasePage {
         }
     }
 
-    public Boolean isElementDisplayed(WebDriver driver, String locatorType){
+    public boolean isElementDisplayed(WebDriver driver, String locatorType){
         try{
             return getWebElement(driver,locatorType).isDisplayed();
         }catch (NoSuchElementException e){
@@ -318,10 +325,40 @@ public class BasePage {
         }
     }
 
-    public Boolean isElementDisplayed(WebDriver driver, String locatorType, String...dynamicValues){
+    public boolean isElementDisplayed(WebDriver driver, String locatorType, String...dynamicValues){
         try{
             return getWebElement(driver,getDynamicXpath(locatorType, dynamicValues)).isDisplayed();
         }catch (NoSuchElementException e){
+            return false;
+        }
+    }
+
+    public boolean isDynamicElementDisplayed(WebDriver driver, String locatorType){
+        overrideImplicitTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
+        List<WebElement> dynamicElements = getListWebElement(driver, locatorType);
+
+        overrideImplicitTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+        if(dynamicElements.size() != 0 ){
+            waitForListElementVisible(driver, locatorType);
+//            System.out.println("Element có trong DOM và displayed");
+            return true;
+        }else {
+//            System.out.println("Element not in DOM");
+            return false;
+        }
+    }
+
+    public boolean isDynamicElementDisplayed(WebDriver driver, String locatorType, String... dynamicValues){
+        overrideImplicitTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
+        List<WebElement> dynamicElements = getListWebElement(driver, getDynamicXpath(locatorType, dynamicValues));
+
+        overrideImplicitTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+        if(dynamicElements.size() != 0 ){
+            waitForListElementVisible(driver, getDynamicXpath(locatorType, dynamicValues));
+//            System.out.println("Message có trong DOM");
+            return true;
+        }else {
+//            System.out.println("Message not in DOM");
             return false;
         }
     }
@@ -364,26 +401,26 @@ public class BasePage {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
     }
 
-    public Boolean isElementSelected(WebDriver driver, String locatorType){
+    public boolean isElementSelected(WebDriver driver, String locatorType){
         return getWebElement(driver, locatorType).isSelected();
     }
 
-    public Boolean isElementSelected(WebDriver driver, String locatorType,String...dynamicValues){
+    public boolean isElementSelected(WebDriver driver, String locatorType,String...dynamicValues){
         return getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)).isSelected();
     }
 
-    public Boolean isElementEnabled(WebDriver driver, String locatorType){
+    public boolean isElementEnabled(WebDriver driver, String locatorType){
         return getWebElement(driver, locatorType).isEnabled();
     }
 
     public void switchToFrameIframe(WebDriver driver, String locatorType){
         waitForFrameToBeAvailable(driver, locatorType);
-        driver.switchTo().frame(getWebElement(driver, locatorType));
+//        driver.switchTo().frame(getWebElement(driver, locatorType));
     }
 
     public void switchToFrameIframe(WebDriver driver, String locatorType,String...dynamicValues){
         waitForFrameToBeAvailable(driver, locatorType,dynamicValues);
-        driver.switchTo().frame(getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)));
+//        driver.switchTo().frame(getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)));
     }
 
 
@@ -409,6 +446,14 @@ public class BasePage {
 
     public void sendKeyBoardToElement(WebDriver driver, String locatorType, Keys key){
         new Actions(driver).sendKeys(getWebElement(driver, locatorType),key).perform();
+    }
+
+    public void sendKeyBoard(WebDriver driver, Keys key){
+        new Actions(driver).sendKeys(key).perform();
+    }
+
+    public void sendKeyBoard(WebDriver driver, String key){
+        new Actions(driver).sendKeys(key).perform();
     }
 
     public Object executeForBrowser(WebDriver driver, String javaScript) {
@@ -528,6 +573,10 @@ public class BasePage {
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfAllElements(getListWebElement(driver,locatorType)));
     }
 
+    public void waitForListElementVisible(WebDriver driver, String locatorType,String...dynamicValues){
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfAllElements(getListWebElement(driver,(getDynamicXpath(locatorType, dynamicValues)))));
+    }
+
     public void waitForElementVisibleByIndex(WebDriver driver, String locatorType, int index){
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.visibilityOfAllElements(getListWebElement(driver,locatorType).get(index)));
     }
@@ -554,6 +603,10 @@ public class BasePage {
 
     public void waitForElementInvisible(WebDriver driver, String locatorType){
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locatorType)));
+    }
+
+    public void waitForElementInvisible(WebDriver driver, String locatorType, String...dynamicValues){
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(getDynamicXpath(locatorType, dynamicValues))));
     }
 
     public void waitForListElementInvisible(WebDriver driver, String locatorType){
@@ -618,4 +671,103 @@ public class BasePage {
         }
     }
 
+    public String getDateTimeNow(){
+//        DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mm a", Locale.ENGLISH);
+        DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("d MMM yyyy, hh:mm a", Locale.ENGLISH);
+        LocalDateTime now = LocalDateTime.now();
+        return dateTimeFormat.format(now).replace("AM", "am").replace("PM", "pm");
+    }
+
+    public String getDataFormExcel(String filePath,String sheetName, String columnName, int row){
+        ExcelConfig excelConfig = ExcelConfig.getExcelData();
+        excelConfig.switchToSheet(filePath,sheetName);
+        return excelConfig.getCellData(columnName, row);
+    }
+
+    public void deleteAllFileInFolder() {
+        try {
+            String pathFolderDownload = GlobalConstants.DOWNLOAD_FILE;
+            File file = new File(pathFolderDownload);
+            File[] listOfFiles = file.listFiles();
+            for (int i = 0; i < listOfFiles.length; i++) {
+                if (listOfFiles[i].isFile()) {
+                    new File(listOfFiles[i].toString()).delete();
+                }
+            }
+        } catch (Exception e) {
+            System.out.print("No found "+e.getMessage());
+        }
+    }
+
+    public void waitForDownloadFileContainsNameCompleted(String fileName){
+        try {
+            int i = 0;
+            while (i < 30) {
+                boolean exist = isFileContain(fileName);
+                if (exist) {
+                    i = 30;  // Exit loop if file exists
+                } else {
+                    Thread.sleep(500);
+                    i++;
+                }
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+    }
+
+    public boolean isFileContain(String fileName) {
+        try {
+            boolean flag = false;
+            String pathFolderDownload = GlobalConstants.DOWNLOAD_FILE;
+            File dir = new File(pathFolderDownload);
+            File[] files = dir.listFiles();
+            if (files == null || files.length == 0) {
+                flag = false;
+            }
+            for (int i = 1; i < files.length; i++) {
+                if (files[i].getName().contains(fileName)) {
+                    flag = true;
+                }
+            }
+            return flag;
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+            return false;
+        }
+    }
+
+    public int countFilesInDirectory() {
+        String pathFolderDownload = GlobalConstants.DOWNLOAD_FILE;
+        File file = new File(pathFolderDownload);
+        int i = 0;
+        for (File listOfFiles : file.listFiles()) {
+            if (listOfFiles.isFile()) {
+                i++;
+            }
+        }
+        return i;
+    }
+
+    public void deleteFileContainName(String fileName) {
+        deleteContainName(fileName);
+    }
+    public void deleteContainName(String fileName) {
+        try {
+            String files;
+            String pathFolderDownload = GlobalConstants.DOWNLOAD_FILE;
+            File file = new File(pathFolderDownload);
+            File[] listOfFiles = file.listFiles();
+            for (int i = 0; i < listOfFiles.length; i++) {
+                if (listOfFiles[i].isFile()) {
+                    files = listOfFiles[i].getName();
+                    if (files.contains(fileName)) {
+                        new File(listOfFiles[i].toString()).delete();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+    }
 }

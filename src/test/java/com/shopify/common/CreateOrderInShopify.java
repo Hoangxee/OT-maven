@@ -7,16 +7,20 @@ import commons.PageGeneratorManager;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import pageObject.shopify.admin.*;
+import utilities.Environment;
 
 public class CreateOrderInShopify extends BaseTest {
-    @Parameters("browser")
+    @Parameters({"browser","environment"})
     @Description("Create order in shopify")
-    @Severity(SeverityLevel.NORMAL)
     @BeforeTest
-    public void createOrderShopify(String browserName){
+    public void createOrderShopify(String browserName, String environmentName){
+        ConfigFactory.setProperty("env",environmentName);
+        environment = ConfigFactory.create(Environment.class);
+
         driver = getBrowserDriver(browserName, GlobalConstants.SHOPIFY_ADMIN_URL);
         loginPage = PageGeneratorManager.getLoginPageAdmin(driver);
 
@@ -41,6 +45,7 @@ public class CreateOrderInShopify extends BaseTest {
         driver.quit();
     }
 
+    Environment environment;
     private WebDriver driver;
     LoginPageAdminObject loginPage;
     HomePageAdminObject homePage;

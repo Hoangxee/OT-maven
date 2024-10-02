@@ -15,7 +15,7 @@ import utilities.Environment;
 
 import java.sql.Connection;
 
-public class TestConnect extends BaseTest {
+public class TestConnectDB extends BaseTest {
     @Parameters({"browser","environment"})
     @BeforeClass
     public void beforeClass(String browserName, String environmentName) {
