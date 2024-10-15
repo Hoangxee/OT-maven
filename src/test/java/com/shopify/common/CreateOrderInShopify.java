@@ -1,12 +1,10 @@
 package com.shopify.common;
 
 import commons.BaseTest;
-import commons.GlobalConstants;
-import commons.OTConstants;
+import commons.constant.GlobalConstants;
+import commons.constant.OTConstants;
 import commons.PageGeneratorManager;
 import io.qameta.allure.Description;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;

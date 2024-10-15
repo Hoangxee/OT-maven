@@ -21,11 +21,6 @@ public class LoginPageAdminObject extends BasePage {
     public HomePageAdminObject loginToShopifyAdmin(String email, String password) {
         switchToWindowByTitle(driver,"Log in — Shopify App Store");
 
-        List<WebElement> captcha = getListWebElement(driver, LoginPageAdminUI.CAPT_CHA);
-        if(captcha.size() != 0){
-            driver.navigate().refresh();
-        }
-
         waitForElementVisible(driver, LoginPageAdminUI.EMAIL_TEXTBOX);
         sendKeyToElement(driver, LoginPageAdminUI.EMAIL_TEXTBOX, email);
         waitForElementClickable(driver, LoginPageAdminUI.COMMIT_LOGIN_BUTTON);

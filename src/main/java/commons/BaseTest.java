@@ -1,5 +1,6 @@
 package commons;
 
+import commons.constant.GlobalConstants;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
@@ -50,8 +51,9 @@ public class BaseTest {
                 ChromeOptions chromeOptions = new ChromeOptions();
 //                chromeOptions.addArguments("--lang-vi"); //change default language
                 chromeOptions.setExperimentalOption("useAutomationExtension", false);
-//                chromeOptions.addArguments("--incognito"); // ẩn danh
-//                chromeOptions.addArguments("disable-features=DownloadBubble,DownloadBubbleV2"); // download file with incognito
+                chromeOptions.setExperimentalOption("excludeSwitches",Collections.singletonList("enable-automation"));
+                chromeOptions.addArguments("--incognito"); // ẩn danh
+                chromeOptions.addArguments("disable-features=DownloadBubble,DownloadBubbleV2"); // download file with incognito
                 chromeOptions.setExperimentalOption("prefs", chromePrefs);
                 driver = new ChromeDriver(chromeOptions);
 

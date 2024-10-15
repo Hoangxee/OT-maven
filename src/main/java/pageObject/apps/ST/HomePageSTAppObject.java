@@ -2,11 +2,11 @@ package pageObject.apps.ST;
 
 import commons.BasePage;
 import commons.PageGeneratorManager;
-import commons.STConstants;
+import commons.constant.STConstants;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import pageUIs.adminShopify.CreateOrderPageAdminUI;
 import pageUIs.apps.OT.DashboardPageOTAppUI;
 import pageUIs.apps.ST.HomePageSTAppUI;
 import pageUIs.apps.ST.SettingsPageSTAppUI;
@@ -56,10 +56,20 @@ public class HomePageSTAppObject extends BasePage {
     public SettingsPageSTAppObject openSettingsPage() {
         switchToDefaultContent(driver);
 
-        waitForElementClickable(driver, DashboardPageOTAppUI.PAGE_OT_IN_NAVIGATE, STConstants.SETTINGS_PAGES_ST_APP_IN_NAVIGATION);
-        clickToElement(driver, DashboardPageOTAppUI.PAGE_OT_IN_NAVIGATE,STConstants.SETTINGS_PAGES_ST_APP_IN_NAVIGATION);
+        waitForElementClickable(driver, HomePageSTAppUI.PAGE_IN_NAVIGATE, STConstants.SETTINGS_PAGES_ST_APP_IN_NAVIGATION);
+        clickToElement(driver, HomePageSTAppUI.PAGE_IN_NAVIGATE,STConstants.SETTINGS_PAGES_ST_APP_IN_NAVIGATION);
 
         return PageGeneratorManager.getSettingsPageSTAppObject(driver);
+    }
+
+    @Step("Click to Dispute tab")
+    public DisputePageSTAppObject openDisputePage() {
+        switchToDefaultContent(driver);
+
+        waitForElementClickable(driver, HomePageSTAppUI.PAGE_IN_NAVIGATE, STConstants.DISPUTE_PAGES_ST_APP_IN_NAVIGATION);
+        clickToElement(driver, HomePageSTAppUI.PAGE_IN_NAVIGATE,STConstants.DISPUTE_PAGES_ST_APP_IN_NAVIGATION);
+
+        return PageGeneratorManager.getDisputePageSTAppObject(driver);
     }
 
     @Step("Click to Orders tab")
@@ -70,5 +80,28 @@ public class HomePageSTAppObject extends BasePage {
         clickToElement(driver, SettingsPageSTAppUI.PAGE_OT_IN_NAVIGATE,STConstants.ORDERS_PAGES_ST_APP_IN_NAVIGATION);
 
         return PageGeneratorManager.getOrdersPageSTAppObject(driver);
+    }
+
+    @Step("Click to Subscription plans tab")
+    public SubscriptionPlansPageSTAppObject openSubscriptionPlansPage() {
+        switchToDefaultContent(driver);
+
+        waitForElementClickable(driver, HomePageSTAppUI.PAGE_IN_NAVIGATE, STConstants.SUBSCRIPTION_PANS_PAGES_ST_APP_IN_NAVIGATION);
+        clickToElement(driver, HomePageSTAppUI.PAGE_IN_NAVIGATE,STConstants.SUBSCRIPTION_PANS_PAGES_ST_APP_IN_NAVIGATION);
+
+        return PageGeneratorManager.getSubscriptionPlansPageSTAppObject(driver);
+    }
+
+    @Step("Verify Plan is {0}")
+    public boolean isPlanActivated(String planName, String quota) {
+        switchToFrameIframe(driver, HomePageSTAppUI.APP_IFRAME);
+        waitForProcessBar(driver, CreateOrderPageAdminUI.PROGRESS_BAR);
+
+        waitForElementVisible(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"1");
+        boolean planBl = getTextInElement(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"1").equals(planName);
+
+        waitForElementVisible(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"2");
+        boolean quotaBl = getTextInElement(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"2").contains(quota);
+        return planBl&&quotaBl;
     }
 }

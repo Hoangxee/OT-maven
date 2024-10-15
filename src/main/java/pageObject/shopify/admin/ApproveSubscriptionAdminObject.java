@@ -1,13 +1,11 @@
 package pageObject.shopify.admin;
 
 import commons.BasePage;
-import commons.GlobalConstants;
+import commons.constant.GlobalConstants;
+import commons.PageGeneratorManager;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-import pageObject.apps.OT.SubscriptionPlansOTAppObject;
+import pageObject.apps.ST.HomePageSTAppObject;
 import pageUIs.adminShopify.ApproveSubscriptionAdminUI;
 import pageUIs.adminShopify.CreateOrderPageAdminUI;
 import pageUIs.apps.OT.DashboardPageOTAppUI;
@@ -20,11 +18,11 @@ public class ApproveSubscriptionAdminObject extends BasePage {
     }
 
     @Step("Approve plan in Approve subscription page")
-    public void approvePlan() {
+    public HomePageSTAppObject approvePlan(String pricePlan) {
         waitForProcessBar(driver, CreateOrderPageAdminUI.PROGRESS_BAR);
         switchToWindowByTitleContains(driver, GlobalConstants.APPROVE_SUBSCRIPTION_TITLE_PAGE);
 
-        if(getTextInElement(driver, ApproveSubscriptionAdminUI.TOTAL_PRICE_TEXT).contains(SubscriptionPlansOTAppObject.professionalPriceMonthly)){
+        if(getTextInElement(driver, ApproveSubscriptionAdminUI.TOTAL_PRICE_TEXT).contains(pricePlan)){
             waitForElementClickable(driver, ApproveSubscriptionAdminUI.APPROVE_BTN);
             clickToElement(driver, ApproveSubscriptionAdminUI.APPROVE_BTN);
         }
@@ -32,17 +30,18 @@ public class ApproveSubscriptionAdminObject extends BasePage {
             log.info("Total price in Shopify not equal to Subscription plans page");
             closeWindow(driver);
         }
+        return PageGeneratorManager.getHomePageSTAppObject(driver);
     }
 
-    @Step("Verify Plan is Professional")
-    public boolean isPlanProfessional(String planName, String quota) {
+    @Step("Verify Plan is {0}")
+    public boolean isPlanActivated(String planName, String quota) {
         switchToFrameIframe(driver, DashboardPageOTAppUI.APP_IFRAME);
 
-        waitForElementVisible(driver, DashboardPageOTAppUI.ACCOUNT_PLAN_TEXT);
-        boolean planBl = getTextInElement(driver, DashboardPageOTAppUI.ACCOUNT_PLAN_TEXT).equals(planName);
+        waitForElementVisible(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"1");
+        boolean planBl = getTextInElement(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"1").equals(planName);
 
-        waitForElementVisible(driver, DashboardPageOTAppUI.QUOTA_TEXT);
-       boolean quotaBl = getTextInElement(driver, DashboardPageOTAppUI.QUOTA_TEXT).contains(quota);
+        waitForElementVisible(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"2");
+       boolean quotaBl = getTextInElement(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"2").contains(quota);
        return planBl&&quotaBl;
     }
 }

@@ -1,7 +1,7 @@
 package com.shopify.admin;
 
 import commons.BaseTest;
-import commons.GlobalConstants;
+import commons.constant.GlobalConstants;
 import commons.PageGeneratorManager;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;

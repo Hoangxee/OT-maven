@@ -1,7 +1,7 @@
 package pageObject.apps.OT;
 
 import commons.BasePage;
-import commons.OTConstants;
+import commons.constant.OTConstants;
 import commons.PageGeneratorManager;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
@@ -19,11 +19,11 @@ public class DashboardPageOTAppObject extends BasePage {
     public boolean isPlanStarter(String planName, String quota) {
         switchToFrameIframe(driver, DashboardPageOTAppUI.APP_IFRAME);
 
-        waitForElementVisible(driver, DashboardPageOTAppUI.ACCOUNT_PLAN_TEXT);
-        boolean planBL = getTextInElement(driver, DashboardPageOTAppUI.ACCOUNT_PLAN_TEXT).equals(planName);
+        waitForElementVisible(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"1");
+        boolean planBL = getTextInElement(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"1").equals(planName);
 
-        waitForElementVisible(driver, DashboardPageOTAppUI.QUOTA_TEXT);
-        boolean quotaBl = getTextInElement(driver, DashboardPageOTAppUI.QUOTA_TEXT).contains(quota);
+        waitForElementVisible(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"2");
+        boolean quotaBl = getTextInElement(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"2").contains(quota);
         return planBL && quotaBl;
     }
 

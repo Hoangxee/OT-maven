@@ -1,4 +1,4 @@
-package commons;
+package commons.constant;
 
 public class OTConstants {
     public static final String SHOPIFY_PRODUCT_FOR_OT = "Automation_Product";

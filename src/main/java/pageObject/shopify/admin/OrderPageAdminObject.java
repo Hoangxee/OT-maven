@@ -1,18 +1,15 @@
 package pageObject.shopify.admin;
 
 import commons.BasePage;
-import commons.GlobalConstants;
+import commons.constant.GlobalConstants;
 import commons.PageGeneratorManager;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageObject.apps.OT.ShipmentPageOTAppObject;
 import pageUIs.adminShopify.CreateOrderPageAdminUI;
 import pageUIs.adminShopify.DetailOrderPageAdminUI;
 import pageUIs.storeFront.TrackingResultPageUI;
-
-import java.util.List;
 
 public class OrderPageAdminObject extends BasePage {
     private WebDriver driver;

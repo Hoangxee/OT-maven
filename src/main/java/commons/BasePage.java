@@ -1,5 +1,6 @@
 package commons;
 
+import commons.constant.GlobalConstants;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.*;
@@ -18,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class BasePage {
     private static BasePage basePage;
@@ -139,12 +141,12 @@ public class BasePage {
     }
 
     public void switchToWindowByTitleContains(WebDriver driver, String expectedPageTitle){
+        sleepInSecond(1);
         // lấy ra tất cả các ID của tab/window đang có
         Set<String> allWindowID = driver.getWindowHandles();
 
         // Duyệt từng ID
         for(String id:allWindowID){
-            sleepInSecond(1);
             // Switch vào từng tab/window
             driver.switchTo().window(id);
             // Lấy ra page title của tab/window đã swtich vào
@@ -238,7 +240,7 @@ public class BasePage {
         return new Select(getWebElement(driver, locatorType)).isMultiple();
     }
 
-    public void selectItemInCustomDropdown(WebDriver driver, String parentLocator, String childItemDynamicLocator, String expectedItem) {
+    public void selectItemInCustomDropdownByJS(WebDriver driver, String parentLocator, String childItemDynamicLocator, String expectedItem) {
         getWebElement(driver, parentLocator).click();
         sleepInSecond(1);
 
@@ -250,6 +252,21 @@ public class BasePage {
 
                 item.click();
                 sleepInSecond(1);
+                break;
+            }
+        }
+    }
+
+    public void selectItemInCustomDropDown(WebDriver driver, String parentLocator, String childLocator,String expectedItem){
+        waitForElementClickable(driver, parentLocator);
+        clickToElement(driver, parentLocator);
+
+        waitForElementPresence(driver,childLocator);
+        List<WebElement> allNumberDropdown = getListWebElement(driver, childLocator);
+
+        for (WebElement item:allNumberDropdown) {
+            if(item.getText().equals(expectedItem)){
+                item.click();
                 break;
             }
         }
@@ -398,7 +415,7 @@ public class BasePage {
     }
 
     public void overrideImplicitTimeout(WebDriver driver, long timeOut){
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeOut));
     }
 
     public boolean isElementSelected(WebDriver driver, String locatorType){
@@ -423,13 +440,16 @@ public class BasePage {
 //        driver.switchTo().frame(getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)));
     }
 
-
     public void switchToDefaultContent(WebDriver driver){
         driver.switchTo().defaultContent();
     }
 
     public void moveToElement(WebDriver driver, String locatorType){
         new Actions(driver).moveToElement(getWebElement(driver, locatorType)).perform();
+    }
+
+    public void moveToListElementsByIndex(WebDriver driver, String locatorType, int index){
+        new Actions(driver).moveToElement(getListWebElement(driver, locatorType).get(index)).perform();
     }
 
     public void doubleClickToElement(WebDriver driver, String locatorType){
@@ -514,7 +534,7 @@ public class BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);", getWebElement(driver, locatorType));
     }
 
-    public void sendkeyToElementByJS(WebDriver driver, String locatorType, String value) {
+    public void sendKeyToElementByJS(WebDriver driver, String locatorType, String value) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('value', '" + value + "')", getWebElement(driver, locatorType));
     }
 
@@ -617,6 +637,13 @@ public class BasePage {
         WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
         overrideImplicitTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
         explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locatorType)));
+        overrideImplicitTimeout(driver, GlobalConstants.LONG_TIMEOUT);
+    }
+
+    public void waitForElementUnDisplay(WebDriver driver, String locatorType, String...dynamicValues){
+        WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
+        overrideImplicitTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
+        explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(getDynamicXpath(locatorType, dynamicValues))));
         overrideImplicitTimeout(driver, GlobalConstants.LONG_TIMEOUT);
     }
 
@@ -756,4 +783,7 @@ public class BasePage {
         }
     }
 
+    public void waitForPageLoaded(WebDriver driver){
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+    }
 }

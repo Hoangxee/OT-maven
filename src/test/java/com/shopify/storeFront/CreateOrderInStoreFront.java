@@ -1,9 +1,9 @@
 package com.shopify.storeFront;
 
 import commons.BaseTest;
-import commons.GlobalConstants;
+import commons.constant.GlobalConstants;
 import commons.PageGeneratorManager;
-import commons.StoreFrontConstants;
+import commons.constant.StoreFrontConstants;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
