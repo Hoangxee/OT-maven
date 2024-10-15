@@ -1,9 +1,42 @@
 package pageUIs.apps.ST;
 
 public class SettingsPageSTAppUI {
-    public static final String PAGE_OT_IN_NAVIGATE = "xpath=//a[contains(@href,'paypal')]//span[text()='%s']";
-    public static final String CONNECT_PAYPAL_ACCOUNT_SUCCESSFUL_MESSAGE = "xpath=//span[text()='%s']";
+    public static final String PAGE_OT_IN_NAVIGATE = "xpath=//div[@class='Polaris-Collapsible']//span[text()='%s']";
+    public static final String MESSAGE_TOAST = "xpath=//span[text()='%s']";
     public static final String PRIMARY_ACCOUNT_LABEL = "xpath=//span[text()='%s']";
     public static final String CONNECT_NOW_BTN = "xpath=//div[@class='custom-card-content']/div/div/button";
     public static final String TABS_IN_SETTINGS_PAGE = "xpath=//button[descendant::p[text()='%s']]";
+    public static final String ADD_ACCOUNT_BTN_IN_FACEBOOK_INSTAGRAM_PAYMENT_TAB = "xpath=//div[@class='custom-card-content']//button";
+    public static final String ADD_PAYMENT_ACCOUNT_POPUP_TITLE_IN_FACEBOOK_INSTAGRAM_PAYMENT_TAB = "xpath=//div[@class='Polaris-InlineGrid']/div/h2";
+    public static final String INPUT_IN_ADD_PAYMENT_ACCOUNT_POPUP = "xpath=//span[text()='%s']/ancestor::div/following-sibling::div[@class='Polaris-Connected']//input";
+    public static final String BTN_IN_ADD_PAYMENT_ACCOUNT_POPUP = "xpath=//div[@class='Polaris-InlineStack']/button[child::span[text()='%s']]";
+    public static final String ACCOUNT_STATUS_TEXT = "xpath=//div[@class='fb-ig-account-content']//span/following-sibling::span";
+    public static final String REMOVE_PAYMENT_ACCOUNT_BTN = "xpath=//div[@class='fb-ig-account-content']//div[contains(@class,'delete')]//button";
+    public static final String DELETE_BTN_IN_CONFIRM_DELETE_POPUP = "xpath=//div[@class='modal-footer']/div/button";
+    public static final String ADD_MAPPING_RULES_BTN = "xpath=//button[child::span[text()='Add mapping rules']]";
+    public static final String COURIER_MAPPING_POPUP_TITLE_IN_COURIER_MAPPING_TAB = "xpath=//div[@class='Polaris-InlineStack']/h2";
+    public static final String MAPPING_TYPE_DROPDOWN_IN_COURIER_MAPPING_POPUP = "xpath=//div[@class='Polaris-Select']/select";
+    public static final String COURIER_INPUT_IN_COURIER_MAPPING_POPUP = "xpath=(//div[@class='Polaris-Modal-Section']//div[@class='Polaris-Connected']//input)[%s]";
+    public static final String BTN_IN_COURIER_MAPPING_POPUP = "xpath=//div[@class='Polaris-InlineStack']/button[child::span[text()='%s']]";
+    public static final String COURIER_MAPPING_RULES = "xpath=//div[@class='Polaris-InlineGrid']/following-sibling::div/div";
+    public static final String COURIER_MAPPING_RULE_DELETE_BTN = "xpath=//div[@class='btn-group']/div//button";
+    public static final String ADD_IGNORE_RULES_BTN = "xpath=//button[child::span[text()='Add ignore rules']]";
+    public static final String ADD_IGNORE_RULES_POPUP_TITLE = "xpath=//div[@class='Polaris-InlineStack']/h2";
+    public static final String IGNORE_RULE_TYPE_DROPDOWN_IN_ADD_IGNORE_RULES_POPUP = "xpath=//div[@class='Polaris-Select']/select";
+    public static final String COURIER_NAME_DROPDOWN_IN_ADD_IGNORE_RULES_POPUP = "xpath=//div[@class='Polaris-Connected']//input";
+    public static final String COURIER_NAME_DROPDOWN_OPTIONS_IN_ADD_IGNORE_RULES_POPUP = "xpath=//ul/li//div[contains(@class,'Autocomplete')]";
+    public static final String BTN_IN_ADD_IGNORE_RULES_POPUP = "xpath=//button[child::span[text()='%s']]";
+    public static final String SKELETON_ELEMENT = "xpath=//div[@class='Polaris-SkeletonBodyText']";
+    public static final String IGNORE_SYNC_RULES = "xpath=//div[@class='courier-mapping-content']/div[@class='Polaris-InlineGrid']";
+    public static final String IGNORE_SYNC_RULE_DELETE_BTN = "xpath=//div[@class='btn-group']/div//button";
+    public static final String GENERATE_CONNECTION_KEY_BTN = "xpath=//span[text()='Generate a connection key']/parent::button";
+    public static final String CONNECTION_KEY_TEXT = "xpath=//span[@class='key']/span";
+    public static final String CONNECTION_KEY_BTN = "xpath=(//div[@class='connection-key-layout']/div//button)[%s]";
+    public static final String ADD_CONNECTION_BTN = "xpath=//div[@class='store-content-top']/button";
+    public static final String ADD_EXISTING_KEY_BTN = "xpath=//span[text()='Add a existing key']/parent::button";
+    public static final String INPUT_IN_ADD_CONNECTION_POPUP = "xpath=//div[@class='Polaris-TextField']/input";
+    public static final String SUBMIT_BTN_IN_ADD_CONNECTION_POPUP = "xpath=//span[text()='%s']/parent::button";
+    public static final String INTEGRATED_STORES_LINK = "xpath=//a[@href='%s']";
+    public static final String DISCONNECT_INTEGRATED_STORES_BTN = "xpath=//span[text()='Disconnect']/parent::button";
+    public static final String DISCONNECT_INTEGRATED_STORES_BTN_IN_POPUP_CONFIRM = "xpath=//div[@class='modal-footer']/div/button";
 }

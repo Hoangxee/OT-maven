@@ -1,11 +1,11 @@
 package com.shopify.apps.ST;
 
-import com.shopify.common.CreateOrderInShopify;
-import commons.*;
+import commons.BaseTest;
 import commons.constant.GlobalConstants;
-import commons.constant.OTConstants;
+import commons.PageGeneratorManager;
 import commons.constant.STConstants;
 import commons.constant.ST_HomePageConstants;
+import commons.constant.ST_SubscriptionPlansPageConstants;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -17,15 +17,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObject.apps.ST.HomePageSTAppObject;
-import pageObject.apps.ST.OrdersPageSTAppObject;
-import pageObject.apps.ST.SettingsPageSTAppObject;
-import pageObject.apps.ST.paypal.LoginPagePaypalObject;
+import pageObject.apps.ST.SubscriptionPlansPageSTAppObject;
+import pageObject.shopify.admin.ApproveSubscriptionAdminObject;
 import pageObject.shopify.admin.HomePageAdminObject;
 import pageObject.shopify.admin.LoginPageAdminObject;
 import utilities.Environment;
 
-
-public class E2E_Synctrack extends BaseTest {
+public class SubscriptionPlansPage extends BaseTest {
     @Parameters({"browser","environment"})
     @BeforeClass
     public void beforeClass(String browserName, String environmentName) {
@@ -34,28 +32,19 @@ public class E2E_Synctrack extends BaseTest {
 
         driver = getBrowserDriver(browserName, GlobalConstants.SHOPIFY_ADMIN_URL);
         loginPage = PageGeneratorManager.getLoginPageAdmin(driver);
-    }
-
-    @Description("End to end case")
-    @Severity(SeverityLevel.NORMAL)
-    @Test
-    public void endToEnd() {
         homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
+    }
+
+    @Description("Change plan")
+    @Severity(SeverityLevel.NORMAL)
+    @Test
+    public void ChangePlan() {
         homePageST = homePage.openAppSynctrack();
-        homePageST.skipOnBoard();
-        Assert.assertTrue(homePageST.isPlanBasic(ST_HomePageConstants.FREE_PLAN_TEXT_IN_HOME,
-                ST_HomePageConstants.FREE_QUOTA, ST_HomePageConstants.PAYPAL_ACCOUNT_NOT_CONNECT_LABEL));
-
-        settingsPageST = homePageST.openSettingsPage();
-//        settingsPageST.openPaypalSettingsTab();
-//        loginPagePaypal = settingsPageST.connectToPaypal();
-//        loginPagePaypal.loginToPaypal(STConstants.PAYPAL_EMAIL, STConstants.PAYPAL_PASSWORD);
-//        settingsPageST.hadConnectedPaypalAccount(STConstants.PAYPAL_EMAIL, STConstants.PAYPAL_MERCHANT_ID);
-
-        ordersPageST = settingsPageST.openOrdersPage();
-        ordersPageST.processOldOrders();
-        Assert.assertTrue(ordersPageST.isOrdersSynced(CreateOrderInShopify.orderName, OTConstants.TRACKING_NUMBER));
+        subscriptionPlansPageST = homePageST.openSubscriptionPlansPage();
+        approveSubscriptionAmin = subscriptionPlansPageST.chooseMonthlyPlan(ST_SubscriptionPlansPageConstants.UNLIMITED_PLAN_TEXT);
+        homePageST = approveSubscriptionAmin.approvePlan(SubscriptionPlansPageSTAppObject.planPriceMonthly);
+        Assert.assertTrue(homePageST.isPlanActivated(ST_HomePageConstants.UNLIMITED_PLAN_TEXT_IN_HOME, ST_HomePageConstants.UNLIMITED_QUOTA));
     }
 
     @AfterClass
@@ -68,7 +57,6 @@ public class E2E_Synctrack extends BaseTest {
     HomePageAdminObject homePage;
     LoginPageAdminObject loginPage;
     HomePageSTAppObject homePageST;
-    LoginPagePaypalObject loginPagePaypal;
-    OrdersPageSTAppObject ordersPageST;
-    SettingsPageSTAppObject settingsPageST;
+    SubscriptionPlansPageSTAppObject subscriptionPlansPageST;
+    ApproveSubscriptionAdminObject approveSubscriptionAmin;
 }

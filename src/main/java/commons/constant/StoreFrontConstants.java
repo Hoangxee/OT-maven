@@ -1,4 +1,4 @@
-package commons;
+package commons.constant;
 
 public class StoreFrontConstants {
     public static final String CONTACT = "hoangnh@omegatheme.com";

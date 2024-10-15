@@ -1,25 +1,25 @@
-package com.shopify.apps.ST;
+package com.shopify.apps.ST.SettingsPage;
 
 import commons.BaseTest;
-import commons.GlobalConstants;
+import commons.constant.GlobalConstants;
 import commons.PageGeneratorManager;
+import commons.constant.STConstants;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObject.apps.ST.HomePageSTAppObject;
-import pageObject.apps.ST.OrdersPageSTAppObject;
+import pageObject.apps.ST.SettingsPageSTAppObject;
 import pageObject.shopify.admin.HomePageAdminObject;
 import pageObject.shopify.admin.LoginPageAdminObject;
 import utilities.Environment;
 
-public class Orders extends BaseTest {
+public class FacebookInstagramPaymentPage extends BaseTest {
     @Parameters({"browser","environment"})
     @BeforeClass
     public void beforeClass(String browserName, String environmentName) {
@@ -28,34 +28,30 @@ public class Orders extends BaseTest {
 
         driver = getBrowserDriver(browserName, GlobalConstants.SHOPIFY_ADMIN_URL);
         loginPage = PageGeneratorManager.getLoginPageAdmin(driver);
-    }
-
-    @Description("Import orders")
-    @Severity(SeverityLevel.NORMAL)
-    @Test
-    public void TC01_importOrders() {
-        // shopify polaris ẩn input[type='file'] -> tìm kỹ/ search trong DOM
-
         homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
-        homePageST = homePage.openAppSynctrack();
-        ordersPageST = homePageST.openOrdersPage();
-        ordersPageST.importOrders(ordersFilePath,ordersFileName);
-        Assert.assertTrue(ordersPageST.verifyOrdersImport(ordersPageST.getDataFormExcel(ordersFilePath,"Upload Orders","Transaction Id",1)));
-        Assert.assertTrue(ordersPageST.verifyOrdersImport(ordersPageST.getDataFormExcel(ordersFilePath,"Upload Orders","Transaction Id",2)));
-        }
+    }
 
-    @Description("Download orders")
+    @Description("Add account Facebook and Instagram settings")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void TC02_exportOrders(){
-        ordersPageST.exportFileFullOptions();
-        ordersPageST.verifyFileAfterExport();
+    public void TC01_AddAccountFacebookInstagramPayment() {
+        homePageST = homePage.openAppSynctrack();
+        settingsPageST = homePageST.openSettingsPage();
+        settingsPageST.openFacebookInstagramPaymentTab();
+        settingsPageST.addPaymentAccount(STConstants.DISPUTE_PAYPAL_CLIENT_ID,STConstants.DISPUTE_PAYPAL_SECRET_KEY);
+    }
+
+    @Description("Delete account Facebook and Instagram settings")
+    @Severity(SeverityLevel.NORMAL)
+    @Test
+    public void TC02_DeleteAccountFacebookInstagramPayment() {
+        settingsPageST.deletePaymentAccount();
     }
 
     @AfterClass
     public void afterClass() {
-//        driver.quit();
+        driver.quit();
     }
 
     Environment environment;
@@ -63,7 +59,5 @@ public class Orders extends BaseTest {
     HomePageAdminObject homePage;
     LoginPageAdminObject loginPage;
     HomePageSTAppObject homePageST;
-    OrdersPageSTAppObject ordersPageST;
-    String ordersFileName = "synctrack_upload_orders.xlsx";
-    String ordersFilePath = GlobalConstants.UPLOAD_FILE + ordersFileName;
+    SettingsPageSTAppObject settingsPageST;
 }

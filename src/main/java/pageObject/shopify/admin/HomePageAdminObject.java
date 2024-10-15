@@ -1,6 +1,8 @@
 package pageObject.shopify.admin;
 
 import commons.*;
+import commons.constant.OTConstants;
+import commons.constant.STConstants;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,10 +10,8 @@ import org.testng.Assert;
 import pageObject.apps.OT.DashboardPageOTAppObject;
 import pageObject.apps.RD.SettingsPageRDAppObject;
 import pageObject.apps.ST.HomePageSTAppObject;
-import pageObject.apps.ST.OrdersPageSTAppObject;
 import pageUIs.adminShopify.CreateOrderPageAdminUI;
 import pageUIs.adminShopify.HomePageAdminUI;
-import pageUIs.apps.ST.SettingsPageSTAppUI;
 
 import java.util.List;
 

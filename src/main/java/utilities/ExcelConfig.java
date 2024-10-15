@@ -9,8 +9,6 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-import commons.GlobalConstants;
-
 public class ExcelConfig {
     private Sheet currentSheet;
     private Map<String, Integer> columns;

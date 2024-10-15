@@ -2,7 +2,8 @@ package pageObject.apps.ST.paypal;
 
 import commons.BasePage;
 import commons.PageGeneratorManager;
-import commons.STConstants;
+import commons.constant.STConstants;
+import commons.constant.ST_SettingsPageConstants;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import pageObject.apps.ST.HomePageSTAppObject;
@@ -17,7 +18,7 @@ public class LoginPagePaypalObject extends BasePage {
 
     @Step("Login to Paypal")
     public HomePageSTAppObject loginToPaypal(String email, String password) {
-        switchToWindowByTitle(driver, STConstants.LOG_IN_PAYPAL_TITLE_PAGE);
+        switchToWindowByTitle(driver, ST_SettingsPageConstants.LOG_IN_PAYPAL_TITLE_PAGE);
 
         waitForElementVisible(driver, LoginPagePaypalUI.EMAIL_INPUT);
         sendKeyToElement(driver, LoginPagePaypalUI.EMAIL_INPUT,email);

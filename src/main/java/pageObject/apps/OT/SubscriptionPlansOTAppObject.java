@@ -5,7 +5,6 @@ import commons.PageGeneratorManager;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import pageObject.shopify.admin.ApproveSubscriptionAdminObject;
-import pageUIs.adminShopify.CreateOrderPageAdminUI;
 import pageUIs.apps.OT.SubscriptionPlansOTAppUI;
 
 public class SubscriptionPlansOTAppObject extends BasePage {
@@ -20,7 +19,7 @@ public class SubscriptionPlansOTAppObject extends BasePage {
         switchToFrameIframe(driver, SubscriptionPlansOTAppUI.APP_IFRAME);
 
         waitForElementVisible(driver, SubscriptionPlansOTAppUI.PLAN_PRICE_MONTHLY, planName.toUpperCase());
-        professionalPriceMonthly = getTextInElement(driver, SubscriptionPlansOTAppUI.PLAN_PRICE_MONTHLY, planName.toUpperCase());
+        planPriceMonthly = getTextInElement(driver, SubscriptionPlansOTAppUI.PLAN_PRICE_MONTHLY, planName.toUpperCase());
 
         waitForElementClickable(driver, SubscriptionPlansOTAppUI.CHOOSE_PLAN_BTN,planName.toUpperCase());
         clickToElement(driver, SubscriptionPlansOTAppUI.CHOOSE_PLAN_BTN,planName.toUpperCase());
@@ -28,5 +27,5 @@ public class SubscriptionPlansOTAppObject extends BasePage {
         return PageGeneratorManager.getApproveSubscriptionAdmin(driver);
     }
 
-    public static String professionalPriceMonthly;
+    public static String planPriceMonthly;
 }

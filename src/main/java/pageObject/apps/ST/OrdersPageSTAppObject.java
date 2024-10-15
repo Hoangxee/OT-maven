@@ -1,8 +1,8 @@
 package pageObject.apps.ST;
 
 import commons.BasePage;
-import commons.GlobalConstants;
-import commons.STConstants;
+import commons.constant.STConstants;
+import commons.constant.ST_OrdersPageConstants;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,13 +28,13 @@ public class OrdersPageSTAppObject extends BasePage {
         waitForElementClickable(driver, OrdersPageSTAppUI.PROCESS_OLD_ORDERS);
         clickToElement(driver, OrdersPageSTAppUI.PROCESS_OLD_ORDERS);
 
-        Assert.assertEquals(getTextInElement(driver, OrdersPageSTAppUI.PROCESS_OLD_ORDERS_POPUP_TITLE), STConstants.PROCESS_OLD_ORDERS_POPUP_TITLE);
+        Assert.assertEquals(getTextInElement(driver, OrdersPageSTAppUI.PROCESS_OLD_ORDERS_POPUP_TITLE), ST_OrdersPageConstants.PROCESS_OLD_ORDERS_POPUP_TITLE);
 
         waitForElementClickable(driver, OrdersPageSTAppUI.PROCESS_OLD_ORDERS_POPUP_BTN,"OK");
         clickToElement(driver, OrdersPageSTAppUI.PROCESS_OLD_ORDERS_POPUP_BTN,"OK");
 
 //        Assert.assertTrue(isElementDisplayed(driver, OrdersPageSTAppUI.MESSAGE_TOAST, STConstants.PROCESS_OLD_ORDERS_PROCESS_SUCCESSFULLY_MESSAGE));
-        Assert.assertTrue(isDynamicElementDisplayed(driver, OrdersPageSTAppUI.MESSAGE_TOAST, STConstants.PROCESS_OLD_ORDERS_PROCESS_SUCCESSFULLY_MESSAGE));
+        Assert.assertTrue(isDynamicElementDisplayed(driver, OrdersPageSTAppUI.MESSAGE_TOAST, ST_OrdersPageConstants.PROCESS_OLD_ORDERS_PROCESS_SUCCESSFULLY_MESSAGE));
     }
 
     @Step("Verify Get old orders successful")
@@ -79,7 +79,7 @@ public class OrdersPageSTAppObject extends BasePage {
         waitForElementClickable(driver, OrdersPageSTAppUI.BUTTON_IN_EXPORT_OR_IMPORT_POPUP,"Upload");
         clickToElement(driver, OrdersPageSTAppUI.BUTTON_IN_EXPORT_OR_IMPORT_POPUP,"Upload");
 
-        Assert.assertTrue(isDynamicElementDisplayed(driver, OrdersPageSTAppUI.MESSAGE_TOAST, STConstants.IMPORT_ORDERS_SUCCESSFULLY_MESSAGE));
+        Assert.assertTrue(isDynamicElementDisplayed(driver, OrdersPageSTAppUI.MESSAGE_TOAST, ST_OrdersPageConstants.IMPORT_ORDERS_SUCCESSFULLY_MESSAGE));
     }
 
     @Step("Verify order was imported")

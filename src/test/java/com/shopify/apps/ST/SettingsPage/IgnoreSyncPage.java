@@ -1,31 +1,26 @@
-package com.shopify.apps.ST;
+package com.shopify.apps.ST.SettingsPage;
 
-import com.shopify.common.CreateOrderInShopify;
-import commons.*;
+import commons.BaseTest;
 import commons.constant.GlobalConstants;
-import commons.constant.OTConstants;
-import commons.constant.STConstants;
-import commons.constant.ST_HomePageConstants;
+import commons.PageGeneratorManager;
+import commons.constant.ST_SettingsPageConstants;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObject.apps.ST.HomePageSTAppObject;
-import pageObject.apps.ST.OrdersPageSTAppObject;
 import pageObject.apps.ST.SettingsPageSTAppObject;
-import pageObject.apps.ST.paypal.LoginPagePaypalObject;
 import pageObject.shopify.admin.HomePageAdminObject;
 import pageObject.shopify.admin.LoginPageAdminObject;
 import utilities.Environment;
 
+public class IgnoreSyncPage extends BaseTest {
 
-public class E2E_Synctrack extends BaseTest {
     @Parameters({"browser","environment"})
     @BeforeClass
     public void beforeClass(String browserName, String environmentName) {
@@ -34,28 +29,29 @@ public class E2E_Synctrack extends BaseTest {
 
         driver = getBrowserDriver(browserName, GlobalConstants.SHOPIFY_ADMIN_URL);
         loginPage = PageGeneratorManager.getLoginPageAdmin(driver);
-    }
-
-    @Description("End to end case")
-    @Severity(SeverityLevel.NORMAL)
-    @Test
-    public void endToEnd() {
         homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
+    }
+
+    @Description("Add Ignore sync rules")
+    @Severity(SeverityLevel.NORMAL)
+    @Test
+    public void TC01_AddIgnoreSyncRules() {
         homePageST = homePage.openAppSynctrack();
-        homePageST.skipOnBoard();
-        Assert.assertTrue(homePageST.isPlanBasic(ST_HomePageConstants.FREE_PLAN_TEXT_IN_HOME,
-                ST_HomePageConstants.FREE_QUOTA, ST_HomePageConstants.PAYPAL_ACCOUNT_NOT_CONNECT_LABEL));
-
         settingsPageST = homePageST.openSettingsPage();
-//        settingsPageST.openPaypalSettingsTab();
-//        loginPagePaypal = settingsPageST.connectToPaypal();
-//        loginPagePaypal.loginToPaypal(STConstants.PAYPAL_EMAIL, STConstants.PAYPAL_PASSWORD);
-//        settingsPageST.hadConnectedPaypalAccount(STConstants.PAYPAL_EMAIL, STConstants.PAYPAL_MERCHANT_ID);
+        settingsPageST.openIgnoreSyncTab();
+        settingsPageST.addIgnoreSyncRules(ST_SettingsPageConstants.COURIER_OPTION_IN_IGNORE_RULE_TYPE_DROPDOWN,courierName);
+        settingsPageST.addIgnoreSyncRules(ST_SettingsPageConstants.COURIER_START_OPTION_IN_IGNORE_RULE_TYPE_DROPDOWN,courierName);
+        settingsPageST.addIgnoreSyncRules(ST_SettingsPageConstants.TRACKING_NUMBER_IN_IGNORE_RULE_TYPE_DROPDOWN,courierName);
+        settingsPageST.addIgnoreSyncRules(ST_SettingsPageConstants.TRACKING_NUMBER_START_IN_IGNORE_RULE_TYPE_DROPDOWN,courierName);
+    }
 
-        ordersPageST = settingsPageST.openOrdersPage();
-        ordersPageST.processOldOrders();
-        Assert.assertTrue(ordersPageST.isOrdersSynced(CreateOrderInShopify.orderName, OTConstants.TRACKING_NUMBER));
+    @Description("Delete all Ignore sync rules")
+    @Severity(SeverityLevel.NORMAL)
+    @Test
+    public void TC02_DeleteAllIgnoreSyncRules() {
+        settingsPageST.deleteAllIgnoreSyncRules();
+
     }
 
     @AfterClass
@@ -68,7 +64,6 @@ public class E2E_Synctrack extends BaseTest {
     HomePageAdminObject homePage;
     LoginPageAdminObject loginPage;
     HomePageSTAppObject homePageST;
-    LoginPagePaypalObject loginPagePaypal;
-    OrdersPageSTAppObject ordersPageST;
     SettingsPageSTAppObject settingsPageST;
+    String courierName = "AliExpress Standard Shipping";
 }

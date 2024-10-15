@@ -2,8 +2,8 @@ package com.shopify.apps.OT;
 
 import com.shopify.common.CreateOrderInShopify;
 import commons.BaseTest;
-import commons.GlobalConstants;
-import commons.OTConstants;
+import commons.constant.GlobalConstants;
+import commons.constant.OTConstants;
 import commons.PageGeneratorManager;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
@@ -53,8 +53,8 @@ public class E2E_OrderTracking extends BaseTest {
 
         plans = trackingResultInStoreFront.openSubscriptionPlans();
         approvePlan = plans.choosePlan(OTConstants.PROFESSIONAL_SUBSCRIPTION_PLAN_NAME);
-        approvePlan.approvePlan();
-        Assert.assertTrue(approvePlan.isPlanProfessional(OTConstants.PROFESSIONAL_SUBSCRIPTION_PLAN_NAME,OTConstants.PROFESSIONAL_QUOTA));
+        approvePlan.approvePlan(SubscriptionPlansOTAppObject.planPriceMonthly);
+        Assert.assertTrue(approvePlan.isPlanActivated(OTConstants.PROFESSIONAL_SUBSCRIPTION_PLAN_NAME,OTConstants.PROFESSIONAL_QUOTA));
 
     }
 

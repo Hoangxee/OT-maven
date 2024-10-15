@@ -11,10 +11,7 @@
             <listener class-name="reportConfig.AllureTestListener"/>
         </listeners>
         <classes>
-<!--            <class name="com.shopify.admin.InstallApp"/>-->
-<!--            <class name="com.shopify.common.CreateOrderInShopify"/>-->
-            <class name="com.shopify.apps.ST.E2E_Synctrack"/>
-<!--            <class name="com.shopify.admin.UninstallApp"/>-->
+            <class name="com.shopify.apps.ST.SettingsPage.IgnoreSyncPage"/>
         </classes>
     </test>
 </suite>

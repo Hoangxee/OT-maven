@@ -11,9 +11,7 @@
             <listener class-name="reportConfig.AllureTestListener"/>
         </listeners>
         <classes>
-<!--            <class name="com.shopify.admin.InstallApp"/>-->
-            <class name="com.shopify.apps.ST.Orders"/>
-<!--            <class name="com.shopify.admin.UninstallApp"/>-->
+            <class name="com.shopify.apps.ST.OrdersPage"/>
         </classes>
     </test>
 </suite>
