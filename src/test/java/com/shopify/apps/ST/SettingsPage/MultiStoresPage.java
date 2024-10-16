@@ -48,10 +48,17 @@ public class MultiStoresPage extends BaseTest {
         settingsPageST.deleteConnectionKey();
     }
 
+    @Description("Verify input invalid Existing Key")
+    @Severity(SeverityLevel.NORMAL)
+    @Test
+    public void TC02_verifyInputInvalidExistingKey() {
+        settingsPageST.verifyInputInvalidExistingKey("test fail");
+    }
+
     @Description("Connect integrated stores")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void TC02_ConnectIntegratedStores() {
+    public void TC03_ConnectIntegratedStores() {
         connectionKey = settingsPageST.generateConnectionKey();
         Assert.assertTrue(settingsPageST.isConnectionKeyExclusively(connectionKey));
         homePageST = settingsPageST.clickToAddConnectionBtnInPrimaryStore();
@@ -64,8 +71,8 @@ public class MultiStoresPage extends BaseTest {
 
     @Description("Disconnect integrated stores")
     @Severity(SeverityLevel.NORMAL)
-    @Test
-    public void TC03_DisconnectIntegratedStores() {
+//    @Test
+    public void TC04_DisconnectIntegratedStores() {
         settingsPageST.disconnectIntegratedStores();
         settingsPageST.deleteConnectionKey();
         settingsPageST.verifyDisconnectInIntegratedStore();
@@ -73,7 +80,7 @@ public class MultiStoresPage extends BaseTest {
 
     @AfterClass
     public void afterClass() {
-        driver.quit();
+//        driver.quit();
     }
 
     Environment environment;

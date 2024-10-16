@@ -39,4 +39,5 @@ public class SettingsPageSTAppUI {
     public static final String INTEGRATED_STORES_LINK = "xpath=//a[@href='%s']";
     public static final String DISCONNECT_INTEGRATED_STORES_BTN = "xpath=//span[text()='Disconnect']/parent::button";
     public static final String DISCONNECT_INTEGRATED_STORES_BTN_IN_POPUP_CONFIRM = "xpath=//div[@class='modal-footer']/div/button";
+    public static final String ERROR_MESSAGE_IN_ADD_EXISTING_KEY_POPUP = "xpath=//div[@class='Polaris-InlineError']/span";
 }

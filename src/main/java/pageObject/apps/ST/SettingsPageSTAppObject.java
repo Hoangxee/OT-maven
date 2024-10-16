@@ -327,4 +327,21 @@ public class SettingsPageSTAppObject extends BasePage {
 
         Assert.assertTrue(isElementDisplayed(driver, SettingsPageSTAppUI.ADD_EXISTING_KEY_BTN));
     }
+
+    @Step("Verify input invalid Existing key")
+    public void verifyInputInvalidExistingKey(String connectionKey) {
+        waitForElementClickable(driver, SettingsPageSTAppUI.ADD_EXISTING_KEY_BTN);
+        clickToElement(driver, SettingsPageSTAppUI.ADD_EXISTING_KEY_BTN);
+
+        waitForElementVisible(driver, SettingsPageSTAppUI.INPUT_IN_ADD_CONNECTION_POPUP);
+        sendKeyToElement(driver, SettingsPageSTAppUI.INPUT_IN_ADD_CONNECTION_POPUP, connectionKey);
+
+        waitForElementClickable(driver, SettingsPageSTAppUI.SUBMIT_BTN_IN_ADD_CONNECTION_POPUP,"Submit");
+        clickToElement(driver, SettingsPageSTAppUI.SUBMIT_BTN_IN_ADD_CONNECTION_POPUP,"Submit");
+
+        Assert.assertEquals(getTextInElement(driver, SettingsPageSTAppUI.ERROR_MESSAGE_IN_ADD_EXISTING_KEY_POPUP), ST_SettingsPageConstants.ERROR_MESSAGE_IN_ADD_EXISTING_KEY_POPUP);
+
+        waitForElementVisible(driver, SettingsPageSTAppUI.SUBMIT_BTN_IN_ADD_CONNECTION_POPUP,"Ok");
+        clickToElement(driver, SettingsPageSTAppUI.SUBMIT_BTN_IN_ADD_CONNECTION_POPUP,"Ok");
+    }
 }
