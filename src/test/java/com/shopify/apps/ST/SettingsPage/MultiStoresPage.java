@@ -71,7 +71,7 @@ public class MultiStoresPage extends BaseTest {
 
     @Description("Disconnect integrated stores")
     @Severity(SeverityLevel.NORMAL)
-//    @Test
+    @Test
     public void TC04_DisconnectIntegratedStores() {
         settingsPageST.disconnectIntegratedStores();
         settingsPageST.deleteConnectionKey();
@@ -80,7 +80,7 @@ public class MultiStoresPage extends BaseTest {
 
     @AfterClass
     public void afterClass() {
-//        driver.quit();
+        driver.quit();
     }
 
     Environment environment;
