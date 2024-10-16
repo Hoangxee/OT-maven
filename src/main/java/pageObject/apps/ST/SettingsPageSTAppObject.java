@@ -344,4 +344,12 @@ public class SettingsPageSTAppObject extends BasePage {
         waitForElementVisible(driver, SettingsPageSTAppUI.SUBMIT_BTN_IN_ADD_CONNECTION_POPUP,"Ok");
         clickToElement(driver, SettingsPageSTAppUI.SUBMIT_BTN_IN_ADD_CONNECTION_POPUP,"Ok");
     }
+
+    @Step("Click to Digital product tab in Settings page")
+    public void openDigitalProductTab() {
+        switchToFrameIframe(driver, HomePageSTAppUI.APP_IFRAME);
+
+        waitForElementClickable(driver, SettingsPageSTAppUI.TABS_IN_SETTINGS_PAGE,ST_SettingsPageConstants.DIGITAL_PRODUCT_IN_SETTINGS_PAGE);
+        clickToElement(driver, SettingsPageSTAppUI.TABS_IN_SETTINGS_PAGE,ST_SettingsPageConstants.DIGITAL_PRODUCT_IN_SETTINGS_PAGE);
+    }
 }

@@ -25,4 +25,10 @@ public interface Environment extends Config {
 
     @Key("DB.DRIVER")
     String dbDriver();
+
+    @Key("DisputePayPalClientID")
+    String disputePaypalClientID();
+
+    @Key("DisputePayPalSecretKey")
+    String disputePaypalSecretKey();
 }

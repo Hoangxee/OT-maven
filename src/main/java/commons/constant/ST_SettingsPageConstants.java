@@ -9,6 +9,8 @@ public class ST_SettingsPageConstants {
     public static final String COURIER_MAPPING_IN_SETTINGS_PAGE = "Courier mapping";
     public static final String IGNORE_SYNC_IN_SETTINGS_PAGE = "Ignore sync";
     public static final String MULTI_STORES_IN_SETTINGS_PAGE = "Multi stores";
+    public static final String DIGITAL_PRODUCT_IN_SETTINGS_PAGE = "Digital product";
+    public static final String SHOPIFY_ORDER_NOTE_IN_SETTINGS_PAGE = "Shopify order note";
     public static final String ADD_PAYMENT_ACCOUNT_POPUP_TITLE_IN_FACEBOOK_INSTAGRAM_PAYMENT_TAB = "Add payment account";
     public static final String ADD_PAYMENT_ACCOUNT_SUCCESSFULLY_MESSAGE = "Create account successfully";
     public static final String REMOVE_PAYMENT_ACCOUNT_SUCCESSFULLY_MESSAGE = "Remove account successfully";
