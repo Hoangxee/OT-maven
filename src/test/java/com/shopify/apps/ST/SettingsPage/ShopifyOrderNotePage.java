@@ -3,7 +3,6 @@ package com.shopify.apps.ST.SettingsPage;
 import commons.BaseTest;
 import commons.PageGeneratorManager;
 import commons.constant.GlobalConstants;
-import commons.constant.ST_SettingsPageConstants;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -19,7 +18,7 @@ import pageObject.shopify.admin.HomePageAdminObject;
 import pageObject.shopify.admin.LoginPageAdminObject;
 import utilities.Environment;
 
-public class DigitalProductPage extends BaseTest {
+public class ShopifyOrderNotePage extends BaseTest {
 
     @Parameters({"browser","environment"})
     @BeforeClass
@@ -33,15 +32,21 @@ public class DigitalProductPage extends BaseTest {
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
     }
 
-    @Description("Change status Sync tracking info for digital products")
+    @Description("Turn on Shopify order note")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void ChangeStatusSyncTrackingInfoForDigitalProducts() {
+    public void TC01_TurnOnShopifyOrderNote() {
         homePageST = homePage.openAppSynctrack();
         settingsPageST = homePageST.openSettingsPage();
-        settingsPageST.openDigitalProductTab();
-        settingsPageST.turnOnSyncTrackingInfo();
-        settingsPageST.turnOffSyncTrackingInfo();
+        settingsPageST.openShopifyOrderNoteTab();
+        settingsPageST.turnOnShopifyOrderNote();
+    }
+
+    @Description("Turn off Shopify order note")
+    @Severity(SeverityLevel.NORMAL)
+    @Test
+    public void TC02_TurnOffShopifyOrderNote() {
+        settingsPageST.turnOffShopifyOrderNote();
     }
 
     @AfterClass

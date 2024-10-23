@@ -33,5 +33,6 @@ public class ST_SettingsPageConstants {
     public static final String INTEGRATE_STORE_SUCCESSFULLY_MESSAGE = "Store integrated!";
     public static final String DISCONNECT_INTEGRATE_STORE_SUCCESSFULLY_MESSAGE = "Disconnected!";
     public static final String ERROR_MESSAGE_IN_ADD_EXISTING_KEY_POPUP = "The connection key is invalid";
-
+    public static final String SYNC_TRACKING_INFO_MESSAGE = "Update successfully";
+    public static final String SHOPIFY_ORDER_NOTE_MESSAGE = "Saved";
 }

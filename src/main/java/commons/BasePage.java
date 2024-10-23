@@ -19,7 +19,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 public class BasePage {
     private static BasePage basePage;
@@ -683,7 +682,7 @@ public class BasePage {
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(getByLocator(getDynamicXpath(locatorType, dynamicValues))));
     }
 
-    public void closeWindow(WebDriver driver){
+    public void closeWindowTab(WebDriver driver){
         driver.close();
     }
 
