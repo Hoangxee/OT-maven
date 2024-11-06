@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageObject.apps.ST.paypal.LoginPagePaypalObject;
+import pageUIs.adminShopify.CreateOrderPageAdminUI;
 import pageUIs.apps.ST.HomePageSTAppUI;
 import pageUIs.apps.ST.SettingsPageSTAppUI;
 
@@ -395,16 +396,20 @@ public class SettingsPageSTAppObject extends BasePage {
                 switchToWindowByTitleContains(driver, "Authorize");
                 waitForElementClickable(driver, SettingsPageSTAppUI.UPDATE_BTN_IN_UPDATE_DATA_ACCESS_PAGE);
                 clickToElement(driver, SettingsPageSTAppUI.UPDATE_BTN_IN_UPDATE_DATA_ACCESS_PAGE);
+
+                waitForPageUrlContains(driver,"home");
             }
         }
     }
 
     @Step("Click to Turn off Shopify order note")
     public void turnOffShopifyOrderNote() {
-        closeWindowTab(driver);
-        switchToWindowByTitle(driver, "Synctrack PayPal Tracking");
-        refreshCurrentPage(driver);
-        openShopifyOrderNoteTab();
+        if(getPageURL(driver).contains("home")){
+            closeWindowTab(driver);
+            switchToWindowByTitle(driver, "Synctrack PayPal Tracking");
+            refreshCurrentPage(driver);
+            openShopifyOrderNoteTab();
+        }
 
         if(getTextInElement(driver, SettingsPageSTAppUI.SHOPIFY_ORDER_NOTE_STATUS).equals("On")){
             waitForElementClickable(driver, SettingsPageSTAppUI.SHOPIFY_ORDER_NOTE_BTN);

@@ -1,6 +1,6 @@
-package api.payload;
+package apiTest.payload;
 
-public class User {
+public class UserTest {
 
     int id;
     String username;

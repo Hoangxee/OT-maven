@@ -1,6 +1,7 @@
 package commons;
 
 import commons.constant.GlobalConstants;
+import io.restassured.response.Response;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.*;
@@ -785,4 +786,5 @@ public class BasePage {
     public void waitForPageLoaded(WebDriver driver){
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
     }
+
 }

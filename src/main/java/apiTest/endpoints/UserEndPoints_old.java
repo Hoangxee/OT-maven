@@ -1,20 +1,20 @@
-package api.endpoints;
+package apiTest.endpoints;
 
-import api.payload.User;
+import apiTest.payload.UserTest;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 
-public class UserEndPoints {
+public class UserEndPoints_old {
 
-    public static Response createUser(User payload){
+    public static Response createUser(UserTest payload){
         Response response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .body(payload)
         .when()
-                .post(Routes.addUserUrl);
+                .post(Routes_old.addUserUrl);
 
         return response;
     }
@@ -23,19 +23,19 @@ public class UserEndPoints {
         Response response = given()
                 .pathParam("username", username)
         .when()
-                .get(Routes.getDetailUserUrl);
+                .get(Routes_old.getDetailUserUrl);
 
         return response;
     }
 
-    public static Response updateUser(String username, User payload){
+    public static Response updateUser(String username, UserTest payload){
         Response response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .pathParam("username", username)
                 .body(payload)
         .when()
-                .put(Routes.updateUserUrl);
+                .put(Routes_old.updateUserUrl);
 
         return response;
     }
@@ -44,7 +44,7 @@ public class UserEndPoints {
         Response response = given()
                 .pathParam("username", username)
         .when()
-                .get(Routes.deleteUserUrl);
+                .get(Routes_old.deleteUserUrl);
 
         return response;
     }
