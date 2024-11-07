@@ -2,6 +2,7 @@ package commons;
 
 import org.openqa.selenium.WebDriver;
 import pageObject.apps.OT.DashboardPageOTAppObject;
+import pageObject.apps.OT.SettingsPageOTAppObject;
 import pageObject.apps.OT.ShipmentPageOTAppObject;
 import pageObject.apps.OT.SubscriptionPlansOTAppObject;
 import pageObject.apps.RD.SettingsPageRDAppObject;
@@ -107,5 +108,9 @@ public class PageGeneratorManager extends BasePage {
 
     public static DisputePageSTAppObject getDisputePageSTAppObject(WebDriver driver) {
         return new DisputePageSTAppObject(driver);
+    }
+
+    public static SettingsPageOTAppObject getSettingsPageOTApp(WebDriver driver) {
+        return new SettingsPageOTAppObject(driver);
     }
 }

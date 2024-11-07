@@ -1,8 +1,5 @@
 package payload.apps.OT;
 
-import org.joda.time.DateTime;
-
-import java.time.ZonedDateTime;
 
 public class ListShipmentPayload {
 
@@ -36,6 +33,5 @@ public class ListShipmentPayload {
     int perPage;
     String fromDate;
     String toDate;
-
 
 }

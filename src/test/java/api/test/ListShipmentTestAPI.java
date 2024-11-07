@@ -1,13 +1,10 @@
-package com.shopify.apps.OT;
+package api.test;
 
-import endPoints.apps.ST.DetailShipmentEndpoints;
 import endPoints.apps.ST.ListShipmentEndpoints;
-import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import payload.apps.OT.DetailShipmentPayload;
 import payload.apps.OT.ListShipmentPayload;
 import utilities.JsonUtil;
 
@@ -15,25 +12,19 @@ import java.util.List;
 import java.util.Map;
 
 
-public class ListShipmentAPI {
-
+public class ListShipmentTestAPI {
     @BeforeClass
     public void setupData(){
         listShipmentPayload = new ListShipmentPayload();
+
         listShipmentPayload.setShop(shop);
         listShipmentPayload.setUrlParams(urlParams);
         listShipmentPayload.setPage(page);
         listShipmentPayload.setPerPage(perPage);
         listShipmentPayload.setFromDate(fromDate);
         listShipmentPayload.setToDate(toDate);
-
-        detailShipmentPayload = new DetailShipmentPayload();
-        detailShipmentPayload.setShop(shop);
-        detailShipmentPayload.setUrlParams(urlParams);
-        detailShipmentPayload.setId(id);
     }
 
-    @Description("Get list shipment")
     @Test
     public void TC01_getListShipment(){
         Response response = ListShipmentEndpoints.getListShipment(shop, urlParams,page,perPage,fromDate, toDate);
@@ -59,29 +50,11 @@ public class ListShipmentAPI {
 
     }
 
-    @Description("Get detail shipment from list shipment")
-    @Test
-    public void TC02_getDetailShipment(){
-        Response getListShipmentApi = ListShipmentEndpoints.getListShipment(shop, urlParams,page,perPage,fromDate, toDate);
-        Assert.assertEquals(getListShipmentApi.getStatusCode(), 200);
-        Map<String, Object> objectListShipment = JsonUtil.getObjectByKeyValue(getListShipmentApi,"data.shipments","orderId","5375017320548");
-
-        id = (int) JsonUtil.getValueByKey(objectListShipment,"id");
-
-        Response getDetailShipmentApi = DetailShipmentEndpoints.getDetailShipment(shop, urlParams,id);
-        getDetailShipmentApi.then().log().all();
-        Assert.assertEquals(getDetailShipmentApi.getStatusCode(), 200);
-
-
-    }
-
     ListShipmentPayload listShipmentPayload;
-    DetailShipmentPayload detailShipmentPayload;
     String shop = "hoangxe-test-3.myshopify.com";
     String urlParams = "by-passs";
     int page = 1;
     int perPage = 5;
     String fromDate = "2024-10-07T08:21:56.271Z";
-    String toDate = "2024-11-05T08:21:56.271Z";
-    int id;
+    String  toDate = "2024-11-05T08:21:56.271Z";
 }

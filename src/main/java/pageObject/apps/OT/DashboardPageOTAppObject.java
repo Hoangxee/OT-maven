@@ -50,4 +50,13 @@ public class DashboardPageOTAppObject extends BasePage {
         return PageGeneratorManager.getShipmentPageOTApp(driver);
     }
 
+    @Step("Click to Settings tab and open Tracking link set-up page")
+    public SettingsPageOTAppObject openTrackingLinkSetupPage() {
+        switchToFrameIframe(driver, DashboardPageOTAppUI.APP_IFRAME);
+        waitForElementClickable(driver, DashboardPageOTAppUI.PAGE_OT_IN_NAVIGATE,OTConstants.SETTINGS_PAGES_OT_APP_IN_NAVIGATION);
+        clickToElement(driver, DashboardPageOTAppUI.PAGE_OT_IN_NAVIGATE,OTConstants.SETTINGS_PAGES_OT_APP_IN_NAVIGATION);
+
+        return PageGeneratorManager.getSettingsPageOTApp(driver);
+    }
+
 }

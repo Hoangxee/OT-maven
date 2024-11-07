@@ -11,6 +11,10 @@ public class JsonUtil {
         return jsonPathEvaluator.get(jsonPath);
     }
 
+    public static Object getValueByKey(Map<String, Object> object, String key) {
+        return object.get(key);
+    }
+
     public static <T> List<T> getListValueByKey(Response response, String jsonPath) {
         JsonPath jsonPathEvaluator = response.jsonPath();
         return jsonPathEvaluator.getList(jsonPath);

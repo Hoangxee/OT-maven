@@ -6,6 +6,7 @@ public class OTConstants {
     public static final String TRACKING_NUMBER = "94001210072737656324066649";
     public static final String APP_NAME_TEXT_IN_SEARCH_APPS = "tracking-order-now";
     public static final String SHIPMENTS_PAGES_OT_APP_IN_NAVIGATION = "Shipments";
+    public static final String SETTINGS_PAGES_OT_APP_IN_NAVIGATION = "Settings";
     public static final String SUBSCRIPTION_PLANS_PAGES_OT_APP_IN_NAVIGATION = "Subscription Plans";
     public static final String GET_OLD_ORDER_POPUP_TITLE = "Would you like to process the old orders?";
     public static final String GET_OLD_ORDER_PROCESS_SUCCESSFULLY_MESSAGE = "Process orders successfully!";

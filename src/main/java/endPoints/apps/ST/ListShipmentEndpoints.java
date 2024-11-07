@@ -2,12 +2,9 @@ package endPoints.apps.ST;
 
 import static io.restassured.RestAssured.given;
 
-import apiTest.payload.UserTest;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import payload.apps.OT.ListShipmentPayload;
+import org.aeonbits.owner.Config;
 
-import java.time.ZonedDateTime;
 import java.util.ResourceBundle;
 
 public class ListShipmentEndpoints {
@@ -31,7 +28,7 @@ public class ListShipmentEndpoints {
 //    }
 
     public static Response getListShipment(String shop, String urlParams, int page, int perPage, String fromDate, String toDate){
-        String getDetailUserUrl = getURL().getString("getListShipmentUrl");
+        String getListUserUrl = baseUrl + getURL().getString("getListShipmentUrl");
 
         Response response = given()
                 .queryParam("shop",shop)
@@ -41,8 +38,10 @@ public class ListShipmentEndpoints {
                 .queryParam("fromDate",fromDate)
                 .queryParam("toDate",toDate)
         .when()
-                .get(getDetailUserUrl);
+                .get(getListUserUrl);
 
         return response;
     }
+
+    static String baseUrl = getURL().getString("baseRouteUrl");
 }
