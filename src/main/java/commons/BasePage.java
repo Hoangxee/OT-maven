@@ -1,7 +1,6 @@
 package commons;
 
 import commons.constant.GlobalConstants;
-import io.restassured.response.Response;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.*;
@@ -681,6 +680,14 @@ public class BasePage {
 
     public void waitForFrameToBeAvailable(WebDriver driver, String locatorType, String...dynamicValues){
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(getByLocator(getDynamicXpath(locatorType, dynamicValues))));
+    }
+
+    public Boolean waitForInputSuccessful(WebDriver driver, String locatorType, String textInput){
+        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.textToBe(getByLocator(locatorType),textInput));
+    }
+
+    public Boolean waitForInputSuccessful(WebDriver driver, String locatorType, String textInput, String...dynamicValues){
+        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.textToBe(getByLocator(getDynamicXpath(locatorType, dynamicValues)),textInput));
     }
 
     public void closeWindowTab(WebDriver driver){

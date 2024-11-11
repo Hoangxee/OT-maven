@@ -8,6 +8,7 @@ public class GlobalConstants {
      public static final String SHOPIFY_ADMIN_PASSWORD = "12345678a";
      public static final String SHOPIFY_APP_STORE_URL = "https://apps.shopify.com/";
      public static final String SHOPIFY_STORE_FRONT_URL = "https://returns-drive.myshopify.com";
+     public static final String ORDER_TRACKING_STORE_FRONT_URL = "https://returns-drive.myshopify.com/apps/order-tracking";
      public static final String SHOPIFY_STORE_FRONT_PASSWORD = "12345678a";
      public static final String SHOPIFY_STORE_FRONT_PRODUCT = "Ae-1000W-1Bvef_Test 1";
      public static final String SHOPIFY_ADMIN_2_URL = "https://admin.shopify.com/store/p1chd0-bm/";

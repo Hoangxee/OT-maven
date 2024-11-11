@@ -12,6 +12,7 @@ import pageObject.apps.RD.SettingsPageRDAppObject;
 import pageObject.apps.ST.HomePageSTAppObject;
 import pageUIs.adminShopify.CreateOrderPageAdminUI;
 import pageUIs.adminShopify.HomePageAdminUI;
+import pageUIs.apps.OT.DashboardPageOTAppUI;
 
 import java.util.List;
 
@@ -125,6 +126,8 @@ public class HomePageAdminObject extends BasePage {
 
         waitForElementClickable(driver, HomePageAdminUI.APP_NAME_IN_SEARCH_APPS, OTConstants.APP_NAME_TEXT_IN_SEARCH_APPS);
         clickToElement(driver, HomePageAdminUI.APP_NAME_IN_SEARCH_APPS,OTConstants.APP_NAME_TEXT_IN_SEARCH_APPS);
+
+        waitForProcessBar(driver, DashboardPageOTAppUI.PROGRESS_BAR);
 
         return PageGeneratorManager.getDashboardPageOTApp(driver);
     }
