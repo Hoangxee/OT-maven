@@ -1,9 +1,9 @@
 package com.shopify.apps.ST.SettingsPage;
 
 import commons.BaseTest;
-import commons.constant.GlobalConstants;
 import commons.PageGeneratorManager;
-import commons.constant.STConstants;
+import commons.constant.GlobalConstants;
+import commons.constant.ST_SettingsPageConstants;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -19,7 +19,8 @@ import pageObject.shopify.admin.HomePageAdminObject;
 import pageObject.shopify.admin.LoginPageAdminObject;
 import utilities.Environment;
 
-public class FacebookInstagramPaymentPage extends BaseTest {
+public class DigitalProductPage extends BaseTest {
+
     @Parameters({"browser","environment"})
     @BeforeClass
     public void beforeClass(String browserName, String environmentName) {
@@ -32,21 +33,15 @@ public class FacebookInstagramPaymentPage extends BaseTest {
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
     }
 
-    @Description("Add account Facebook and Instagram settings")
+    @Description("Change status Sync tracking info for digital products")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void TC01_AddAccountFacebookInstagramPayment() {
+    public void ChangeStatusSyncTrackingInfoForDigitalProducts() {
         homePageST = homePage.openAppSynctrack();
         settingsPageST = homePageST.openSettingsPage();
-        settingsPageST.openFacebookInstagramPaymentTab();
-        settingsPageST.addPaymentAccount(environment.disputePaypalClientID(), environment.disputePaypalSecretKey());
-    }
-
-    @Description("Delete account Facebook and Instagram settings")
-    @Severity(SeverityLevel.NORMAL)
-    @Test
-    public void TC02_DeleteAccountFacebookInstagramPayment() {
-        settingsPageST.deletePaymentAccount();
+        settingsPageST.openDigitalProductTab();
+        settingsPageST.turnOnSyncTrackingInfo();
+        settingsPageST.turnOffSyncTrackingInfo();
     }
 
     @AfterClass

@@ -40,7 +40,7 @@ public class DisputePage extends BaseTest {
         disputePageST = homePageST.openDisputePage();
         disputePageST.turnOnDisputeManagement();
         disputePageST.connectPaypalAccountInDisputePage(STConstants.PAYPAL_EMAIL,
-                STConstants.DISPUTE_PAYPAL_CLIENT_ID,STConstants.DISPUTE_PAYPAL_SECRET_KEY);
+                environment.disputePaypalClientID(),environment.disputePaypalSecretKey());
         disputePageST.verifyPaypalAccountConnectedInDisputePage(STConstants.PAYPAL_EMAIL);
     }
 

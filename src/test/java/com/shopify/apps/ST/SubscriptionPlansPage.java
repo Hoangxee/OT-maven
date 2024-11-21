@@ -36,12 +36,20 @@ public class SubscriptionPlansPage extends BaseTest {
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
     }
 
+    @Description("Verify plan")
+    @Severity(SeverityLevel.NORMAL)
+    @Test
+    public void TC01_VerifyPlan() {
+        homePageST = homePage.openAppSynctrack();
+        subscriptionPlansPageST = homePageST.openSubscriptionPlansPage();
+        subscriptionPlansPageST.verifyMonthlyPlan(ST_SubscriptionPlansPageConstants.UNLIMITED_PLAN_TEXT);
+        subscriptionPlansPageST.verifyAnnualPlan(ST_SubscriptionPlansPageConstants.UNLIMITED_PLAN_TEXT);
+    }
+
     @Description("Change plan")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void ChangePlan() {
-        homePageST = homePage.openAppSynctrack();
-        subscriptionPlansPageST = homePageST.openSubscriptionPlansPage();
+    public void TC02_ChangePlan() {
         approveSubscriptionAmin = subscriptionPlansPageST.chooseMonthlyPlan(ST_SubscriptionPlansPageConstants.UNLIMITED_PLAN_TEXT);
         homePageST = approveSubscriptionAmin.approvePlan(SubscriptionPlansPageSTAppObject.planPriceMonthly);
         Assert.assertTrue(homePageST.isPlanActivated(ST_HomePageConstants.UNLIMITED_PLAN_TEXT_IN_HOME, ST_HomePageConstants.UNLIMITED_QUOTA));

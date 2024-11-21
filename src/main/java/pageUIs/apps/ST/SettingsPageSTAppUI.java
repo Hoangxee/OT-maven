@@ -39,4 +39,11 @@ public class SettingsPageSTAppUI {
     public static final String INTEGRATED_STORES_LINK = "xpath=//a[@href='%s']";
     public static final String DISCONNECT_INTEGRATED_STORES_BTN = "xpath=//span[text()='Disconnect']/parent::button";
     public static final String DISCONNECT_INTEGRATED_STORES_BTN_IN_POPUP_CONFIRM = "xpath=//div[@class='modal-footer']/div/button";
+    public static final String ERROR_MESSAGE_IN_ADD_EXISTING_KEY_POPUP = "xpath=//div[@class='Polaris-InlineError']/span";
+    public static final String SYNC_TRACKING_INFO_STATUS = "xpath=//div[@class='toggle-settings-title']//span/following-sibling::span";
+    public static final String SYNC_TRACKING_INFO_BTN = "xpath=//div[@class='toggle-btn']/button";
+    public static final String SHOPIFY_ORDER_NOTE_STATUS = "xpath=//div[@class='toggle-settings-title']//span/following-sibling::span";
+    public static final String SHOPIFY_ORDER_NOTE_BTN = "xpath=//div[@class='toggle-btn']/button";
+    public static final String GRANT_MORE_SCOPES_BTN = "xpath=//div[@class='Polaris-Box']//button/following-sibling::a";
+    public static final String UPDATE_BTN_IN_UPDATE_DATA_ACCESS_PAGE = "xpath=//button[@id='proceed_cta']";
 }

@@ -18,8 +18,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 public class BasePage {
     private static BasePage basePage;
@@ -683,7 +683,15 @@ public class BasePage {
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(getByLocator(getDynamicXpath(locatorType, dynamicValues))));
     }
 
-    public void closeWindow(WebDriver driver){
+    public Boolean waitForInputSuccessful(WebDriver driver, String locatorType, String textInput){
+        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.textToBe(getByLocator(locatorType),textInput));
+    }
+
+    public Boolean waitForInputSuccessful(WebDriver driver, String locatorType, String textInput, String...dynamicValues){
+        return new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.textToBe(getByLocator(getDynamicXpath(locatorType, dynamicValues)),textInput));
+    }
+
+    public void closeWindowTab(WebDriver driver){
         driver.close();
     }
 
@@ -786,4 +794,9 @@ public class BasePage {
     public void waitForPageLoaded(WebDriver driver){
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
     }
+
+    protected int getRandomTime() {
+        return new Random().nextInt(999999);
+    }
+
 }

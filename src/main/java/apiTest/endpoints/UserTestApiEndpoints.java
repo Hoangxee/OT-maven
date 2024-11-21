@@ -1,6 +1,6 @@
-package api.endpoints;
+package apiTest.endpoints;
 
-import api.payload.User;
+import apiTest.payload.UserTest;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -8,14 +8,14 @@ import java.util.ResourceBundle;
 
 import static io.restassured.RestAssured.given;
 
-public class UserEndPointsUsePropertuies {
+public class UserTestApiEndpoints {
 
     static ResourceBundle getURL(){
-        ResourceBundle routes = ResourceBundle.getBundle("routes"); //load properties file
+        ResourceBundle routes = ResourceBundle.getBundle("routes"); //load properties file: routes.properties
         return routes;
     }
 
-    public static Response createUser(User payload){
+    public static Response createUser(UserTest payload){
         String addUserUrl = getURL().getString("addUserUrl");
 
         Response response = given()
@@ -39,7 +39,7 @@ public class UserEndPointsUsePropertuies {
         return response;
     }
 
-    public static Response updateUser(String username, User payload){
+    public static Response updateUser(String username, UserTest payload){
         String updateUserUrl = getURL().getString("updateUserUrl");
 
         Response response = given()

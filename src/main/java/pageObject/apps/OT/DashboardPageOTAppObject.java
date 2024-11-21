@@ -3,10 +3,12 @@ package pageObject.apps.OT;
 import commons.BasePage;
 import commons.constant.OTConstants;
 import commons.PageGeneratorManager;
+import commons.constant.OT_SettingsPageConstants;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pageUIs.apps.OT.DashboardPageOTAppUI;
+import pageUIs.apps.OT.SettingsPageOTAppUI;
 
 public class DashboardPageOTAppObject extends BasePage {
     private WebDriver driver;
@@ -48,6 +50,22 @@ public class DashboardPageOTAppObject extends BasePage {
         clickToElement(driver, DashboardPageOTAppUI.PAGE_OT_IN_NAVIGATE,OTConstants.SHIPMENTS_PAGES_OT_APP_IN_NAVIGATION);
 
         return PageGeneratorManager.getShipmentPageOTApp(driver);
+    }
+
+    @Step("Click to Settings tab and open Tracking link set-up page")
+    public SettingsPageOTAppObject openTrackingLinkSetupPage() {
+        waitForElementClickable(driver, DashboardPageOTAppUI.PAGE_OT_IN_NAVIGATE,OTConstants.SETTINGS_PAGES_OT_APP_IN_NAVIGATION);
+        clickToElement(driver, DashboardPageOTAppUI.PAGE_OT_IN_NAVIGATE,OTConstants.SETTINGS_PAGES_OT_APP_IN_NAVIGATION);
+
+        switchToFrameIframe(driver, DashboardPageOTAppUI.APP_IFRAME);
+
+        waitForElementVisible(driver, SettingsPageOTAppUI.MENU_BTN_IN_SETTINGS_PAGE,OT_SettingsPageConstants.TRACKING_LINK_SETUP_IN_TRACKING_PAGE);
+        if(!getAttribute(driver, SettingsPageOTAppUI.MENU_BTN_IN_SETTINGS_PAGE,"aria-pressed",OT_SettingsPageConstants.TRACKING_LINK_SETUP_IN_TRACKING_PAGE).equals("true")){
+            waitForElementClickable(driver, SettingsPageOTAppUI.MENU_BTN_IN_SETTINGS_PAGE,OT_SettingsPageConstants.TRACKING_LINK_SETUP_IN_TRACKING_PAGE);
+            clickToElement(driver, SettingsPageOTAppUI.MENU_BTN_IN_SETTINGS_PAGE,OT_SettingsPageConstants.TRACKING_LINK_SETUP_IN_TRACKING_PAGE);
+        }
+
+        return PageGeneratorManager.getSettingsPageOTApp(driver);
     }
 
 }

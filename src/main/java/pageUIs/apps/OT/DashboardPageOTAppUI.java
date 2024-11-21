@@ -9,5 +9,6 @@ public class DashboardPageOTAppUI {
     public static final String GET_OLD_ORDER_POPUP_TITLE = "xpath=//div[@class='Polaris-InlineStack']/h2";
     public static final String GET_OLD_ORDER_POPUP_BTN = "xpath=//div[@class='Polaris-InlineStack']/button[descendant::span[text()='%s']]";
     public static final String GET_OLD_ORDER_MESSAGE_SUCCESS = "xpath=//div[@class='Polaris-InlineStack']/span[contains(@class,'Polaris-Text')]";
-    public static final String PAGE_OT_IN_NAVIGATE = "xpath=//span[text()='%s']";
+    public static final String PAGE_OT_IN_NAVIGATE = "xpath=//span[text()='%s' and ancestor::a[contains(@href,'tracking-order')]]";
+    public static final String PROGRESS_BAR = "xpath=//div[@class='Polaris-Frame-Loading']";
 }

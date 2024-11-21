@@ -117,7 +117,7 @@ public class OrderPageAdminObject extends BasePage {
 
         openAppStoreFront(GlobalConstants.SHOPIFY_STORE_FRONT_URL,GlobalConstants.SHOPIFY_STORE_FRONT_PASSWORD);
 
-        closeWindow(driver);
+        closeWindowTab(driver);
 
         return PageGeneratorManager.getShipmentPageOTApp(driver);
     }

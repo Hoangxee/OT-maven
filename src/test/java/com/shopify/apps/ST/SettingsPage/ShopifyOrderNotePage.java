@@ -3,13 +3,11 @@ package com.shopify.apps.ST.SettingsPage;
 import commons.BaseTest;
 import commons.PageGeneratorManager;
 import commons.constant.GlobalConstants;
-import commons.constant.STConstants;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -20,7 +18,7 @@ import pageObject.shopify.admin.HomePageAdminObject;
 import pageObject.shopify.admin.LoginPageAdminObject;
 import utilities.Environment;
 
-public class MultiStoresPage extends BaseTest {
+public class ShopifyOrderNotePage extends BaseTest {
 
     @Parameters({"browser","environment"})
     @BeforeClass
@@ -32,50 +30,23 @@ public class MultiStoresPage extends BaseTest {
         loginPage = PageGeneratorManager.getLoginPageAdmin(driver);
         homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
                 GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
+    }
+
+    @Description("Turn on Shopify order note")
+    @Severity(SeverityLevel.NORMAL)
+    @Test
+    public void TC01_TurnOnShopifyOrderNote() {
         homePageST = homePage.openAppSynctrack();
         settingsPageST = homePageST.openSettingsPage();
-        settingsPageST.openMultiStoresTab();
+        settingsPageST.openShopifyOrderNoteTab();
+        settingsPageST.turnOnShopifyOrderNote();
     }
 
-    @Description("Generate a connection key")
+    @Description("Turn off Shopify order note")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void TC01_GenerateConnectionKey() {
-        connectionKey = settingsPageST.generateConnectionKey();
-        Assert.assertTrue(settingsPageST.isConnectionKeyExclusively(connectionKey));
-        settingsPageST.copyConnectionKey();
-        settingsPageST.changeConnectionKey();
-        settingsPageST.deleteConnectionKey();
-    }
-
-    @Description("Verify input invalid Existing Key")
-    @Severity(SeverityLevel.NORMAL)
-    @Test
-    public void TC02_verifyInputInvalidExistingKey() {
-        settingsPageST.verifyInputInvalidExistingKey("test fail");
-    }
-
-    @Description("Connect integrated stores")
-    @Severity(SeverityLevel.NORMAL)
-    @Test
-    public void TC03_ConnectIntegratedStores() {
-        connectionKey = settingsPageST.generateConnectionKey();
-        Assert.assertTrue(settingsPageST.isConnectionKeyExclusively(connectionKey));
-        homePageST = settingsPageST.clickToAddConnectionBtnInPrimaryStore();
-
-        settingsPageST = homePageST.openSettingsPage();
-        settingsPageST.openMultiStoresTab();
-        settingsPageST.addExistingKey(connectionKey);
-        settingsPageST.verifyIntegratedStoresInPrimaryStore();
-    }
-
-    @Description("Disconnect integrated stores")
-    @Severity(SeverityLevel.NORMAL)
-    @Test
-    public void TC04_DisconnectIntegratedStores() {
-        settingsPageST.disconnectIntegratedStores();
-        settingsPageST.deleteConnectionKey();
-        settingsPageST.verifyDisconnectInIntegratedStore();
+    public void TC02_TurnOffShopifyOrderNote() {
+        settingsPageST.turnOffShopifyOrderNote();
     }
 
     @AfterClass
@@ -89,5 +60,4 @@ public class MultiStoresPage extends BaseTest {
     LoginPageAdminObject loginPage;
     HomePageSTAppObject homePageST;
     SettingsPageSTAppObject settingsPageST;
-    String connectionKey;
 }

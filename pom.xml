@@ -26,7 +26,7 @@
         <allure.version>2.13.5</allure.version>
         <lgo4j.version>1.2.17</lgo4j.version>
         <reportng.version>1.1.4</reportng.version>
-        <rest-assured.version>5.3.2</rest-assured.version>
+        <rest-assured.version>5.4.0</rest-assured.version>
 <!--        <rest-assured.version>4.3.0</rest-assured.version>-->
 
     </properties>
@@ -165,13 +165,6 @@
 
         <dependency>
             <groupId>io.rest-assured</groupId>
-            <artifactId>json-path</artifactId>
-            <version>${rest-assured.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>io.rest-assured</groupId>
             <artifactId>json-schema-validator</artifactId>
             <version>${rest-assured.version}</version>
         </dependency>
@@ -243,7 +236,7 @@
                 <configuration>
                     <!-- Run TestNG xml file -->
                     <suiteXmlFiles>
-                        <file>src/test/resources/runAllProject.xml</file>
+                        <file>src/test/resources/config/runAllProject.xml</file>
                     </suiteXmlFiles>
 
                     <!-- Allure report Argument - screenshot for Allure report -->

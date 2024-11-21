@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageObject.apps.ST.paypal.LoginPagePaypalObject;
+import pageUIs.adminShopify.CreateOrderPageAdminUI;
 import pageUIs.apps.ST.HomePageSTAppUI;
 import pageUIs.apps.ST.SettingsPageSTAppUI;
 
@@ -326,5 +327,95 @@ public class SettingsPageSTAppObject extends BasePage {
         openMultiStoresTab();
 
         Assert.assertTrue(isElementDisplayed(driver, SettingsPageSTAppUI.ADD_EXISTING_KEY_BTN));
+    }
+
+    @Step("Verify input invalid Existing key")
+    public void verifyInputInvalidExistingKey(String connectionKey) {
+        waitForElementClickable(driver, SettingsPageSTAppUI.ADD_EXISTING_KEY_BTN);
+        clickToElement(driver, SettingsPageSTAppUI.ADD_EXISTING_KEY_BTN);
+
+        waitForElementVisible(driver, SettingsPageSTAppUI.INPUT_IN_ADD_CONNECTION_POPUP);
+        sendKeyToElement(driver, SettingsPageSTAppUI.INPUT_IN_ADD_CONNECTION_POPUP, connectionKey);
+
+        waitForElementClickable(driver, SettingsPageSTAppUI.SUBMIT_BTN_IN_ADD_CONNECTION_POPUP,"Submit");
+        clickToElement(driver, SettingsPageSTAppUI.SUBMIT_BTN_IN_ADD_CONNECTION_POPUP,"Submit");
+
+        Assert.assertEquals(getTextInElement(driver, SettingsPageSTAppUI.ERROR_MESSAGE_IN_ADD_EXISTING_KEY_POPUP), ST_SettingsPageConstants.ERROR_MESSAGE_IN_ADD_EXISTING_KEY_POPUP);
+
+        waitForElementVisible(driver, SettingsPageSTAppUI.SUBMIT_BTN_IN_ADD_CONNECTION_POPUP,"Ok");
+        clickToElement(driver, SettingsPageSTAppUI.SUBMIT_BTN_IN_ADD_CONNECTION_POPUP,"Ok");
+    }
+
+    @Step("Click to Digital product tab in Settings page")
+    public void openDigitalProductTab() {
+        switchToFrameIframe(driver, HomePageSTAppUI.APP_IFRAME);
+
+        waitForElementClickable(driver, SettingsPageSTAppUI.TABS_IN_SETTINGS_PAGE,ST_SettingsPageConstants.DIGITAL_PRODUCT_IN_SETTINGS_PAGE);
+        clickToElement(driver, SettingsPageSTAppUI.TABS_IN_SETTINGS_PAGE,ST_SettingsPageConstants.DIGITAL_PRODUCT_IN_SETTINGS_PAGE);
+    }
+
+    @Step("Click to Turn on Sync tracking info for digital products")
+    public void turnOnSyncTrackingInfo() {
+        if(getTextInElement(driver, SettingsPageSTAppUI.SYNC_TRACKING_INFO_STATUS).equals("Off")){
+            waitForElementClickable(driver, SettingsPageSTAppUI.SYNC_TRACKING_INFO_BTN);
+            clickToElement(driver, SettingsPageSTAppUI.SYNC_TRACKING_INFO_BTN);
+
+            Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.SYNC_TRACKING_INFO_MESSAGE));
+        }
+    }
+
+    @Step("Click to Turn off Sync tracking info for digital products")
+    public void turnOffSyncTrackingInfo() {
+        if(getTextInElement(driver, SettingsPageSTAppUI.SYNC_TRACKING_INFO_STATUS).equals("On")){
+            waitForElementClickable(driver, SettingsPageSTAppUI.SYNC_TRACKING_INFO_BTN);
+            clickToElement(driver, SettingsPageSTAppUI.SYNC_TRACKING_INFO_BTN);
+
+            Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.SYNC_TRACKING_INFO_MESSAGE));
+        }
+    }
+
+    @Step("Click to Shopify order note tab in Settings page")
+    public void openShopifyOrderNoteTab() {
+        switchToFrameIframe(driver, HomePageSTAppUI.APP_IFRAME);
+
+        waitForElementClickable(driver, SettingsPageSTAppUI.TABS_IN_SETTINGS_PAGE,ST_SettingsPageConstants.SHOPIFY_ORDER_NOTE_IN_SETTINGS_PAGE);
+        clickToElement(driver, SettingsPageSTAppUI.TABS_IN_SETTINGS_PAGE,ST_SettingsPageConstants.SHOPIFY_ORDER_NOTE_IN_SETTINGS_PAGE);
+    }
+
+    @Step("Click to Turn on Shopify order note")
+    public void turnOnShopifyOrderNote() {
+        if(getTextInElement(driver, SettingsPageSTAppUI.SHOPIFY_ORDER_NOTE_STATUS).equals("Off")){
+            waitForElementClickable(driver, SettingsPageSTAppUI.SHOPIFY_ORDER_NOTE_BTN);
+            clickToElement(driver, SettingsPageSTAppUI.SHOPIFY_ORDER_NOTE_BTN);
+
+            List<WebElement> grantMoreScopesBtn = getListWebElement(driver, SettingsPageSTAppUI.GRANT_MORE_SCOPES_BTN);
+            if(!grantMoreScopesBtn.isEmpty()){
+                waitForElementClickable(driver, SettingsPageSTAppUI.GRANT_MORE_SCOPES_BTN);
+                clickToElement(driver, SettingsPageSTAppUI.GRANT_MORE_SCOPES_BTN);
+
+                switchToWindowByTitleContains(driver, "Authorize");
+                waitForElementClickable(driver, SettingsPageSTAppUI.UPDATE_BTN_IN_UPDATE_DATA_ACCESS_PAGE);
+                clickToElement(driver, SettingsPageSTAppUI.UPDATE_BTN_IN_UPDATE_DATA_ACCESS_PAGE);
+
+                waitForPageUrlContains(driver,"home");
+            }
+        }
+    }
+
+    @Step("Click to Turn off Shopify order note")
+    public void turnOffShopifyOrderNote() {
+        if(getPageURL(driver).contains("home")){
+            closeWindowTab(driver);
+            switchToWindowByTitle(driver, "Synctrack PayPal Tracking");
+            refreshCurrentPage(driver);
+            openShopifyOrderNoteTab();
+        }
+
+        if(getTextInElement(driver, SettingsPageSTAppUI.SHOPIFY_ORDER_NOTE_STATUS).equals("On")){
+            waitForElementClickable(driver, SettingsPageSTAppUI.SHOPIFY_ORDER_NOTE_BTN);
+            clickToElement(driver, SettingsPageSTAppUI.SHOPIFY_ORDER_NOTE_BTN);
+
+            Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.SHOPIFY_ORDER_NOTE_MESSAGE));
+        }
     }
 }

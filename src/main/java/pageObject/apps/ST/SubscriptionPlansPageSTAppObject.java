@@ -2,7 +2,6 @@ package pageObject.apps.ST;
 
 import commons.BasePage;
 import commons.PageGeneratorManager;
-import commons.constant.STConstants;
 import commons.constant.ST_SubscriptionPlansPageConstants;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
@@ -20,12 +19,86 @@ public class SubscriptionPlansPageSTAppObject extends BasePage {
         driver = mappingDriver;
     }
 
-    @Step("Click to Choose plan button in {0}")
-    public ApproveSubscriptionAdminObject chooseMonthlyPlan(String planName){
+    @Step("Verify price and quota of {0} plan monthly")
+    public void verifyMonthlyPlan(String planName){
         switchToFrameIframe(driver, HomePageSTAppUI.APP_IFRAME);
 
-        waitForElementVisible(driver, SubscriptionPlansPageSTAppUI.PLAN_PRICE_MONTHLY, planName.toUpperCase());
-        planPriceMonthly = getTextInElement(driver, SubscriptionPlansPageSTAppUI.PLAN_PRICE_MONTHLY, planName.toUpperCase());
+        waitForElementVisible(driver, SubscriptionPlansPageSTAppUI.PLAN_PRICE_MONTHLY_TEXT, planName.toUpperCase());
+        waitForElementVisible(driver, SubscriptionPlansPageSTAppUI.QUOTA_MONTHLY_TEXT, planName.toUpperCase());
+        switch(planName){
+            case ST_SubscriptionPlansPageConstants.BASIC_PLAN_TEXT:
+                Assert.assertEquals(getTextInElement(driver, SubscriptionPlansPageSTAppUI.PLAN_PRICE_MONTHLY_TEXT, planName.toUpperCase()),
+                        ST_SubscriptionPlansPageConstants.BASIC_PLAN_PRICE_MONTHLY_TEXT);
+                Assert.assertEquals(getTextInElement(driver, SubscriptionPlansPageSTAppUI.QUOTA_MONTHLY_TEXT, planName.toUpperCase()),
+                        ST_SubscriptionPlansPageConstants.BASIC_PLAN_QUOTA_TEXT);
+                break;
+            case ST_SubscriptionPlansPageConstants.PRO_PLAN_TEXT:
+                Assert.assertEquals(getTextInElement(driver, SubscriptionPlansPageSTAppUI.PLAN_PRICE_MONTHLY_TEXT, planName.toUpperCase()),
+                        ST_SubscriptionPlansPageConstants.PRO_PLAN_PRICE_MONTHLY_TEXT);
+                Assert.assertEquals(getTextInElement(driver, SubscriptionPlansPageSTAppUI.QUOTA_MONTHLY_TEXT, planName.toUpperCase()),
+                        ST_SubscriptionPlansPageConstants.PRO_PLAN_QUOTA_TEXT);
+                break;
+            case ST_SubscriptionPlansPageConstants.PREMIUM_PLAN_TEXT:
+                Assert.assertEquals(getTextInElement(driver, SubscriptionPlansPageSTAppUI.PLAN_PRICE_MONTHLY_TEXT, planName.toUpperCase()),
+                        ST_SubscriptionPlansPageConstants.PREMIUM_PLAN_PRICE_MONTHLY_TEXT);
+                Assert.assertEquals(getTextInElement(driver, SubscriptionPlansPageSTAppUI.QUOTA_MONTHLY_TEXT, planName.toUpperCase()),
+                        ST_SubscriptionPlansPageConstants.PREMIUM_PLAN_TEXT);
+                break;
+            case ST_SubscriptionPlansPageConstants.UNLIMITED_PLAN_TEXT:
+                Assert.assertEquals(getTextInElement(driver, SubscriptionPlansPageSTAppUI.PLAN_PRICE_MONTHLY_TEXT, planName.toUpperCase()),
+                        ST_SubscriptionPlansPageConstants.UNLIMITED_PLAN_PRICE_MONTHLY_TEXT);
+                Assert.assertEquals(getTextInElement(driver, SubscriptionPlansPageSTAppUI.QUOTA_MONTHLY_TEXT, planName.toUpperCase()),
+                        ST_SubscriptionPlansPageConstants.UNLIMITED_PLAN_QUOTA_TEXT);
+                break;
+            default:
+                System.out.println(planName+" not found!");
+        }
+    }
+
+    @Step("Verify price and quota of {0} plan annual")
+    public void verifyAnnualPlan(String planName){
+        waitForElementClickable(driver, SubscriptionPlansPageSTAppUI.PLAN_TAB_BTN,"Annual");
+        clickToElement(driver, SubscriptionPlansPageSTAppUI.PLAN_TAB_BTN,"Annual");
+
+        waitForElementVisible(driver, SubscriptionPlansPageSTAppUI.PLAN_PRICE_ANNUAL_TEXT, planName.toUpperCase());
+        waitForElementVisible(driver, SubscriptionPlansPageSTAppUI.QUOTA_MONTHLY_TEXT, planName.toUpperCase());
+        switch(planName){
+            case ST_SubscriptionPlansPageConstants.BASIC_PLAN_TEXT:
+                Assert.assertEquals(getTextInElement(driver, SubscriptionPlansPageSTAppUI.PLAN_PRICE_ANNUAL_TEXT, planName.toUpperCase()),
+                        ST_SubscriptionPlansPageConstants.BASIC_PLAN_PRICE_ANNUAL_TEXT);
+                Assert.assertEquals(getTextInElement(driver, SubscriptionPlansPageSTAppUI.QUOTA_MONTHLY_TEXT, planName.toUpperCase()),
+                        ST_SubscriptionPlansPageConstants.BASIC_PLAN_QUOTA_TEXT);
+                break;
+            case ST_SubscriptionPlansPageConstants.PRO_PLAN_TEXT:
+                Assert.assertEquals(getTextInElement(driver, SubscriptionPlansPageSTAppUI.PLAN_PRICE_ANNUAL_TEXT, planName.toUpperCase()),
+                        ST_SubscriptionPlansPageConstants.PRO_PLAN_PRICE_ANNUAL_TEXT);
+                Assert.assertEquals(getTextInElement(driver, SubscriptionPlansPageSTAppUI.QUOTA_MONTHLY_TEXT, planName.toUpperCase()),
+                        ST_SubscriptionPlansPageConstants.PRO_PLAN_QUOTA_TEXT);
+                break;
+            case ST_SubscriptionPlansPageConstants.PREMIUM_PLAN_TEXT:
+                Assert.assertEquals(getTextInElement(driver, SubscriptionPlansPageSTAppUI.PLAN_PRICE_ANNUAL_TEXT, planName.toUpperCase()),
+                        ST_SubscriptionPlansPageConstants.PREMIUM_PLAN_PRICE_ANNUAL_TEXT);
+                Assert.assertEquals(getTextInElement(driver, SubscriptionPlansPageSTAppUI.QUOTA_MONTHLY_TEXT, planName.toUpperCase()),
+                        ST_SubscriptionPlansPageConstants.PREMIUM_PLAN_TEXT);
+                break;
+            case ST_SubscriptionPlansPageConstants.UNLIMITED_PLAN_TEXT:
+                Assert.assertEquals(getTextInElement(driver, SubscriptionPlansPageSTAppUI.PLAN_PRICE_ANNUAL_TEXT, planName.toUpperCase()),
+                        ST_SubscriptionPlansPageConstants.UNLIMITED_PLAN_PRICE_ANNUAL_TEXT);
+                Assert.assertEquals(getTextInElement(driver, SubscriptionPlansPageSTAppUI.QUOTA_MONTHLY_TEXT, planName.toUpperCase()),
+                        ST_SubscriptionPlansPageConstants.UNLIMITED_PLAN_QUOTA_TEXT);
+                break;
+            default:
+                System.out.println(planName+" not found!");
+        }
+    }
+
+    @Step("Click to Choose plan button in {0}")
+    public ApproveSubscriptionAdminObject chooseMonthlyPlan(String planName){
+        waitForElementClickable(driver, SubscriptionPlansPageSTAppUI.PLAN_TAB_BTN,"Monthly");
+        clickToElement(driver, SubscriptionPlansPageSTAppUI.PLAN_TAB_BTN,"Monthly");
+
+        waitForElementVisible(driver, SubscriptionPlansPageSTAppUI.PLAN_PRICE_MONTHLY_TEXT, planName.toUpperCase());
+        planPriceMonthly = getTextInElement(driver, SubscriptionPlansPageSTAppUI.PLAN_PRICE_MONTHLY_TEXT, planName.toUpperCase());
 
         List<WebElement> choosePlanBtn = getListWebElement(driver, SubscriptionPlansPageSTAppUI.CHOOSE_PLAN_BTN,planName);
         if (choosePlanBtn.size() != 0) {

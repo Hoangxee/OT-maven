@@ -28,7 +28,7 @@ public class ApproveSubscriptionAdminObject extends BasePage {
         }
         else {
             log.info("Total price in Shopify not equal to Subscription plans page");
-            closeWindow(driver);
+            closeWindowTab(driver);
         }
         return PageGeneratorManager.getHomePageSTAppObject(driver);
     }
