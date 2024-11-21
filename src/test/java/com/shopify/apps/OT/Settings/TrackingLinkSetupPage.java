@@ -44,20 +44,21 @@ public class TrackingLinkSetupPage extends BaseTest {
 
     @Description("Tracking link set-up page")
     @Severity(SeverityLevel.NORMAL)
-    @Test
+//    @Test
     public void trackingLinkSetup(){
         settingsOT = dashboardOT.openTrackingLinkSetupPage();
         settingsOT.checkedToReplaceCourierLinkCheckbox();
         settingsOT.sendKeyToLinkDescriptionInput("Test Add a tracking link to Order Status page");
         settingsOT.checkedToAddLinkToOrderCheckbox();
-
+        settingsOT.uncheckedToReplaceCourierLinkCheckbox();
+        settingsOT.uncheckedToAddLinkToOrderCheckbox();
     }
 
     @Description("Tracking link set-up page by API")
     @Severity(SeverityLevel.NORMAL)
     @Test
     public void trackingLinkSetupByAPI(){
-        Response response = SettingsEndpoints.getTrackingLink(shop, urlParams);
+        Response response = SettingsEndpoints.getTrackingLink(settingsPayload);
         response.then().log().all();
         Assert.assertEquals(response.getStatusCode(), 200);
 

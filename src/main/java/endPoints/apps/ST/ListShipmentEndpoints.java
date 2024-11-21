@@ -4,6 +4,8 @@ import static io.restassured.RestAssured.given;
 
 import io.restassured.response.Response;
 import org.aeonbits.owner.Config;
+import payload.apps.OT.ListShipmentPayload;
+import payload.apps.OT.SettingsPayload;
 
 import java.util.ResourceBundle;
 
@@ -27,16 +29,16 @@ public class ListShipmentEndpoints {
 //        return response;
 //    }
 
-    public static Response getListShipment(String shop, String urlParams, int page, int perPage, String fromDate, String toDate){
+    public static Response getListShipment(ListShipmentPayload payload){
         String getListUserUrl = baseUrl + getURL().getString("getListShipmentUrl");
 
         Response response = given()
-                .queryParam("shop",shop)
-                .queryParam("urlParams",urlParams)
-                .queryParam("page",page)
-                .queryParam("perPage",perPage)
-                .queryParam("fromDate",fromDate)
-                .queryParam("toDate",toDate)
+                .queryParam("shop",payload.getShop())
+                .queryParam("urlParams",payload.getUrlParams())
+                .queryParam("page",payload.getPage())
+                .queryParam("perPage",payload.getPerPage())
+                .queryParam("fromDate",payload.getFromDate())
+                .queryParam("toDate",payload.getToDate())
         .when()
                 .get(getListUserUrl);
 

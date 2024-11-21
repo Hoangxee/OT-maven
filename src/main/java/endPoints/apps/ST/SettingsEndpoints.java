@@ -1,6 +1,8 @@
 package endPoints.apps.ST;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
+import payload.apps.OT.SettingsPayload;
 
 import java.util.ResourceBundle;
 
@@ -14,13 +16,27 @@ public class SettingsEndpoints {
         return routes;
     }
 
-    public static Response getTrackingLink(String shop, String urlParams){
-        String getTrackingLink = baseUrl + getURL().getString("getTrackingLinkUrl");
+    @Step("Get status of checkbox in Tracking link set-up page")
+    public static Response getTrackingLink(SettingsPayload payload){
+        String getTrackingLink = baseUrl + getURL().getString("trackingLinkUrl");
 
         Response response = given()
-                .queryParam("shop",shop)
-                .queryParam("urlParams",urlParams)
-        .when()
+                .queryParam("shop",payload.getShop())
+                .queryParam("urlParams",payload.getUrlParams())
+                .when()
+                .get(getTrackingLink);
+
+        return response;
+    }
+
+    @Step("Update data in Tracking link set-up page")
+    public static Response updateTrackingLink(SettingsPayload payload){
+        String getTrackingLink = baseUrl + getURL().getString("trackingLinkUrl");
+
+        Response response = given()
+                .queryParam("shop",payload.getShop())
+                .queryParam("urlParams",payload.getUrlParams())
+                .when()
                 .get(getTrackingLink);
 
         return response;

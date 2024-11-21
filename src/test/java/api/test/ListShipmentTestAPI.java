@@ -27,7 +27,7 @@ public class ListShipmentTestAPI {
 
     @Test
     public void TC01_getListShipment(){
-        Response response = ListShipmentEndpoints.getListShipment(shop, urlParams,page,perPage,fromDate, toDate);
+        Response response = ListShipmentEndpoints.getListShipment(listShipmentPayload);
         response.then().log().all();
         Assert.assertEquals(response.getStatusCode(), 200);
 

@@ -36,7 +36,7 @@ public class ListShipmentAPI {
     @Description("Get list shipment")
     @Test
     public void TC01_getListShipment(){
-        Response response = ListShipmentEndpoints.getListShipment(shop, urlParams,page,perPage,fromDate, toDate);
+        Response response = ListShipmentEndpoints.getListShipment(listShipmentPayload);
         response.then().log().all();
         Assert.assertEquals(response.getStatusCode(), 200);
 
@@ -62,13 +62,13 @@ public class ListShipmentAPI {
     @Description("Get detail shipment from list shipment")
     @Test
     public void TC02_getDetailShipment(){
-        Response getListShipmentApi = ListShipmentEndpoints.getListShipment(shop, urlParams,page,perPage,fromDate, toDate);
+        Response getListShipmentApi = ListShipmentEndpoints.getListShipment(listShipmentPayload);
         Assert.assertEquals(getListShipmentApi.getStatusCode(), 200);
         Map<String, Object> objectListShipment = JsonUtil.getObjectByKeyValue(getListShipmentApi,"data.shipments","orderId","5375017320548");
 
         id = (int) JsonUtil.getValueByKey(objectListShipment,"id");
 
-        Response getDetailShipmentApi = DetailShipmentEndpoints.getDetailShipment(shop, urlParams,id);
+        Response getDetailShipmentApi = DetailShipmentEndpoints.getDetailShipment(detailShipmentPayload);
         getDetailShipmentApi.then().log().all();
         Assert.assertEquals(getDetailShipmentApi.getStatusCode(), 200);
 

@@ -14,6 +14,18 @@ public class DetailShipmentPayload {
         this.id = id;
     }
 
+    public String getShop() {
+        return shop;
+    }
+
+    public String getUrlParams() {
+        return urlParams;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     String shop;
     String urlParams;
     int id;

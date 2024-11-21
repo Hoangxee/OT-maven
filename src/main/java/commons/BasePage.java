@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.Set;
 
 public class BasePage {
@@ -792,6 +793,10 @@ public class BasePage {
 
     public void waitForPageLoaded(WebDriver driver){
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+    }
+
+    protected int getRandomTime() {
+        return new Random().nextInt(999999);
     }
 
 }

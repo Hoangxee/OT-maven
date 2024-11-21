@@ -121,10 +121,6 @@ public class BaseTest {
         return this.driver;
     }
 
-    protected int getRandomTime() {
-        return new Random().nextInt(999999);
-    }
-
     protected void deleteAllFileInFolder() {
         try {
             String pathFolderDownload = GlobalConstants.PROJECT_PATH + "/allure-results";

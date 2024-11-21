@@ -27,6 +27,31 @@ public class ListShipmentPayload {
         this.toDate = toDate;
     }
 
+
+    public String getShop() {
+        return shop;
+    }
+
+    public String getUrlParams() {
+        return urlParams;
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public int getPerPage() {
+        return perPage;
+    }
+
+    public String getFromDate() {
+        return fromDate;
+    }
+
+    public String getToDate() {
+        return toDate;
+    }
+
     String shop;
     String urlParams;
     int page;
