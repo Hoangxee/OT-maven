@@ -10,7 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageObject.apps.ST.paypal.LoginPagePaypalObject;
-import pageUIs.adminShopify.CreateOrderPageAdminUI;
 import pageUIs.apps.ST.HomePageSTAppUI;
 import pageUIs.apps.ST.SettingsPageSTAppUI;
 
@@ -87,7 +86,7 @@ public class SettingsPageSTAppObject extends BasePage {
         waitForElementAttributeChange(driver, SettingsPageSTAppUI.BTN_IN_ADD_PAYMENT_ACCOUNT_POPUP, "aria-disabled", "false","Save");
         clickToElement(driver, SettingsPageSTAppUI.BTN_IN_ADD_PAYMENT_ACCOUNT_POPUP,"Save");
 
-        Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.ADD_PAYMENT_ACCOUNT_SUCCESSFULLY_MESSAGE));
+        Assert.assertTrue(isListElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.ADD_PAYMENT_ACCOUNT_SUCCESSFULLY_MESSAGE));
         Assert.assertEquals(getTextInElement(driver, SettingsPageSTAppUI.ACCOUNT_STATUS_TEXT),"Active");
     }
 
@@ -101,7 +100,7 @@ public class SettingsPageSTAppObject extends BasePage {
         waitForElementClickable(driver, SettingsPageSTAppUI.DELETE_BTN_IN_CONFIRM_DELETE_POPUP);
         clickToElement(driver, SettingsPageSTAppUI.DELETE_BTN_IN_CONFIRM_DELETE_POPUP);
 
-        Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.REMOVE_PAYMENT_ACCOUNT_SUCCESSFULLY_MESSAGE));
+        Assert.assertTrue(isListElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.REMOVE_PAYMENT_ACCOUNT_SUCCESSFULLY_MESSAGE));
     }
 
     @Step("Click to Courier mapping tab in Settings page")
@@ -134,7 +133,7 @@ public class SettingsPageSTAppObject extends BasePage {
         waitForElementAttributeChange(driver, SettingsPageSTAppUI.BTN_IN_COURIER_MAPPING_POPUP, "aria-disabled", "false","Save");
         clickToElement(driver, SettingsPageSTAppUI.BTN_IN_COURIER_MAPPING_POPUP,"Save");
 
-        Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.ADD_COURIER_MAPPING_RULE_SUCCESSFULLY_MESSAGE));
+        Assert.assertTrue(isListElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.ADD_COURIER_MAPPING_RULE_SUCCESSFULLY_MESSAGE));
     }
 
     @Step("Delete all Courier mapping rules")
@@ -147,7 +146,7 @@ public class SettingsPageSTAppObject extends BasePage {
             waitForElementClickable(driver, SettingsPageSTAppUI.DELETE_BTN_IN_CONFIRM_DELETE_POPUP);
             clickToElement(driver, SettingsPageSTAppUI.DELETE_BTN_IN_CONFIRM_DELETE_POPUP);
 
-            Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.REMOVE_COURIER_MAPPING_RULE_SUCCESSFULLY_MESSAGE));
+            Assert.assertTrue(isListElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.REMOVE_COURIER_MAPPING_RULE_SUCCESSFULLY_MESSAGE));
             sleepInSecond(1);
             rules = getListWebElement(driver, SettingsPageSTAppUI.COURIER_MAPPING_RULES);
         }
@@ -184,7 +183,7 @@ public class SettingsPageSTAppObject extends BasePage {
         waitForElementAttributeChange(driver, SettingsPageSTAppUI.BTN_IN_ADD_IGNORE_RULES_POPUP, "aria-disabled", "false","Save");
         clickToElement(driver, SettingsPageSTAppUI.BTN_IN_ADD_IGNORE_RULES_POPUP,"Save");
 
-        Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.ADD_IGNORE_RULE_SUCCESSFULLY_MESSAGE));
+        Assert.assertTrue(isListElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.ADD_IGNORE_RULE_SUCCESSFULLY_MESSAGE));
     }
 
     @Step("Delete all Ignore Sync rules")
@@ -197,7 +196,7 @@ public class SettingsPageSTAppObject extends BasePage {
             waitForElementClickable(driver, SettingsPageSTAppUI.DELETE_BTN_IN_CONFIRM_DELETE_POPUP);
             clickToElement(driver, SettingsPageSTAppUI.DELETE_BTN_IN_CONFIRM_DELETE_POPUP);
 
-            Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.DELETE_IGNORE_RULE_SUCCESSFULLY_MESSAGE));
+            Assert.assertTrue(isListElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.DELETE_IGNORE_RULE_SUCCESSFULLY_MESSAGE));
             sleepInSecond(1);
             rules = getListWebElement(driver, SettingsPageSTAppUI.IGNORE_SYNC_RULES);
         }
@@ -216,7 +215,7 @@ public class SettingsPageSTAppObject extends BasePage {
         waitForElementClickable(driver, SettingsPageSTAppUI.GENERATE_CONNECTION_KEY_BTN);
         clickToElement(driver, SettingsPageSTAppUI.GENERATE_CONNECTION_KEY_BTN);
 
-        Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.GENERATE_CONNECTION_KEY_SUCCESSFULLY_MESSAGE));
+        Assert.assertTrue(isListElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.GENERATE_CONNECTION_KEY_SUCCESSFULLY_MESSAGE));
 
         waitForElementVisible(driver, SettingsPageSTAppUI.CONNECTION_KEY_TEXT);
         return getTextInElement(driver, SettingsPageSTAppUI.CONNECTION_KEY_TEXT);
@@ -241,7 +240,7 @@ public class SettingsPageSTAppObject extends BasePage {
         waitForElementClickable(driver, SettingsPageSTAppUI.CONNECTION_KEY_BTN,"1");
         clickToElement(driver,  SettingsPageSTAppUI.CONNECTION_KEY_BTN,"1");
 
-        Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.COPY_CONNECTION_KEY_SUCCESSFULLY_MESSAGE));
+        Assert.assertTrue(isListElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.COPY_CONNECTION_KEY_SUCCESSFULLY_MESSAGE));
     }
 
     @Step("Click to Change Connection key button")
@@ -249,7 +248,7 @@ public class SettingsPageSTAppObject extends BasePage {
         waitForElementClickable(driver, SettingsPageSTAppUI.CONNECTION_KEY_BTN,"2");
         clickToElement(driver,  SettingsPageSTAppUI.CONNECTION_KEY_BTN,"2");
 
-        Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.GENERATE_CONNECTION_KEY_SUCCESSFULLY_MESSAGE));
+        Assert.assertTrue(isListElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.GENERATE_CONNECTION_KEY_SUCCESSFULLY_MESSAGE));
 
         waitForElementVisible(driver, SettingsPageSTAppUI.CONNECTION_KEY_TEXT);
         Assert.assertTrue(isConnectionKeyExclusively(getTextInElement(driver, SettingsPageSTAppUI.CONNECTION_KEY_TEXT)));
@@ -260,7 +259,7 @@ public class SettingsPageSTAppObject extends BasePage {
         waitForElementClickable(driver, SettingsPageSTAppUI.CONNECTION_KEY_BTN,"3");
         clickToElement(driver,  SettingsPageSTAppUI.CONNECTION_KEY_BTN,"3");
 
-        Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.REMOVE_CONNECTION_KEY_SUCCESSFULLY_MESSAGE));
+        Assert.assertTrue(isListElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.REMOVE_CONNECTION_KEY_SUCCESSFULLY_MESSAGE));
         Assert.assertTrue(isElementDisplayed(driver, SettingsPageSTAppUI.GENERATE_CONNECTION_KEY_BTN));
     }
 
@@ -291,7 +290,7 @@ public class SettingsPageSTAppObject extends BasePage {
         waitForElementVisible(driver, SettingsPageSTAppUI.SUBMIT_BTN_IN_ADD_CONNECTION_POPUP,"Submit");
         clickToElement(driver, SettingsPageSTAppUI.SUBMIT_BTN_IN_ADD_CONNECTION_POPUP,"Submit");
 
-        Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.INTEGRATE_STORE_SUCCESSFULLY_MESSAGE));
+        Assert.assertTrue(isListElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.INTEGRATE_STORE_SUCCESSFULLY_MESSAGE));
 
         Assert.assertTrue(isElementDisplayed(driver, SettingsPageSTAppUI.INTEGRATED_STORES_LINK, GlobalConstants.SHOPIFY_STORE_FRONT_URL));
         Assert.assertTrue(isElementDisplayed(driver, SettingsPageSTAppUI.INTEGRATED_STORES_LINK, GlobalConstants.SHOPIFY_STORE_FRONT_2_URL));
@@ -316,7 +315,7 @@ public class SettingsPageSTAppObject extends BasePage {
         waitForElementClickable(driver, SettingsPageSTAppUI.DISCONNECT_INTEGRATED_STORES_BTN_IN_POPUP_CONFIRM);
         clickToElement(driver, SettingsPageSTAppUI.DISCONNECT_INTEGRATED_STORES_BTN_IN_POPUP_CONFIRM);
 
-        Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.DISCONNECT_INTEGRATE_STORE_SUCCESSFULLY_MESSAGE));
+        Assert.assertTrue(isListElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.DISCONNECT_INTEGRATE_STORE_SUCCESSFULLY_MESSAGE));
     }
 
     @Step("Verify disconnect Integrated stores in Integrated store")
@@ -360,7 +359,7 @@ public class SettingsPageSTAppObject extends BasePage {
             waitForElementClickable(driver, SettingsPageSTAppUI.SYNC_TRACKING_INFO_BTN);
             clickToElement(driver, SettingsPageSTAppUI.SYNC_TRACKING_INFO_BTN);
 
-            Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.SYNC_TRACKING_INFO_MESSAGE));
+            Assert.assertTrue(isListElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.SYNC_TRACKING_INFO_MESSAGE));
         }
     }
 
@@ -370,7 +369,7 @@ public class SettingsPageSTAppObject extends BasePage {
             waitForElementClickable(driver, SettingsPageSTAppUI.SYNC_TRACKING_INFO_BTN);
             clickToElement(driver, SettingsPageSTAppUI.SYNC_TRACKING_INFO_BTN);
 
-            Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.SYNC_TRACKING_INFO_MESSAGE));
+            Assert.assertTrue(isListElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.SYNC_TRACKING_INFO_MESSAGE));
         }
     }
 
@@ -415,7 +414,7 @@ public class SettingsPageSTAppObject extends BasePage {
             waitForElementClickable(driver, SettingsPageSTAppUI.SHOPIFY_ORDER_NOTE_BTN);
             clickToElement(driver, SettingsPageSTAppUI.SHOPIFY_ORDER_NOTE_BTN);
 
-            Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.SHOPIFY_ORDER_NOTE_MESSAGE));
+            Assert.assertTrue(isListElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, ST_SettingsPageConstants.SHOPIFY_ORDER_NOTE_MESSAGE));
         }
     }
 }

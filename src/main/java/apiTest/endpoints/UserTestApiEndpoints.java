@@ -22,8 +22,20 @@ public class UserTestApiEndpoints {
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .body(payload)
+                .log().body()
         .when()
                 .post(addUserUrl);
+//                .then()
+//                .extract()
+//                .path("access_token"); // lay field "access_token" tu body
+
+//                .log().all() // Log toàn bộ response
+//                .extract()
+//                .response();
+
+//                .log().body() // Log toàn bộ body
+//                .extract()
+//                .response();
 
         return response;
     }
@@ -47,6 +59,7 @@ public class UserTestApiEndpoints {
                 .accept(ContentType.JSON)
                 .pathParam("username", username)
                 .body(payload)
+                .log().body()
         .when()
                 .put(updateUserUrl);
 

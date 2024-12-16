@@ -197,10 +197,37 @@ public class BasePage {
         getWebElement(driver, locatorType).sendKeys(valueToSendKey);
     }
 
-    public void sendKeyToElementAfterClearText(WebDriver driver, String locatorType, String valueToSendKey){
-        getWebElement(driver, locatorType).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.attributeToBe(getByLocator(locatorType),"value",""));
-        getWebElement(driver, locatorType).sendKeys(valueToSendKey);
+//    public void sendKeyToElementAfterClearText(WebDriver driver, String locatorType, String valueToSendKey){
+//        getWebElement(driver, locatorType).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+//        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.attributeToBe(getByLocator(locatorType),"value",""));
+//        getWebElement(driver, locatorType).sendKeys(valueToSendKey);
+//    }
+
+    public void sendKeyToElementAfterClearText(WebDriver driver, String locatorType, String valueToSendKey) {
+        WebElement element = getWebElement(driver, locatorType);
+//        element.clear();
+        element.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT))
+                .until(webDriver -> {
+                    String value = element.getAttribute("value");
+                    return value == null || value.isEmpty();
+                });
+
+        element.sendKeys(valueToSendKey);
+    }
+
+    public void sendKeyToElementAfterClearText(WebDriver driver, String locatorType, String valueToSendKey, String...dynamicValues) {
+        WebElement element = getWebElement(driver, getDynamicXpath(locatorType,dynamicValues));
+        element.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT))
+                .until(webDriver -> {
+                    String value = element.getAttribute("value");
+                    return value == null || value.isEmpty();
+                });
+
+        element.sendKeys(valueToSendKey);
     }
 
     public void sendKeyToElement(WebDriver driver, String locatorType, String valueToSendKey, String... dynamicValues){
@@ -350,7 +377,7 @@ public class BasePage {
         }
     }
 
-    public boolean isDynamicElementDisplayed(WebDriver driver, String locatorType){
+    public boolean isListElementDisplayed(WebDriver driver, String locatorType){
         overrideImplicitTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
         List<WebElement> dynamicElements = getListWebElement(driver, locatorType);
 
@@ -365,7 +392,7 @@ public class BasePage {
         }
     }
 
-    public boolean isDynamicElementDisplayed(WebDriver driver, String locatorType, String... dynamicValues){
+    public boolean isListElementDisplayed(WebDriver driver, String locatorType, String... dynamicValues){
         overrideImplicitTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
         List<WebElement> dynamicElements = getListWebElement(driver, getDynamicXpath(locatorType, dynamicValues));
 
@@ -633,6 +660,20 @@ public class BasePage {
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.invisibilityOfAllElements(getListWebElement(driver, locatorType)));
     }
 
+    public void waitForListElementSizeChange(WebDriver driver, String locatorType, int initialSize) {
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(driver1 -> {
+            List<WebElement> currentElements = getListWebElement(driver1, locatorType);
+            return currentElements.size() != initialSize;
+        });
+    }
+
+    public void waitForListElementSizeChange(WebDriver driver, String locatorType, int initialSize, String...dynamicValues) {
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(driver1 -> {
+            List<WebElement> currentElements = getListWebElement(driver1,(getDynamicXpath(locatorType, dynamicValues)));
+            return currentElements.size() != initialSize;
+        });
+    }
+
     public void waitForElementUnDisplay(WebDriver driver, String locatorType){
         WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
         overrideImplicitTimeout(driver, GlobalConstants.SHORT_TIMEOUT);
@@ -649,6 +690,9 @@ public class BasePage {
 
     public void waitForElementPresence(WebDriver driver, String locatorType){
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.presenceOfElementLocated(getByLocator(locatorType)));
+    }
+    public void waitForElementPresence(WebDriver driver, String locatorType, String...dynamicValues){
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.presenceOfElementLocated(getByLocator(getDynamicXpath(locatorType, dynamicValues))));
     }
 
     public void waitForListElementPresence(WebDriver driver, String locatorType){
@@ -795,7 +839,7 @@ public class BasePage {
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
     }
 
-    protected int getRandomTime() {
+    public static int getRandomTime() {
         return new Random().nextInt(999999);
     }
 

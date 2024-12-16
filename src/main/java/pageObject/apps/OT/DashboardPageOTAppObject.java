@@ -53,16 +53,16 @@ public class DashboardPageOTAppObject extends BasePage {
     }
 
     @Step("Click to Settings tab and open Tracking link set-up page")
-    public SettingsPageOTAppObject openTrackingLinkSetupPage() {
+    public SettingsPageOTAppObject openPageInSettings(String pageName) {
         waitForElementClickable(driver, DashboardPageOTAppUI.PAGE_OT_IN_NAVIGATE,OTConstants.SETTINGS_PAGES_OT_APP_IN_NAVIGATION);
         clickToElement(driver, DashboardPageOTAppUI.PAGE_OT_IN_NAVIGATE,OTConstants.SETTINGS_PAGES_OT_APP_IN_NAVIGATION);
 
         switchToFrameIframe(driver, DashboardPageOTAppUI.APP_IFRAME);
 
-        waitForElementVisible(driver, SettingsPageOTAppUI.MENU_BTN_IN_SETTINGS_PAGE,OT_SettingsPageConstants.TRACKING_LINK_SETUP_IN_TRACKING_PAGE);
-        if(!getAttribute(driver, SettingsPageOTAppUI.MENU_BTN_IN_SETTINGS_PAGE,"aria-pressed",OT_SettingsPageConstants.TRACKING_LINK_SETUP_IN_TRACKING_PAGE).equals("true")){
-            waitForElementClickable(driver, SettingsPageOTAppUI.MENU_BTN_IN_SETTINGS_PAGE,OT_SettingsPageConstants.TRACKING_LINK_SETUP_IN_TRACKING_PAGE);
-            clickToElement(driver, SettingsPageOTAppUI.MENU_BTN_IN_SETTINGS_PAGE,OT_SettingsPageConstants.TRACKING_LINK_SETUP_IN_TRACKING_PAGE);
+        waitForElementVisible(driver, SettingsPageOTAppUI.MENU_BTN_IN_SETTINGS_PAGE,pageName);
+        if(!getAttribute(driver, SettingsPageOTAppUI.MENU_BTN_IN_SETTINGS_PAGE,"aria-pressed",pageName).equals("true")){
+            waitForElementClickable(driver, SettingsPageOTAppUI.MENU_BTN_IN_SETTINGS_PAGE,pageName);
+            clickToElement(driver, SettingsPageOTAppUI.MENU_BTN_IN_SETTINGS_PAGE,pageName);
         }
 
         return PageGeneratorManager.getSettingsPageOTApp(driver);

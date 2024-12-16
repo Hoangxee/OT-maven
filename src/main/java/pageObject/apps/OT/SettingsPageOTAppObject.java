@@ -1,22 +1,18 @@
 package pageObject.apps.OT;
 
 import commons.BasePage;
-import commons.constant.GlobalConstants;
 import commons.constant.OT_SettingsPageConstants;
-import commons.constant.ST_SettingsPageConstants;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import pageUIs.apps.OT.DashboardPageOTAppUI;
 import pageUIs.apps.OT.SettingsPageOTAppUI;
-import pageUIs.apps.ST.SettingsPageSTAppUI;
 
-import java.time.Duration;
+import java.util.List;
 
 public class SettingsPageOTAppObject extends BasePage {
     private WebDriver driver;
+    public static int random = getRandomTime();
 
     public SettingsPageOTAppObject(WebDriver mappingDriver){
         driver = mappingDriver;
@@ -43,9 +39,7 @@ public class SettingsPageOTAppObject extends BasePage {
         waitForElementVisible(driver, SettingsPageOTAppUI.REPLACE_COURIER_LINK_CHECKBOX_IN_TRACKING_LINK_SETUP);
         clickToElement(driver, SettingsPageOTAppUI.REPLACE_COURIER_LINK_CHECKBOX_IN_TRACKING_LINK_SETUP);
 
-        waitForElementClickable(driver, SettingsPageOTAppUI.SAVE_BTN);
-        clickToElement(driver, SettingsPageOTAppUI.SAVE_BTN);
-        Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, OT_SettingsPageConstants.TRACKING_LINK_SETUP_SUCCESSFULLY_MESSAGE));
+        saveAndVerifyMessage(OT_SettingsPageConstants.TRACKING_LINK_SETUP_SUCCESSFULLY_MESSAGE);
 
     }
 
@@ -55,13 +49,10 @@ public class SettingsPageOTAppObject extends BasePage {
 
         getWebElement(driver, SettingsPageOTAppUI.LINK_DESCRIPTION_INPUT_IN_TRACKING_LINK_SETUP).clear();
 
-        int randomTime = getRandomTime();
-        sendKeyToElementAfterClearText(driver, SettingsPageOTAppUI.LINK_DESCRIPTION_INPUT_IN_TRACKING_LINK_SETUP,textInput+randomTime);
-        waitForElementAttributeChange(driver, SettingsPageOTAppUI.LINK_DESCRIPTION_INPUT_IN_TRACKING_LINK_SETUP,"value",textInput+randomTime);
+        sendKeyToElementAfterClearText(driver, SettingsPageOTAppUI.LINK_DESCRIPTION_INPUT_IN_TRACKING_LINK_SETUP,textInput);
+        waitForElementAttributeChange(driver, SettingsPageOTAppUI.LINK_DESCRIPTION_INPUT_IN_TRACKING_LINK_SETUP,"value",textInput);
 
-        waitForElementClickable(driver, SettingsPageOTAppUI.SAVE_BTN);
-        clickToElement(driver, SettingsPageOTAppUI.SAVE_BTN);
-        Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, OT_SettingsPageConstants.TRACKING_LINK_SETUP_SUCCESSFULLY_MESSAGE));
+        saveAndVerifyMessage(OT_SettingsPageConstants.TRACKING_LINK_SETUP_SUCCESSFULLY_MESSAGE);
 
     }
 
@@ -86,9 +77,103 @@ public class SettingsPageOTAppObject extends BasePage {
         waitForElementVisible(driver, SettingsPageOTAppUI.ADD_LINK_TO_ORDER_CHECKBOX_IN_TRACKING_LINK_SETUP);
         clickToElement(driver, SettingsPageOTAppUI.ADD_LINK_TO_ORDER_CHECKBOX_IN_TRACKING_LINK_SETUP);
 
-        waitForElementClickable(driver, SettingsPageOTAppUI.SAVE_BTN);
-        clickToElement(driver, SettingsPageOTAppUI.SAVE_BTN);
-        Assert.assertTrue(isDynamicElementDisplayed(driver, SettingsPageSTAppUI.MESSAGE_TOAST, OT_SettingsPageConstants.TRACKING_LINK_SETUP_SUCCESSFULLY_MESSAGE));
+        saveAndVerifyMessage(OT_SettingsPageConstants.TRACKING_LINK_SETUP_SUCCESSFULLY_MESSAGE);
     }
 
+    @Step("Choose courier '{courier}' in Frequently Used Couriers")
+    public void chooseCourierInFrequentlyUsedCouriers(String courier) {
+        waitForElementVisible(driver, SettingsPageOTAppUI.COURIER_LIST_DROPDOWN, OT_SettingsPageConstants.COURIER_LIST_LABEL);
+        sendKeyToElementAfterClearText(driver, SettingsPageOTAppUI.COURIER_LIST_DROPDOWN, courier, OT_SettingsPageConstants.COURIER_LIST_LABEL);
+
+        waitForElementClickable(driver, SettingsPageOTAppUI.COURIER_LIST_OPTIONS,courier);
+        clickToElement(driver, SettingsPageOTAppUI.COURIER_LIST_OPTIONS,courier);
+
+        saveAndVerifyMessage(OT_SettingsPageConstants.FREQUENTLY_USED_COURIERS_SUCCESSFULLY_MESSAGE);
+        waitForElementUnDisplay(driver, SettingsPageOTAppUI.MESSAGE_TOAST, OT_SettingsPageConstants.FREQUENTLY_USED_COURIERS_SUCCESSFULLY_MESSAGE);
+
+        Assert.assertEquals(getTextInElement(driver, SettingsPageOTAppUI.COURIER_CHOSE_IN_FREQUENTLY_USED_COURIERS,courier), courier);
+    }
+
+    @Step("Choose multiple couriers in Frequently Used Couriers: {couriers}")
+    public void chooseCourierInFrequentlyUsedCouriers(List<String> couriers) {
+        for (String courier : couriers) {
+            chooseCourierInFrequentlyUsedCouriers(courier);
+        }
+    }
+
+    @Step("Delete all courier in Frequently Used Couriers")
+    public void deleteAllCourierInFrequentlyUsedCouriers() {
+        List<WebElement> deleteCouriersBtn = getListWebElement(driver, SettingsPageOTAppUI.DELETE_BTN_IN_FREQUENTLY_USED_COURIERS);
+
+        if (!deleteCouriersBtn.isEmpty()){
+            for (int i = 1; i <= deleteCouriersBtn.size(); i++){
+                waitForElementClickable(driver, SettingsPageOTAppUI.DELETE_BTN_IN_FREQUENTLY_USED_COURIERS);
+                clickToElement(driver, SettingsPageOTAppUI.DELETE_BTN_IN_FREQUENTLY_USED_COURIERS);
+            }
+            saveAndVerifyMessage(OT_SettingsPageConstants.FREQUENTLY_USED_COURIERS_SUCCESSFULLY_MESSAGE);
+        }
+    }
+
+    public void saveAndVerifyMessage(String message){
+        waitForElementAttributeChange(driver, SettingsPageOTAppUI.SAVE_BTN, "aria-disabled", "false");
+        waitForElementClickable(driver, SettingsPageOTAppUI.SAVE_BTN);
+        clickToElement(driver, SettingsPageOTAppUI.SAVE_BTN);
+
+        Assert.assertTrue(isListElementDisplayed(driver, SettingsPageOTAppUI.MESSAGE_TOAST, message));
+    }
+
+    @Step("Add Courier mapping with {actualCourier} and {shopifyCourier}")
+    private void addCourierMapping(String actualCourier, String shopifyCourier) {
+        List<WebElement> listCourierMapping = getListWebElement(driver, SettingsPageOTAppUI.LIST_COURIER_MAPPING);
+        waitForElementVisible(driver, SettingsPageOTAppUI.COURIER_LIST_DROPDOWN, OT_SettingsPageConstants.ACTUAL_COURIER_LABEL);
+        sendKeyToElementAfterClearText(driver, SettingsPageOTAppUI.COURIER_LIST_DROPDOWN, actualCourier, OT_SettingsPageConstants.ACTUAL_COURIER_LABEL);
+        waitForElementClickable(driver, SettingsPageOTAppUI.COURIER_LIST_OPTIONS, actualCourier);
+        clickToElement(driver, SettingsPageOTAppUI.COURIER_LIST_OPTIONS, actualCourier);
+
+        waitForElementVisible(driver, SettingsPageOTAppUI.COURIER_LIST_DROPDOWN, OT_SettingsPageConstants.SHOPIFY_COURIER_LABEL);
+        sendKeyToElementAfterClearText(driver, SettingsPageOTAppUI.COURIER_LIST_DROPDOWN, shopifyCourier, OT_SettingsPageConstants.SHOPIFY_COURIER_LABEL);
+        waitForElementClickable(driver, SettingsPageOTAppUI.COURIER_LIST_OPTIONS, shopifyCourier);
+        clickToElement(driver, SettingsPageOTAppUI.COURIER_LIST_OPTIONS, shopifyCourier);
+
+        waitForElementAttributeChange(driver, SettingsPageOTAppUI.ADD_BTN_IN_COURIER_MAPPING, "aria-disabled", "false");
+        clickToElement(driver, SettingsPageOTAppUI.ADD_BTN_IN_COURIER_MAPPING);
+
+        waitForListElementSizeChange(driver,SettingsPageOTAppUI.LIST_COURIER_MAPPING,listCourierMapping.size());
+    }
+
+    @Step("Add Courier mapping with Actual couriers: {actualCouriers} and Shopify couriers: {shopifyCouriers}")
+    public void addCourierMapping(List<String> actualCouriers, List<String> shopifyCouriers) {
+        if (shopifyCouriers.size() != actualCouriers.size()) {
+            throw new IllegalArgumentException("The Shopify Courier and Actual Courier lists must be the same length.");
+        }
+
+        for (int i = 0; i < shopifyCouriers.size(); i++) {
+            String actualCourier = actualCouriers.get(i);
+            String shopifyCourier = shopifyCouriers.get(i);
+
+            addCourierMapping(actualCourier, shopifyCourier);
+        }
+    }
+
+    @Step("Delete all Courier mapping")
+    public void deleteAllCourierMapping() {
+        List<WebElement> deleteCouriersBtn = getListWebElement(driver, SettingsPageOTAppUI.CHANGE_OR_DELETE_BTN_IN_COURIER_MAPPING, "1");
+
+        if (deleteCouriersBtn.isEmpty()) {
+            return;
+        }
+        while (!deleteCouriersBtn.isEmpty()){
+            waitForElementClickable(driver, SettingsPageOTAppUI.CHANGE_OR_DELETE_BTN_IN_COURIER_MAPPING, "1");
+            clickToElement(driver, SettingsPageOTAppUI.CHANGE_OR_DELETE_BTN_IN_COURIER_MAPPING, "1");
+
+            waitForElementClickable(driver, SettingsPageOTAppUI.CONFIRM_BTN_IN_DELETE_COURIER_MAPPING_POPUP, "Delete");
+            clickToElement(driver, SettingsPageOTAppUI.CONFIRM_BTN_IN_DELETE_COURIER_MAPPING_POPUP, "Delete");
+
+            waitForListElementSizeChange(driver, SettingsPageOTAppUI.CHANGE_OR_DELETE_BTN_IN_COURIER_MAPPING, deleteCouriersBtn.size(), "1");
+
+            deleteCouriersBtn = getListWebElement(driver, SettingsPageOTAppUI.CHANGE_OR_DELETE_BTN_IN_COURIER_MAPPING, "1");
+        }
+    }
 }
+
+
