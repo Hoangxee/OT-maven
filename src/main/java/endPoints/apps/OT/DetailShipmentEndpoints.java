@@ -1,4 +1,4 @@
-package endPoints.apps.ST;
+package endPoints.apps.OT;
 
 import io.restassured.response.Response;
 import payload.apps.OT.DetailShipmentPayload;

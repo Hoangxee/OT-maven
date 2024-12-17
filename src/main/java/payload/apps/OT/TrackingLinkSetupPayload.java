@@ -1,7 +1,7 @@
 package payload.apps.OT;
 
 
-public class SettingsPayload {
+public class TrackingLinkSetupPayload {
 
     public void setShop(String shop) {
         this.shop = shop;

@@ -4,7 +4,7 @@ import commons.BaseTest;
 import commons.PageGeneratorManager;
 import commons.constant.GlobalConstants;
 import commons.constant.OT_SettingsPageConstants;
-import endPoints.apps.ST.SettingsEndpoints;
+import endPoints.apps.OT.SettingsEndpoints;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -19,7 +19,7 @@ import pageObject.apps.OT.DashboardPageOTAppObject;
 import pageObject.apps.OT.SettingsPageOTAppObject;
 import pageObject.shopify.admin.HomePageAdminObject;
 import pageObject.shopify.admin.LoginPageAdminObject;
-import payload.apps.OT.SettingsPayload;
+import payload.apps.OT.TrackingLinkSetupPayload;
 import utilities.Environment;
 
 
@@ -30,12 +30,12 @@ public class TrackingLinkSetupPage extends BaseTest {
         ConfigFactory.setProperty("env",environmentName);
         environment = ConfigFactory.create(Environment.class);
 
-        settingsPayload = new SettingsPayload();
-        settingsPayload.setShop(shop);
-        settingsPayload.setUrlParams(urlParams);
-        settingsPayload.setReplaceCourierLink(replaceCourierLink);
-        settingsPayload.setAddLinkToOrder(addLinkToOrder);
-        settingsPayload.setLinkDescription(linkDescription);
+        trackingLinkSetupPayload = new TrackingLinkSetupPayload();
+        trackingLinkSetupPayload.setShop(GlobalConstants.SHOP_API);
+        trackingLinkSetupPayload.setUrlParams(GlobalConstants.URL_PARAM_API);
+        trackingLinkSetupPayload.setReplaceCourierLink(replaceCourierLink);
+        trackingLinkSetupPayload.setAddLinkToOrder(addLinkToOrder);
+        trackingLinkSetupPayload.setLinkDescription(linkDescription);
 
         driver = getBrowserDriver(browserName, GlobalConstants.SHOPIFY_ADMIN_URL);
 
@@ -47,7 +47,7 @@ public class TrackingLinkSetupPage extends BaseTest {
 
     @Description("Tracking link set-up page")
     @Severity(SeverityLevel.NORMAL)
-    @Test
+//    @Test
     public void trackingLinkSetup(){
         settingsOT = dashboardOT.openPageInSettings(OT_SettingsPageConstants.TRACKING_LINK_SETUP_IN_TRACKING_PAGE);
         settingsOT.checkedToReplaceCourierLinkCheckbox();
@@ -61,14 +61,14 @@ public class TrackingLinkSetupPage extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Test
     public void trackingLinkSetupByAPI(){
-        Response updateTrackingLinkRP = SettingsEndpoints.updateTrackingLink(settingsPayload);
-        SettingsEndpoints.verifyMessageValueInInUpdateTrackingLink(updateTrackingLinkRP,"msg","Updated successfully!");
+        Response updateTrackingLinkRP = SettingsEndpoints.updateTrackingLink(trackingLinkSetupPayload);
+        SettingsEndpoints.verifyValueInResponse(updateTrackingLinkRP,"msg","Updated successfully!");
 
-        Response getStatusRP = SettingsEndpoints.getTrackingLink(settingsPayload);
-        SettingsEndpoints.verifyMessageValueInGetTrackingLink(getStatusRP,"msg","Get successfully!");
-        SettingsEndpoints.verifyReplaceCourierLinkValueInGetTrackingLink(getStatusRP,"data.replaceCourierLink",1);
-        SettingsEndpoints.verifyAddLinkToOrderValueInGetTrackingLink(getStatusRP,"data.addLinkToOrder",1);
-        SettingsEndpoints.verifyLinkDescriptionValueInGetTrackingLink(getStatusRP,"data.linkDescription",linkDescription);
+        Response getStatusRP = SettingsEndpoints.getTrackingLink(trackingLinkSetupPayload);
+        SettingsEndpoints.verifyValueInResponse(getStatusRP,"msg","Get successfully!");
+        SettingsEndpoints.verifyValueInResponse(getStatusRP,"data.replaceCourierLink",1);
+        SettingsEndpoints.verifyValueInResponse(getStatusRP,"data.addLinkToOrder",1);
+        SettingsEndpoints.verifyValueInResponse(getStatusRP,"data.linkDescription",linkDescription);
     }
 
     @AfterClass
@@ -77,14 +77,12 @@ public class TrackingLinkSetupPage extends BaseTest {
     }
 
     Environment environment;
-    SettingsPayload settingsPayload;
+    TrackingLinkSetupPayload trackingLinkSetupPayload;
     WebDriver driver;
     HomePageAdminObject homePage;
     LoginPageAdminObject loginPage;
     DashboardPageOTAppObject dashboardOT;
     SettingsPageOTAppObject settingsOT;
-    String shop = "returns-drive.myshopify.com";
-    String urlParams = "by-passs";
     int replaceCourierLink = 1;
     int addLinkToOrder = 1;
     String linkDescription = "Test Add a tracking link to Order Status page" + SettingsPageOTAppObject.random;

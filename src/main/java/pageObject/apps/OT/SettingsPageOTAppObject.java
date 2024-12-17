@@ -80,7 +80,7 @@ public class SettingsPageOTAppObject extends BasePage {
         saveAndVerifyMessage(OT_SettingsPageConstants.TRACKING_LINK_SETUP_SUCCESSFULLY_MESSAGE);
     }
 
-    @Step("Choose courier '{courier}' in Frequently Used Couriers")
+    @Step("Choose courier '{0}' in Frequently Used Couriers")
     public void chooseCourierInFrequentlyUsedCouriers(String courier) {
         waitForElementVisible(driver, SettingsPageOTAppUI.COURIER_LIST_DROPDOWN, OT_SettingsPageConstants.COURIER_LIST_LABEL);
         sendKeyToElementAfterClearText(driver, SettingsPageOTAppUI.COURIER_LIST_DROPDOWN, courier, OT_SettingsPageConstants.COURIER_LIST_LABEL);
@@ -94,7 +94,7 @@ public class SettingsPageOTAppObject extends BasePage {
         Assert.assertEquals(getTextInElement(driver, SettingsPageOTAppUI.COURIER_CHOSE_IN_FREQUENTLY_USED_COURIERS,courier), courier);
     }
 
-    @Step("Choose multiple couriers in Frequently Used Couriers: {couriers}")
+    @Step("Choose multiple couriers in Frequently Used Couriers: {0}")
     public void chooseCourierInFrequentlyUsedCouriers(List<String> couriers) {
         for (String courier : couriers) {
             chooseCourierInFrequentlyUsedCouriers(courier);
@@ -122,7 +122,7 @@ public class SettingsPageOTAppObject extends BasePage {
         Assert.assertTrue(isListElementDisplayed(driver, SettingsPageOTAppUI.MESSAGE_TOAST, message));
     }
 
-    @Step("Add Courier mapping with {actualCourier} and {shopifyCourier}")
+    @Step("Add Courier mapping with {0} and {1}")
     private void addCourierMapping(String actualCourier, String shopifyCourier) {
         List<WebElement> listCourierMapping = getListWebElement(driver, SettingsPageOTAppUI.LIST_COURIER_MAPPING);
         waitForElementVisible(driver, SettingsPageOTAppUI.COURIER_LIST_DROPDOWN, OT_SettingsPageConstants.ACTUAL_COURIER_LABEL);
@@ -141,7 +141,7 @@ public class SettingsPageOTAppObject extends BasePage {
         waitForListElementSizeChange(driver,SettingsPageOTAppUI.LIST_COURIER_MAPPING,listCourierMapping.size());
     }
 
-    @Step("Add Courier mapping with Actual couriers: {actualCouriers} and Shopify couriers: {shopifyCouriers}")
+    @Step("Add Courier mapping with Actual couriers: {0} and Shopify couriers: {1}")
     public void addCourierMapping(List<String> actualCouriers, List<String> shopifyCouriers) {
         if (shopifyCouriers.size() != actualCouriers.size()) {
             throw new IllegalArgumentException("The Shopify Courier and Actual Courier lists must be the same length.");

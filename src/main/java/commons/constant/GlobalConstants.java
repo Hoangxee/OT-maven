@@ -21,4 +21,6 @@ public class GlobalConstants {
      public static final long MEDIUM_TIMEOUT = 15;
      public static final long LONG_TIMEOUT = 60;
      public static final String APPROVE_SUBSCRIPTION_TITLE_PAGE = "Approve subscription";
+     public static final String SHOP_API = "returns-drive.myshopify.com";
+     public static final String URL_PARAM_API = "by-passs";
 }

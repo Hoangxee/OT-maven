@@ -12,7 +12,7 @@ public class OT_SettingsPageConstants {
     public static final String ACTUAL_COURIER_DHL = "DHL";
     public static final String ACTUAL_COURIER_TNT = "TNT";
     public static final String ACTUAL_COURIER_OSM = "OSM";
-    public static final String ACTUAL_COURIER_CANADA_POST = "Canada Post";
+    public static final String ACTUAL_COURIER_SENDLE = "Sendle";
     public static final String SHOPIFY_COURIER_4PX = "4PX";
     public static final String SHOPIFY_COURIER_FEDEX = "FedEx";
     public static final String SHOPIFY_COURIER_EAGLE = "Eagle";
