@@ -1,6 +1,7 @@
 package com.shopify.apps.OT.Settings;
 
 import commons.BaseTest;
+import commons.PageGeneratorManager;
 import commons.constant.GlobalConstants;
 import commons.constant.OT_SettingsPageConstants;
 import endPoints.apps.OT.SettingsEndpoints;
@@ -46,32 +47,34 @@ public class CourierMappingPage extends BaseTest {
 
         driver = getBrowserDriver(browserName, GlobalConstants.SHOPIFY_ADMIN_URL);
 
-//        loginPage = PageGeneratorManager.getLoginPageAdmin(driver);
-//        homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
-//                GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
-//        dashboardOT = homePage.openAppOrderTracking();
+        loginPage = PageGeneratorManager.getLoginPageAdmin(driver);
+        homePage = loginPage.loginToShopifyAdmin(GlobalConstants.SHOPIFY_ADMIN_EMAIL,
+                GlobalConstants.SHOPIFY_ADMIN_PASSWORD);
+        dashboardOT = homePage.openAppOrderTracking();
     }
 
     @Description("Frequently used couriers in Courier mapping page")
     @Severity(SeverityLevel.NORMAL)
-//    @Test
+    @Test
     public void TC01_frequentlyUsedCouriers() {
         settingsOT = dashboardOT.openPageInSettings(OT_SettingsPageConstants.COURIER_MAPPING_IN_TRACKING_PAGE);
         settingsOT.deleteAllCourierInFrequentlyUsedCouriers();
         settingsOT.chooseCourierInFrequentlyUsedCouriers(actualCourier);
+        settingsOT.deleteAllCourierInFrequentlyUsedCouriers();
     }
 
     @Description("Courier Mapping in Courier mapping page")
     @Severity(SeverityLevel.NORMAL)
-//    @Test
+    @Test
     public void TC02_courierMapping() {
         settingsOT.deleteAllCourierMapping();
         settingsOT.addCourierMapping(actualCourier, shopifyCourier);
+        settingsOT.deleteAllCourierMapping();
     }
 
     @Description("Frequently used couriers in Courier mapping page by API")
     @Severity(SeverityLevel.NORMAL)
-//    @Test
+    @Test
     public void TC03_frequentlyUsedCouriersByAPI() {
         Response addFrequentlyUsedCouriers = SettingsEndpoints.addFrequentlyUsedCouriers(courierSetting);
         SettingsEndpoints.verifyValueInResponse(addFrequentlyUsedCouriers, "msg",

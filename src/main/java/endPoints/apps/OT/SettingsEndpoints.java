@@ -3,6 +3,7 @@ package endPoints.apps.OT;
 import commons.constant.OT_SettingsPageConstants;
 import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
