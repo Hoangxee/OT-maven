@@ -39,9 +39,9 @@ public class CourierMappingPage extends BaseTest {
         courierSetting.setUrlParams(GlobalConstants.URL_PARAM_API);
         courierSetting.setPayload(actualCourierLowerKey);
 
-        courierMapping = new CourierMappingPayload();
-        courierMapping.setShop(GlobalConstants.SHOP_API);
-        courierMapping.setUrlParams(GlobalConstants.URL_PARAM_API);
+        courierMappingPayload = new CourierMappingPayload();
+        courierMappingPayload.setShop(GlobalConstants.SHOP_API);
+        courierMappingPayload.setUrlParams(GlobalConstants.URL_PARAM_API);
 
 
         driver = getBrowserDriver(browserName, GlobalConstants.SHOPIFY_ADMIN_URL);
@@ -74,16 +74,24 @@ public class CourierMappingPage extends BaseTest {
 //    @Test
     public void TC03_frequentlyUsedCouriersByAPI() {
         Response addFrequentlyUsedCouriers = SettingsEndpoints.addFrequentlyUsedCouriers(courierSetting);
-        SettingsEndpoints.verifyValueInResponse(addFrequentlyUsedCouriers,"msg","Success");
+        SettingsEndpoints.verifyValueInResponse(addFrequentlyUsedCouriers, "msg",
+                OT_SettingsPageConstants.FREQUENTLY_USED_COURIERS_SUCCESSFULLY_MESSAGE);
     }
 
     @Description("Frequently used couriers in Courier mapping page by API")
     @Severity(SeverityLevel.NORMAL)
     @Test
     public void TC04_courierMappingByAPI() {
-        Response getCourierMapping = SettingsEndpoints.getCourierMapping(courierMapping);
-        SettingsEndpoints.verifyValueInResponse(getCourierMapping,"data.courierSettings",actualCourierLowerKey);
+        SettingsEndpoints.createMultipleCourierMapping(courierMappingPayload, actualCourierLowerKey, shopifyCourier);
 
+        Response getCourierMapping = SettingsEndpoints.getCourierMapping(courierMappingPayload);
+        SettingsEndpoints.verifyValueInResponse(getCourierMapping, "data.courierSettings", actualCourierLowerKey);
+        SettingsEndpoints.verifyCourierMapping(getCourierMapping, actualCourier, shopifyCourier);
+
+        List<Integer> courierMappingId = SettingsEndpoints.getList(getCourierMapping, "data.couriersMapping.id");
+        SettingsEndpoints.updateAllCourierMapping(courierMappingPayload, courierMappingId, actualCourierLowerKey, shopifyCourierUpdate);
+
+        SettingsEndpoints.deleteAllCourierMapping(courierMappingPayload, courierMappingId);
     }
 
     @AfterClass
@@ -93,23 +101,29 @@ public class CourierMappingPage extends BaseTest {
 
     Environment environment;
     FrequentlyUsedCouriersPayload courierSetting;
-    CourierMappingPayload courierMapping;
+    CourierMappingPayload courierMappingPayload;
     WebDriver driver;
     HomePageAdminObject homePage;
     LoginPageAdminObject loginPage;
     DashboardPageOTAppObject dashboardOT;
     SettingsPageOTAppObject settingsOT;
     List<String> actualCourier = Arrays.asList(
-            OT_SettingsPageConstants.ACTUAL_COURIER_USPS,
             OT_SettingsPageConstants.ACTUAL_COURIER_DHL,
+            OT_SettingsPageConstants.ACTUAL_COURIER_USPS,
             OT_SettingsPageConstants.ACTUAL_COURIER_TNT,
             OT_SettingsPageConstants.ACTUAL_COURIER_OSM,
             OT_SettingsPageConstants.ACTUAL_COURIER_SENDLE);
     List<String> shopifyCourier = Arrays.asList(
-            OT_SettingsPageConstants.SHOPIFY_COURIER_4PX,
             OT_SettingsPageConstants.SHOPIFY_COURIER_FEDEX,
+            OT_SettingsPageConstants.SHOPIFY_COURIER_APC,
             OT_SettingsPageConstants.SHOPIFY_COURIER_EAGLE,
             OT_SettingsPageConstants.SHOPIFY_COURIER_GLS,
             OT_SettingsPageConstants.SHOPIFY_COURIER_DELHIVERY);
     List<String> actualCourierLowerKey = actualCourier.stream().map(String::toLowerCase).collect(Collectors.toList());
+    List<String> shopifyCourierUpdate = Arrays.asList(
+            OT_SettingsPageConstants.SHOPIFY_COURIER_CANPAR,
+            OT_SettingsPageConstants.SHOPIFY_COURIER_BLUEDART,
+            OT_SettingsPageConstants.SHOPIFY_COURIER_GLOBEGISTICS,
+            OT_SettingsPageConstants.SHOPIFY_COURIER_WHISTL,
+            OT_SettingsPageConstants.SHOPIFY_COURIER_CORREIOS);
 }
