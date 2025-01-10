@@ -37,11 +37,11 @@ public class ApproveSubscriptionAdminObject extends BasePage {
     public boolean isPlanActivated(String planName, String quota) {
         switchToFrameIframe(driver, DashboardPageOTAppUI.APP_IFRAME);
 
-        waitForElementVisible(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"1");
-        boolean planBl = getTextInElement(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"1").equals(planName);
+        waitForElementVisible(driver, DashboardPageOTAppUI.PLAN_NAME);
+        boolean planBl = getTextInElement(driver, DashboardPageOTAppUI.PLAN_NAME).equals(planName);
 
-        waitForElementVisible(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"2");
-       boolean quotaBl = getTextInElement(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"2").contains(quota);
+        waitForElementVisible(driver, DashboardPageOTAppUI.QUOTA);
+       boolean quotaBl = getTextInElement(driver, DashboardPageOTAppUI.QUOTA).contains(quota);
        return planBl&&quotaBl;
     }
 }

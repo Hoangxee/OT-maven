@@ -1,6 +1,7 @@
 package api.test;
 
-import endPoints.apps.ST.ListShipmentEndpoints;
+import commons.constant.GlobalConstants;
+import endPoints.apps.OT.ListShipmentEndpoints;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -17,8 +18,8 @@ public class ListShipmentTestAPI {
     public void setupData(){
         listShipmentPayload = new ListShipmentPayload();
 
-        listShipmentPayload.setShop(shop);
-        listShipmentPayload.setUrlParams(urlParams);
+        listShipmentPayload.setShop(GlobalConstants.SHOP_API); //or hoangxe-test-3.myshopify.com
+        listShipmentPayload.setUrlParams(GlobalConstants.URL_PARAM_API);
         listShipmentPayload.setPage(page);
         listShipmentPayload.setPerPage(perPage);
         listShipmentPayload.setFromDate(fromDate);
@@ -51,8 +52,6 @@ public class ListShipmentTestAPI {
     }
 
     ListShipmentPayload listShipmentPayload;
-    String shop = "hoangxe-test-3.myshopify.com";
-    String urlParams = "by-passs";
     int page = 1;
     int perPage = 5;
     String fromDate = "2024-10-07T08:21:56.271Z";

@@ -1,11 +1,9 @@
-package endPoints.apps.ST;
+package endPoints.apps.OT;
 
 import static io.restassured.RestAssured.given;
 
 import io.restassured.response.Response;
-import org.aeonbits.owner.Config;
 import payload.apps.OT.ListShipmentPayload;
-import payload.apps.OT.SettingsPayload;
 
 import java.util.ResourceBundle;
 

@@ -1,9 +1,11 @@
 package payload.apps.OT;
 
-public class DetailShipmentPayload {
+import java.util.List;
+
+public class FrequentlyUsedCouriersPayload {
     String shop;
     String urlParams;
-    int id;
+    List<String> payload;
 
     public void setShop(String shop) {
         this.shop = shop;
@@ -13,8 +15,8 @@ public class DetailShipmentPayload {
         this.urlParams = urlParams;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPayload(List<String> payload) {
+        this.payload = payload;
     }
 
     public String getShop() {
@@ -25,7 +27,8 @@ public class DetailShipmentPayload {
         return urlParams;
     }
 
-    public int getId() {
-        return id;
+    public List<String> getPayload() {
+        return payload;
     }
+
 }

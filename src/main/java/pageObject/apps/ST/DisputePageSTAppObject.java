@@ -1,7 +1,6 @@
 package pageObject.apps.ST;
 
 import commons.BasePage;
-import commons.constant.STConstants;
 import commons.constant.ST_DisputePageConstants;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
@@ -30,7 +29,7 @@ public class DisputePageSTAppObject extends BasePage {
             waitForElementClickable(driver, DisputePageSTAppUI.TURN_ON_BTN_DISPUTE_MANAGEMENT);
             clickToElement(driver, DisputePageSTAppUI.TURN_ON_BTN_DISPUTE_MANAGEMENT);
 
-            Assert.assertTrue(isDynamicElementDisplayed(driver, DisputePageSTAppUI.MESSAGE_TOAST, ST_DisputePageConstants.UPDATE_SUCCESSFULLY_MESSAGE));
+            Assert.assertTrue(isListElementDisplayed(driver, DisputePageSTAppUI.MESSAGE_TOAST, ST_DisputePageConstants.UPDATE_SUCCESSFULLY_MESSAGE));
             Assert.assertEquals(getTextInElement(driver, DisputePageSTAppUI.DISPUTE_MANAGEMENT_STATUS), "On");
         }
     }
@@ -58,7 +57,7 @@ public class DisputePageSTAppObject extends BasePage {
         waitForElementClickable(driver, DisputePageSTAppUI.BTN_IN_ADD_NEW_PAYPAL_ACCOUNT_POPUP,"Save");
         clickToElement(driver, DisputePageSTAppUI.BTN_IN_ADD_NEW_PAYPAL_ACCOUNT_POPUP,"Save");
 
-        Assert.assertTrue(isDynamicElementDisplayed(driver, DisputePageSTAppUI.MESSAGE_TOAST, ST_DisputePageConstants.ACCOUNT_CONNECTED_MESSAGE));
+        Assert.assertTrue(isListElementDisplayed(driver, DisputePageSTAppUI.MESSAGE_TOAST, ST_DisputePageConstants.ACCOUNT_CONNECTED_MESSAGE));
     }
 
     @Step("Verify connected PayPal account")
@@ -77,7 +76,7 @@ public class DisputePageSTAppObject extends BasePage {
         waitForElementClickable(driver, DisputePageSTAppUI.DELETE_BTN_IN_CONNECTED_PAYPAL_ACCOUNT_BLOCK);
         clickToElement(driver, DisputePageSTAppUI.DELETE_BTN_IN_CONNECTED_PAYPAL_ACCOUNT_BLOCK);
 
-        Assert.assertTrue(isDynamicElementDisplayed(driver, DisputePageSTAppUI.MESSAGE_TOAST, ST_DisputePageConstants.ACCOUNT_REMOVED_MESSAGE));
+        Assert.assertTrue(isListElementDisplayed(driver, DisputePageSTAppUI.MESSAGE_TOAST, ST_DisputePageConstants.ACCOUNT_REMOVED_MESSAGE));
     }
 
     @Step("Turn off Dispute management")
@@ -85,6 +84,6 @@ public class DisputePageSTAppObject extends BasePage {
         waitForElementClickable(driver, DisputePageSTAppUI.TURN_OFF_BTN_DISPUTE_MANAGEMENT);
         clickToElement(driver, DisputePageSTAppUI.TURN_OFF_BTN_DISPUTE_MANAGEMENT);
 
-        Assert.assertTrue(isDynamicElementDisplayed(driver, DisputePageSTAppUI.MESSAGE_TOAST, ST_DisputePageConstants.UPDATE_SUCCESSFULLY_MESSAGE));
+        Assert.assertTrue(isListElementDisplayed(driver, DisputePageSTAppUI.MESSAGE_TOAST, ST_DisputePageConstants.UPDATE_SUCCESSFULLY_MESSAGE));
     }
 }

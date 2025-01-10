@@ -1,9 +1,13 @@
 package payload.apps.OT;
 
-public class DetailShipmentPayload {
+import java.util.List;
+
+public class CourierMappingPayload {
     String shop;
     String urlParams;
     int id;
+    String from;
+    String to;
 
     public void setShop(String shop) {
         this.shop = shop;
@@ -17,6 +21,14 @@ public class DetailShipmentPayload {
         this.id = id;
     }
 
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
     public String getShop() {
         return shop;
     }
@@ -28,4 +40,13 @@ public class DetailShipmentPayload {
     public int getId() {
         return id;
     }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
 }

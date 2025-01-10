@@ -1,7 +1,6 @@
 package pageObject.apps.ST;
 
 import commons.BasePage;
-import commons.constant.STConstants;
 import commons.constant.ST_OrdersPageConstants;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
@@ -34,7 +33,7 @@ public class OrdersPageSTAppObject extends BasePage {
         clickToElement(driver, OrdersPageSTAppUI.PROCESS_OLD_ORDERS_POPUP_BTN,"OK");
 
 //        Assert.assertTrue(isElementDisplayed(driver, OrdersPageSTAppUI.MESSAGE_TOAST, STConstants.PROCESS_OLD_ORDERS_PROCESS_SUCCESSFULLY_MESSAGE));
-        Assert.assertTrue(isDynamicElementDisplayed(driver, OrdersPageSTAppUI.MESSAGE_TOAST, ST_OrdersPageConstants.PROCESS_OLD_ORDERS_PROCESS_SUCCESSFULLY_MESSAGE));
+        Assert.assertTrue(isListElementDisplayed(driver, OrdersPageSTAppUI.MESSAGE_TOAST, ST_OrdersPageConstants.PROCESS_OLD_ORDERS_PROCESS_SUCCESSFULLY_MESSAGE));
     }
 
     @Step("Verify Get old orders successful")
@@ -79,7 +78,7 @@ public class OrdersPageSTAppObject extends BasePage {
         waitForElementClickable(driver, OrdersPageSTAppUI.BUTTON_IN_EXPORT_OR_IMPORT_POPUP,"Upload");
         clickToElement(driver, OrdersPageSTAppUI.BUTTON_IN_EXPORT_OR_IMPORT_POPUP,"Upload");
 
-        Assert.assertTrue(isDynamicElementDisplayed(driver, OrdersPageSTAppUI.MESSAGE_TOAST, ST_OrdersPageConstants.IMPORT_ORDERS_SUCCESSFULLY_MESSAGE));
+        Assert.assertTrue(isListElementDisplayed(driver, OrdersPageSTAppUI.MESSAGE_TOAST, ST_OrdersPageConstants.IMPORT_ORDERS_SUCCESSFULLY_MESSAGE));
     }
 
     @Step("Verify order was imported")

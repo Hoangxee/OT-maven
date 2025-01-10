@@ -33,6 +33,10 @@ public class UserTestAPI {
         response.then().log().all();
 
         Assert.assertEquals(response.getStatusCode(), 200);
+
+//        System.out.println("Status Code: " + response.getStatusCode());
+//        System.out.println("Response Headers: " + response.getHeaders());
+//        System.out.println("Response Body: " + response.getBody().asString());
     }
 
     @Test

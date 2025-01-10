@@ -52,9 +52,9 @@ public class E2E_OrderTracking extends BaseTest {
         Assert.assertTrue(trackingResultInStoreFront.isTrackingResultCorrect(CreateOrderInShopify.orderName,OTConstants.TRACKING_NUMBER));
 
         plans = trackingResultInStoreFront.openSubscriptionPlans();
-        approvePlan = plans.choosePlan(OTConstants.PROFESSIONAL_SUBSCRIPTION_PLAN_NAME);
+        approvePlan = plans.choosePlan(OTConstants.ENTERPRISE_SUBSCRIPTION_PLAN_NAME);
         approvePlan.approvePlan(SubscriptionPlansOTAppObject.planPriceMonthly);
-        Assert.assertTrue(approvePlan.isPlanActivated(OTConstants.PROFESSIONAL_SUBSCRIPTION_PLAN_NAME,OTConstants.PROFESSIONAL_QUOTA));
+        Assert.assertTrue(approvePlan.isPlanActivated(OTConstants.ENTERPRISE_SUBSCRIPTION_PLAN_NAME,OTConstants.ENTERPRISE_QUOTA));
 
     }
 
