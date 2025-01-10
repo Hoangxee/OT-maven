@@ -2,6 +2,11 @@ package payload.apps.OT;
 
 
 public class TrackingLinkSetupPayload {
+    String shop;
+    String urlParams;
+    int replaceCourierLink;
+    int addLinkToOrder;
+    String linkDescription;
 
     public void setShop(String shop) {
         this.shop = shop;
@@ -43,10 +48,5 @@ public class TrackingLinkSetupPayload {
         return linkDescription;
     }
 
-    String shop;
-    String urlParams;
-    int replaceCourierLink;
-    int addLinkToOrder;
-    String linkDescription;
 
 }

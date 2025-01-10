@@ -1,6 +1,9 @@
 package payload.apps.OT;
 
 public class DetailShipmentPayload {
+    String shop;
+    String urlParams;
+    int id;
 
     public void setShop(String shop) {
         this.shop = shop;
@@ -25,9 +28,4 @@ public class DetailShipmentPayload {
     public int getId() {
         return id;
     }
-
-    String shop;
-    String urlParams;
-    int id;
-
 }

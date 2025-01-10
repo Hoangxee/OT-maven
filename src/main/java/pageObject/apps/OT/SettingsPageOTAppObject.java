@@ -46,8 +46,7 @@ public class SettingsPageOTAppObject extends BasePage {
     @Step("Send key '{0}' to Link description")
     public void sendKeyToLinkDescriptionInput(String textInput) {
         waitForElementVisible(driver, SettingsPageOTAppUI.LINK_DESCRIPTION_INPUT_IN_TRACKING_LINK_SETUP);
-
-        getWebElement(driver, SettingsPageOTAppUI.LINK_DESCRIPTION_INPUT_IN_TRACKING_LINK_SETUP).clear();
+//        getWebElement(driver, SettingsPageOTAppUI.LINK_DESCRIPTION_INPUT_IN_TRACKING_LINK_SETUP).clear();
 
         sendKeyToElementAfterClearText(driver, SettingsPageOTAppUI.LINK_DESCRIPTION_INPUT_IN_TRACKING_LINK_SETUP,textInput);
         waitForElementAttributeChange(driver, SettingsPageOTAppUI.LINK_DESCRIPTION_INPUT_IN_TRACKING_LINK_SETUP,"value",textInput);
@@ -114,6 +113,7 @@ public class SettingsPageOTAppObject extends BasePage {
         }
     }
 
+    @Step("Save")
     public void saveAndVerifyMessage(String message){
         waitForElementAttributeChange(driver, SettingsPageOTAppUI.SAVE_BTN, "aria-disabled", "false");
         waitForElementClickable(driver, SettingsPageOTAppUI.SAVE_BTN);
@@ -173,6 +173,52 @@ public class SettingsPageOTAppObject extends BasePage {
 
             deleteCouriersBtn = getListWebElement(driver, SettingsPageOTAppUI.CHANGE_OR_DELETE_BTN_IN_COURIER_MAPPING, "1");
         }
+    }
+
+    @Step("Send key '{0}' to Widget title")
+    public void sendKeyToWidgetTitle(String textInput) {
+        waitForElementVisible(driver, SettingsPageOTAppUI.INPUT_IN_ORDER_LOOKUP_WIDGET_PAGE,"Widget title");
+
+        sendKeyToElementAfterClearText(driver, SettingsPageOTAppUI.INPUT_IN_ORDER_LOOKUP_WIDGET_PAGE,textInput, "Widget title");
+        waitForElementAttributeChange(driver, SettingsPageOTAppUI.INPUT_IN_ORDER_LOOKUP_WIDGET_PAGE,"value",textInput, "Widget title");
+    }
+
+    @Step("Choose '{0}' option in Widget tracking form")
+    public void chooseWidgetTrackingForm(String option) {
+        if(option.equals("trackingNumber")){
+            waitForElementClickable(driver, SettingsPageOTAppUI.WIDGET_TRACKING_FORM_CHECKBOX, option);
+            clickToElement(driver, SettingsPageOTAppUI.WIDGET_TRACKING_FORM_CHECKBOX, option);
+        }
+    }
+
+    @Step("Choose '{0}' option in Widget tracking form")
+    public void chooseWidgetTrackingFormAndClickToRequireEmail(String option) {
+        if (option.equals("orderId") || option.equals("both")){
+            waitForElementClickable(driver, SettingsPageOTAppUI.WIDGET_TRACKING_FORM_CHECKBOX, option);
+            clickToElement(driver, SettingsPageOTAppUI.WIDGET_TRACKING_FORM_CHECKBOX, option);
+
+            waitForElementClickable(driver, SettingsPageOTAppUI.REQUIRE_EMAIL_CHECKBOX);
+            clickToElement(driver, SettingsPageOTAppUI.REQUIRE_EMAIL_CHECKBOX);
+        }
+    }
+
+    @Step("Send key '{0}' to Label")
+    public void sendKeyToLabel(String textInput) {
+        waitForElementVisible(driver, SettingsPageOTAppUI.INPUT_IN_ORDER_LOOKUP_WIDGET_PAGE,"Label");
+
+        sendKeyToElementAfterClearText(driver, SettingsPageOTAppUI.INPUT_IN_ORDER_LOOKUP_WIDGET_PAGE,textInput, "Label");
+        waitForElementAttributeChange(driver, SettingsPageOTAppUI.INPUT_IN_ORDER_LOOKUP_WIDGET_PAGE,"value",textInput, "Label");
+    }
+
+    @Step("Select option '{1}' in {0}")
+    public void selectOptionInField(String field, String option) {
+        selectItemInDropdown(driver, SettingsPageOTAppUI.DROPDOWN_IN_ORDER_LOOKUP_WIDGET_PAGE, option, field);
+    }
+
+    @Step("Send key '{0}' to Label")
+    public void clickToShowTrackingResultCheckbox() {
+        waitForElementClickable(driver, SettingsPageOTAppUI.SHOW_TRACKING_RESULT_CHECKBOX);
+        clickToElement(driver, SettingsPageOTAppUI.SHOW_TRACKING_RESULT_CHECKBOX);
     }
 }
 

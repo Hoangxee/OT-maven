@@ -97,11 +97,11 @@ public class HomePageSTAppObject extends BasePage {
         switchToFrameIframe(driver, HomePageSTAppUI.APP_IFRAME);
         waitForProcessBar(driver, CreateOrderPageAdminUI.PROGRESS_BAR);
 
-        waitForElementVisible(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"1");
-        boolean planBl = getTextInElement(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"1").equals(planName);
+        waitForElementVisible(driver, DashboardPageOTAppUI.PLAN_NAME,"1");
+        boolean planBl = getTextInElement(driver, DashboardPageOTAppUI.PLAN_NAME,"1").equals(planName);
 
-        waitForElementVisible(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"2");
-        boolean quotaBl = getTextInElement(driver, DashboardPageOTAppUI.INFORMATION_PLAN,"2").contains(quota);
+        waitForElementVisible(driver, DashboardPageOTAppUI.PLAN_NAME,"2");
+        boolean quotaBl = getTextInElement(driver, DashboardPageOTAppUI.PLAN_NAME,"2").contains(quota);
         return planBl&&quotaBl;
     }
 }

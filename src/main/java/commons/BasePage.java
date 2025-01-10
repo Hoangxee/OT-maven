@@ -123,58 +123,62 @@ public class BasePage {
     }
 
     public void switchToWindowByTitle(WebDriver driver, String expectedPageTitle){
+        //note: switch to iframe after switch to window if app in app
         sleepInSecond(1);
         Set<String> allWindowID = driver.getWindowHandles();
 
-        // Duyệt từng ID
         for(String id:allWindowID){
-            // Switch vào từng tab/window
             driver.switchTo().window(id);
-            // Lấy ra page title của tab/window đã swtich vào
             String currentPageTitle = driver.getTitle();
             if (currentPageTitle.equals(expectedPageTitle)) {
-                // Nếu đúng với title của tab/window muốn swtich vào
-                // -> thoát khỏi vòng lặp
                 break;
             }
         }
     }
 
     public void switchToWindowByTitleContains(WebDriver driver, String expectedPageTitle){
+        //note: switch to iframe after switch to window if app in app
         sleepInSecond(1);
-        // lấy ra tất cả các ID của tab/window đang có
         Set<String> allWindowID = driver.getWindowHandles();
 
-        // Duyệt từng ID
         for(String id:allWindowID){
-            // Switch vào từng tab/window
             driver.switchTo().window(id);
-            // Lấy ra page title của tab/window đã swtich vào
             String currentPageTitle = driver.getTitle();
             if (currentPageTitle.contains(expectedPageTitle)) {
-                // Nếu đúng với title của tab/window muốn swtich vào
-                // -> thoát khỏi vòng lặp
                 break;
             }
         }
     }
 
-    public void closeAllWindowIgnoreParent(WebDriver driver, String parentID){
-        // Lấy ra tất cả các ID của tab/window đang có
+    public void switchToWindowByTitleContainsAndCloseAllWindowIgnoreParent(WebDriver driver, String expectedPageTitle){
+        //note: switch to iframe after switch to window if app in app
+        sleepInSecond(1);
         Set<String> allWindowID = driver.getWindowHandles();
 
-        // Duyệt qua từng ID
         for(String id:allWindowID){
-            if(!id.equals(parentID)){
-                driver.switchTo().window(id);
-                // đóng tab hiện tại
-                // khác với driver.quit() : đóng toàn bộ trình duyệt
+            driver.switchTo().window(id);
+            String currentPageTitle = driver.getTitle();
+            if (currentPageTitle.contains(expectedPageTitle)) {
+                break;
+            }
+        }
+    }
+
+    public void closeAllWindowIgnoreCurrent(WebDriver driver){
+        //note: switch to iframe after switch to window if app in app
+        String currentWindowID = driver.getWindowHandle();
+        Set<String> allWindowIDs = driver.getWindowHandles();
+
+        for (String windowID : allWindowIDs) {
+            if (!windowID.equals(currentWindowID)) {
+                driver.switchTo().window(windowID);
                 driver.close();
             }
         }
         // Switch lại parent window
-        driver.switchTo().window(parentID);
+        driver.switchTo().window(currentWindowID);
     }
+
 
     public void clickToElement(WebDriver driver, String locatorType){
         getWebElement(driver, locatorType).click();
@@ -205,7 +209,7 @@ public class BasePage {
 
     public void sendKeyToElementAfterClearText(WebDriver driver, String locatorType, String valueToSendKey) {
         WebElement element = getWebElement(driver, locatorType);
-//        element.clear();
+        element.clear();
         element.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
 
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT))
@@ -219,6 +223,7 @@ public class BasePage {
 
     public void sendKeyToElementAfterClearText(WebDriver driver, String locatorType, String valueToSendKey, String...dynamicValues) {
         WebElement element = getWebElement(driver, getDynamicXpath(locatorType,dynamicValues));
+        element.clear();
         element.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
 
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT))
@@ -241,6 +246,14 @@ public class BasePage {
 
     public String getTextInElement(WebDriver driver, String locatorType, String...dynamicValues){
         return getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)).getText();
+    }
+
+    public String getTextInElementAndTrim(WebDriver driver, String locatorType){
+        return getWebElement(driver, locatorType).getText().trim();
+    }
+
+    public String getTextInElementAndTrim(WebDriver driver, String locatorType, String...dynamicValues){
+        return getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)).getText().trim();
     }
 
     public String getTextInElementByIndex(WebDriver driver, String locatorType, int index){
@@ -644,8 +657,24 @@ public class BasePage {
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.attributeToBe(getByLocator(locatorType),attribute,value));
     }
 
-    public void waitForElementAttributeChange(WebDriver driver, String locatorType, String attribute, String value,String...dynamicValues){
+    public void waitForElementAttributeChange(WebDriver driver, String locatorType, String attribute, String value, String...dynamicValues){
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.attributeToBe(getByLocator(getDynamicXpath(locatorType, dynamicValues)),attribute,value));
+    }
+
+    public void waitForElementAttributeChangeToInitialValue(WebDriver driver, String locatorType, String attribute, String initialValue){
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT))
+                .until(driver1 -> {
+                    String currentValue = getAttribute(driver1, locatorType, attribute);
+                    return !currentValue.equals(initialValue);
+                });
+    }
+
+    public void waitForElementAttributeChangeToInitialValue(WebDriver driver, String locatorType, String attribute, String initialValue, String...dynamicValues){
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT))
+                .until(driver1 -> {
+                    String currentValue = getAttribute(driver1, getDynamicXpath(locatorType, dynamicValues), attribute);
+                    return !currentValue.equals(initialValue);
+                });
     }
 
     public void waitForElementInvisible(WebDriver driver, String locatorType){
@@ -841,6 +870,23 @@ public class BasePage {
 
     public static int getRandomTime() {
         return new Random().nextInt(999999);
+    }
+
+    public String upperCaseFirstWord(String text) {
+        if (text == null || text.isEmpty()) {
+            return text;
+        }
+        String[] words = text.toLowerCase().split(" ");
+        StringBuilder titleCase = new StringBuilder();
+
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                titleCase.append(Character.toUpperCase(word.charAt(0)))
+                        .append(word.substring(1))
+                        .append(" ");
+            }
+        }
+        return titleCase.toString().trim();
     }
 
 }

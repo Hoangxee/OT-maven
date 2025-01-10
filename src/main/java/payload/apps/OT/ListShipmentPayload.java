@@ -2,6 +2,13 @@ package payload.apps.OT;
 
 
 public class ListShipmentPayload {
+    String shop;
+    String urlParams;
+    int page;
+    int perPage;
+    String fromDate;
+    String toDate;
+
 
     public void setShop(String shop) {
         this.shop = shop;
@@ -51,12 +58,5 @@ public class ListShipmentPayload {
     public String getToDate() {
         return toDate;
     }
-
-    String shop;
-    String urlParams;
-    int page;
-    int perPage;
-    String fromDate;
-    String toDate;
 
 }

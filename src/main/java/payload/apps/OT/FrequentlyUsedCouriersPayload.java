@@ -3,6 +3,9 @@ package payload.apps.OT;
 import java.util.List;
 
 public class FrequentlyUsedCouriersPayload {
+    String shop;
+    String urlParams;
+    List<String> payload;
 
     public void setShop(String shop) {
         this.shop = shop;
@@ -27,9 +30,5 @@ public class FrequentlyUsedCouriersPayload {
     public List<String> getPayload() {
         return payload;
     }
-
-    String shop;
-    String urlParams;
-    List<String> payload;
 
 }

@@ -17,4 +17,10 @@ public class SettingsPageOTAppUI {
     public static final String LIST_COURIER_MAPPING = "xpath=//div[@class='group-btn']/preceding-sibling::div//input";
     public static final String CHANGE_OR_DELETE_BTN_IN_COURIER_MAPPING = "xpath=//div[@class='Polaris-BlockStack']/div/div[@class='courier-mapping']//button[%s]";
     public static final String CONFIRM_BTN_IN_DELETE_COURIER_MAPPING_POPUP = "xpath=//button[descendant::span[text()='%s']]";
+    public static final String INPUT_IN_ORDER_LOOKUP_WIDGET_PAGE = "xpath=//div[child::*[text()='%s']]/parent::div/following-sibling::div//input";
+    public static final String WIDGET_TRACKING_FORM_CHECKBOX = "xpath=//span[child::input[@id='%s']]/span";
+    public static final String REQUIRE_EMAIL_CHECKBOX = "xpath=//span[child::span[contains(text(),'Require email')]]/preceding-sibling::span//span/preceding-sibling::span";
+    public static final String DROPDOWN_IN_ORDER_LOOKUP_WIDGET_PAGE = "xpath=//div[descendant::label[text()='%s']]/following-sibling::div[@class='Polaris-Select']/select";
+    public static final String SHOW_TRACKING_RESULT_CHECKBOX = "xpath=//span[descendant::p[contains(text(),'Show tracking')]]/preceding-sibling::span//span/preceding-sibling::span";
+
 }

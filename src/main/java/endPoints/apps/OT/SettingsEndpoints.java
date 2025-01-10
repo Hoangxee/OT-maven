@@ -3,20 +3,15 @@ package endPoints.apps.OT;
 import commons.constant.OT_SettingsPageConstants;
 import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import payload.apps.OT.CourierMappingPayload;
-import payload.apps.OT.FrequentlyUsedCouriersPayload;
-import payload.apps.OT.TrackingLinkSetupPayload;
+import payload.apps.OT.*;
 import utilities.APIUtil;
 
 import java.util.List;
 import java.util.ResourceBundle;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 
 public class SettingsEndpoints extends APIUtil {
     static String baseUrl = getURL().getString("baseRouteUrl");
@@ -25,7 +20,6 @@ public class SettingsEndpoints extends APIUtil {
         ResourceBundle routes = ResourceBundle.getBundle("routesOT"); //load properties file
         return routes;
     }
-
 
     @Step("Get status of checkbox in Tracking link set-up page")
     public static Response getTrackingLink(TrackingLinkSetupPayload payload){
@@ -209,6 +203,39 @@ public class SettingsEndpoints extends APIUtil {
             verifyValueInResponse(response, "msg",
                     OT_SettingsPageConstants.UPDATE_COURIER_MAPPING_SUCCESSFULLY_API);
         }
+    }
+
+    @Step("Get Order lookup")
+    public static Response getOrderLookupWidget(OrderLookupWidgetPayload payload){
+        String getOrderLookup = baseUrl + getURL().getString("orderLookupWidget");
+
+        Response response = given()
+                .queryParam("shop",payload.getShop())
+                .queryParam("urlParams",payload.getUrlParams())
+        .when()
+                .get(getOrderLookup)
+        .then()
+                .statusCode(200)
+                .extract().response();
+
+        return response;
+    }
+
+    @Step("Update Order lookup")
+    public static Response updateOrderLookupWidget(OrderLookupWidgetPayload payload){
+        String updateOrderLookupWidget = baseUrl + getURL().getString("orderLookupWidget");
+
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(payload)
+        .when()
+                .put(updateOrderLookupWidget)
+        .then()
+                .statusCode(200)
+                .extract().response();
+
+        return response;
     }
 
 }

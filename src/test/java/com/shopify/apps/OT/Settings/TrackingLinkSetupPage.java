@@ -47,7 +47,7 @@ public class TrackingLinkSetupPage extends BaseTest {
 
     @Description("Tracking link set-up page")
     @Severity(SeverityLevel.NORMAL)
-//    @Test
+    @Test
     public void trackingLinkSetup(){
         settingsOT = dashboardOT.openPageInSettings(OT_SettingsPageConstants.TRACKING_LINK_SETUP_IN_TRACKING_PAGE);
         settingsOT.checkedToReplaceCourierLinkCheckbox();

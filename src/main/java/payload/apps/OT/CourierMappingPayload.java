@@ -3,6 +3,11 @@ package payload.apps.OT;
 import java.util.List;
 
 public class CourierMappingPayload {
+    String shop;
+    String urlParams;
+    int id;
+    String from;
+    String to;
 
     public void setShop(String shop) {
         this.shop = shop;
@@ -43,11 +48,5 @@ public class CourierMappingPayload {
     public String getTo() {
         return to;
     }
-
-    String shop;
-    String urlParams;
-    int id;
-    String from;
-    String to;
 
 }

@@ -58,8 +58,8 @@ public class TrackingResultPageObject extends BasePage {
         switchToWindowByTitleContains(driver, OTConstants.OT_APP_ADMIN_TITLE_PAGE);
 
         switchToDefaultContent(driver);
-        waitForElementClickable(driver, DashboardPageOTAppUI.PAGE_OT_IN_NAVIGATE,OTConstants.SUBSCRIPTION_PLANS_PAGES_OT_APP_IN_NAVIGATION);
-        clickToElement(driver, DashboardPageOTAppUI.PAGE_OT_IN_NAVIGATE,OTConstants.SUBSCRIPTION_PLANS_PAGES_OT_APP_IN_NAVIGATION);
+        waitForElementClickable(driver, DashboardPageOTAppUI.PAGE_OT_IN_NAVIGATE,OTConstants.SUBSCRIPTION_PLANS_PAGE_OT_APP_IN_NAVIGATION);
+        clickToElement(driver, DashboardPageOTAppUI.PAGE_OT_IN_NAVIGATE,OTConstants.SUBSCRIPTION_PLANS_PAGE_OT_APP_IN_NAVIGATION);
 
         return PageGeneratorManager.getSubscriptionPlansOTApp(driver);
     }

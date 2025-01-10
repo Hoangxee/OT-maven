@@ -15,8 +15,9 @@ public class GlobalConstants {
      public static final String SHOPIFY_STORE_FRONT_2_URL = "https://p1chd0-bm.myshopify.com";
      public static final String PROJECT_PATH = System.getProperty("user.dir");
      public static final String OS_NAME = System.getProperty("os.name");
-     public static final String UPLOAD_FILE = PROJECT_PATH + File.separator + "uploadFiles" + File.separator;
-     public static final String DOWNLOAD_FILE = PROJECT_PATH + File.separator + "downloadFiles" + File.separator;
+     public static final String TEST_RESOURCE_PATH = PROJECT_PATH + File.separator + "src" + File.separator + "test" + File.separator + "resources";
+     public static final String UPLOAD_FILE = TEST_RESOURCE_PATH + File.separator + "data" + File.separator + "uploadFiles" + File.separator;
+     public static final String DOWNLOAD_FILE = TEST_RESOURCE_PATH + File.separator + "data" + File.separator + "downloadFiles" + File.separator;
      public static final long SHORT_TIMEOUT = 5;
      public static final long MEDIUM_TIMEOUT = 15;
      public static final long LONG_TIMEOUT = 60;

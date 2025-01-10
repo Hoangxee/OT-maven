@@ -1,10 +1,7 @@
 package commons;
 
 import org.openqa.selenium.WebDriver;
-import pageObject.apps.OT.DashboardPageOTAppObject;
-import pageObject.apps.OT.SettingsPageOTAppObject;
-import pageObject.apps.OT.ShipmentPageOTAppObject;
-import pageObject.apps.OT.SubscriptionPlansOTAppObject;
+import pageObject.apps.OT.*;
 import pageObject.apps.RD.SettingsPageRDAppObject;
 import pageObject.apps.ST.*;
 import pageObject.apps.ST.paypal.LoginPagePaypalObject;
@@ -112,5 +109,13 @@ public class PageGeneratorManager extends BasePage {
 
     public static SettingsPageOTAppObject getSettingsPageOTApp(WebDriver driver) {
         return new SettingsPageOTAppObject(driver);
+    }
+
+    public static NotificationsPageOTAppObject getNotificationsPageOTAppObject(WebDriver driver) {
+        return new NotificationsPageOTAppObject(driver);
+    }
+
+    public static TrackingPageOTAppObject getTrackingPageOTAppObject(WebDriver driver) {
+        return new TrackingPageOTAppObject(driver);
     }
 }

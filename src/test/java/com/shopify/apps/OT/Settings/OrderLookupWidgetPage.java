@@ -19,7 +19,7 @@ import pageObject.apps.OT.DashboardPageOTAppObject;
 import pageObject.apps.OT.SettingsPageOTAppObject;
 import pageObject.shopify.admin.HomePageAdminObject;
 import pageObject.shopify.admin.LoginPageAdminObject;
-import payload.apps.OT.TrackingLinkSetupPayload;
+import payload.apps.OT.OrderLookupWidgetPayload;
 import utilities.Environment;
 
 
@@ -30,12 +30,26 @@ public class OrderLookupWidgetPage extends BaseTest {
         ConfigFactory.setProperty("env",environmentName);
         environment = ConfigFactory.create(Environment.class);
 
-        trackingLinkSetupPayload = new TrackingLinkSetupPayload();
-        trackingLinkSetupPayload.setShop(GlobalConstants.SHOP_API);
-        trackingLinkSetupPayload.setUrlParams(GlobalConstants.URL_PARAM_API);
-        trackingLinkSetupPayload.setReplaceCourierLink(replaceCourierLink);
-        trackingLinkSetupPayload.setAddLinkToOrder(addLinkToOrder);
-        trackingLinkSetupPayload.setLinkDescription(linkDescription);
+        orderLookupWidgetPayload = new OrderLookupWidgetPayload();
+        orderLookupWidgetPayload.setShop(GlobalConstants.SHOP_API);
+        orderLookupWidgetPayload.setUrlParams(GlobalConstants.URL_PARAM_API);
+        orderLookupWidgetPayload.setWidgetTitle(widgetTitle);
+        orderLookupWidgetPayload.setWidgetSize(widgetSize1);
+        orderLookupWidgetPayload.setAlignment(alignment1);
+        orderLookupWidgetPayload.setIsShowResultInWidget(true);
+        orderLookupWidgetPayload.setIsLoading(true);
+
+        trackingForm = new OrderLookupWidgetPayload.TrackingForm();
+        trackingForm.setIsRequireEmail(true);
+        trackingForm.setTypeMethodTracking(typeMethodTracking1);
+        orderLookupWidgetPayload.setTrackingForm(trackingForm);
+
+        buttonStyle = new OrderLookupWidgetPayload.ButtonStyle();
+        buttonStyle.setLabel(label);
+        buttonStyle.setBackground(backgroundColor);
+        buttonStyle.setText(textColor);
+        buttonStyle.setShape(buttonShape);
+        orderLookupWidgetPayload.setButtonStyle(buttonStyle);
 
         driver = getBrowserDriver(browserName, GlobalConstants.SHOPIFY_ADMIN_URL);
 
@@ -45,30 +59,33 @@ public class OrderLookupWidgetPage extends BaseTest {
         dashboardOT = homePage.openAppOrderTracking();
     }
 
-    @Description("Tracking link set-up page")
-    @Severity(SeverityLevel.NORMAL)
-//    @Test
-    public void trackingLinkSetup(){
-        settingsOT = dashboardOT.openPageInSettings(OT_SettingsPageConstants.TRACKING_LINK_SETUP_IN_TRACKING_PAGE);
-        settingsOT.checkedToReplaceCourierLinkCheckbox();
-        settingsOT.sendKeyToLinkDescriptionInput(linkDescription);
-        settingsOT.uncheckedToReplaceCourierLinkCheckbox();
-        settingsOT.checkedToAddLinkToOrderCheckbox();
-        settingsOT.uncheckedToAddLinkToOrderCheckbox();
-    }
-
-    @Description("Tracking link set-up page by API")
+    @Description("Order lookup widget page")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void trackingLinkSetupByAPI(){
-        Response updateTrackingLinkRP = SettingsEndpoints.updateTrackingLink(trackingLinkSetupPayload);
-        SettingsEndpoints.verifyValueInResponse(updateTrackingLinkRP,"msg","Updated successfully!");
+    public void orderLookupWidget(){
+        settingsOT = dashboardOT.openPageInSettings(OT_SettingsPageConstants.ORDER_LOOKUP_WIDGET_IN_TRACKING_PAGE);
+        settingsOT.sendKeyToWidgetTitle(widgetTitle);
+        settingsOT.chooseWidgetTrackingForm(typeMethodTracking);
+        settingsOT.chooseWidgetTrackingFormAndClickToRequireEmail(typeMethodTracking2);
+        settingsOT.chooseWidgetTrackingFormAndClickToRequireEmail(typeMethodTracking1);
+        settingsOT.sendKeyToLabel(label);
+        settingsOT.selectOptionInField("Widget size",widgetSize);
+        settingsOT.selectOptionInField("Alignment",alignment);
+        settingsOT.clickToShowTrackingResultCheckbox();
+        settingsOT.saveAndVerifyMessage(OT_SettingsPageConstants.ORDER_LOOKUP_WIDGET_SUCCESSFULLY_MESSAGE);
+    }
 
-        Response getStatusRP = SettingsEndpoints.getTrackingLink(trackingLinkSetupPayload);
-        SettingsEndpoints.verifyValueInResponse(getStatusRP,"msg","Get successfully!");
-        SettingsEndpoints.verifyValueInResponse(getStatusRP,"data.replaceCourierLink",1);
-        SettingsEndpoints.verifyValueInResponse(getStatusRP,"data.addLinkToOrder",1);
-        SettingsEndpoints.verifyValueInResponse(getStatusRP,"data.linkDescription",linkDescription);
+    @Description("Order lookup widget page by API")
+    @Severity(SeverityLevel.NORMAL)
+    @Test
+    public void orderLookupWidgetByAPI(){
+        Response getOrderLookup = SettingsEndpoints.getOrderLookupWidget(orderLookupWidgetPayload);
+        SettingsEndpoints.verifyValueInResponse(getOrderLookup,"msg",OT_SettingsPageConstants.GET_ORDER_LOOKUP_WIDGET_SUCCESSFULLY_MESSAGE_API);
+        SettingsEndpoints.verifyValueInResponse(getOrderLookup,"data.shop",GlobalConstants.SHOP_API);
+
+        Response updateOrderLookup = SettingsEndpoints.updateOrderLookupWidget(orderLookupWidgetPayload);
+        SettingsEndpoints.verifyValueInResponse(updateOrderLookup,"msg",OT_SettingsPageConstants.ORDER_LOOKUP_WIDGET_SUCCESSFULLY_MESSAGE);
+
     }
 
     @AfterClass
@@ -77,14 +94,25 @@ public class OrderLookupWidgetPage extends BaseTest {
     }
 
     Environment environment;
-    TrackingLinkSetupPayload trackingLinkSetupPayload;
+    OrderLookupWidgetPayload orderLookupWidgetPayload;
+    OrderLookupWidgetPayload.TrackingForm trackingForm;
+    OrderLookupWidgetPayload.ButtonStyle buttonStyle;
     WebDriver driver;
     HomePageAdminObject homePage;
     LoginPageAdminObject loginPage;
     DashboardPageOTAppObject dashboardOT;
     SettingsPageOTAppObject settingsOT;
-    int replaceCourierLink = 1;
-    int addLinkToOrder = 1;
-    String linkDescription = "Test Add a tracking link to Order Status page" + SettingsPageOTAppObject.random;
+    String widgetTitle = "Test widget title" + SettingsPageOTAppObject.random;
+    String label = "Test label" + SettingsPageOTAppObject.random;
+    String backgroundColor = "#dcad2e";
+    String textColor = "#6422dd";
+    String buttonShape = "25px";
+    String widgetSize1 = "18px"; //large
+    String widgetSize = "Small";
+    String alignment = "Right";
+    String alignment1 = "center";
+    String typeMethodTracking = "trackingNumber";
+    String typeMethodTracking1 = "both";
+    String typeMethodTracking2 = "orderId";
 
 }

@@ -26,4 +26,9 @@ public class OT_SettingsPageConstants {
     public static final String CREATE_COURIER_MAPPING_SUCCESSFULLY_API = "Create data successed!";
     public static final String UPDATE_COURIER_MAPPING_SUCCESSFULLY_API = "Saved";
     public static final String DELETE_COURIER_MAPPING_SUCCESSFULLY_API = "Deleted";
+    public static final String ORDER_LOOKUP_WIDGET_IN_TRACKING_PAGE = "Order Lookup Widget";
+    public static final String ORDER_LOOKUP_WIDGET_SUCCESSFULLY_MESSAGE = "Updated";
+    public static final String GET_ORDER_LOOKUP_WIDGET_SUCCESSFULLY_MESSAGE_API = "Get successfully!";
+
+
 }
