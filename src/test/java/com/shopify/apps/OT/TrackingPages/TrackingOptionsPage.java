@@ -3,6 +3,7 @@ package com.shopify.apps.OT.TrackingPages;
 import commons.BaseTest;
 import commons.PageGeneratorManager;
 import commons.constant.GlobalConstants;
+import commons.constant.OT_TrackingPageConstants;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -40,15 +41,22 @@ public class TrackingOptionsPage extends BaseTest {
     @Test
     public void TC01_LookAndFeel(){
         trackingPageOT.openTrackingOptionsTab();
-        trackingPageOT.chooseTrackingMethod("order id");
-
-
-
+        trackingPageOT.chooseTrackingMethod(OT_TrackingPageConstants.ORDER_ID_OPTION_IN_TRACKING_METHOD);
+        trackingPageOT.chooseShippingInfo(
+                OT_TrackingPageConstants.TRACKING_LOGS_OPTION_IN_SHIPPING_INFO,
+                OT_TrackingPageConstants.ORDER_DETAIL_OPTION_IN_SHIPPING_INFO);
+        trackingPageOT.selectDateTimeFormat(
+                OT_TrackingPageConstants.DATE_OPTION_IN_DATE_TIME_FORMAT,
+                OT_TrackingPageConstants.TIME_OPTION_IN_DATE_TIME_FORMAT);
+        trackingPageOT.selectProgressBar(
+                OT_TrackingPageConstants.IN_TRANSIT_OPTION_IN_PROGRESS_BAR,
+                OT_TrackingPageConstants.ORDER_READY_OPTION_IN_PROGRESS_BAR);
+        trackingPageOT.clickToSaveBtn(OT_TrackingPageConstants.SAVE_SUCCESSFULLY_MESSAGE);
     }
 
     @AfterClass
     public void afterClass() {
-//        driver.quit();
+        driver.quit();
     }
 
     Environment environment;
@@ -57,20 +65,5 @@ public class TrackingOptionsPage extends BaseTest {
     LoginPageAdminObject loginPage;
     DashboardPageOTAppObject dashboardOT;
     TrackingPageOTAppObject trackingPageOT;
-
-    // Image name
-    String me = "me.jpg";
-    String car = "car.jpg";
-    String campfire = "campfire.jpg";
-    String cafe1 = "cafe-1.jpg";
-    String cafe2 = "cafe-2.jpg";
-    // Image path
-    String meFilePath = GlobalConstants.UPLOAD_FILE + me;
-    String carFilePath = GlobalConstants.UPLOAD_FILE + car;
-    String campfireFilePath = GlobalConstants.UPLOAD_FILE + campfire;
-    String cafe1FilePath = GlobalConstants.UPLOAD_FILE + cafe1;
-    String cafe2FilePath = GlobalConstants.UPLOAD_FILE + cafe2;
-
-    String destinationUrl = "https://www.google.com/search?q=" + trackingPageOT.random;
 
 }

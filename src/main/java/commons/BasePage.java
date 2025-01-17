@@ -261,10 +261,12 @@ public class BasePage {
     }
 
     public void selectItemInDropdown(WebDriver driver, String locatorType, String valueItem){
+        sleepInSecond(1);
         new Select(getWebElement(driver, locatorType)).selectByVisibleText(valueItem);
     }
 
     public void selectItemInDropdown(WebDriver driver, String locatorType, String valueItem, String...dynamicValues){
+        sleepInSecond(1);
         new Select(getWebElement(driver, getDynamicXpath(locatorType, dynamicValues))).selectByVisibleText(valueItem);
     }
 

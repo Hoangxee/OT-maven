@@ -14,6 +14,11 @@ public class TrackingPageOTAppUI {
     public static final String PUBLISH_BTN_IN_TRACKING_FORM = "xpath=//*[text()='%s']/following-sibling::div//button";
     public static final String TRACKING_METHOD_OPTION_CHECKBOX = "xpath=//span[child::span[text()='%s']]/preceding-sibling::span/span";
     public static final String REQUIRE_EMAIL_CHECKBOX = "xpath=//span[child::span[text()='Require email when tracking']]/preceding-sibling::span//input";
+    public static final String SHIPPING_INFO_CHECKBOX_STATUS = "xpath=//span[child::span[text()='%s']]/preceding-sibling::span//input";
+    public static final String SHIPPING_INFO_CHECKBOX = "xpath=//span[child::span[text()='%s']]/preceding-sibling::span//span/preceding-sibling::span";
+    public static final String DATE_TIME_DROPDOWN = "xpath=//div[@class='Polaris-Select']/select[child::option[contains(@value,'%s')]]";
+    public static final String PROGRESS_BAR_CHECKBOX_STATUS = "xpath=//span[child::span[text()='%s']]/preceding-sibling::span//input";
+    public static final String PROGRESS_BAR_CHECKBOX = "xpath=//span[child::span[text()='%s']]/preceding-sibling::span//span/preceding-sibling::span";
 
 
 }

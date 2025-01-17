@@ -12,6 +12,7 @@ import pageUIs.apps.OT.DashboardPageOTAppUI;
 import pageUIs.apps.OT.TrackingPageOTAppUI;
 import pageUIs.storeFront.TrackingResultPageUI;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class TrackingPageOTAppObject extends BasePage {
@@ -74,10 +75,15 @@ public class TrackingPageOTAppObject extends BasePage {
         waitForElementClickable(driver, TrackingPageOTAppUI.THEME_OPTION, themeOption);
         clickToElement(driver, TrackingPageOTAppUI.THEME_OPTION, themeOption);
 
+        clickToSaveBtn(OT_TrackingPageConstants.SAVE_SUCCESSFULLY_MESSAGE);
+    }
+
+    @Step("Click to Save button")
+    public void clickToSaveBtn(String message){
         waitForElementClickable(driver, TrackingPageOTAppUI.SAVE_BTN);
         clickToElement(driver, TrackingPageOTAppUI.SAVE_BTN);
 
-        Assert.assertTrue(isListElementDisplayed(driver, TrackingPageOTAppUI.MESSAGE_TOAST, OT_TrackingPageConstants.SAVE_SUCCESSFULLY_MESSAGE));
+        Assert.assertTrue(isListElementDisplayed(driver, TrackingPageOTAppUI.MESSAGE_TOAST, message));
     }
 
     @Step("Verify Store front is Basic theme")
@@ -150,11 +156,6 @@ public class TrackingPageOTAppObject extends BasePage {
     private void handleSimpleTrackingMethod(String trackingMethodOption) {
         waitForElementClickable(driver, TrackingPageOTAppUI.TRACKING_METHOD_OPTION_CHECKBOX, trackingMethodOption);
         clickToElement(driver, TrackingPageOTAppUI.TRACKING_METHOD_OPTION_CHECKBOX, trackingMethodOption);
-
-        waitForElementClickable(driver, TrackingPageOTAppUI.SAVE_BTN);
-        clickToElement(driver, TrackingPageOTAppUI.SAVE_BTN);
-
-        Assert.assertTrue(isListElementDisplayed(driver, TrackingPageOTAppUI.MESSAGE_TOAST, OT_TrackingPageConstants.SAVE_SUCCESSFULLY_MESSAGE));
     }
     private void handleComplexTrackingMethod(String trackingMethodOption) {
         waitForElementClickable(driver, TrackingPageOTAppUI.TRACKING_METHOD_OPTION_CHECKBOX, trackingMethodOption);
@@ -163,10 +164,83 @@ public class TrackingPageOTAppObject extends BasePage {
         if (getAttribute(driver, TrackingPageOTAppUI.REQUIRE_EMAIL_CHECKBOX, "aria-invalid").equals("true")) {
             clickToElement(driver, TrackingPageOTAppUI.REQUIRE_EMAIL_CHECKBOX);
         }
+    }
 
-        waitForElementClickable(driver, TrackingPageOTAppUI.SAVE_BTN);
-        clickToElement(driver, TrackingPageOTAppUI.SAVE_BTN);
+    @Step("Choose Shipping info is '{0}'")
+    public void chooseShippingInfo(String shippingInfoName) {
+        if(shippingInfoName.equals("Progress bar")||
+                shippingInfoName.equals("Tracking logs")||
+                shippingInfoName.equals("Tracking Company")||
+                shippingInfoName.equals("Order Detail")||
+                shippingInfoName.equals("Map")){
+            if(getAttribute(driver, TrackingPageOTAppUI.SHIPPING_INFO_CHECKBOX_STATUS, "aria-checked", shippingInfoName).equals("false")){
+                waitForElementClickable(driver, TrackingPageOTAppUI.SHIPPING_INFO_CHECKBOX, shippingInfoName);
+                clickToElement(driver, TrackingPageOTAppUI.SHIPPING_INFO_CHECKBOX, shippingInfoName);
+            } else
+                System.out.println(shippingInfoName + " is checked");
+        } else
+            System.out.println(shippingInfoName + " is invalid");
+    }
 
-        Assert.assertTrue(isListElementDisplayed(driver, TrackingPageOTAppUI.MESSAGE_TOAST, OT_TrackingPageConstants.SAVE_SUCCESSFULLY_MESSAGE));
+    @Step("Choose Shipping info is '{0}'")
+    public void chooseShippingInfo(String... shippingInfoNames) {
+        List<String> validShippingInfo = Arrays.asList("Progress bar", "Tracking logs", "Tracking Company", "Order Detail", "Map");
+
+        for (String shippingInfoName : shippingInfoNames) {
+            if (validShippingInfo.contains(shippingInfoName)) {
+                if (getAttribute(driver, TrackingPageOTAppUI.PROGRESS_BAR_CHECKBOX_STATUS, "aria-checked", shippingInfoName).equals("false")) {
+                    waitForElementClickable(driver, TrackingPageOTAppUI.PROGRESS_BAR_CHECKBOX, shippingInfoName);
+                    clickToElement(driver, TrackingPageOTAppUI.PROGRESS_BAR_CHECKBOX, shippingInfoName);
+                } else {
+                    System.out.println(shippingInfoName + " is already checked");
+                }
+            } else {
+                System.out.println(shippingInfoName + " is invalid");
+            }
+        }
+    }
+
+    @Step("Select Date and time format are '{0}' and '{1}'")
+    public void selectDateTimeFormat(String dateFormat, String timeFormat) {
+        selectItemInDropdown(driver, TrackingPageOTAppUI.DATE_TIME_DROPDOWN, dateFormat, "MM");
+        Assert.assertEquals(getSelectedItemInDropdown(driver, TrackingPageOTAppUI.DATE_TIME_DROPDOWN, "MM"), dateFormat);
+
+        selectItemInDropdown(driver, TrackingPageOTAppUI.DATE_TIME_DROPDOWN, timeFormat, "mm");
+        Assert.assertEquals(getSelectedItemInDropdown(driver, TrackingPageOTAppUI.DATE_TIME_DROPDOWN, "mm"), timeFormat);
+
+    }
+
+    @Step("Choose Progress bar is '{0}'")
+    public void selectProgressBar(String progressBar) {
+        if(progressBar.equals("Ordered")||
+                progressBar.equals("In transit")||
+                progressBar.equals("Delivered")||
+                progressBar.equals("Order Ready")||
+                progressBar.equals("Out for delivery")){
+            if(getAttribute(driver, TrackingPageOTAppUI.PROGRESS_BAR_CHECKBOX_STATUS, "aria-checked", progressBar).equals("false")){
+                waitForElementClickable(driver, TrackingPageOTAppUI.PROGRESS_BAR_CHECKBOX, progressBar);
+                clickToElement(driver, TrackingPageOTAppUI.PROGRESS_BAR_CHECKBOX, progressBar);
+            } else
+                System.out.println(progressBar + " is checked");
+        } else
+            System.out.println(progressBar + " is invalid");
+    }
+
+    @Step("Choose Progress bar is '{0}'")
+    public void selectProgressBar(String... progressBars) {
+        List<String> validProgressBars = Arrays.asList("Ordered", "In transit", "Delivered", "Order Ready", "Out for delivery");
+
+        for (String progressBar : progressBars) {
+            if (validProgressBars.contains(progressBar)) {
+                if (getAttribute(driver, TrackingPageOTAppUI.PROGRESS_BAR_CHECKBOX_STATUS, "aria-checked", progressBar).equals("false")) {
+                    waitForElementClickable(driver, TrackingPageOTAppUI.PROGRESS_BAR_CHECKBOX, progressBar);
+                    clickToElement(driver, TrackingPageOTAppUI.PROGRESS_BAR_CHECKBOX, progressBar);
+                } else {
+                    System.out.println(progressBar + " is already checked");
+                }
+            } else {
+                System.out.println(progressBar + " is invalid");
+            }
+        }
     }
 }
