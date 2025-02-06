@@ -679,6 +679,22 @@ public class BasePage {
                 });
     }
 
+    public void waitForTextChange(WebDriver driver, String locatorType, String text){
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT))
+                .until(driver1 -> {
+                    String currentText = getTextInElement(driver1, locatorType);
+                    return !currentText.equals(text);
+                });
+    }
+    public void waitForTextChange(WebDriver driver, String locatorType, String text, String...dynamicValues){
+        new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT))
+                .until(driver1 -> {
+                    String currentText = getTextInElement(driver1, getDynamicXpath(locatorType, dynamicValues));
+                    return !currentText.equals(text);
+                });
+    }
+
+
     public void waitForElementInvisible(WebDriver driver, String locatorType){
         new WebDriverWait(driver, Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT)).until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locatorType)));
     }

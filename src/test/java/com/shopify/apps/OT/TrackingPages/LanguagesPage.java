@@ -20,7 +20,7 @@ import pageObject.shopify.admin.LoginPageAdminObject;
 import utilities.Environment;
 
 
-public class TrackingOptionsPage extends BaseTest {
+public class LanguagesPage extends BaseTest {
     @Parameters({"browser","environment"})
     @BeforeClass
     public void beforeClass(String browserName, String environmentName){
@@ -36,22 +36,15 @@ public class TrackingOptionsPage extends BaseTest {
         trackingPageOT = dashboardOT.openTrackingPage();
     }
 
-    @Description("Tracking options in Tracking page")
+    @Description("Language in Tracking page")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void TC01_TrackingOptions(){
-        trackingPageOT.openTrackingOptionsTab();
-        trackingPageOT.chooseTrackingMethod(OT_TrackingPageConstants.ORDER_ID_OPTION_IN_TRACKING_METHOD);
-        trackingPageOT.chooseShippingInfo(
-                OT_TrackingPageConstants.TRACKING_LOGS_OPTION_IN_SHIPPING_INFO,
-                OT_TrackingPageConstants.ORDER_DETAIL_OPTION_IN_SHIPPING_INFO);
-        trackingPageOT.selectDateTimeFormat(
-                OT_TrackingPageConstants.DATE_OPTION_IN_DATE_TIME_FORMAT,
-                OT_TrackingPageConstants.TIME_OPTION_IN_DATE_TIME_FORMAT);
-        trackingPageOT.selectProgressBar(
-                OT_TrackingPageConstants.IN_TRANSIT_OPTION_IN_PROGRESS_BAR,
-                OT_TrackingPageConstants.ORDER_READY_OPTION_IN_PROGRESS_BAR);
-        trackingPageOT.clickToSaveBtn(OT_TrackingPageConstants.SAVE_SUCCESSFULLY_MESSAGE);
+    public void TC01_Languages(){
+        trackingPageOT.openLanguagesTab();
+        trackingPageOT.selectGoogleLanguage("Japanese", "Right top");
+        trackingPageOT.checkedGoogleTranslateCheckbox();
+        trackingPageOT.sendKeyToField("In Transit","In Transit automation test");
+        trackingPageOT.clickToSaveBtn(OT_TrackingPageConstants.UPDATE_LANGUAGES_SUCCESSFULLY_MESSAGE);
     }
 
     @AfterClass

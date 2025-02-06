@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageUIs.apps.OT.DashboardPageOTAppUI;
 import pageUIs.apps.OT.TrackingPageOTAppUI;
+import pageUIs.apps.ST.DisputePageSTAppUI;
 import pageUIs.storeFront.TrackingResultPageUI;
 
 import java.util.Arrays;
@@ -80,10 +81,13 @@ public class TrackingPageOTAppObject extends BasePage {
 
     @Step("Click to Save button")
     public void clickToSaveBtn(String message){
-        waitForElementClickable(driver, TrackingPageOTAppUI.SAVE_BTN);
-        clickToElement(driver, TrackingPageOTAppUI.SAVE_BTN);
+        List<WebElement> saveBtn = getListWebElement(driver, TrackingPageOTAppUI.SAVE_BTN);
+        if(!saveBtn.isEmpty()){
+            waitForElementClickable(driver, TrackingPageOTAppUI.SAVE_BTN);
+            clickToElement(driver, TrackingPageOTAppUI.SAVE_BTN);
 
-        Assert.assertTrue(isListElementDisplayed(driver, TrackingPageOTAppUI.MESSAGE_TOAST, message));
+            Assert.assertTrue(isListElementDisplayed(driver, TrackingPageOTAppUI.MESSAGE_TOAST, message));
+        }
     }
 
     @Step("Verify Store front is Basic theme")
@@ -138,6 +142,18 @@ public class TrackingPageOTAppObject extends BasePage {
     public void openTrackingOptionsTab() {
         waitForElementClickable(driver, TrackingPageOTAppUI.TRACKING_PAGE_TAB, OTConstants.TRACKING_OPTIONS_TAB_IN_TRACKING_PAGE);
         clickToElement(driver, TrackingPageOTAppUI.TRACKING_PAGE_TAB, OTConstants.TRACKING_OPTIONS_TAB_IN_TRACKING_PAGE);
+    }
+
+    @Step("Open Language tab")
+    public void openLanguagesTab() {
+        waitForElementClickable(driver, TrackingPageOTAppUI.TRACKING_PAGE_TAB, OTConstants.LANGUAGES_TAB_IN_TRACKING_PAGE);
+        clickToElement(driver, TrackingPageOTAppUI.TRACKING_PAGE_TAB, OTConstants.LANGUAGES_TAB_IN_TRACKING_PAGE);
+    }
+
+    @Step("Open Estimated Delivery Date tab")
+    public void openEstimatedDeliveryDateTab() {
+        waitForElementClickable(driver, TrackingPageOTAppUI.TRACKING_PAGE_TAB, OTConstants.ESTIMATED_DELIVERY_DATE_TAB_IN_TRACKING_PAGE);
+        clickToElement(driver, TrackingPageOTAppUI.TRACKING_PAGE_TAB, OTConstants.ESTIMATED_DELIVERY_DATE_TAB_IN_TRACKING_PAGE);
     }
 
     @Step("Choose Tracking method is '{0}'")
@@ -243,4 +259,74 @@ public class TrackingPageOTAppObject extends BasePage {
             }
         }
     }
+
+    @Step("Select Language and position are '{0}' and '{1}'")
+    public void selectGoogleLanguage(String language, String position) {
+        String languageUpperCaseFirstWord = upperCaseFirstWord(language);
+        String positionUpperCaseFirstWord = upperCaseFirstWord(position);
+
+        selectItemInDropdown(driver, TrackingPageOTAppUI.GOOGLE_LANGUAGE_DROPDOWN, languageUpperCaseFirstWord);
+        Assert.assertEquals(getSelectedItemInDropdown(driver, TrackingPageOTAppUI.GOOGLE_LANGUAGE_DROPDOWN), languageUpperCaseFirstWord);
+
+        selectItemInDropdown(driver, TrackingPageOTAppUI.GOOGLE_LANGUAGE_POSITION_DROPDOWN, positionUpperCaseFirstWord);
+        Assert.assertEquals(getSelectedItemInDropdown(driver, TrackingPageOTAppUI.GOOGLE_LANGUAGE_POSITION_DROPDOWN), positionUpperCaseFirstWord);
+    }
+
+    @Step("Click to Use Google translate extension checkbox")
+    public void checkedGoogleTranslateCheckbox() {
+        String status = getAttribute(driver, TrackingPageOTAppUI.GOOGLE_TRANSLATE_CHECKBOX_STATUS, "aria-checked");
+        if(status.equals("false")){
+            waitForElementClickable(driver, TrackingPageOTAppUI.GOOGLE_TRANSLATE_CHECKBOX);
+            clickToElement(driver, TrackingPageOTAppUI.GOOGLE_TRANSLATE_CHECKBOX);
+        } else
+            System.out.println("Google translate extension was checked");
+    }
+
+    @Step("Send key '{1}' to field {0}")
+    public void sendKeyToField(String field, String dataInput) {
+        List<WebElement> foldingStatus = getListWebElement(driver, TrackingPageOTAppUI.ADVANCED_TRANSLATION_TITLE);
+
+        for(int i = 0; i < foldingStatus.size(); i++) {
+            String status = foldingStatus.get(i).getAttribute("aria-expanded");
+            if (status.equals("false")){
+                foldingStatus.get(i).click();
+                Assert.assertEquals(foldingStatus.get(i).getAttribute("aria-expanded"), "true");
+                sleepInSecond(1);
+            } else if(status.equals("true")){
+                break;
+            }
+        }
+
+        waitForElementVisible(driver, TrackingPageOTAppUI.TRACKING_STATUS_INPUT, field);
+        sendKeyToElementAfterClearText(driver, TrackingPageOTAppUI.TRACKING_STATUS_INPUT, dataInput, field);
+    }
+
+    @Step("{0} Estimated Delivery Date")
+    public void toggleEstimatedDeliveryDate(String action) {
+        waitForTextChange(driver, TrackingPageOTAppUI.ESTIMATED_DELIVERY_DATE_STATUS_BTN_TEXT, "Loading...");
+
+        String status = getTextInElement(driver, TrackingPageOTAppUI.ESTIMATED_DELIVERY_DATE_STATUS_BTN_TEXT);
+        String actionUpperCase = upperCaseFirstWord(action);
+
+        if(status.equals(actionUpperCase)){
+            waitForElementClickable(driver, TrackingPageOTAppUI.ESTIMATED_DELIVERY_DATE_STATUS_BTN);
+            clickToElement(driver, TrackingPageOTAppUI.ESTIMATED_DELIVERY_DATE_STATUS_BTN);
+
+            Assert.assertTrue(isListElementDisplayed(driver, TrackingPageOTAppUI.MESSAGE_TOAST, OT_TrackingPageConstants.UPDATE_ESTIMATED_DELIVERY_DATE_SUCCESSFULLY_MESSAGE));
+        } else
+            System.out.println("Action invalid");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

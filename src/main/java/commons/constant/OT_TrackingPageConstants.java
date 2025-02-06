@@ -38,6 +38,7 @@ public class OT_TrackingPageConstants {
     public static final String DELIVERED_OPTION_IN_PROGRESS_BAR = "Delivered";
     public static final String ORDER_READY_OPTION_IN_PROGRESS_BAR = "Order Ready";
     public static final String OUT_FOR_DELIVERY_OPTION_IN_PROGRESS_BAR = "Out for delivery";
-
+    public static final String UPDATE_LANGUAGES_SUCCESSFULLY_MESSAGE = "Update translation success!";
+    public static final String UPDATE_ESTIMATED_DELIVERY_DATE_SUCCESSFULLY_MESSAGE = "Edd setting updated!";
 
 }
