@@ -8,7 +8,8 @@
     </listeners>
 
     <test name="Run Create Orders">
-        <parameter name="browser" value="Chrome"/>
+<!--        <parameter name="browser" value="Chrome"/>-->
+        <parameter name="browser" value="HEADLESS_CHROME"/>
         <classes>
             <class name="com.shopify.storeFront.CreateOrderInStoreFront"/>
         </classes>
