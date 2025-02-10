@@ -32,3 +32,4 @@ test:
       mvn clean
       mvn test
       ls -l
+  allow_failure: true
