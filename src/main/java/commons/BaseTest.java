@@ -88,6 +88,11 @@ public class BaseTest {
 //                driver = new ChromeDriver(chromeOptions);
 
                 //new version
+
+                caps = ((RemoteWebDriver) driver).getCapabilities();
+                Map<String, String> a = (Map<String, String>) caps.getCapability("chrome");
+                System.out.println(String.format("Driver Version: %s", a.get("chromedriverVersion")));
+
                 ChromeOptions headlessChromeOptions = new ChromeOptions();
                 headlessChromeOptions.addArguments("--headless");
                 headlessChromeOptions.addArguments("window-size=1920,1080");

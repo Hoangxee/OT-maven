@@ -30,10 +30,10 @@ test:
       apt-get update
       apt-get install -y google-chrome-stable
       google-chrome --version
-      chromedriver --version
 
   script:
     - |
+      mvn -B dependency:go-offline
       mvn clean
       mvn test
   allow_failure: true
