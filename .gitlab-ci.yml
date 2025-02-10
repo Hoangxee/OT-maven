@@ -1,4 +1,12 @@
-script:
-  - |
-    mvn clean
-    mvn test
+stages:
+  - test
+test:
+  stage: test
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+  services:
+    - docker:dind
+  script:
+    - |
+      mvn clean
+      mvn test
