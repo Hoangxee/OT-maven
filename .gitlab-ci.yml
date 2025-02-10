@@ -33,3 +33,4 @@ test:
       mvn test
       ls -l
   allow_failure: true
+
