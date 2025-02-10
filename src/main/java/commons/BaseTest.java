@@ -10,18 +10,16 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.BeforeSuite;
 import org.openqa.selenium.Capabilities;
+
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 
 public class BaseTest {
@@ -50,7 +48,7 @@ public class BaseTest {
                 chromePrefs.put("download.default_directory", GlobalConstants.DOWNLOAD_FILE);
 
                 ChromeOptions chromeOptions = new ChromeOptions();
-//                chromeOptions.addArguments("--lang-vi"); //change default language
+//                chromeOptions1.addArguments("--lang-vi"); //change default language
                 chromeOptions.setExperimentalOption("useAutomationExtension", false);
                 chromeOptions.setExperimentalOption("excludeSwitches",Collections.singletonList("enable-automation"));
                 chromeOptions.addArguments("--incognito"); // ẩn danh
@@ -74,28 +72,25 @@ public class BaseTest {
                 break;
 
             case HEADLESS_CHROME:
-//                //old version - good for jenkins and almalinux
-//                ChromeOptions chromeOptions = new ChromeOptions();
-//                chromeOptions.addArguments("--no-sandbox");
-////                chromeOptions.addArguments("--headless");
-//                chromeOptions.addArguments("--window-size=1920,1080");
-//                chromeOptions.addArguments(
-//                        "user-agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.71 Safari/537.36'");
-//                chromeOptions.addArguments("--disable-dev-shm-usage");
-//                chromeOptions.addArguments("--disable-web-security");
-//                chromeOptions.addArguments("disable-infobars");
+                //old version - good for jenkins and almalinux
+                ChromeOptions chromeOptions1 = new ChromeOptions();
+                chromeOptions1.addArguments("--no-sandbox");
+                chromeOptions1.addArguments("--headless");
+                chromeOptions1.addArguments("--window-size=1920,1080");
+                chromeOptions1.addArguments(
+                        "user-agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.6943.53 Safari/537.36'");
+                chromeOptions1.addArguments("--disable-dev-shm-usage");
+                chromeOptions1.addArguments("--disable-web-security");
+                chromeOptions1.addArguments("disable-infobars");
+
+                driver = new ChromeDriver(chromeOptions1);
+
+//                //new version
+//                ChromeOptions headlessChromeOptions = new ChromeOptions();
+//                headlessChromeOptions.addArguments("--headless");
+//                headlessChromeOptions.addArguments("window-size=1920,1080");
 //
-//                driver = new ChromeDriver(chromeOptions);
-
-                //new version
-                ChromeOptions headlessChromeOptions = new ChromeOptions();
-                headlessChromeOptions.addArguments("--headless");
-                headlessChromeOptions.addArguments("window-size=1920,1080");
-                driver = new ChromeDriver(headlessChromeOptions);
-
-                caps = ((RemoteWebDriver) driver).getCapabilities();
-                Map<String, String> a = (Map<String, String>) caps.getCapability("chrome");
-                System.out.println(String.format("Driver Version: %s", a.get("chromedriverVersion")));
+//                driver = new ChromeDriver(headlessChromeOptions);
 
                 break;
 
@@ -165,4 +160,5 @@ public class BaseTest {
 //        String browserVersion = caps.getBrowserVersion();
 //        System.out.println(browserVersion);
 //    }
+
 }
