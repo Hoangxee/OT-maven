@@ -10,6 +10,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.BeforeSuite;
@@ -85,7 +86,7 @@ public class BaseTest {
 //                chromeOptions.addArguments("disable-infobars");
 //
 //                driver = new ChromeDriver(chromeOptions);
-
+                getChromeInfo();
                 //new version
                 ChromeOptions headlessChromeOptions = new ChromeOptions();
                 headlessChromeOptions.addArguments("--headless");
@@ -145,20 +146,18 @@ public class BaseTest {
 
     public void getChromeInfo(){
 //         //DesiredCapabilities only work with selenium 3x
-//         log chromedriver version
+////         log chromedriver version
 //         caps = DesiredCapabilities.chrome();
-//         caps = ((RemoteWebDriver) driver).getCapabilities();
-//         Map<String, String> a = (Map<String, String>) caps.getCapability("chrome");
-//         System.out.println(String.format("Driver Version: %s",
-//         a.get("chromedriverVersion")));
+         caps = ((RemoteWebDriver) driver).getCapabilities();
+         Map<String, String> a = (Map<String, String>) caps.getCapability("chrome");
+         System.out.println(String.format("Driver Version: %s",
+         a.get("chromedriverVersion")));
 
          //log chrome browser version
         caps = ((RemoteWebDriver) driver).getCapabilities();
         String browserName = caps.getBrowserName().toLowerCase();
         System.out.println(browserName);
-        String os = caps.getBrowserName();
-        System.out.println(os);
-        String v = caps.getBrowserVersion();
-        System.out.println(v);
+        String browserVersion = caps.getBrowserVersion();
+        System.out.println(browserVersion);
     }
 }
