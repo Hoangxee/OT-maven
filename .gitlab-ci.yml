@@ -1,12 +1,24 @@
 stages:
   - test
+
+default:
+  image: maven:3.6.3-openjdk-11
+  cache:
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - .m2/
+
+variables:
+  MAVEN_OPTS: >-
+    -Dhttps.protocols=TLSv1.2
+    -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository
+  MAVEN_CLI_OPTS: >-
+    -DskipTests
+
 test:
   stage: test
-  image: maven:3.9.6-eclipse-temurin-11
   rules:
     - if: $CI_COMMIT_BRANCH == "develop"
-  services:
-    - docker:dind
   script:
     - |
       mvn clean
