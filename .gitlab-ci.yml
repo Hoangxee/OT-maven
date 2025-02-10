@@ -1,3 +1,4 @@
 script:
   - |
-    USER_ID=`id -u` GROUP_ID=`id -g` docker compose up --build
+    mvn clean
+    mvn test
