@@ -2,6 +2,7 @@ stages:
   - test
 test:
   stage: test
+  image: maven:3.9.6-eclipse-temurin-11
   rules:
     - if: $CI_COMMIT_BRANCH == "develop"
   services:
