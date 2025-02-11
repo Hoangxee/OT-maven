@@ -72,18 +72,18 @@ public class BaseTest {
                 break;
 
             case HEADLESS_CHROME:
-                //old version - good for jenkins and almalinux
-                ChromeOptions chromeOptions1 = new ChromeOptions();
-                chromeOptions1.addArguments("--no-sandbox");
-                chromeOptions1.addArguments("--headless");
-                chromeOptions1.addArguments("--window-size=1920,1080");
-                chromeOptions1.addArguments(
-                        "user-agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.6943.53 Safari/537.36'");
-                chromeOptions1.addArguments("--disable-dev-shm-usage");
-                chromeOptions1.addArguments("--disable-web-security");
-                chromeOptions1.addArguments("disable-infobars");
-
-                driver = new ChromeDriver(chromeOptions1);
+//                //old version - good for gitlab, jenkins and almalinux
+//                ChromeOptions headlessChromeOptions = new ChromeOptions();
+//                headlessChromeOptions.addArguments("--no-sandbox");
+//                headlessChromeOptions.addArguments("--headless");
+//                headlessChromeOptions.addArguments("--window-size=1920,1080");
+//                headlessChromeOptions.addArguments(
+//                        "user-agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.6943.53 Safari/537.36'");
+//                headlessChromeOptions.addArguments("--disable-dev-shm-usage");
+//                headlessChromeOptions.addArguments("--disable-web-security");
+//                headlessChromeOptions.addArguments("disable-infobars");
+//
+//                driver = new ChromeDriver(headlessChromeOptions);
 
 //                //new version
 //                ChromeOptions headlessChromeOptions = new ChromeOptions();
@@ -91,6 +91,18 @@ public class BaseTest {
 //                headlessChromeOptions.addArguments("window-size=1920,1080");
 //
 //                driver = new ChromeDriver(headlessChromeOptions);
+
+                ChromeOptions headlessChromeOptions = new ChromeOptions();
+                headlessChromeOptions.addArguments("--no-sandbox");
+                headlessChromeOptions.addArguments("--headless");
+                headlessChromeOptions.addArguments("--window-size=1920,1080");
+                headlessChromeOptions.addArguments(
+                        "user-agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.6943.53 Safari/537.36'");
+//                headlessChromeOptions.addArguments("--disable-dev-shm-usage");
+//                headlessChromeOptions.addArguments("--disable-web-security");
+//                headlessChromeOptions.addArguments("disable-infobars");
+
+                driver = new ChromeDriver(headlessChromeOptions);
 
                 break;
 
@@ -133,7 +145,7 @@ public class BaseTest {
                 }
             }
         } catch (Exception e) {
-            System.out.print(e.getMessage());
+            System.out.print("Not found "+e.getMessage());
         }
     }
 
