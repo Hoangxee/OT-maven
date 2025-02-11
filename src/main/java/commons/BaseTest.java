@@ -98,9 +98,7 @@ public class BaseTest {
                 headlessChromeOptions.addArguments("--window-size=1920,1080");
                 headlessChromeOptions.addArguments(
                         "user-agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.6943.53 Safari/537.36'");
-                headlessChromeOptions.addArguments("--disable-dev-shm-usage");
-//                headlessChromeOptions.addArguments("--disable-web-security");
-//                headlessChromeOptions.addArguments("disable-infobars");
+//                headlessChromeOptions.addArguments("--disable-dev-shm-usage");
 
                 driver = new ChromeDriver(headlessChromeOptions);
 
@@ -137,8 +135,14 @@ public class BaseTest {
     protected void deleteAllFileInFolder() {
         try {
             String pathFolderDownload = GlobalConstants.PROJECT_PATH + "/allure-results";
-            File file = new File(pathFolderDownload);
-            File[] listOfFiles = file.listFiles();
+            File folder = new File(pathFolderDownload);
+
+            if (!folder.exists() || !folder.isDirectory()) {
+                System.out.println("Folder " + pathFolderDownload + " does not exist.");
+                return;
+            }
+
+            File[] listOfFiles = folder.listFiles();
             for (int i = 0; i < listOfFiles.length; i++) {
                 if (listOfFiles[i].isFile()) {
                     new File(listOfFiles[i].toString()).delete();
