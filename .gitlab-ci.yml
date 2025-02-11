@@ -36,11 +36,12 @@ test:
       mvn -B dependency:go-offline
       mvn clean
       mvn test
+      allure generate -c ./build/allure-results -o ./build/allure-report
 
   artifacts:
     when: always
     paths:
-      - build/reports/allure-report/
+      - build/allure-report/
     expire_in: 1 day
 
   allow_failure: true
