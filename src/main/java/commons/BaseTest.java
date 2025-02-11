@@ -93,7 +93,7 @@ public class BaseTest {
 //                driver = new ChromeDriver(headlessChromeOptions);
 
                 ChromeOptions headlessChromeOptions = new ChromeOptions();
-//                headlessChromeOptions.addArguments("--no-sandbox");
+                headlessChromeOptions.addArguments("--no-sandbox");
                 headlessChromeOptions.addArguments("--headless");
                 headlessChromeOptions.addArguments("--disable-dev-shm-usage");
 //                headlessChromeOptions.addArguments("--window-size=1920,1080");
