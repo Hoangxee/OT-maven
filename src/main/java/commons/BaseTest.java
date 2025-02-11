@@ -72,7 +72,7 @@ public class BaseTest {
                 break;
 
             case HEADLESS_CHROME:
-//                //old version - good for gitlab, jenkins and almalinux
+//                //old version - good for jenkins and almalinux
 //                ChromeOptions headlessChromeOptions = new ChromeOptions();
 //                headlessChromeOptions.addArguments("--no-sandbox");
 //                headlessChromeOptions.addArguments("--headless");
@@ -85,38 +85,30 @@ public class BaseTest {
 //
 //                driver = new ChromeDriver(headlessChromeOptions);
 
-//                //new version
-//                ChromeOptions headlessChromeOptions = new ChromeOptions();
-//                headlessChromeOptions.addArguments("--headless");
-//                headlessChromeOptions.addArguments("window-size=1920,1080");
-//
-//                driver = new ChromeDriver(headlessChromeOptions);
-
+                //new version - good for gitlab ci
                 ChromeOptions headlessChromeOptions = new ChromeOptions();
                 headlessChromeOptions.addArguments("--no-sandbox");
                 headlessChromeOptions.addArguments("--headless");
                 headlessChromeOptions.addArguments("--disable-dev-shm-usage");
-//                headlessChromeOptions.addArguments("--window-size=1920,1080");
-//                headlessChromeOptions.addArguments(
-//                        "user-agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.6943.53 Safari/537.36'");
-//                headlessChromeOptions.addArguments("--disable-web-security");
-//                headlessChromeOptions.addArguments("disable-infobars");
-
+//                headlessChromeOptions.addArguments("window-size=1920,1080");
                 driver = new ChromeDriver(headlessChromeOptions);
-
                 break;
 
             case HEADLESS_FIREFOX:
                 FirefoxOptions headlessFirefoxOptions = new FirefoxOptions();
+                headlessFirefoxOptions.addArguments("--no-sandbox");
                 headlessFirefoxOptions.addArguments("--headless");
-                headlessFirefoxOptions.addArguments("window-size=1920,1080");
+                headlessFirefoxOptions.addArguments("--disable-dev-shm-usage");
+//                headlessFirefoxOptions.addArguments("window-size=1920,1080");
                 driver = new FirefoxDriver(headlessFirefoxOptions);
                 break;
 
             case HEADLESS_EDGE:
                 EdgeOptions headlessEdgeOptions = new EdgeOptions();
+                headlessEdgeOptions.addArguments("--no-sandbox");
                 headlessEdgeOptions.addArguments("--headless");
-                headlessEdgeOptions.addArguments("window-size=1920,1080");
+                headlessEdgeOptions.addArguments("--disable-dev-shm-usage");
+//                headlessEdgeOptions.addArguments("window-size=1920,1080");
                 driver = new EdgeDriver(headlessEdgeOptions);
                 break;
 

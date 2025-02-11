@@ -8,25 +8,24 @@
     </listeners>
 
     <test name="Run Create Orders">
-<!--        <parameter name="browser" value="Chrome"/>-->
-        <parameter name="browser" value="HEADLESS_CHROME"/>
+        <parameter name="browser" value="Chrome"/>
         <classes>
             <class name="com.shopify.storeFront.CreateOrderInStoreFront"/>
         </classes>
     </test>
 
-<!--    <test name="Run Uninstall App">-->
-<!--        <parameter name="browser" value="Chrome"/>-->
-<!--        <classes>-->
-<!--            <class name="com.shopify.admin.UninstallApp"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="Run Uninstall App">
+        <parameter name="browser" value="Chrome"/>
+        <classes>
+            <class name="com.shopify.admin.UninstallApp"/>
+        </classes>
+    </test>
 
-<!--    <test name="Run Install App">-->
-<!--        <parameter name="browser" value="Chrome"/>-->
-<!--        <classes>-->
-<!--            <class name="com.shopify.admin.InstallApp"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="Run Install App">
+        <parameter name="browser" value="Chrome"/>
+        <classes>
+            <class name="com.shopify.admin.InstallApp"/>
+        </classes>
+    </test>
 
 </suite>

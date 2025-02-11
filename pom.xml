@@ -240,7 +240,7 @@
                 <configuration>
                     <!-- Run TestNG xml file -->
                     <suiteXmlFiles>
-                        <file>src/test/resources/config/runAllProject.xml</file>
+                        <file>src/test/resources/config/runAllProject_CICD.xml</file>
                     </suiteXmlFiles>
 
                     <!-- Allure report Argument - screenshot for Allure report -->
