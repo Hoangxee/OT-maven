@@ -42,6 +42,8 @@ test:
     when: always
     paths:
       - build/allure-report/
+      - /build/allure-results
+      - target/allure-results
     expire_in: 1 day
 
   allow_failure: true
