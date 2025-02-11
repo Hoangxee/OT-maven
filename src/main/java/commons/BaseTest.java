@@ -96,9 +96,9 @@ public class BaseTest {
                 headlessChromeOptions.addArguments("--no-sandbox");
                 headlessChromeOptions.addArguments("--headless");
                 headlessChromeOptions.addArguments("--window-size=1920,1080");
-                headlessChromeOptions.addArguments(
-                        "user-agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.6943.53 Safari/537.36'");
-//                headlessChromeOptions.addArguments("--disable-dev-shm-usage");
+//                headlessChromeOptions.addArguments(
+//                        "user-agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.6943.53 Safari/537.36'");
+                headlessChromeOptions.addArguments("--disable-dev-shm-usage");
 
                 driver = new ChromeDriver(headlessChromeOptions);
 
