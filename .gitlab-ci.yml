@@ -20,6 +20,9 @@ test:
   stage: test
   rules:
     - if: $CI_COMMIT_BRANCH == "develop"
+  script:
+    - mvn clean
+    - mvn test
 #  before_script:
 #    - |
 #      apt-get update && apt-get install -y gnupg2
@@ -32,11 +35,11 @@ test:
 #      apt-get install -y google-chrome-stable
 #      google-chrome --version
 
-  script:
-    - |
+#  script:
+#    - |
 #      mvn -B dependency:go-offline
-      mvn clean
-      mvn test
+#      mvn clean
+#      mvn test
   #      allure generate -c ./artifacts/allure-results -o ./artifacts/allure-report
   artifacts:
     when: always
