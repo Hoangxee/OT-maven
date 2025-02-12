@@ -46,11 +46,11 @@ test:
   allow_failure: true
 
 allure-report:
-  image: "fescobar/allure-docker-service-ui"
-#  image: "frankescobar/allure-docker-service:latest"
+  image: "frankescobar/allure-docker-service:latest"
   stage: report
   script:
-    - allure generate --clean target/allure-results -o target/allure-report
+    - allure generate -c target/allure-results -o target/allure-report
+#    - allure generate --clean target/allure-results -o target/allure-report
   artifacts:
     when: always
     paths:
