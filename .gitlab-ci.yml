@@ -18,7 +18,10 @@ variables:
 
 test:
   stage: test
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
   script:
+    - mvn clean
     - mvn test
   artifacts:
     when: always
