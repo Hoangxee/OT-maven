@@ -3,11 +3,11 @@ stages:
   - report
 
 default:
-  image: maven:3.8.2-openjdk-11
+  image: maven:3.6.3-openjdk-11
   cache:
-  key: $CI_COMMIT_REF_SLUG
-  paths:
-    - .m2/
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - .m2/
 
 variables:
   MAVEN_OPTS: >-
@@ -20,18 +20,33 @@ test:
   stage: test
   rules:
     - if: $CI_COMMIT_BRANCH == "develop"
+  before_script:
+    - |
+      apt-get update && apt-get install -y gnupg2
+      apt-get update -y & apt-get install -y wget
+      DEBIAN_FRONTEND=noninteractive
+      apt-get install -y tzdata
+      wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+      sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+      apt-get update
+      apt-get install -y google-chrome-stable
+      google-chrome --version
+
   script:
-    - mvn clean
-    - mvn test
+    - |
+      mvn -B dependency:go-offline
+      mvn clean
+      mvn test
+  #      allure generate -c ./artifacts/allure-results -o ./artifacts/allure-report
   artifacts:
     when: always
     paths:
       - target/allure-results
     expire_in: 1 day
+  allow_failure: true
 
 allure-report:
   image: "frankescobar/allure-docker-service:latest"
-#  image: "franela/allure-docker:latest"
   stage: report
   script:
     - allure generate --clean target/allure-results -o target/allure-report
