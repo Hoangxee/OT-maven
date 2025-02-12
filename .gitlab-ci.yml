@@ -36,13 +36,16 @@ test:
       mvn -B dependency:go-offline
       mvn clean
       mvn test
-      allure generate -c ./build/allure-results -o ./build/allure-report
+#      allure generate -c ./artifacts/allure-results -o ./artifacts/allure-report
+  after_script:
+    - allure generate allure-report
 
   artifacts:
     when: always
     paths:
       - target/allure-results
     expire_in: 1 day
+#  target/allure-results
 
   allow_failure: true
 
