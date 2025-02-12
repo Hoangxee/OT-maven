@@ -38,7 +38,7 @@ test:
       mvn test
 #      allure generate -c ./artifacts/allure-results -o ./artifacts/allure-report
   after_script:
-    - allure generate allure-report
+    - npx allure generate allure-report
 
   artifacts:
     when: always
