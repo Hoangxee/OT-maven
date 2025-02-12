@@ -46,7 +46,8 @@ test:
   allow_failure: true
 
 allure-report:
-  image: "fescobar/allure-docker-service:latest"
+  image: "fescobar/allure-docker-service-ui"
+#  image: "frankescobar/allure-docker-service:latest"
   stage: report
   script:
     - allure generate --clean target/allure-results -o target/allure-report
