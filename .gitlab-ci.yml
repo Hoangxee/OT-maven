@@ -42,17 +42,15 @@ test:
     paths:
       - target/allure-results
     expire_in: 1 day
-
-  allure-report:
-    image: "franela/allure-docker:latest"
-    stage: report
-    script:
-      - allure generate --clean target/allure-results -o target/allure-report
-    artifacts:
-      when: always
-      paths:
-        - target/allure-report
-      expire_in: 1 day
-
   allow_failure: true
 
+allure-report:
+  image: "franela/allure-docker:latest"
+  stage: report
+  script:
+    - allure generate --clean target/allure-results -o target/allure-report
+  artifacts:
+    when: always
+    paths:
+      - target/allure-report
+    expire_in: 1 day
