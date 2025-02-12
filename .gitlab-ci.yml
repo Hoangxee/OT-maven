@@ -20,21 +20,21 @@ test:
   stage: test
   rules:
     - if: $CI_COMMIT_BRANCH == "develop"
-  before_script:
-    - |
-      apt-get update && apt-get install -y gnupg2
-      apt-get update -y & apt-get install -y wget
-      DEBIAN_FRONTEND=noninteractive
-      apt-get install -y tzdata
-      wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-      sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-      apt-get update
-      apt-get install -y google-chrome-stable
-      google-chrome --version
+#  before_script:
+#    - |
+#      apt-get update && apt-get install -y gnupg2
+#      apt-get update -y & apt-get install -y wget
+#      DEBIAN_FRONTEND=noninteractive
+#      apt-get install -y tzdata
+#      wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+#      sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+#      apt-get update
+#      apt-get install -y google-chrome-stable
+#      google-chrome --version
 
   script:
     - |
-      mvn -B dependency:go-offline
+#      mvn -B dependency:go-offline
       mvn clean
       mvn test
   #      allure generate -c ./artifacts/allure-results -o ./artifacts/allure-report
