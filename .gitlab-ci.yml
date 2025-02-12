@@ -37,15 +37,22 @@ test:
       mvn clean
       mvn test
 #      allure generate -c ./artifacts/allure-results -o ./artifacts/allure-report
-  after_script:
-    - npx allure generate allure-report
-
   artifacts:
     when: always
     paths:
       - target/allure-results
     expire_in: 1 day
-#  target/allure-results
+
+  allure-report:
+    image: "franela/allure-docker:latest"
+    stage: report
+    script:
+      - allure generate --clean target/allure-results -o target/allure-report
+    artifacts:
+      when: always
+      paths:
+        - target/allure-report
+      expire_in: 1 day
 
   allow_failure: true
 
