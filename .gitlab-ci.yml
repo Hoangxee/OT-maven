@@ -2,7 +2,7 @@ image: maven:3.8.2-openjdk-11
 
 cache:
   paths:
-    - .m2/repository
+    - .m2/
 
 stages:
   - build
