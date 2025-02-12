@@ -52,7 +52,7 @@ allure-report:
     - allure generate --clean target/allure-results -o target/allure-report
   artifacts:
     when: always
+    expose_as: 'Hoang an cut'
     paths:
-      - target/allure-report
+      - target/allure-report/index.html
     expire_in: 1 day
-    html: index.html
