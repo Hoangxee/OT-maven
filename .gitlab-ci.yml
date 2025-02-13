@@ -37,7 +37,7 @@ test:
       mvn -B dependency:go-offline
       mvn clean
       mvn test
-  #      allure generate -c ./artifacts/allure-results -o ./artifacts/allure-report
+
   artifacts:
     when: always
     paths:
@@ -52,7 +52,6 @@ allure-report:
     - allure generate --clean target/allure-results -o target/allure-report
   artifacts:
     when: always
-    expose_as: 'Hoang an cut'
     paths:
-      - target/allure-report/index.html
+      - target/allure-report
     expire_in: 1 day
