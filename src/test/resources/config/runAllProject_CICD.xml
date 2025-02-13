@@ -2,6 +2,8 @@
 
 <suite name="Order tracking" verbose="1">
     <parameter name="environment" value="prod"/>
+    <parameter name="appName" value="Omega Order Tracking"/>
+    <parameter name="appNameInShopifyStore" value="Synctrack Order Tracking"/>
     <listeners>
         <listener class-name="commons.MethodListener"/>
         <listener class-name="reportConfig.AllureTestListener"/>
