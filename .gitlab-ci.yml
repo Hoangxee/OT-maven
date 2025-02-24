@@ -4,8 +4,6 @@
 
 trigger-parent:
   stage: trigger-parent
-  script:
-    - echo "Waiting for 'megamind-order-tracking-frontend' pipeline to trigger this job"
   trigger:
     project: megaminds/megamind-order-tracking-frontend
     branch: develop
