@@ -10,17 +10,16 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.BeforeSuite;
 import org.openqa.selenium.Capabilities;
+
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 
 public class BaseTest {
@@ -49,7 +48,7 @@ public class BaseTest {
                 chromePrefs.put("download.default_directory", GlobalConstants.DOWNLOAD_FILE);
 
                 ChromeOptions chromeOptions = new ChromeOptions();
-//                chromeOptions.addArguments("--lang-vi"); //change default language
+//                chromeOptions1.addArguments("--lang-vi"); //change default language
                 chromeOptions.setExperimentalOption("useAutomationExtension", false);
                 chromeOptions.setExperimentalOption("excludeSwitches",Collections.singletonList("enable-automation"));
                 chromeOptions.addArguments("--incognito"); // ẩn danh
@@ -74,36 +73,42 @@ public class BaseTest {
 
             case HEADLESS_CHROME:
 //                //old version - good for jenkins and almalinux
-//                ChromeOptions chromeOptions = new ChromeOptions();
-//                chromeOptions.addArguments("--no-sandbox");
-////                chromeOptions.addArguments("--headless");
-//                chromeOptions.addArguments("--window-size=1920,1080");
-//                chromeOptions.addArguments(
-//                        "user-agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.71 Safari/537.36'");
-//                chromeOptions.addArguments("--disable-dev-shm-usage");
-//                chromeOptions.addArguments("--disable-web-security");
-//                chromeOptions.addArguments("disable-infobars");
+//                ChromeOptions headlessChromeOptions = new ChromeOptions();
+//                headlessChromeOptions.addArguments("--no-sandbox");
+//                headlessChromeOptions.addArguments("--headless");
+//                headlessChromeOptions.addArguments("--window-size=1920,1080");
+//                headlessChromeOptions.addArguments(
+//                        "user-agent='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.6943.53 Safari/537.36'");
+//                headlessChromeOptions.addArguments("--disable-dev-shm-usage");
+//                headlessChromeOptions.addArguments("--disable-web-security");
+//                headlessChromeOptions.addArguments("disable-infobars");
 //
-//                driver = new ChromeDriver(chromeOptions);
+//                driver = new ChromeDriver(headlessChromeOptions);
 
-                //new version
+                //new version - good for gitlab ci
                 ChromeOptions headlessChromeOptions = new ChromeOptions();
+                headlessChromeOptions.addArguments("--no-sandbox");
                 headlessChromeOptions.addArguments("--headless");
-                headlessChromeOptions.addArguments("window-size=1920,1080");
+                headlessChromeOptions.addArguments("--disable-dev-shm-usage");
+//                headlessChromeOptions.addArguments("window-size=1920,1080");
                 driver = new ChromeDriver(headlessChromeOptions);
                 break;
 
             case HEADLESS_FIREFOX:
                 FirefoxOptions headlessFirefoxOptions = new FirefoxOptions();
+                headlessFirefoxOptions.addArguments("--no-sandbox");
                 headlessFirefoxOptions.addArguments("--headless");
-                headlessFirefoxOptions.addArguments("window-size=1920,1080");
+                headlessFirefoxOptions.addArguments("--disable-dev-shm-usage");
+//                headlessFirefoxOptions.addArguments("window-size=1920,1080");
                 driver = new FirefoxDriver(headlessFirefoxOptions);
                 break;
 
             case HEADLESS_EDGE:
                 EdgeOptions headlessEdgeOptions = new EdgeOptions();
+                headlessEdgeOptions.addArguments("--no-sandbox");
                 headlessEdgeOptions.addArguments("--headless");
-                headlessEdgeOptions.addArguments("window-size=1920,1080");
+                headlessEdgeOptions.addArguments("--disable-dev-shm-usage");
+//                headlessEdgeOptions.addArguments("window-size=1920,1080");
                 driver = new EdgeDriver(headlessEdgeOptions);
                 break;
 
@@ -124,15 +129,21 @@ public class BaseTest {
     protected void deleteAllFileInFolder() {
         try {
             String pathFolderDownload = GlobalConstants.PROJECT_PATH + "/allure-results";
-            File file = new File(pathFolderDownload);
-            File[] listOfFiles = file.listFiles();
+            File folder = new File(pathFolderDownload);
+
+            if (!folder.exists() || !folder.isDirectory()) {
+                System.out.println("Folder " + pathFolderDownload + " does not exist.");
+                return;
+            }
+
+            File[] listOfFiles = folder.listFiles();
             for (int i = 0; i < listOfFiles.length; i++) {
                 if (listOfFiles[i].isFile()) {
                     new File(listOfFiles[i].toString()).delete();
                 }
             }
         } catch (Exception e) {
-            System.out.print(e.getMessage());
+            System.out.print("Not found "+e.getMessage());
         }
     }
 
@@ -143,22 +154,21 @@ public class BaseTest {
         Runtime.getRuntime().exec("taskkill /F /IM IEDriverServer.exe /T");
     }
 
-    public void getChromeInfo(){
-//         //DesiredCapabilities only work with selenium 3x
-//         log chromedriver version
+//    public void getChromeInfo(){
+////         //DesiredCapabilities only work with selenium 3x
+//////         log chromedriver version
 //         caps = DesiredCapabilities.chrome();
 //         caps = ((RemoteWebDriver) driver).getCapabilities();
 //         Map<String, String> a = (Map<String, String>) caps.getCapability("chrome");
 //         System.out.println(String.format("Driver Version: %s",
 //         a.get("chromedriverVersion")));
+//
+//         //log chrome browser version
+//        caps = ((RemoteWebDriver) driver).getCapabilities();
+//        String browserName = caps.getBrowserName().toLowerCase();
+//        System.out.println(browserName);
+//        String browserVersion = caps.getBrowserVersion();
+//        System.out.println(browserVersion);
+//    }
 
-         //log chrome browser version
-        caps = ((RemoteWebDriver) driver).getCapabilities();
-        String browserName = caps.getBrowserName().toLowerCase();
-        System.out.println(browserName);
-        String os = caps.getBrowserName();
-        System.out.println(os);
-        String v = caps.getBrowserVersion();
-        System.out.println(v);
-    }
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Order tracking" verbose="1">
+    <parameter name="environment" value="prod"/>
+    <parameter name="appName" value="Omega Order Tracking"/>
+    <parameter name="appNameInShopifyStore" value="Synctrack Order Tracking"/>
+    <listeners>
+        <listener class-name="commons.MethodListener"/>
+        <listener class-name="reportConfig.AllureTestListener"/>
+    </listeners>
+
+    <test name="Run Create Orders">
+        <parameter name="browser" value="HEADLESS_CHROME"/>
+        <classes>
+            <class name="com.shopify.storeFront.CreateOrderInStoreFront"/>
+        </classes>
+    </test>
+
+    <test name="Run Uninstall App">
+        <parameter name="browser" value="HEADLESS_CHROME"/>
+        <classes>
+            <class name="com.shopify.admin.UninstallApp"/>
+        </classes>
+    </test>
+
+    <test name="Run Install App">
+        <parameter name="browser" value="HEADLESS_CHROME"/>
+        <classes>
+            <class name="com.shopify.admin.InstallApp"/>
+        </classes>
+    </test>
+
+</suite>

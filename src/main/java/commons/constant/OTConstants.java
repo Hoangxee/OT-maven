@@ -24,5 +24,7 @@ public class OTConstants {
     public static final String TRACKING_RESULT_TITLE_PAGE_IN_STORE = "Returns drive";
     public static final String LOOK_AND_FEEL_TAB_IN_TRACKING_PAGE = "Look & Feel";
     public static final String TRACKING_OPTIONS_TAB_IN_TRACKING_PAGE = "Tracking options";
+    public static final String LANGUAGES_TAB_IN_TRACKING_PAGE = "Languages";
+    public static final String ESTIMATED_DELIVERY_DATE_TAB_IN_TRACKING_PAGE = "Estimated Delivery Date";
 
 }
