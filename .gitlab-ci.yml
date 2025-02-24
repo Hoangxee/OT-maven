@@ -12,6 +12,7 @@
 .production-rules:
   rules:
     - if: $CI_PIPELINE_SOURCE == "parent_pipeline"
+    - if: $CI_PIPELINE_SOURCE == "trigger"
 
 stages:
   - test
