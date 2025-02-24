@@ -1,11 +1,18 @@
 .production-rules:
-  trigger:
-     project: 'megaminds/megamind-order-tracking-frontend'
   rules:
-    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH == "main"
 
+trigger-parent:
+  stage: trigger-parent
+  script:
+    - echo "Waiting for 'megamind-order-tracking-frontend' pipeline to trigger this job"
+  trigger:
+    project: megaminds/megamind-order-tracking-frontend
+    branch: develop
+    strategy: depend
 
 stages:
+  - trigger-parent
   - test
   - report
 
